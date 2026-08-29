@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC Deal Analyzer</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1115;
+      color: white;
+      max-width: 700px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #b7bdc8;
+    }
+
+    .card {
+      background: #181b22;
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 25px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 16px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #0f1115;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: #4f7cff;
+      color: white;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>PC Deal Analyzer</h1>
+  <p>Find out if a used gaming PC is actually worth the asking price.</p>
+
+  <div class="card">
+
+    <label>CPU</label>
+    <input id="cpu" placeholder="Example: Ryzen 5 7600">
+
+    <label>GPU</label>
+    <input id="gpu" placeholder="Example: RTX 4070">
+
+    <label>RAM</label>
+    <input id="ram" placeholder="Example: 32GB DDR5">
+
+    <label>Asking Price ($)</label>
+    <input id="price" type="number" placeholder="Example: 1200">
+
+    <button onclick="analyzeDeal()">Analyze Deal</button>
+
+    <div id="result"></div>
+
+  </div>
+
+  <script>
+    function analyzeDeal() {
+      const price = Number(document.getElementById("price").value);
+      const result = document.getElementById("result");
+
+      if (!price) {
+        result.innerHTML = "Enter an asking price first.";
+        return;
+      }
+
+      if (price < 700) {
+        result.innerHTML = "🔥 Potentially a great deal";
+      } else if (price < 1300) {
+        result.innerHTML = "✅ Could be a good deal";
+      } else {
+        result.innerHTML = "⚠️ Check the parts carefully";
+      }
+    }
+  </script>
+
+</body>
+</html>
