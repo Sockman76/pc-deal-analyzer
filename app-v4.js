@@ -1,6 +1,6 @@
 // ============================================================
 // PCDEAL - APP-V4.JS
-// VERSION 5
+// VERSION 7
 // ============================================================
 //
 // Requires:
@@ -9,19 +9,16 @@
 // gpu-data.js
 // parts.js
 //
-// This file contains ONLY:
-// - UI logic
-// - Deal analyzer
+// Handles:
 // - Listing parser
-// - Compatibility display
-//
-// It must NOT contain:
-// const platformDatabase
-// const cpuDatabase
-// const gpuDatabase
+// - Deal analyzer
+// - RAM compatibility
+// - Automatic RAM generation
+// - Better price detection
+// - Motherboard/chipset detection
+// - PSU/storage/cooler detection
 //
 // ============================================================
-
 
 
 // ============================================================
@@ -30,51 +27,26 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const cpuInput =
-    document.getElementById("cpu");
-
-  const motherboardInput =
-    document.getElementById("motherboard");
-
+  const cpuInput = document.getElementById("cpu");
+  const motherboardInput = document.getElementById("motherboard");
 
   if (cpuInput) {
-
-    cpuInput.addEventListener(
-      "change",
-      updateMemoryCompatibility
-    );
-
-    cpuInput.addEventListener(
-      "blur",
-      updateMemoryCompatibility
-    );
-
+    cpuInput.addEventListener("change", updateMemoryCompatibility);
+    cpuInput.addEventListener("blur", updateMemoryCompatibility);
   }
-
 
   if (motherboardInput) {
-
-    motherboardInput.addEventListener(
-      "change",
-      updateMemoryCompatibility
-    );
-
-    motherboardInput.addEventListener(
-      "blur",
-      updateMemoryCompatibility
-    );
-
+    motherboardInput.addEventListener("change", updateMemoryCompatibility);
+    motherboardInput.addEventListener("blur", updateMemoryCompatibility);
   }
-
 
   updateMemoryCompatibility();
 
 });
 
 
-
 // ============================================================
-// BASIC NORMALIZATION
+// NORMALIZATION
 // ============================================================
 
 function normalizeDetectionText(text) {
@@ -93,19 +65,13 @@ function normalizeDetectionText(text) {
 }
 
 
-
 // ============================================================
 // MONEY FORMAT
 // ============================================================
 
-function formatMoney(
-  amount,
-  currency = "CAD"
-) {
+function formatMoney(amount, currency = "CAD") {
 
-  const number =
-    Number(amount) || 0;
-
+  const number = Number(amount) || 0;
 
   return new Intl.NumberFormat(
     "en-CA",
@@ -119,27 +85,21 @@ function formatMoney(
 }
 
 
-
 // ============================================================
-// RAM TYPE DROPDOWN
+// RESTORE RAM TYPE DROPDOWN
 // ============================================================
 
 function restoreRamTypeDropdown() {
 
-  const ramTypeSelect =
-    document.getElementById("ramType");
+  const select = document.getElementById("ramType");
 
-
-  if (!ramTypeSelect) {
+  if (!select) {
     return;
   }
 
+  const previousValue = select.value;
 
-  const currentValue =
-    ramTypeSelect.value;
-
-
-  ramTypeSelect.innerHTML = `
+  select.innerHTML = `
     <option value="">Unknown / Not listed</option>
     <option value="DDR2">DDR2</option>
     <option value="DDR3">DDR3</option>
@@ -147,23 +107,16 @@ function restoreRamTypeDropdown() {
     <option value="DDR5">DDR5</option>
   `;
 
-
-  ramTypeSelect.disabled =
-    false;
-
+  select.disabled = false;
 
   if (
     ["DDR2", "DDR3", "DDR4", "DDR5"]
-      .includes(currentValue)
+      .includes(previousValue)
   ) {
-
-    ramTypeSelect.value =
-      currentValue;
-
+    select.value = previousValue;
   }
 
 }
-
 
 
 // ============================================================
@@ -176,137 +129,68 @@ function setRamOptions(
   selectedMemory = null
 ) {
 
-  const select =
-    document.getElementById("ramType");
-
+  const select = document.getElementById("ramType");
 
   if (!select) {
     return;
   }
 
-
-  const types =
-    Array.isArray(memoryTypes)
-      ? memoryTypes
-      : [];
-
-
-  select.innerHTML = "";
-
-
-  // ----------------------------------------------------------
-  // NO PLATFORM INFO
-  // ----------------------------------------------------------
+  const types = Array.isArray(memoryTypes)
+    ? memoryTypes
+    : [];
 
   if (types.length === 0) {
-
     restoreRamTypeDropdown();
-
     return;
-
   }
 
-
-  // ----------------------------------------------------------
-  // AUTOMATIC SINGLE RAM TYPE
-  // ----------------------------------------------------------
+  select.innerHTML = "";
 
   if (
     automatic &&
     selectedMemory
   ) {
 
-    const option =
-      document.createElement(
-        "option"
-      );
+    const option = document.createElement("option");
 
+    option.value = selectedMemory;
+    option.textContent = `${selectedMemory} — required`;
 
-    option.value =
-      selectedMemory;
+    select.appendChild(option);
 
-    option.textContent =
-      `${selectedMemory} — required`;
-
-
-    select.appendChild(
-      option
-    );
-
-
-    select.value =
-      selectedMemory;
-
-    select.disabled =
-      true;
-
+    select.value = selectedMemory;
+    select.disabled = true;
 
     return;
-
   }
 
+  select.disabled = false;
 
-  // ----------------------------------------------------------
-  // MULTIPLE RAM OPTIONS
-  // ----------------------------------------------------------
-
-  select.disabled =
-    false;
-
-
-  const unknown =
-    document.createElement(
-      "option"
-    );
-
+  const unknown = document.createElement("option");
 
   unknown.value = "";
-  unknown.textContent =
-    "Select RAM type";
+  unknown.textContent = "Select RAM type";
 
+  select.appendChild(unknown);
 
-  select.appendChild(
-    unknown
-  );
+  for (const memoryType of types) {
 
+    const option = document.createElement("option");
 
-  for (
-    const memoryType
-    of types
-  ) {
+    option.value = memoryType;
+    option.textContent = memoryType;
 
-    const option =
-      document.createElement(
-        "option"
-      );
-
-
-    option.value =
-      memoryType;
-
-    option.textContent =
-      memoryType;
-
-
-    select.appendChild(
-      option
-    );
-
+    select.appendChild(option);
   }
-
 
   if (
     selectedMemory &&
     types.includes(selectedMemory)
   ) {
-
-    select.value =
-      selectedMemory;
-
+    select.value = selectedMemory;
   }
 
 }
-
 
 
 // ============================================================
@@ -315,55 +199,37 @@ function setRamOptions(
 
 function updateMemoryCompatibility() {
 
-  const cpuInput =
-    document.getElementById("cpu");
-
-  const motherboardInput =
-    document.getElementById("motherboard");
-
+  const cpuInput = document.getElementById("cpu");
+  const motherboardInput = document.getElementById("motherboard");
 
   if (!cpuInput) {
     return;
   }
 
-
-  const cpuText =
-    cpuInput.value.trim();
-
+  const cpuText = cpuInput.value.trim();
 
   if (!cpuText) {
-
     restoreRamTypeDropdown();
-
     return;
-
   }
-
 
   const cpu =
     typeof findCPU === "function"
       ? findCPU(cpuText)
       : null;
 
-
   if (!cpu) {
-
     restoreRamTypeDropdown();
-
     return;
-
   }
-
 
   const motherboard =
     motherboardInput
       ? motherboardInput.value.trim()
       : "";
 
-
   if (
-    typeof getBestMemorySelection ===
-    "function"
+    typeof getBestMemorySelection === "function"
   ) {
 
     const selection =
@@ -371,7 +237,6 @@ function updateMemoryCompatibility() {
         cpu,
         motherboard
       );
-
 
     if (selection) {
 
@@ -381,26 +246,16 @@ function updateMemoryCompatibility() {
         selection.selected || null
       );
 
-
       return;
-
     }
-
   }
 
-
-  // ----------------------------------------------------------
-  // FALLBACK IF platform.js HELPER IS MISSING
-  // ----------------------------------------------------------
-
   if (
-    typeof getCPUMemoryTypes ===
-    "function"
+    typeof getCPUMemoryTypes === "function"
   ) {
 
     const memory =
       getCPUMemoryTypes(cpu);
-
 
     if (memory.length === 1) {
 
@@ -410,110 +265,69 @@ function updateMemoryCompatibility() {
         memory[0]
       );
 
-    }
-
-    else {
+    } else {
 
       setRamOptions(
         memory,
         false,
         null
       );
-
     }
-
   }
 
 }
-
 
 
 // ============================================================
 // STORAGE VALUE
 // ============================================================
 
-function getStorageValue(
-  storage
-) {
+function getStorageValue(storage) {
 
   const values = {
-
     "256GB SSD": 15,
     "500GB SSD": 25,
     "1TB SSD": 50,
     "2TB SSD": 90,
     "HDD Only": 10
-
   };
 
-
-  return (
-    values[storage] ||
-    0
-  );
+  return values[storage] || 0;
 
 }
-
 
 
 // ============================================================
 // RAM VALUE
 // ============================================================
 
-function getRamValue(
-  capacity,
-  type
-) {
+function getRamValue(capacity, type) {
 
   const capacityValues = {
-
     "8GB": 20,
     "16GB": 40,
     "32GB": 70,
     "64GB+": 120
-
   };
 
-
   let value =
-    capacityValues[capacity] ||
-    0;
+    capacityValues[capacity] || 0;
 
-
-  if (
-    type === "DDR5"
-  ) {
-
+  if (type === "DDR5") {
     value += 25;
-
   }
 
-
-  else if (
-    type === "DDR3"
-  ) {
-
+  if (type === "DDR3") {
     value -= 5;
-
   }
 
-
-  else if (
-    type === "DDR2"
-  ) {
-
+  if (type === "DDR2") {
     value -= 10;
-
   }
 
-
-  return Math.max(
-    0,
-    value
-  );
+  return Math.max(0, value);
 
 }
-
 
 
 // ============================================================
@@ -530,73 +344,38 @@ function getMotherboardValue(
       motherboard
     );
 
-
   if (text) {
-
-    // --------------------------------------------------------
-    // HIGH-END CHIPSETS
-    // --------------------------------------------------------
 
     if (
       /\b(x870e|x870|x670e|x670|z890|z790|z690|x570|x470|x370|x299|x99|x79|x58)\b/i
         .test(text)
     ) {
-
       return 170;
-
     }
-
-
-    // --------------------------------------------------------
-    // MID-RANGE CHIPSETS
-    // --------------------------------------------------------
 
     if (
       /\b(b850|b840|b650e|b650|b760|b660|b560|b550|b450|h770|h670|h570|z590|z490|z390|z370)\b/i
         .test(text)
     ) {
-
       return 110;
-
     }
-
-
-    // --------------------------------------------------------
-    // OLDER ENTHUSIAST
-    // --------------------------------------------------------
 
     if (
       /\b(z270|z170|z97|z87|z77|z75|z68|p67|990fx|990x|970)\b/i
         .test(text)
     ) {
-
       return 80;
-
     }
-
-
-    // --------------------------------------------------------
-    // ENTRY LEVEL
-    // --------------------------------------------------------
 
     if (
       /\b(a620|a520|a320|h610|h510|h410|h310|h110|h81|h61)\b/i
         .test(text)
     ) {
-
       return 55;
-
     }
 
-
     return 75;
-
   }
-
-
-  // ----------------------------------------------------------
-  // FALLBACK BY CPU PLATFORM
-  // ----------------------------------------------------------
 
   if (
     cpu &&
@@ -607,280 +386,189 @@ function getMotherboardValue(
       cpu.socket === "AM5" ||
       cpu.socket === "LGA1851"
     ) {
-
       return 100;
-
     }
-
 
     if (
       cpu.socket === "AM4" ||
       cpu.socket === "LGA1700"
     ) {
-
       return 85;
-
     }
-
 
     if (
       cpu.socket === "LGA1200" ||
       cpu.socket === "LGA1151-300"
     ) {
-
       return 65;
-
     }
-
 
     if (
       cpu.socket === "LGA1150" ||
       cpu.socket === "LGA1155"
     ) {
-
       return 45;
-
     }
-
   }
-
 
   return 50;
 
 }
 
 
-
 // ============================================================
 // PSU VALUE
 // ============================================================
 
-function getPSUValue(
-  psu
-) {
+function getPSUValue(psu) {
 
   if (!psu) {
     return 50;
   }
 
-
-  const text =
-    psu.toLowerCase();
-
+  const text = psu.toLowerCase();
 
   let value = 50;
 
-
   if (
-    /corsair|seasonic|super flower|be quiet|evga|fsp|thermaltake toughpower|msi mpg|asus rog|cooler master v|nzxt c/i
+    /corsair|seasonic|super flower|be quiet|evga|fsp|toughpower|msi mpg|asus rog|cooler master|nzxt/i
       .test(text)
   ) {
-
     value = 100;
-
   }
-
 
   if (
-    /1000w|1200w|1300w/i
+    /1000\s*w|1200\s*w|1300\s*w/i
       .test(text)
   ) {
-
     value += 30;
-
   }
 
-
   else if (
-    /850w/i.test(text)
+    /850\s*w/i.test(text)
   ) {
-
     value += 20;
-
   }
-
 
   else if (
-    /750w/i.test(text)
+    /750\s*w/i.test(text)
   ) {
-
     value += 10;
-
   }
-
 
   return value;
 
 }
 
 
-
 // ============================================================
 // COOLER VALUE
 // ============================================================
 
-function getCoolerValue(
-  cooler
-) {
+function getCoolerValue(cooler) {
 
   const values = {
-
     "stock": 10,
     "air": 40,
     "aio240": 60,
     "aio280": 75,
     "aio360": 90
-
   };
 
-
-  return (
-    values[cooler] ||
-    20
-  );
+  return values[cooler] || 20;
 
 }
-
 
 
 // ============================================================
 // CASE VALUE
 // ============================================================
 
-function getCaseValue(
-  caseQuality
-) {
+function getCaseValue(caseQuality) {
 
   const values = {
-
     "basic": 35,
     "mid": 70,
     "premium": 120
-
   };
 
-
-  return (
-    values[caseQuality] ||
-    50
-  );
+  return values[caseQuality] || 50;
 
 }
-
 
 
 // ============================================================
 // CONDITION MULTIPLIER
 // ============================================================
 
-function getConditionMultiplier(
-  condition
-) {
+function getConditionMultiplier(condition) {
 
   const values = {
-
     "excellent": 1.05,
     "good": 1,
     "fair": 0.90,
     "poor": 0.75
-
   };
 
-
-  return (
-    values[condition] ||
-    1
-  );
+  return values[condition] || 1;
 
 }
-
 
 
 // ============================================================
 // GAMING DESCRIPTION
 // ============================================================
 
-function getGamingDescription(
-  gpu
-) {
+function getGamingDescription(gpu) {
 
   if (!gpu) {
-
     return "Gaming performance unknown";
-
   }
-
 
   const score =
     gpu.performance || 0;
 
-
   if (score >= 85) {
-
     return "Excellent high-end 4K gaming";
-
   }
-
 
   if (score >= 65) {
-
     return "Excellent 1440p / strong 4K gaming";
-
   }
-
 
   if (score >= 45) {
-
     return "Strong 1440p gaming";
-
   }
-
 
   if (score >= 30) {
-
     return "Excellent 1080p / capable 1440p gaming";
-
   }
-
 
   if (score >= 18) {
-
     return "Good 1080p gaming";
-
   }
-
 
   if (score >= 10) {
-
     return "Entry-level 1080p gaming";
-
   }
-
 
   return "Very light / older gaming";
 
 }
 
 
-
 // ============================================================
 // CPU/GPU BALANCE
 // ============================================================
 
-function getBalanceDescription(
-  cpu,
-  gpu
-) {
+function getBalanceDescription(cpu, gpu) {
 
   if (
     !cpu ||
     !gpu
   ) {
-
     return "Unknown";
-
   }
-
 
   const cpuScore =
     cpu.performance || 0;
@@ -888,210 +576,113 @@ function getBalanceDescription(
   const gpuScore =
     gpu.performance || 0;
 
-
   const difference =
-    cpuScore -
-    gpuScore;
-
+    cpuScore - gpuScore;
 
   if (
     Math.abs(difference) <= 15
   ) {
-
     return "CPU and GPU are reasonably balanced";
-
   }
-
 
   if (
     difference > 30
   ) {
-
     return "GPU is likely the main gaming bottleneck";
-
   }
-
 
   if (
     difference > 15
   ) {
-
     return "System is somewhat GPU-limited";
-
   }
-
 
   if (
     difference < -30
   ) {
-
     return "CPU may significantly limit the GPU in some games";
-
   }
-
 
   return "System may be somewhat CPU-limited";
 
 }
 
 
-
 // ============================================================
 // DEAL VERDICT
 // ============================================================
 
-function getDealVerdict(
-  score
-) {
+function getDealVerdict(score) {
 
   if (score >= 90) {
-
     return "Excellent deal";
-
   }
-
 
   if (score >= 80) {
-
     return "Good deal";
-
   }
-
 
   if (score >= 70) {
-
     return "Fair price";
-
   }
-
 
   if (score >= 55) {
-
     return "A little expensive";
-
   }
-
 
   if (score >= 40) {
-
     return "Overpriced";
-
   }
-
 
   return "Very overpriced";
 
 }
 
 
-
 // ============================================================
-// DEAL ANALYZER
+// ANALYZE DEAL
 // ============================================================
 
 function analyzeDeal() {
 
-  const cpuInput =
-    document.getElementById("cpu");
-
-  const gpuInput =
-    document.getElementById("gpu");
-
-  const ramInput =
-    document.getElementById("ram");
-
-  const ramTypeInput =
-    document.getElementById("ramType");
-
-  const storageInput =
-    document.getElementById("storage");
-
-  const priceInput =
-    document.getElementById("price");
-
-  const currencyInput =
-    document.getElementById("currency");
-
-  const motherboardInput =
-    document.getElementById("motherboard");
-
-  const psuInput =
-    document.getElementById("psu");
-
-  const coolerInput =
-    document.getElementById("cooler");
-
-  const caseInput =
-    document.getElementById("caseQuality");
-
-  const conditionInput =
-    document.getElementById("condition");
-
-
   const cpuText =
-    cpuInput
-      ? cpuInput.value.trim()
-      : "";
+    document.getElementById("cpu")?.value.trim() || "";
 
   const gpuText =
-    gpuInput
-      ? gpuInput.value.trim()
-      : "";
+    document.getElementById("gpu")?.value.trim() || "";
 
   const ram =
-    ramInput
-      ? ramInput.value
-      : "";
+    document.getElementById("ram")?.value || "";
 
   const ramType =
-    ramTypeInput
-      ? ramTypeInput.value
-      : "";
+    document.getElementById("ramType")?.value || "";
 
   const storage =
-    storageInput
-      ? storageInput.value
-      : "";
+    document.getElementById("storage")?.value || "";
 
   const price =
-    priceInput
-      ? Number(priceInput.value)
-      : 0;
+    Number(
+      document.getElementById("price")?.value || 0
+    );
 
   const currency =
-    currencyInput
-      ? currencyInput.value || "CAD"
-      : "CAD";
+    document.getElementById("currency")?.value || "CAD";
 
   const motherboard =
-    motherboardInput
-      ? motherboardInput.value.trim()
-      : "";
+    document.getElementById("motherboard")?.value.trim() || "";
 
   const psu =
-    psuInput
-      ? psuInput.value.trim()
-      : "";
+    document.getElementById("psu")?.value.trim() || "";
 
   const cooler =
-    coolerInput
-      ? coolerInput.value
-      : "";
+    document.getElementById("cooler")?.value || "";
 
   const caseQuality =
-    caseInput
-      ? caseInput.value
-      : "";
+    document.getElementById("caseQuality")?.value || "";
 
   const condition =
-    conditionInput
-      ? conditionInput.value
-      : "good";
+    document.getElementById("condition")?.value || "good";
 
-
-  // ----------------------------------------------------------
-  // REQUIRED FIELDS
-  // ----------------------------------------------------------
 
   if (
     !cpuText ||
@@ -1104,7 +695,6 @@ function analyzeDeal() {
     );
 
     return;
-
   }
 
 
@@ -1123,28 +713,22 @@ function analyzeDeal() {
   if (!cpu) {
 
     alert(
-      "CPU not recognized yet. Try using the exact model name."
+      "CPU not recognized yet."
     );
 
     return;
-
   }
 
 
   if (!gpu) {
 
     alert(
-      "GPU not recognized yet. Try using the exact model name."
+      "GPU not recognized yet."
     );
 
     return;
-
   }
 
-
-  // ----------------------------------------------------------
-  // PART VALUES
-  // ----------------------------------------------------------
 
   const cpuValue =
     Number(cpu.value) || 0;
@@ -1159,9 +743,7 @@ function analyzeDeal() {
     );
 
   const storageValue =
-    getStorageValue(
-      storage
-    );
+    getStorageValue(storage);
 
   const motherboardValue =
     getMotherboardValue(
@@ -1170,19 +752,13 @@ function analyzeDeal() {
     );
 
   const psuValue =
-    getPSUValue(
-      psu
-    );
+    getPSUValue(psu);
 
   const coolerValue =
-    getCoolerValue(
-      cooler
-    );
+    getCoolerValue(cooler);
 
   const caseValue =
-    getCaseValue(
-      caseQuality
-    );
+    getCaseValue(caseQuality);
 
 
   const subtotal =
@@ -1196,36 +772,24 @@ function analyzeDeal() {
     caseValue;
 
 
-  const conditionMultiplier =
-    getConditionMultiplier(
-      condition
-    );
-
-
   const estimatedValue =
     Math.round(
       subtotal *
-      conditionMultiplier
+      getConditionMultiplier(condition)
     );
 
 
   const lowValue =
     Math.round(
-      estimatedValue *
-      0.90
+      estimatedValue * 0.90
     );
 
 
   const highValue =
     Math.round(
-      estimatedValue *
-      1.10
+      estimatedValue * 1.10
     );
 
-
-  // ----------------------------------------------------------
-  // DEAL SCORE
-  // ----------------------------------------------------------
 
   const ratio =
     estimatedValue > 0
@@ -1233,87 +797,44 @@ function analyzeDeal() {
       : 999;
 
 
-  let score;
+  let score = 35;
 
 
-  if (
-    ratio <= 0.70
-  ) {
-
+  if (ratio <= 0.70) {
     score = 95;
-
   }
 
-
-  else if (
-    ratio <= 0.80
-  ) {
-
+  else if (ratio <= 0.80) {
     score = 90;
-
   }
 
-
-  else if (
-    ratio <= 0.90
-  ) {
-
+  else if (ratio <= 0.90) {
     score = 85;
-
   }
 
-
-  else if (
-    ratio <= 1.00
-  ) {
-
+  else if (ratio <= 1.00) {
     score = 78;
-
   }
 
-
-  else if (
-    ratio <= 1.10
-  ) {
-
+  else if (ratio <= 1.10) {
     score = 68;
-
   }
 
-
-  else if (
-    ratio <= 1.20
-  ) {
-
+  else if (ratio <= 1.20) {
     score = 55;
-
   }
 
-
-  else {
-
-    score = 35;
-
-  }
-
-
-  // ----------------------------------------------------------
-  // COMPATIBILITY
-  // ----------------------------------------------------------
 
   let compatibility = {
-
     compatible: true,
     issues: [],
     warnings: [],
     passed: []
-
   };
 
 
   if (
-    typeof checkFullPlatformCompatibility ===
-    "function"
+    typeof checkFullPlatformCompatibility === "function"
   ) {
 
     compatibility =
@@ -1322,7 +843,6 @@ function analyzeDeal() {
         motherboard,
         ramType
       ) || compatibility;
-
   }
 
 
@@ -1336,19 +856,13 @@ function analyzeDeal() {
         score,
         25
       );
-
   }
 
-
-  // ----------------------------------------------------------
-  // CONFIDENCE
-  // ----------------------------------------------------------
 
   let filledFields = 0;
 
 
   const confidenceFields = [
-
     cpuText,
     gpuText,
     ram,
@@ -1358,69 +872,43 @@ function analyzeDeal() {
     psu,
     cooler,
     caseQuality
-
   ];
 
 
-  for (
-    const field
-    of confidenceFields
-  ) {
+  for (const field of confidenceFields) {
 
     if (field) {
       filledFields++;
     }
-
   }
 
 
   const confidence =
     Math.round(
-      (
-        filledFields /
-        confidenceFields.length
-      ) *
+      filledFields /
+      confidenceFields.length *
       100
     );
 
 
-  let confidenceLabel =
-    "Low";
+  let confidenceLabel = "Low";
 
 
-  if (
-    confidence >= 80
-  ) {
-
-    confidenceLabel =
-      "High";
-
+  if (confidence >= 80) {
+    confidenceLabel = "High";
   }
 
-
-  else if (
-    confidence >= 55
-  ) {
-
-    confidenceLabel =
-      "Medium";
-
+  else if (confidence >= 55) {
+    confidenceLabel = "Medium";
   }
 
-
-  // ----------------------------------------------------------
-  // SUGGESTED OFFER
-  // ----------------------------------------------------------
 
   let suggestedOffer =
     Math.round(
-      (
-        estimatedValue *
-        0.85
-      ) /
+      estimatedValue *
+      0.85 /
       10
-    ) *
-    10;
+    ) * 10;
 
 
   suggestedOffer =
@@ -1430,20 +918,14 @@ function analyzeDeal() {
     );
 
 
-  // ----------------------------------------------------------
-  // PLATFORM INFO
-  // ----------------------------------------------------------
-
   const compatibilityInfo =
-    typeof getCPUCompatibility ===
-    "function"
+    typeof getCPUCompatibility === "function"
       ? getCPUCompatibility(cpu)
       : null;
 
 
   const socket =
-    cpu.socket ||
-    "Unknown";
+    cpu.socket || "Unknown";
 
 
   const supportedMemory =
@@ -1454,23 +936,11 @@ function analyzeDeal() {
 
 
   const detectedChipset =
-    (
-      typeof findChipsetInText ===
-      "function" &&
-      motherboard
-    )
-      ? (
-          findChipsetInText(
-            motherboard
-          ) ||
-          "Not detected"
-        )
+    typeof findChipsetInText === "function" &&
+    motherboard
+      ? findChipsetInText(motherboard) || "Not detected"
       : "Not detected";
 
-
-  // ----------------------------------------------------------
-  // FALLBACK PART WARNING
-  // ----------------------------------------------------------
 
   const fallbackWarnings = [];
 
@@ -1481,9 +951,8 @@ function analyzeDeal() {
   ) {
 
     fallbackWarnings.push(
-      "CPU was detected, but an exact used-market value is not available."
+      "CPU detected, but exact market value is unavailable."
     );
-
   }
 
 
@@ -1493,15 +962,82 @@ function analyzeDeal() {
   ) {
 
     fallbackWarnings.push(
-      "GPU was detected, but an exact used-market value is not available."
+      "GPU detected, but exact market value is unavailable."
     );
-
   }
 
 
-  // ----------------------------------------------------------
-  // RESULT HTML
-  // ----------------------------------------------------------
+  let compatibilityHTML = "";
+
+
+  if (
+    compatibility.issues &&
+    compatibility.issues.length
+  ) {
+
+    compatibilityHTML += `
+      <div style="margin-top:14px;">
+        <strong>❌ Compatibility issues</strong>
+        <ul>
+          ${compatibility.issues
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+
+  if (
+    compatibility.warnings &&
+    compatibility.warnings.length
+  ) {
+
+    compatibilityHTML += `
+      <div style="margin-top:14px;">
+        <strong>⚠️ Compatibility warnings</strong>
+        <ul>
+          ${compatibility.warnings
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+
+  if (
+    compatibility.passed &&
+    compatibility.passed.length
+  ) {
+
+    compatibilityHTML += `
+      <div style="margin-top:14px;">
+        <strong>✅ Compatibility checks</strong>
+        <ul>
+          ${compatibility.passed
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+      </div>
+    `;
+  }
+
+
+  if (fallbackWarnings.length) {
+
+    compatibilityHTML += `
+      <div style="margin-top:14px;">
+        <strong>⚠️ Value accuracy</strong>
+        <ul>
+          ${fallbackWarnings
+            .map(item => `<li>${item}</li>`)
+            .join("")}
+        </ul>
+      </div>
+    `;
+  }
+
 
   const result =
     document.getElementById("result");
@@ -1524,11 +1060,10 @@ function analyzeDeal() {
   ) {
 
     console.error(
-      "One or more result elements are missing from index.html."
+      "Result elements missing from index.html."
     );
 
     return;
-
   }
 
 
@@ -1538,96 +1073,6 @@ function analyzeDeal() {
 
   verdictElement.textContent =
     getDealVerdict(score);
-
-
-  let compatibilityHTML = "";
-
-
-  if (
-    compatibility.issues &&
-    compatibility.issues.length
-  ) {
-
-    compatibilityHTML += `
-      <div style="margin-top:14px;">
-        <strong>❌ Compatibility issues</strong>
-        <ul>
-          ${compatibility.issues
-            .map(
-              issue =>
-                `<li>${issue}</li>`
-            )
-            .join("")}
-        </ul>
-      </div>
-    `;
-
-  }
-
-
-  if (
-    compatibility.warnings &&
-    compatibility.warnings.length
-  ) {
-
-    compatibilityHTML += `
-      <div style="margin-top:14px;">
-        <strong>⚠️ Compatibility warnings</strong>
-        <ul>
-          ${compatibility.warnings
-            .map(
-              warning =>
-                `<li>${warning}</li>`
-            )
-            .join("")}
-        </ul>
-      </div>
-    `;
-
-  }
-
-
-  if (
-    compatibility.passed &&
-    compatibility.passed.length
-  ) {
-
-    compatibilityHTML += `
-      <div style="margin-top:14px;">
-        <strong>✅ Compatibility checks</strong>
-        <ul>
-          ${compatibility.passed
-            .map(
-              item =>
-                `<li>${item}</li>`
-            )
-            .join("")}
-        </ul>
-      </div>
-    `;
-
-  }
-
-
-  if (
-    fallbackWarnings.length
-  ) {
-
-    compatibilityHTML += `
-      <div style="margin-top:14px;">
-        <strong>⚠️ Value accuracy</strong>
-        <ul>
-          ${fallbackWarnings
-            .map(
-              warning =>
-                `<li>${warning}</li>`
-            )
-            .join("")}
-        </ul>
-      </div>
-    `;
-
-  }
 
 
   resultText.innerHTML = `
@@ -1688,10 +1133,7 @@ function analyzeDeal() {
       <strong>CPU value:</strong>
       ${
         cpuValue > 0
-          ? formatMoney(
-              cpuValue,
-              currency
-            )
+          ? formatMoney(cpuValue, currency)
           : "Exact value unavailable"
       }
     </p>
@@ -1700,10 +1142,7 @@ function analyzeDeal() {
       <strong>GPU value:</strong>
       ${
         gpuValue > 0
-          ? formatMoney(
-              gpuValue,
-              currency
-            )
+          ? formatMoney(gpuValue, currency)
           : "Exact value unavailable"
       }
     </p>
@@ -1741,12 +1180,10 @@ function analyzeDeal() {
     </p>
 
     ${compatibilityHTML}
-
   `;
 
 
-  result.style.display =
-    "block";
+  result.style.display = "block";
 
 
   result.scrollIntoView({
@@ -1757,322 +1194,256 @@ function analyzeDeal() {
 }
 
 
-
 // ============================================================
 // DETECT RAM CAPACITY
 // ============================================================
 
-function detectRamCapacity(
-  text
-) {
+function detectRamCapacity(text) {
 
   const normalized =
-    normalizeDetectionText(
-      text
-    );
+    normalizeDetectionText(text);
 
 
   if (
-    /\b(64|96|128)\s*gb\b/i
+    /\b(64|96|128)\s*(gb|gigs?|gigabytes?)\b/i
       .test(normalized)
   ) {
-
     return "64GB+";
-
   }
 
 
   if (
-    /\b32\s*gb\b/i
+    /\b32\s*(gb|gigs?|gigabytes?)\b/i
       .test(normalized)
   ) {
-
     return "32GB";
-
   }
 
 
   if (
-    /\b16\s*gb\b/i
+    /\b16\s*(gb|gigs?|gigabytes?)\b/i
       .test(normalized)
   ) {
-
     return "16GB";
-
   }
 
 
   if (
-    /\b8\s*gb\b/i
+    /\b8\s*(gb|gigs?|gigabytes?)\b/i
       .test(normalized)
   ) {
-
     return "8GB";
-
   }
 
 
   return "";
 
 }
-
 
 
 // ============================================================
 // DETECT RAM TYPE
 // ============================================================
 
-function detectRamType(
-  text
-) {
+function detectRamType(text) {
+
+  const normalized =
+    text
+      .toLowerCase()
+      .replace(/[-_/(),.:]/g, " ")
+      .replace(/\s+/g, " ");
+
 
   if (
-    /\bddr5\b/i.test(text)
+    /\bddr\s*5\b/i.test(normalized)
   ) {
-
     return "DDR5";
-
   }
 
 
   if (
-    /\bddr4\b/i.test(text)
+    /\bddr\s*4\b/i.test(normalized)
   ) {
-
     return "DDR4";
-
   }
 
 
   if (
-    /\bddr3\b/i.test(text)
+    /\bddr\s*3\b/i.test(normalized)
   ) {
-
     return "DDR3";
-
   }
 
 
   if (
-    /\bddr2\b/i.test(text)
+    /\bddr\s*2\b/i.test(normalized)
   ) {
-
     return "DDR2";
+  }
 
+
+  if (
+    /\bd5\b/i.test(normalized)
+  ) {
+    return "DDR5";
+  }
+
+
+  if (
+    /\bd4\b/i.test(normalized)
+  ) {
+    return "DDR4";
+  }
+
+
+  if (
+    /\bd3\b/i.test(normalized)
+  ) {
+    return "DDR3";
   }
 
 
   return "";
 
 }
-
 
 
 // ============================================================
 // DETECT STORAGE
 // ============================================================
 
-function detectStorage(
-  text
-) {
+function detectStorage(text) {
 
   const normalized =
     text.toLowerCase();
 
 
-  // ----------------------------------------------------------
-  // 2TB SSD / NVME
-  // ----------------------------------------------------------
-
   if (
-    /\b2\s*tb\b/.test(normalized) &&
-    /\b(ssd|nvme|m\.?2)\b/.test(normalized)
+    /\b2\s*tb\b/i.test(normalized) &&
+    /\b(ssd|nvme|m\.?2)\b/i.test(normalized)
   ) {
-
     return "2TB SSD";
-
   }
 
 
-  // ----------------------------------------------------------
-  // 1TB SSD / NVME
-  // ----------------------------------------------------------
-
   if (
-    /\b1\s*tb\b/.test(normalized) &&
-    /\b(ssd|nvme|m\.?2)\b/.test(normalized)
+    /\b1\s*tb\b/i.test(normalized) &&
+    /\b(ssd|nvme|m\.?2)\b/i.test(normalized)
   ) {
-
     return "1TB SSD";
-
   }
 
 
-  // ----------------------------------------------------------
-  // 500GB / 512GB SSD
-  // ----------------------------------------------------------
-
   if (
-    /\b(480|500|512)\s*gb\b/.test(normalized) &&
-    /\b(ssd|nvme|m\.?2)\b/.test(normalized)
+    /\b(480|500|512)\s*gb\b/i.test(normalized) &&
+    /\b(ssd|nvme|m\.?2)\b/i.test(normalized)
   ) {
-
     return "500GB SSD";
-
   }
 
 
-  // ----------------------------------------------------------
-  // 240 / 250 / 256GB SSD
-  // ----------------------------------------------------------
-
   if (
-    /\b(240|250|256)\s*gb\b/.test(normalized) &&
-    /\b(ssd|nvme|m\.?2)\b/.test(normalized)
+    /\b(240|250|256)\s*gb\b/i.test(normalized) &&
+    /\b(ssd|nvme|m\.?2)\b/i.test(normalized)
   ) {
-
     return "256GB SSD";
-
   }
 
 
-  // ----------------------------------------------------------
-  // HDD ONLY
-  // ----------------------------------------------------------
-
   if (
-    /\bhdd\b|hard drive/i
-      .test(normalized) &&
-    !/\bssd\b|\bnvme\b|\bm\.?2\b/i
-      .test(normalized)
+    /\bhdd\b|hard drive/i.test(normalized) &&
+    !/\bssd\b|\bnvme\b|\bm\.?2\b/i.test(normalized)
   ) {
-
     return "HDD Only";
-
   }
 
 
   return "";
 
 }
-
 
 
 // ============================================================
 // DETECT PSU
 // ============================================================
 
-function detectPSU(
-  text
-) {
+function detectPSU(text) {
 
   const lines =
     text.split(/\r?\n/);
 
 
-  for (
-    const line
-    of lines
-  ) {
+  for (const line of lines) {
 
     if (
-      /\b[4-9][0-9]{2}\s*w\b/i
-        .test(line) ||
-      /\b1[0-5][0-9]{2}\s*w\b/i
+      /\b([4-9][0-9]{2}|1[0-5][0-9]{2})\s*(w|watt|watts)\b/i
         .test(line) ||
       /\bpsu\b|power supply/i
         .test(line)
     ) {
 
       return line.trim();
-
     }
-
-  }
-
-
-  const wattage =
-    text.match(
-      /\b([4-9][0-9]{2}|1[0-5][0-9]{2})\s*w\b/i
-    );
-
-
-  if (wattage) {
-
-    return `${wattage[1]}W PSU`;
-
   }
 
 
   return "";
 
 }
-
 
 
 // ============================================================
 // DETECT COOLER
 // ============================================================
 
-function detectCooler(
-  text
-) {
+function detectCooler(text) {
 
   const normalized =
     text.toLowerCase();
 
 
   if (
-    /360\s*mm|360mm/.test(normalized)
+    /360\s*mm|360mm/i.test(normalized)
   ) {
-
     return "aio360";
-
   }
 
 
   if (
-    /280\s*mm|280mm/.test(normalized)
+    /280\s*mm|280mm/i.test(normalized)
   ) {
-
     return "aio280";
-
   }
 
 
   if (
-    /240\s*mm|240mm/.test(normalized)
+    /240\s*mm|240mm/i.test(normalized)
   ) {
-
     return "aio240";
-
   }
 
 
   if (
-    /\baio\b|liquid cooler|water cooler/.test(normalized)
+    /\baio\b|liquid cooler|water cooler/i
+      .test(normalized)
   ) {
-
     return "aio240";
-
   }
 
 
   if (
-    /air cooler|tower cooler|hyper 212|peerless assassin|nh-d15|dark rock/.test(normalized)
+    /air cooler|tower cooler|hyper 212|peerless assassin|nh d15|dark rock/i
+      .test(normalized)
   ) {
-
     return "air";
-
   }
 
 
   if (
-    /stock cooler|wraith stealth|wraith spire/.test(normalized)
+    /stock cooler|wraith stealth|wraith spire/i
+      .test(normalized)
   ) {
-
     return "stock";
-
   }
 
 
@@ -2081,43 +1452,37 @@ function detectCooler(
 }
 
 
-
 // ============================================================
 // DETECT CONDITION
 // ============================================================
 
-function detectCondition(
-  text
-) {
+function detectCondition(text) {
 
   const normalized =
     text.toLowerCase();
 
 
   if (
-    /brand new|like new|mint|excellent condition/.test(normalized)
+    /brand new|like new|mint|excellent condition/i
+      .test(normalized)
   ) {
-
     return "excellent";
-
   }
 
 
   if (
-    /poor condition|damaged|broken|needs repair|for parts/.test(normalized)
+    /poor condition|damaged|broken|needs repair|for parts/i
+      .test(normalized)
   ) {
-
     return "poor";
-
   }
 
 
   if (
-    /fair condition|wear and tear|scratches|cosmetic wear/.test(normalized)
+    /fair condition|wear and tear|scratches|cosmetic wear/i
+      .test(normalized)
   ) {
-
     return "fair";
-
   }
 
 
@@ -2126,101 +1491,213 @@ function detectCondition(
 }
 
 
-
 // ============================================================
 // DETECT PRICE
 // ============================================================
+//
+// Priority:
+//
+// 1. Lines saying asking / price / firm / OBO / selling for
+// 2. Currency-labelled price
+// 3. Dollar-sign prices
+// 4. Final standalone number line
+//
+// This helps avoid using:
+//
+// "Paid $1800 originally"
+//
+// instead of:
+//
+// "Asking $950"
+//
+// ============================================================
 
-function detectPrice(
-  text
-) {
+function detectPrice(text) {
 
-  const patterns = [
-
-    /\$\s*([0-9]{2,5})(?:\.[0-9]{1,2})?/g,
-    /\b([0-9]{2,5})\s*(?:cad|cdn|usd)\b/gi
-
-  ];
+  const lines =
+    text.split(/\r?\n/);
 
 
-  const prices = [];
+  // ----------------------------------------------------------
+  // PRIORITY 1: ASKING PRICE LINES
+  // ----------------------------------------------------------
+
+  const askingWords =
+    /\b(asking|asking price|price|priced at|selling for|sell for|firm|obo|or best offer|want|take)\b/i;
 
 
-  for (
-    const pattern
-    of patterns
-  ) {
+  for (const line of lines) {
 
-    let match;
+    if (!askingWords.test(line)) {
+      continue;
+    }
 
 
-    while (
-      (
-        match =
-          pattern.exec(text)
-      ) !== null
-    ) {
+    let match =
+      line.match(
+        /\$\s*([0-9]{2,5})(?:\.[0-9]{1,2})?/i
+      );
 
-      const number =
+
+    if (!match) {
+
+      match =
+        line.match(
+          /\b([0-9]{2,5})(?:\.[0-9]{1,2})?\s*(cad|cdn|usd)\b/i
+        );
+    }
+
+
+    if (!match) {
+
+      match =
+        line.match(
+          /\b(?:asking|price|firm|obo|selling for|sell for|take)\D{0,15}([0-9]{2,5})\b/i
+        );
+    }
+
+
+    if (match) {
+
+      const value =
         Number(match[1]);
 
 
       if (
-        number >= 20 &&
-        number <= 20000
+        value >= 20 &&
+        value <= 20000
       ) {
+        return value;
+      }
+    }
+  }
 
-        prices.push(
-          number
+
+  // ----------------------------------------------------------
+  // PRIORITY 2: CAD / CDN / USD
+  // ----------------------------------------------------------
+
+  const currencyMatches =
+    [
+      ...text.matchAll(
+        /\$?\s*([0-9]{2,5})(?:\.[0-9]{1,2})?\s*(cad|cdn|usd)\b/gi
+      )
+    ];
+
+
+  if (currencyMatches.length) {
+
+    const values =
+      currencyMatches
+        .map(match => Number(match[1]))
+        .filter(
+          value =>
+            value >= 20 &&
+            value <= 20000
         );
 
-      }
 
+    if (values.length) {
+
+      return values[
+        values.length - 1
+      ];
     }
-
   }
 
 
-  if (
-    prices.length === 0
+  // ----------------------------------------------------------
+  // PRIORITY 3: DOLLAR SIGN
+  // ----------------------------------------------------------
+
+  const dollarMatches =
+    [
+      ...text.matchAll(
+        /\$\s*([0-9]{2,5})(?:\.[0-9]{1,2})?/g
+      )
+    ];
+
+
+  if (dollarMatches.length) {
+
+    const values =
+      dollarMatches
+        .map(match => Number(match[1]))
+        .filter(
+          value =>
+            value >= 20 &&
+            value <= 20000
+        );
+
+
+    if (values.length) {
+
+      return values[
+        values.length - 1
+      ];
+    }
+  }
+
+
+  // ----------------------------------------------------------
+  // PRIORITY 4: LAST STANDALONE NUMBER LINE
+  // ----------------------------------------------------------
+
+  for (
+    let i = lines.length - 1;
+    i >= 0;
+    i--
   ) {
 
-    return null;
+    const line =
+      lines[i].trim();
 
+
+    const match =
+      line.match(
+        /^\$?\s*([0-9]{2,5})\s*(?:cad|cdn|usd|obo|firm)?$/i
+      );
+
+
+    if (match) {
+
+      const value =
+        Number(match[1]);
+
+
+      if (
+        value >= 20 &&
+        value <= 20000
+      ) {
+
+        return value;
+      }
+    }
   }
 
 
-  return prices[0];
+  return null;
 
 }
-
 
 
 // ============================================================
 // DETECT CURRENCY
 // ============================================================
 
-function detectCurrency(
-  text
-) {
+function detectCurrency(text) {
 
   if (
-    /\busd\b|us dollars?/i
-      .test(text)
+    /\busd\b|us dollars?/i.test(text)
   ) {
-
     return "USD";
-
   }
 
 
   if (
-    /\bcad\b|\bcdn\b|canadian dollars?/i
-      .test(text)
+    /\bcad\b|\bcdn\b|canadian dollars?/i.test(text)
   ) {
-
     return "CAD";
-
   }
 
 
@@ -2229,31 +1706,24 @@ function detectCurrency(
 }
 
 
-
 // ============================================================
-// SET SELECT VALUE SAFELY
+// SET SELECT VALUE
 // ============================================================
 
-function setSelectValue(
-  id,
-  value
-) {
+function setSelectValue(id, value) {
 
   if (!value) {
     return;
   }
 
-
   const select =
     document.getElementById(id);
-
 
   if (!select) {
     return;
   }
 
-
-  const valid =
+  const exists =
     Array.from(
       select.options
     ).some(
@@ -2261,20 +1731,65 @@ function setSelectValue(
         option.value === value
     );
 
-
-  if (valid) {
-
-    select.value =
-      value;
-
+  if (exists) {
+    select.value = value;
   }
 
 }
 
 
+// ============================================================
+// DETECT MOTHERBOARD LINE
+// ============================================================
+
+function detectMotherboardLine(
+  listing,
+  chipset
+) {
+
+  const lines =
+    listing.split(/\r?\n/);
+
+
+  if (chipset) {
+
+    const chipsetLine =
+      lines.find(
+        line =>
+          line
+            .toUpperCase()
+            .includes(
+              chipset.toUpperCase()
+            )
+      );
+
+
+    if (chipsetLine) {
+      return chipsetLine.trim();
+    }
+  }
+
+
+  const motherboardLine =
+    lines.find(
+      line =>
+        /\b(motherboard|mobo|mainboard|board)\b/i
+          .test(line)
+    );
+
+
+  if (motherboardLine) {
+    return motherboardLine.trim();
+  }
+
+
+  return chipset || "";
+
+}
+
 
 // ============================================================
-// PASTE LISTING PARSER
+// LISTING PARSER
 // ============================================================
 
 function parseListing() {
@@ -2284,6 +1799,7 @@ function parseListing() {
       "listingText"
     );
 
+
   const message =
     document.getElementById(
       "parseMessage"
@@ -2291,13 +1807,7 @@ function parseListing() {
 
 
   if (!listingBox) {
-
-    console.error(
-      "listingText textarea not found."
-    );
-
     return;
-
   }
 
 
@@ -2311,11 +1821,9 @@ function parseListing() {
 
       message.textContent =
         "Paste a listing first.";
-
     }
 
     return;
-
   }
 
 
@@ -2323,32 +1831,24 @@ function parseListing() {
   const warnings = [];
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // CPU
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const cpu =
-    typeof detectCPUFromText ===
-    "function"
-      ? detectCPUFromText(
-          listing
-        )
+    typeof detectCPUFromText === "function"
+      ? detectCPUFromText(listing)
       : null;
 
 
   if (cpu) {
 
     const cpuInput =
-      document.getElementById(
-        "cpu"
-      );
+      document.getElementById("cpu");
 
 
     if (cpuInput) {
-
-      cpuInput.value =
-        cpu.name;
-
+      cpuInput.value = cpu.name;
     }
 
 
@@ -2363,49 +1863,36 @@ function parseListing() {
     ) {
 
       warnings.push(
-        `CPU ${cpu.name} was identified, but exact market pricing is unavailable.`
+        `${cpu.name} was detected but does not have an exact market value yet.`
       );
-
     }
 
-  }
-
-
-  else {
+  } else {
 
     warnings.push(
       "CPU could not be detected."
     );
-
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // GPU
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const gpu =
-    typeof detectGPUFromText ===
-    "function"
-      ? detectGPUFromText(
-          listing
-        )
+    typeof detectGPUFromText === "function"
+      ? detectGPUFromText(listing)
       : null;
 
 
   if (gpu) {
 
     const gpuInput =
-      document.getElementById(
-        "gpu"
-      );
+      document.getElementById("gpu");
 
 
     if (gpuInput) {
-
-      gpuInput.value =
-        gpu.name;
-
+      gpuInput.value = gpu.name;
     }
 
 
@@ -2420,65 +1907,41 @@ function parseListing() {
     ) {
 
       warnings.push(
-        `GPU ${gpu.name} was identified, but exact market pricing is unavailable.`
+        `${gpu.name} was detected but does not have an exact market value yet.`
       );
-
     }
 
-  }
-
-
-  else {
+  } else {
 
     warnings.push(
       "GPU could not be detected."
     );
-
   }
 
 
-  // ----------------------------------------------------------
-  // MOTHERBOARD / CHIPSET
-  // ----------------------------------------------------------
+  // ==========================================================
+  // MOTHERBOARD
+  // ==========================================================
 
   let motherboardText = "";
 
 
   if (
-    typeof findChipsetInText ===
-    "function"
+    typeof findChipsetInText === "function"
   ) {
 
     const chipset =
-      findChipsetInText(
-        listing
+      findChipsetInText(listing);
+
+
+    motherboardText =
+      detectMotherboardLine(
+        listing,
+        chipset
       );
 
 
-    if (chipset) {
-
-      const lines =
-        listing.split(
-          /\r?\n/
-        );
-
-
-      const matchingLine =
-        lines.find(
-          line =>
-            line
-              .toUpperCase()
-              .includes(
-                chipset.toUpperCase()
-              )
-        );
-
-
-      motherboardText =
-        matchingLine
-          ? matchingLine.trim()
-          : chipset;
-
+    if (motherboardText) {
 
       const motherboardInput =
         document.getElementById(
@@ -2490,34 +1953,22 @@ function parseListing() {
 
         motherboardInput.value =
           motherboardText;
-
       }
 
 
       detected.push(
         `Motherboard: ${motherboardText}`
       );
-
     }
-
   }
 
 
-  // ----------------------------------------------------------
-  // UPDATE RAM PLATFORM FIRST
-  // ----------------------------------------------------------
-
-  updateMemoryCompatibility();
-
-
-  // ----------------------------------------------------------
+  // ==========================================================
   // RAM CAPACITY
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const ramCapacity =
-    detectRamCapacity(
-      listing
-    );
+    detectRamCapacity(listing);
 
 
   if (ramCapacity) {
@@ -2531,18 +1982,20 @@ function parseListing() {
     detected.push(
       `RAM: ${ramCapacity}`
     );
-
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // RAM TYPE
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const listedRamType =
-    detectRamType(
-      listing
-    );
+    detectRamType(listing);
+
+
+  // First configure possible RAM types based on CPU + board.
+
+  updateMemoryCompatibility();
 
 
   const ramTypeSelect =
@@ -2553,8 +2006,7 @@ function parseListing() {
 
   if (
     cpu &&
-    typeof getBestMemorySelection ===
-      "function"
+    typeof getBestMemorySelection === "function"
   ) {
 
     const selection =
@@ -2589,19 +2041,15 @@ function parseListing() {
       ) {
 
         warnings.push(
-          `${listedRamType} was listed, but ${cpu.name} / motherboard platform requires ${selection.selected}.`
+          `Listing says ${listedRamType}, but this platform requires ${selection.selected}.`
         );
-
       }
 
     }
 
-
     else if (
       selection &&
-      Array.isArray(
-        selection.options
-      )
+      Array.isArray(selection.options)
     ) {
 
       setRamOptions(
@@ -2622,7 +2070,6 @@ function parseListing() {
 
           ramTypeSelect.value =
             listedRamType;
-
         }
 
 
@@ -2632,47 +2079,52 @@ function parseListing() {
 
       }
 
-
-      else if (
-        listedRamType
-      ) {
+      else if (listedRamType) {
 
         warnings.push(
           `${listedRamType} does not match the detected CPU / motherboard platform.`
         );
-
       }
-
     }
 
   }
 
-
   else if (
-    listedRamType
+    listedRamType &&
+    ramTypeSelect
   ) {
 
-    setSelectValue(
-      "ramType",
-      listedRamType
-    );
+    const options =
+      Array.from(
+        ramTypeSelect.options
+      ).map(
+        option => option.value
+      );
 
 
-    detected.push(
-      `RAM type: ${listedRamType}`
-    );
+    if (
+      options.includes(
+        listedRamType
+      )
+    ) {
 
+      ramTypeSelect.value =
+        listedRamType;
+
+
+      detected.push(
+        `RAM type: ${listedRamType}`
+      );
+    }
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // STORAGE
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const storage =
-    detectStorage(
-      listing
-    );
+    detectStorage(listing);
 
 
   if (storage) {
@@ -2686,51 +2138,40 @@ function parseListing() {
     detected.push(
       `Storage: ${storage}`
     );
-
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // PSU
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const psu =
-    detectPSU(
-      listing
-    );
+    detectPSU(listing);
 
 
   if (psu) {
 
     const psuInput =
-      document.getElementById(
-        "psu"
-      );
+      document.getElementById("psu");
 
 
     if (psuInput) {
-
-      psuInput.value =
-        psu;
-
+      psuInput.value = psu;
     }
 
 
     detected.push(
       `PSU: ${psu}`
     );
-
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // COOLER
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const cooler =
-    detectCooler(
-      listing
-    );
+    detectCooler(listing);
 
 
   if (cooler) {
@@ -2739,18 +2180,15 @@ function parseListing() {
       "cooler",
       cooler
     );
-
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // CONDITION
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const condition =
-    detectCondition(
-      listing
-    );
+    detectCondition(listing);
 
 
   setSelectValue(
@@ -2759,17 +2197,15 @@ function parseListing() {
   );
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // PRICE
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const price =
-    detectPrice(
-      listing
-    );
+    detectPrice(listing);
 
 
-  if (price) {
+  if (price !== null) {
 
     const priceInput =
       document.getElementById(
@@ -2781,7 +2217,6 @@ function parseListing() {
 
       priceInput.value =
         price;
-
     }
 
 
@@ -2789,17 +2224,20 @@ function parseListing() {
       `Price: $${price}`
     );
 
+  } else {
+
+    warnings.push(
+      "Asking price could not be detected."
+    );
   }
 
 
-  // ----------------------------------------------------------
+  // ==========================================================
   // CURRENCY
-  // ----------------------------------------------------------
+  // ==========================================================
 
   const currency =
-    detectCurrency(
-      listing
-    );
+    detectCurrency(listing);
 
 
   setSelectValue(
@@ -2808,24 +2246,19 @@ function parseListing() {
   );
 
 
-  // ----------------------------------------------------------
-  // QUICK COMPATIBILITY CHECK
-  // ----------------------------------------------------------
+  // ==========================================================
+  // COMPATIBILITY
+  // ==========================================================
 
   const finalRamType =
     document.getElementById(
       "ramType"
-    )
-      ? document.getElementById(
-          "ramType"
-        ).value
-      : "";
+    )?.value || "";
 
 
   if (
     cpu &&
-    typeof checkFullPlatformCompatibility ===
-      "function"
+    typeof checkFullPlatformCompatibility === "function"
   ) {
 
     const compatibility =
@@ -2838,8 +2271,7 @@ function parseListing() {
 
     if (
       compatibility &&
-      compatibility.issues &&
-      compatibility.issues.length
+      compatibility.issues
     ) {
 
       for (
@@ -2847,19 +2279,14 @@ function parseListing() {
         of compatibility.issues
       ) {
 
-        warnings.push(
-          issue
-        );
-
+        warnings.push(issue);
       }
-
     }
 
 
     if (
       compatibility &&
-      compatibility.warnings &&
-      compatibility.warnings.length
+      compatibility.warnings
     ) {
 
       for (
@@ -2867,50 +2294,35 @@ function parseListing() {
         of compatibility.warnings
       ) {
 
-        warnings.push(
-          warning
-        );
-
+        warnings.push(warning);
       }
-
     }
-
   }
 
 
-  // ----------------------------------------------------------
-  // PARSER MESSAGE
-  // ----------------------------------------------------------
+  // ==========================================================
+  // MESSAGE
+  // ==========================================================
 
   if (message) {
 
     let output = "";
 
 
-    if (
-      detected.length
-    ) {
+    if (detected.length) {
 
       output +=
         "Detected: " +
-        detected.join(
-          " • "
-        );
-
+        detected.join(" • ");
     }
 
 
-    if (
-      warnings.length
-    ) {
+    if (warnings.length) {
 
       output +=
         `${output ? " | " : ""}` +
         "Warnings: " +
-        warnings.join(
-          " • "
-        );
-
+        warnings.join(" • ");
     }
 
 
@@ -2918,19 +2330,13 @@ function parseListing() {
 
       output =
         "No PC components were detected.";
-
     }
 
 
     message.textContent =
       output;
-
   }
 
-
-  // ----------------------------------------------------------
-  // SCROLL TO FORM
-  // ----------------------------------------------------------
 
   const cpuField =
     document.getElementById(
@@ -2944,118 +2350,6 @@ function parseListing() {
       behavior: "smooth",
       block: "center"
     });
-
   }
-
-}
-
-
-
-// ============================================================
-// TEST PCDEAL
-// ============================================================
-
-function testPCDeal() {
-
-  console.log(
-    "===== PCDeal Test ====="
-  );
-
-
-  console.log(
-    "Database stats:",
-    typeof getDatabaseStats ===
-      "function"
-      ? getDatabaseStats()
-      : "getDatabaseStats unavailable"
-  );
-
-
-  const cpu4790 =
-    typeof findCPU ===
-    "function"
-      ? findCPU(
-          "i7-4790K"
-        )
-      : null;
-
-
-  console.log(
-    "4790K:",
-    cpu4790
-  );
-
-
-  if (
-    cpu4790 &&
-    typeof checkFullPlatformCompatibility ===
-      "function"
-  ) {
-
-    console.log(
-      "4790K + Z97 + DDR3:",
-      checkFullPlatformCompatibility(
-        cpu4790,
-        "ASUS Z97 motherboard",
-        "DDR3"
-      )
-    );
-
-
-    console.log(
-      "4790K + B550 + DDR4:",
-      checkFullPlatformCompatibility(
-        cpu4790,
-        "MSI B550 motherboard",
-        "DDR4"
-      )
-    );
-
-  }
-
-
-  const cpu13600 =
-    typeof findCPU ===
-    "function"
-      ? findCPU(
-          "i5-13600K"
-        )
-      : null;
-
-
-  console.log(
-    "13600K:",
-    cpu13600
-  );
-
-
-  if (
-    cpu13600 &&
-    typeof getBestMemorySelection ===
-      "function"
-  ) {
-
-    console.log(
-      "13600K memory:",
-      getBestMemorySelection(
-        cpu13600
-      )
-    );
-
-
-    console.log(
-      "13600K + Z790 D4:",
-      getBestMemorySelection(
-        cpu13600,
-        "ASUS TUF GAMING Z790-PLUS WIFI D4"
-      )
-    );
-
-  }
-
-
-  console.log(
-    "======================="
-  );
 
 }
