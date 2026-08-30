@@ -1,15 +1,656 @@
 // ============================================================
-// PCDEAL APP
-// MULTI-STORAGE VERSION
-// ============================================================
-
-
-// ============================================================
-// GLOBAL STORAGE STATE
+// PCDEAL STORAGE ENGINE
+// SEPARATE TYPE + SIZE VERSION
 // ============================================================
 
 let detectedStorageDrives = [];
 
+
+// ============================================================
+// STORAGE CAPACITY
+// ============================================================
+
+function storageCapacityToGB(number, unit) {
+  const amount = Number(number);
+
+  if (!Number.isFinite(amount)) {
+    return 0;
+  }
+
+  if (
+    String(unit || "")
+      .toLowerCase() === "tb"
+  ) {
+    return amount * 1000;
+  }
+
+  return amount;
+}
+
+
+// ============================================================
+// NORMALIZE STORAGE SIZE
+// ============================================================
+
+function normalizeStorageSize(number, unit) {
+  const gb =
+    storageCapacityToGB(
+      number,
+      unit
+    );
+
+  if (gb >= 7900) {
+    return "8TB";
+  }
+
+  if (gb >= 5900) {
+    return "6TB";
+  }
+
+  if (gb >= 3900) {
+    return "4TB";
+  }
+
+  if (gb >= 2900) {
+    return "3TB";
+  }
+
+  if (gb >= 1900) {
+    return "2TB";
+  }
+
+  if (
+    gb >= 1400 &&
+    gb < 1900
+  ) {
+    return "1.5TB";
+  }
+
+  if (gb >= 900) {
+    return "1TB";
+  }
+
+  if (gb >= 506) {
+    return "512GB";
+  }
+
+  if (gb >= 490) {
+    return "500GB";
+  }
+
+  if (gb >= 470) {
+    return "480GB";
+  }
+
+  if (gb >= 255) {
+    return "256GB";
+  }
+
+  if (gb >= 245) {
+    return "250GB";
+  }
+
+  if (gb >= 235) {
+    return "240GB";
+  }
+
+  if (gb >= 126) {
+    return "128GB";
+  }
+
+  if (gb >= 118) {
+    return "120GB";
+  }
+
+  return "";
+}
+
+
+// ============================================================
+// DRIVE TYPE DETECTION
+// ============================================================
+
+function detectStorageType(text) {
+  const t =
+    String(text || "")
+      .toLowerCase();
+
+
+  // NVMe takes priority over generic M.2
+
+  if (
+    /\bnvme\b/i.test(t)
+  ) {
+    return "NVMe SSD";
+  }
+
+
+  // Explicit M.2 SATA
+
+  if (
+    /\bm\.?\s*2\b/i.test(t) &&
+    /\bsata\b/i.test(t)
+  ) {
+    return "M.2 SATA SSD";
+  }
+
+
+  // SATA SSD
+
+  if (
+    /\bsata\b/i.test(t) &&
+    /\bssd\b/i.test(t)
+  ) {
+    return "SATA SSD";
+  }
+
+
+  // Generic M.2 SSD.
+  // M.2 itself does NOT guarantee NVMe.
+
+  if (
+    /\bm\.?\s*2\b/i.test(t) &&
+    /\bssd\b/i.test(t)
+  ) {
+    return "SSD";
+  }
+
+
+  // Generic SSD
+
+  if (
+    /\bssd\b/i.test(t) ||
+    /\bsolid\s*state\b/i.test(t)
+  ) {
+    return "SSD";
+  }
+
+
+  // HDD
+
+  if (
+    /\bhdd\b/i.test(t) ||
+    /\bhard\s*drive\b/i.test(t) ||
+    /\bhard\s*disk\b/i.test(t)
+  ) {
+    return "HDD";
+  }
+
+
+  // Generic "storage"
+
+  if (
+    /\bstorage\b/i.test(t)
+  ) {
+    return "Unknown";
+  }
+
+
+  return "";
+}
+
+
+// ============================================================
+// DETECT STORAGE DRIVES
+// ============================================================
+
+function detectStorageDetails(text) {
+  const listing =
+    String(text || "")
+      .replace(/×/g, "x");
+
+  const drives = [];
+
+
+  // Split listing so nearby RAM/GPU numbers don't interfere
+  // with storage detection.
+
+  const sections =
+    listing
+      .split(/\n|•|\||;/)
+      .map(
+        section =>
+          section.trim()
+      )
+      .filter(Boolean);
+
+
+  for (const section of sections) {
+
+    const storageWords =
+      /\b(?:ssd|nvme|m\.?\s*2|hdd|storage|hard\s*drive|hard\s*disk|sata)\b/i;
+
+
+    if (
+      !storageWords.test(section)
+    ) {
+      continue;
+    }
+
+
+    const capacityRegex =
+      /(\d+(?:\.\d+)?)\s*(tb|gb)\b/gi;
+
+
+    let match;
+
+
+    while (
+      (
+        match =
+          capacityRegex.exec(section)
+      ) !== null
+    ) {
+
+      const number =
+        Number(match[1]);
+
+      const unit =
+        String(match[2])
+          .toUpperCase();
+
+
+      const capacityGB =
+        storageCapacityToGB(
+          number,
+          unit
+        );
+
+
+      // Storage smaller than 64GB is unlikely for the PCs
+      // we're analyzing and avoids VRAM/RAM confusion.
+
+      if (
+        capacityGB < 64
+      ) {
+        continue;
+      }
+
+
+      // Look closely around THIS specific capacity.
+      // This is important for:
+      //
+      // 128GB SSD + 500GB HDD
+      //
+      // so each drive gets its own type.
+
+      const start =
+        Math.max(
+          0,
+          match.index - 8
+        );
+
+
+      const end =
+        Math.min(
+          section.length,
+          capacityRegex.lastIndex + 18
+        );
+
+
+      const localText =
+        section.slice(
+          start,
+          end
+        );
+
+
+      let type =
+        detectStorageType(
+          localText
+        );
+
+
+      // If local detection fails, use the section.
+
+      if (!type) {
+        type =
+          detectStorageType(
+            section
+          );
+      }
+
+
+      if (!type) {
+        type =
+          "Unknown";
+      }
+
+
+      const size =
+        normalizeStorageSize(
+          number,
+          unit
+        );
+
+
+      if (!size) {
+        continue;
+      }
+
+
+      const duplicate =
+        drives.some(
+          drive =>
+            drive.size === size &&
+            drive.type === type
+        );
+
+
+      if (!duplicate) {
+        drives.push({
+          size,
+          type,
+          capacityGB,
+          raw:
+            match[0]
+        });
+      }
+    }
+  }
+
+
+  return drives;
+}
+
+
+// ============================================================
+// SET DRIVE DROPDOWNS
+// ============================================================
+
+function setStorageDropdowns(drive) {
+  if (!drive) {
+    return;
+  }
+
+
+  setSelectValue(
+    "storageType",
+    drive.type
+  );
+
+
+  setSelectValue(
+    "storageSize",
+    drive.size
+  );
+}
+
+
+// ============================================================
+// SHOW DETECTED DRIVES
+// ============================================================
+
+function renderDetectedStorage(drives) {
+  const container =
+    document.getElementById(
+      "detectedStorageList"
+    );
+
+
+  if (!container) {
+    return;
+  }
+
+
+  if (
+    !Array.isArray(drives) ||
+    drives.length === 0
+  ) {
+    container.innerHTML = "";
+    return;
+  }
+
+
+  const totalGB =
+    drives.reduce(
+      (total, drive) =>
+        total +
+        Number(
+          drive.capacityGB || 0
+        ),
+      0
+    );
+
+
+  let totalDisplay;
+
+
+  if (totalGB >= 1000) {
+    const totalTB =
+      totalGB / 1000;
+
+    totalDisplay =
+      Number.isInteger(totalTB)
+        ? `${totalTB}TB`
+        : `${totalTB.toFixed(2)}TB`;
+  } else {
+    totalDisplay =
+      `${totalGB}GB`;
+  }
+
+
+  const driveLines =
+    drives
+      .map(
+        (drive, index) => {
+
+          const typeText =
+            drive.type === "Unknown"
+              ? "type unknown"
+              : drive.type;
+
+
+          return `
+            <div>
+              <strong>Drive ${index + 1}:</strong>
+              ${drive.size} ${typeText}
+            </div>
+          `;
+        }
+      )
+      .join("");
+
+
+  container.innerHTML = `
+    <div style="
+      margin-top: 8px;
+      padding: 10px 12px;
+      border: 1px solid #343b48;
+      border-radius: 8px;
+      line-height: 1.6;
+    ">
+      ${driveLines}
+
+      ${
+        drives.length > 1
+          ? `
+            <div style="margin-top:6px;">
+              <strong>Total storage:</strong>
+              ${totalDisplay}
+            </div>
+          `
+          : ""
+      }
+    </div>
+  `;
+}
+
+
+// ============================================================
+// SIZE -> GB
+// ============================================================
+
+function storageSizeStringToGB(size) {
+  const match =
+    String(size || "")
+      .match(
+        /^(\d+(?:\.\d+)?)(TB|GB)$/i
+      );
+
+
+  if (!match) {
+    return 0;
+  }
+
+
+  return storageCapacityToGB(
+    Number(match[1]),
+    match[2]
+  );
+}
+
+
+// ============================================================
+// STORAGE VALUE
+// ============================================================
+
+function getSingleDriveValue(drive) {
+  if (!drive) {
+    return 0;
+  }
+
+
+  const gb =
+    drive.capacityGB ||
+    storageSizeStringToGB(
+      drive.size
+    );
+
+
+  const type =
+    drive.type;
+
+
+  // ----------------------------------------------------------
+  // HDD
+  // ----------------------------------------------------------
+
+  if (
+    type === "HDD"
+  ) {
+
+    if (gb >= 8000) return 100;
+    if (gb >= 6000) return 80;
+    if (gb >= 4000) return 60;
+    if (gb >= 3000) return 50;
+    if (gb >= 2000) return 35;
+    if (gb >= 1000) return 20;
+    if (gb >= 500) return 10;
+
+    return 5;
+  }
+
+
+  // ----------------------------------------------------------
+  // NVME
+  // ----------------------------------------------------------
+
+  if (
+    type === "NVMe SSD"
+  ) {
+
+    if (gb >= 8000) return 450;
+    if (gb >= 4000) return 220;
+    if (gb >= 2000) return 100;
+    if (gb >= 1000) return 60;
+    if (gb >= 500) return 35;
+    if (gb >= 250) return 20;
+
+    return 12;
+  }
+
+
+  // ----------------------------------------------------------
+  // SSD
+  // ----------------------------------------------------------
+
+  if (
+    type === "SATA SSD" ||
+    type === "M.2 SATA SSD" ||
+    type === "SSD"
+  ) {
+
+    if (gb >= 4000) return 180;
+    if (gb >= 2000) return 90;
+    if (gb >= 1000) return 50;
+    if (gb >= 500) return 25;
+    if (gb >= 250) return 15;
+
+    return 10;
+  }
+
+
+  // ----------------------------------------------------------
+  // UNKNOWN
+  // ----------------------------------------------------------
+
+  if (gb >= 4000) return 100;
+  if (gb >= 2000) return 60;
+  if (gb >= 1000) return 35;
+  if (gb >= 500) return 20;
+
+  return 10;
+}
+
+
+// ============================================================
+// VALUE ALL DETECTED DRIVES
+// ============================================================
+
+function getDetectedStorageValue() {
+
+  // Listing parser detected one or more drives.
+
+  if (
+    Array.isArray(
+      detectedStorageDrives
+    ) &&
+    detectedStorageDrives.length > 0
+  ) {
+
+    return detectedStorageDrives.reduce(
+      (total, drive) =>
+        total +
+        getSingleDriveValue(
+          drive
+        ),
+      0
+    );
+  }
+
+
+  // Manual user selection.
+
+  const type =
+    document.getElementById(
+      "storageType"
+    )?.value || "";
+
+
+  const size =
+    document.getElementById(
+      "storageSize"
+    )?.value || "";
+
+
+  if (
+    !type ||
+    !size
+  ) {
+    return 0;
+  }
+
+
+  return getSingleDriveValue({
+    type,
+    size,
+    capacityGB:
+      storageSizeStringToGB(
+        size
+      )
+  });
+}
 
 // ============================================================
 // INITIAL SETUP
