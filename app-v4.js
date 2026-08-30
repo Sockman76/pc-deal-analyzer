@@ -907,43 +907,50 @@ function mapRamCapacity(amount) {
 // ============================================================
 
 function detectRamCapacity(text) {
-  const normalized = String(text)
+  const t = String(text)
     .toLowerCase()
     .replace(/×/g, "x")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/\s+/g, " ");
 
-  // ----------------------------------------------------------
-  // 1. RAM KITS
-  //
-  // 2x8gb
+  // Examples:
+  // 2x16gb
   // 2 x 16 gb
   // 4x8
-  // 4 x 16 gigs
-  // ----------------------------------------------------------
+  // 4 x 8gb
+  const kit = t.match(
+    /(\d)\s*x\s*(4|8|16|24|32|48|64)\s*(?:gb)?/i
+  );
 
-  const kitMatches = [
-    ...normalized.matchAll(
-      /\b([1-8])\s*x\s*(4|8|16|24|32|48|64)\s*(?:gb|gigs?|gigabytes?)?\b/gi
-    )
-  ];
+  if (kit) {
+    const sticks = Number(kit[1]);
+    const perStick = Number(kit[2]);
+    const total = sticks * perStick;
 
-  for (const match of kitMatches) {
-    const sticks = Number(match[1]);
-    const perStick = Number(match[2]);
-
-    const total =
-      sticks * perStick;
-
-    if (
-      total === 8 ||
-      total === 16 ||
-      total === 32 ||
-      total >= 64
-    ) {
-      return mapRamCapacity(total);
-    }
+    if (total >= 64) return "64GB+";
+    if (total >= 32) return "32GB";
+    if (total >= 16) return "16GB";
+    if (total >= 8) return "8GB";
   }
+
+  // Examples:
+  // 32gb ddr4
+  // 16gb ram
+  // 64 gigs memory
+  const direct = t.match(
+    /(8|16|32|64|96|128)\s*(?:gb|gigs?|gigabytes?)/i
+  );
+
+  if (direct) {
+    const total = Number(direct[1]);
+
+    if (total >= 64) return "64GB+";
+    if (total >= 32) return "32GB";
+    if (total >= 16) return "16GB";
+    if (total >= 8) return "8GB";
+  }
+
+  return "";
+}
 
   // ----------------------------------------------------------
   // 2. RAM / DDR LINES
