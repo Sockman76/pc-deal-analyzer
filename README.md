@@ -1,4 +1,4 @@
-# PCDeal V5.1
+# PCDeal V5.1.2
 
 PCDeal V5.0 is a multi-page used-PC buying, comparison, inspection, performance and flipping toolkit.
 
@@ -41,9 +41,9 @@ Upload/replace the V5 files from this package in the same repository root.
 V5 pages reference `pcdeal-v5.js?v=5` and `styles.css?v=5`.
 
 
-## V5.1 Visual Experience
+## V5.1.2.2 Active Tab Fix Experience
 
-V5.1 adds a presentation-only visual layer without changing PCDeal's valuation or parsing logic:
+V5.1.2 adds a presentation-only visual layer without changing PCDeal's valuation or parsing logic:
 
 - moving ambient glow background and drifting grid
 - pointer-following desktop spotlight
@@ -59,4 +59,9 @@ V5.1 adds a presentation-only visual layer without changing PCDeal's valuation o
 - lightweight page transitions between PCDeal tools
 - `prefers-reduced-motion` support
 
-The visual layer is isolated in `pcdeal-visuals.js` and the V5.1 section of `styles.css`, so it can be refined without touching analysis logic.
+The visual layer is isolated in `pcdeal-visuals.js` and the V5.1.2 section of `styles.css`, so it can be refined without touching analysis logic.
+
+
+## V5.1.2 navigation fix
+
+The currently active navigation tab is now inert. Clicking Analyzer while already on Analyzer, or any other tab while already on that page, no longer reloads or redirects the page. Other navigation links continue to work normally.
