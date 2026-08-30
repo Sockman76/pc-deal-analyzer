@@ -295,6 +295,45 @@ or a bad deal.
 
 <main class="container">
 
+  <div class="card" style="margin-bottom: 20px;">
+
+<h2>Paste a Listing</h2>
+
+<div class="subtitle">
+Paste a Facebook Marketplace, Kijiji, or other PC listing and we'll try to detect the specs automatically.
+</div>
+
+<textarea
+id="listingText"
+placeholder="Example: Gaming PC with Ryzen 7 5700X, RTX 3080, 32GB DDR4, 1TB NVMe SSD, MSI B550 Tomahawk, Corsair RM750x. Asking $1000."
+style="
+width: 100%;
+min-height: 180px;
+padding: 14px;
+background: #090c12;
+color: white;
+border: 1px solid #303747;
+border-radius: 10px;
+font-size: 16px;
+resize: vertical;
+margin-bottom: 15px;
+"
+></textarea>
+
+<button onclick="parseListing()">
+Detect Specs →
+</button>
+
+<div id="parseMessage"
+style="
+margin-top: 15px;
+color: #a6adba;
+line-height: 1.5;
+">
+</div>
+
+</div>
+
 <div class="card">
 
 <h2>Analyze a PC</h2>
