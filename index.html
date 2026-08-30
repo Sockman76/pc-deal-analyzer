@@ -27,10 +27,10 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
 @media(max-width:600px){.container{width:min(100% - 18px,1080px)}.panel{padding:17px;border-radius:18px}.grid,.grid-3,.insights,.actions{grid-template-columns:1fr}.hero h1{font-size:43px}.hero p{font-size:15px}.hardware-grid{grid-template-columns:1fr 1fr}.nav-inner{padding:12px 14px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style>
-<link rel="stylesheet" href="styles.css?v=51">
-</head>
+<link rel="stylesheet" href="styles.css?v=60">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml"></head>
 <body>
-<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a></div><div class="v3-pill">V5.1.2</div></div></nav>
+<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a><a href="account.html">Account</a></div><div class="v3-pill">V6.0</div></div></nav>
 <section class="hero"><h1>Know if a PC deal is <span>actually worth it.</span></h1><p>Paste a used-PC listing, detect the hardware, compare the asking price, estimate gaming performance, and spot seller red flags before you buy.</p></section>
 <main class="container">
   <section class="panel">
@@ -79,9 +79,9 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
     </div>
   </section>
 
-  <section class="panel"><h2>Explore PCDeal V5.1.2</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
+  <section class="panel"><h2>Explore PCDeal V6.0</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
 </main>
-<footer>PCDeal V5.1 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
+<footer>PCDeal V6.0 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
 <script src="platform.js?v=2"></script>
 <script src="cpu-data.js?v=1"></script>
 <script src="gpu-data.js?v=1"></script>
@@ -89,6 +89,6 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
 <script src="app-v4.js?v=19"></script>
 <script src="pcdeal-v3.js?v=2"></script>
 
-<script src="pcdeal-v5.js?v=5"></script><script src="pcdeal-visuals.js?v=51"></script>
-</body>
+<script src="pcdeal-v5.js?v=6"></script><script src="pcdeal-visuals.js?v=60"></script>
+<script type="module" src="firebase-client.js?v=60"></script><script src="pcdeal-v6.js?v=60"></script></body>
 </html>

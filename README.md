@@ -65,3 +65,7 @@ The visual layer is isolated in `pcdeal-visuals.js` and the V5.1.2 section of `s
 ## V5.1.2 navigation fix
 
 The currently active navigation tab is now inert. Clicking Analyzer while already on Analyzer, or any other tab while already on that page, no longer reloads or redirects the page. Other navigation links continue to work normally.
+
+
+## V6 additions
+Firebase Authentication (Google + email/password), Firestore cloud sync, shareable builds, printable deal reports, dashboard score charts, PC visualizer, per-component detection confidence, offer ladder, themes, onboarding, toast notifications, and PWA install support.
