@@ -1,1518 +1,1373 @@
 // ========================================
-// PC DEAL ANALYZER - ANALYSIS ENGINE V3
-// Advanced valuation + listing parser
+// PC DEAL ANALYZER - HARDWARE DATABASE V2
+// ========================================
+//
+// IMPORTANT:
+// These are manually maintained USED-value
+// estimates in CAD for now.
+// We can later replace these with live pricing.
+//
+// performance = relative gaming/performance tier
+// value = estimated used-market value in CAD
+//
 // ========================================
 
 
 // ========================================
-// MAIN DEAL ANALYZER
+// GPU DATABASE
 // ========================================
 
-function analyzeDeal() {
-
-  const cpuInput = document.getElementById("cpu").value.trim();
-  const gpuInput = document.getElementById("gpu").value.trim();
-
-  const ram = document.getElementById("ram").value;
-  const ramType = document.getElementById("ramType").value;
-  const storage = document.getElementById("storage").value;
-  const condition = document.getElementById("condition").value;
-
-  const motherboardInput =
-    document.getElementById("motherboard").value.trim();
-
-  const psuInput =
-    document.getElementById("psu").value.trim();
-
-  const cooler =
-    document.getElementById("cooler").value;
-
-  const caseQuality =
-    document.getElementById("caseQuality").value;
-
-  const askingPrice =
-    Number(document.getElementById("price").value);
-
-  const currency =
-    document.getElementById("currency").value;
-
-
-  const result =
-    document.getElementById("result");
-
-  const scoreElement =
-    document.getElementById("score");
-
-  const verdictElement =
-    document.getElementById("verdict");
-
-  const resultText =
-    document.getElementById("resultText");
-
-
-  // ========================================
-  // VALIDATION
-  // ========================================
-
-  if (!cpuInput || !gpuInput || !askingPrice) {
-
-    alert(
-      "Please enter the CPU, GPU and asking price."
-    );
-
-    return;
-  }
-
-
-  // ========================================
-  // CPU + GPU LOOKUP
-  // ========================================
-
-  const cpu = findCPU(cpuInput);
-  const gpu = findGPU(gpuInput);
-
-
-  if (!cpu) {
-
-    alert(
-      "CPU not found in the database yet.\n\n" +
-      "Example: Ryzen 7 5700X"
-    );
-
-    return;
-  }
-
-
-  if (!gpu) {
-
-    alert(
-      "GPU not found in the database yet.\n\n" +
-      "Example: RTX 3080"
-    );
-
-    return;
-  }
-
-
-  // ========================================
-  // RAM VALUE
-  // ========================================
-
-  let ramValue = 0;
-
-
-  if (ram === "8GB") {
-    ramValue = 20;
-  }
-
-  if (ram === "16GB") {
-    ramValue = 40;
-  }
-
-  if (ram === "32GB") {
-    ramValue = 70;
-  }
-
-  if (ram === "64GB+") {
-    ramValue = 120;
-  }
-
-
-  if (ramType === "DDR5") {
-    ramValue += 25;
-  }
-
-
-  // ========================================
-  // STORAGE VALUE
-  // ========================================
-
-  let storageValue = 0;
-
-
-  if (storage === "256GB SSD") {
-    storageValue = 15;
-  }
-
-  if (storage === "500GB SSD") {
-    storageValue = 25;
-  }
-
-  if (storage === "1TB SSD") {
-    storageValue = 50;
-  }
-
-  if (storage === "2TB SSD") {
-    storageValue = 90;
-  }
-
-  if (storage === "HDD Only") {
-    storageValue = 10;
-  }
-
-
-  // ========================================
-  // MOTHERBOARD VALUE
-  // ========================================
-
-  let motherboardValue = 80;
-
-  const board =
-    motherboardInput.toLowerCase();
-
-
-  if (
-    board.includes("a320") ||
-    board.includes("a520") ||
-    board.includes("h410") ||
-    board.includes("h510") ||
-    board.includes("h610")
-  ) {
-
-    motherboardValue = 60;
-
-  }
-
-
-  if (
-    board.includes("b450") ||
-    board.includes("b550") ||
-    board.includes("b650") ||
-    board.includes("b660") ||
-    board.includes("b760")
-  ) {
-
-    motherboardValue = 110;
-
-  }
-
-
-  if (
-    board.includes("x570") ||
-    board.includes("x670") ||
-    board.includes("x870") ||
-    board.includes("z690") ||
-    board.includes("z790") ||
-    board.includes("z890")
-  ) {
-
-    motherboardValue = 170;
-
-  }
-
-
-  if (!motherboardInput) {
-
-    if (cpu.platform === "AM5") {
-
-      motherboardValue = 130;
-
-    }
-
-    else if (cpu.platform === "LGA1700") {
-
-      motherboardValue = 110;
-
-    }
-
-    else {
-
-      motherboardValue = 80;
-
-    }
-
-  }
-
-
-  // ========================================
-  // PSU VALUE
-  // ========================================
-
-  let psuValue = 50;
-
-  const psu =
-    psuInput.toLowerCase();
-
-
-  if (
-    psu.includes("rm") ||
-    psu.includes("seasonic") ||
-    psu.includes("supernova") ||
-    psu.includes("focus") ||
-    psu.includes("straight power") ||
-    psu.includes("pure power") ||
-    psu.includes("thor") ||
-    psu.includes("msi mpg")
-  ) {
-
-    psuValue = 100;
-
-  }
-
-
-  if (
-    psu.includes("1000w") ||
-    psu.includes("1200w") ||
-    psu.includes("1300w")
-  ) {
-
-    psuValue += 30;
-
-  }
-
-  else if (psu.includes("850w")) {
-
-    psuValue += 20;
-
-  }
-
-  else if (psu.includes("750w")) {
-
-    psuValue += 10;
-
-  }
-
-
-  if (!psuInput) {
-
-    psuValue = 50;
-
-  }
-
-
-  // ========================================
-  // COOLER VALUE
-  // ========================================
-
-  let coolerValue = 20;
-
-
-  if (cooler === "stock") {
-    coolerValue = 10;
-  }
-
-  if (cooler === "air") {
-    coolerValue = 40;
-  }
-
-  if (cooler === "aio240") {
-    coolerValue = 60;
-  }
-
-  if (cooler === "aio280") {
-    coolerValue = 75;
-  }
-
-  if (cooler === "aio360") {
-    coolerValue = 90;
-  }
-
-
-  // ========================================
-  // CASE VALUE
-  // ========================================
-
-  let caseValue = 50;
-
-
-  if (caseQuality === "basic") {
-    caseValue = 35;
-  }
-
-  if (caseQuality === "mid") {
-    caseValue = 70;
-  }
-
-  if (caseQuality === "premium") {
-    caseValue = 120;
-  }
-
-
-  // ========================================
-  // SYSTEM VALUE
-  // ========================================
-
-  let estimatedValue =
-
-    cpu.value +
-    gpu.value +
-    ramValue +
-    storageValue +
-    motherboardValue +
-    psuValue +
-    coolerValue +
-    caseValue;
-
-
-  // ========================================
-  // CONDITION
-  // ========================================
-
-  let conditionMultiplier = 1;
-
-
-  if (condition === "excellent") {
-    conditionMultiplier = 1.05;
-  }
-
-  if (condition === "good") {
-    conditionMultiplier = 1;
-  }
-
-  if (condition === "fair") {
-    conditionMultiplier = 0.90;
-  }
-
-  if (condition === "poor") {
-    conditionMultiplier = 0.75;
-  }
-
-
-  estimatedValue =
-    Math.round(
-      estimatedValue *
-      conditionMultiplier
-    );
-
-
-  // ========================================
-  // VALUE RANGE
-  // ========================================
-
-  const lowEstimate =
-    Math.round(
-      estimatedValue * 0.90
-    );
-
-  const highEstimate =
-    Math.round(
-      estimatedValue * 1.10
-    );
-
-
-  // ========================================
-  // DEAL SCORE
-  // ========================================
-
-  const priceRatio =
-    askingPrice / estimatedValue;
-
-
-  let dealScore;
-
-
-  if (priceRatio <= 0.70) {
-
-    dealScore = 95;
-
-  }
-
-  else if (priceRatio <= 0.80) {
-
-    dealScore = 90;
-
-  }
-
-  else if (priceRatio <= 0.90) {
-
-    dealScore = 85;
-
-  }
-
-  else if (priceRatio <= 1.00) {
-
-    dealScore = 78;
-
-  }
-
-  else if (priceRatio <= 1.10) {
-
-    dealScore = 68;
-
-  }
-
-  else if (priceRatio <= 1.20) {
-
-    dealScore = 55;
-
-  }
-
-  else {
-
-    dealScore = 35;
-
-  }
-
-
-  // ========================================
-  // VERDICT
-  // ========================================
-
-  let verdict;
-
-
-  if (dealScore >= 90) {
-
-    verdict =
-      "🔥 Excellent deal";
-
-  }
-
-  else if (dealScore >= 80) {
-
-    verdict =
-      "🟢 Good deal";
-
-  }
-
-  else if (dealScore >= 65) {
-
-    verdict =
-      "🟡 Fair price";
-
-  }
-
-  else if (dealScore >= 50) {
-
-    verdict =
-      "🟠 Slightly overpriced";
-
-  }
-
-  else {
-
-    verdict =
-      "🔴 Overpriced";
-
-  }
-
-
-  // ========================================
-  // GAMING PERFORMANCE
-  // ========================================
-
-  let gamingTier;
-
-
-  if (gpu.performance >= 80) {
-
-    gamingTier =
-      "Excellent high-end 1440p / 4K gaming";
-
-  }
-
-  else if (gpu.performance >= 60) {
-
-    gamingTier =
-      "Excellent 1440p gaming";
-
-  }
-
-  else if (gpu.performance >= 45) {
-
-    gamingTier =
-      "Excellent 1080p / strong 1440p gaming";
-
-  }
-
-  else {
-
-    gamingTier =
-      "Good 1080p gaming";
-
-  }
-
-
-  // ========================================
-  // CPU / GPU BALANCE
-  // ========================================
-
-  const performanceDifference =
-    gpu.performance -
-    cpu.performance;
-
-
-  let balanceMessage;
-
-
-  if (performanceDifference > 30) {
-
-    balanceMessage =
-      "⚠️ GPU is considerably stronger than the CPU. CPU-heavy games may be limited.";
-
-  }
-
-  else if (performanceDifference < -30) {
-
-    balanceMessage =
-      "⚠️ This system has much more CPU performance than GPU performance.";
-
-  }
-
-  else {
-
-    balanceMessage =
-      "✅ CPU and GPU performance are reasonably balanced.";
-
-  }
-
-
-  // ========================================
-  // CONFIDENCE
-  // ========================================
-
-  let confidencePoints = 2;
-
-
-  if (ram) {
-    confidencePoints++;
-  }
-
-  if (ramType) {
-    confidencePoints++;
-  }
-
-  if (storage) {
-    confidencePoints++;
-  }
-
-  if (motherboardInput) {
-    confidencePoints++;
-  }
-
-  if (psuInput) {
-    confidencePoints++;
-  }
-
-  if (cooler) {
-    confidencePoints++;
-  }
-
-  if (caseQuality) {
-    confidencePoints++;
-  }
-
-
-  const totalPossible = 9;
-
-
-  const confidencePercent =
-    Math.round(
-      (confidencePoints / totalPossible)
-      * 100
-    );
-
-
-  let confidenceLabel;
-
-
-  if (confidencePercent >= 80) {
-
-    confidenceLabel = "High";
-
-  }
-
-  else if (confidencePercent >= 55) {
-
-    confidenceLabel = "Medium";
-
-  }
-
-  else {
-
-    confidenceLabel = "Low";
-
-  }
-
-
-  // ========================================
-  // MISSING INFO
-  // ========================================
-
-  let missingItems = [];
-
-
-  if (!motherboardInput) {
-    missingItems.push("motherboard model");
-  }
-
-  if (!psuInput) {
-    missingItems.push("power supply model");
-  }
-
-  if (!ramType) {
-    missingItems.push("RAM type");
-  }
-
-  if (!cooler) {
-    missingItems.push("CPU cooler");
-  }
-
-  if (!caseQuality) {
-    missingItems.push("case quality");
-  }
-
-
-  // ========================================
-  // OFFER
-  // ========================================
-
-  let suggestedOffer =
-
-    Math.round(
-      estimatedValue *
-      0.85 / 10
-    ) * 10;
-
-
-  suggestedOffer =
-    Math.min(
-      suggestedOffer,
-      askingPrice
-    );
-
-
-  // ========================================
-  // DISPLAY RESULTS
-  // ========================================
-
-  scoreElement.innerHTML =
-    dealScore + "/100";
-
-
-  verdictElement.innerHTML =
-    verdict;
-
-
-  let missingText = "";
-
-
-  if (missingItems.length > 0) {
-
-    missingText = `
-
-      <br><br>
-
-      ⚠️ <strong>Missing information:</strong>
-
-      ${missingItems.join(", ")}
-
-    `;
-
-  }
-
-  else {
-
-    missingText = `
-
-      <br><br>
-
-      ✅ <strong>Full component information provided.</strong>
-
-    `;
-
-  }
-
-
-  resultText.innerHTML = `
-
-    <strong>
-      ${cpu.name} + ${gpu.name}
-    </strong>
-
-    <br><br>
-
-    Asking price:
-
-    <strong>
-      $${askingPrice.toLocaleString()} ${currency}
-    </strong>
-
-    <br>
-
-    Estimated system value:
-
-    <strong>
-      $${lowEstimate.toLocaleString()}
-      –
-      $${highEstimate.toLocaleString()} ${currency}
-    </strong>
-
-    <br><br>
-
-    📊 <strong>Estimate confidence:</strong>
-    ${confidenceLabel}
-    (${confidencePercent}%)
-
-    <br><br>
-
-    🎮 <strong>Gaming:</strong>
-    ${gamingTier}
-
-    <br><br>
-
-    🔧 <strong>Platform:</strong>
-    ${cpu.platform}
-
-    <br><br>
-
-    🧠 <strong>CPU value:</strong>
-    $${cpu.value}
-
-    <br>
-
-    🎨 <strong>GPU value:</strong>
-    $${gpu.value}
-
-    <br>
-
-    🧩 <strong>Motherboard estimate:</strong>
-    $${motherboardValue}
-
-    <br>
-
-    ⚡ <strong>PSU estimate:</strong>
-    $${psuValue}
-
-    <br><br>
-
-    ${balanceMessage}
-
-    <br><br>
-
-    💬 <strong>Suggested starting offer:</strong>
-
-    $${suggestedOffer.toLocaleString()} ${currency}
-
-    ${missingText}
-
-  `;
-
-
-  result.style.display =
-    "block";
-
-
-  result.scrollIntoView({
-
-    behavior: "smooth",
-    block: "nearest"
-
-  });
+const gpuDatabase = {
+
+  // -------------------------
+  // NVIDIA RTX 50 SERIES
+  // -------------------------
+
+  "rtx 5090": {
+    name: "RTX 5090",
+    value: 3200,
+    performance: 100,
+    vram: 32,
+    tier: "enthusiast"
+  },
+
+  "rtx 5080": {
+    name: "RTX 5080",
+    value: 1700,
+    performance: 90,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rtx 5070 ti": {
+    name: "RTX 5070 Ti",
+    value: 1100,
+    performance: 78,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rtx 5070": {
+    name: "RTX 5070",
+    value: 850,
+    performance: 69,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+
+  // -------------------------
+  // NVIDIA RTX 40 SERIES
+  // -------------------------
+
+  "rtx 4090": {
+    name: "RTX 4090",
+    value: 2200,
+    performance: 96,
+    vram: 24,
+    tier: "enthusiast"
+  },
+
+  "rtx 4080 super": {
+    name: "RTX 4080 Super",
+    value: 1300,
+    performance: 86,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rtx 4080": {
+    name: "RTX 4080",
+    value: 1150,
+    performance: 83,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rtx 4070 ti super": {
+    name: "RTX 4070 Ti Super",
+    value: 950,
+    performance: 76,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rtx 4070 ti": {
+    name: "RTX 4070 Ti",
+    value: 800,
+    performance: 71,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+  "rtx 4070 super": {
+    name: "RTX 4070 Super",
+    value: 700,
+    performance: 67,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+  "rtx 4070": {
+    name: "RTX 4070",
+    value: 600,
+    performance: 62,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+  "rtx 4060 ti": {
+    name: "RTX 4060 Ti",
+    value: 400,
+    performance: 48,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 4060 ti 16gb": {
+    name: "RTX 4060 Ti 16GB",
+    value: 450,
+    performance: 49,
+    vram: 16,
+    tier: "midrange"
+  },
+
+  "rtx 4060": {
+    name: "RTX 4060",
+    value: 300,
+    performance: 40,
+    vram: 8,
+    tier: "midrange"
+  },
+
+
+  // -------------------------
+  // NVIDIA RTX 30 SERIES
+  // -------------------------
+
+  "rtx 3090 ti": {
+    name: "RTX 3090 Ti",
+    value: 850,
+    performance: 72,
+    vram: 24,
+    tier: "high-end"
+  },
+
+  "rtx 3090": {
+    name: "RTX 3090",
+    value: 750,
+    performance: 69,
+    vram: 24,
+    tier: "high-end"
+  },
+
+  "rtx 3080 ti": {
+    name: "RTX 3080 Ti",
+    value: 600,
+    performance: 64,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+  "rtx 3080 12gb": {
+    name: "RTX 3080 12GB",
+    value: 540,
+    performance: 62,
+    vram: 12,
+    tier: "upper-midrange"
+  },
+
+  "rtx 3080": {
+    name: "RTX 3080",
+    value: 500,
+    performance: 60,
+    vram: 10,
+    tier: "upper-midrange"
+  },
+
+  "rtx 3070 ti": {
+    name: "RTX 3070 Ti",
+    value: 400,
+    performance: 52,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 3070": {
+    name: "RTX 3070",
+    value: 350,
+    performance: 48,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 3060 ti": {
+    name: "RTX 3060 Ti",
+    value: 300,
+    performance: 43,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 3060 12gb": {
+    name: "RTX 3060 12GB",
+    value: 250,
+    performance: 36,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "rtx 3060": {
+    name: "RTX 3060",
+    value: 240,
+    performance: 35,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "rtx 3050": {
+    name: "RTX 3050",
+    value: 170,
+    performance: 27,
+    vram: 8,
+    tier: "entry"
+  },
+
+
+  // -------------------------
+  // NVIDIA RTX 20 SERIES
+  // -------------------------
+
+  "rtx 2080 ti": {
+    name: "RTX 2080 Ti",
+    value: 320,
+    performance: 45,
+    vram: 11,
+    tier: "midrange"
+  },
+
+  "rtx 2080 super": {
+    name: "RTX 2080 Super",
+    value: 250,
+    performance: 39,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 2080": {
+    name: "RTX 2080",
+    value: 220,
+    performance: 37,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 2070 super": {
+    name: "RTX 2070 Super",
+    value: 200,
+    performance: 34,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rtx 2070": {
+    name: "RTX 2070",
+    value: 170,
+    performance: 31,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "rtx 2060 super": {
+    name: "RTX 2060 Super",
+    value: 160,
+    performance: 29,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "rtx 2060": {
+    name: "RTX 2060",
+    value: 140,
+    performance: 26,
+    vram: 6,
+    tier: "entry"
+  },
+
+
+  // -------------------------
+  // NVIDIA GTX
+  // -------------------------
+
+  "gtx 1080 ti": {
+    name: "GTX 1080 Ti",
+    value: 220,
+    performance: 32,
+    vram: 11,
+    tier: "entry"
+  },
+
+  "gtx 1080": {
+    name: "GTX 1080",
+    value: 150,
+    performance: 27,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "gtx 1070 ti": {
+    name: "GTX 1070 Ti",
+    value: 130,
+    performance: 24,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "gtx 1070": {
+    name: "GTX 1070",
+    value: 110,
+    performance: 22,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "gtx 1660 super": {
+    name: "GTX 1660 Super",
+    value: 120,
+    performance: 23,
+    vram: 6,
+    tier: "entry"
+  },
+
+  "gtx 1660 ti": {
+    name: "GTX 1660 Ti",
+    value: 115,
+    performance: 22,
+    vram: 6,
+    tier: "entry"
+  },
+
+  "gtx 1660": {
+    name: "GTX 1660",
+    value: 100,
+    performance: 20,
+    vram: 6,
+    tier: "entry"
+  },
+
+  "gtx 1650 super": {
+    name: "GTX 1650 Super",
+    value: 90,
+    performance: 18,
+    vram: 4,
+    tier: "entry"
+  },
+
+  "gtx 1650": {
+    name: "GTX 1650",
+    value: 70,
+    performance: 14,
+    vram: 4,
+    tier: "entry"
+  },
+
+
+  // -------------------------
+  // AMD RX 9000
+  // -------------------------
+
+  "rx 9070 xt": {
+    name: "RX 9070 XT",
+    value: 900,
+    performance: 76,
+    vram: 16,
+    tier: "high-end"
+  },
+
+  "rx 9070": {
+    name: "RX 9070",
+    value: 750,
+    performance: 69,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+
+  // -------------------------
+  // AMD RX 7000
+  // -------------------------
+
+  "rx 7900 xtx": {
+    name: "RX 7900 XTX",
+    value: 1000,
+    performance: 80,
+    vram: 24,
+    tier: "high-end"
+  },
+
+  "rx 7900 xt": {
+    name: "RX 7900 XT",
+    value: 800,
+    performance: 73,
+    vram: 20,
+    tier: "high-end"
+  },
+
+  "rx 7900 gre": {
+    name: "RX 7900 GRE",
+    value: 620,
+    performance: 64,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+  "rx 7800 xt": {
+    name: "RX 7800 XT",
+    value: 600,
+    performance: 61,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+  "rx 7700 xt": {
+    name: "RX 7700 XT",
+    value: 450,
+    performance: 52,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "rx 7600 xt": {
+    name: "RX 7600 XT",
+    value: 350,
+    performance: 42,
+    vram: 16,
+    tier: "midrange"
+  },
+
+  "rx 7600": {
+    name: "RX 7600",
+    value: 280,
+    performance: 37,
+    vram: 8,
+    tier: "midrange"
+  },
+
+
+  // -------------------------
+  // AMD RX 6000
+  // -------------------------
+
+  "rx 6950 xt": {
+    name: "RX 6950 XT",
+    value: 500,
+    performance: 61,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+  "rx 6900 xt": {
+    name: "RX 6900 XT",
+    value: 470,
+    performance: 58,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+  "rx 6800 xt": {
+    name: "RX 6800 XT",
+    value: 450,
+    performance: 56,
+    vram: 16,
+    tier: "upper-midrange"
+  },
+
+  "rx 6800": {
+    name: "RX 6800",
+    value: 390,
+    performance: 50,
+    vram: 16,
+    tier: "midrange"
+  },
+
+  "rx 6750 xt": {
+    name: "RX 6750 XT",
+    value: 320,
+    performance: 45,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "rx 6700 xt": {
+    name: "RX 6700 XT",
+    value: 300,
+    performance: 43,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "rx 6650 xt": {
+    name: "RX 6650 XT",
+    value: 220,
+    performance: 35,
+    vram: 8,
+    tier: "midrange"
+  },
+
+  "rx 6600 xt": {
+    name: "RX 6600 XT",
+    value: 200,
+    performance: 33,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "rx 6600": {
+    name: "RX 6600",
+    value: 170,
+    performance: 30,
+    vram: 8,
+    tier: "entry"
+  },
+
+  "rx 6500 xt": {
+    name: "RX 6500 XT",
+    value: 100,
+    performance: 18,
+    vram: 4,
+    tier: "entry"
+  },
+
+
+  // -------------------------
+  // INTEL ARC
+  // -------------------------
+
+  "arc b580": {
+    name: "Intel Arc B580",
+    value: 350,
+    performance: 44,
+    vram: 12,
+    tier: "midrange"
+  },
+
+  "arc a770": {
+    name: "Intel Arc A770",
+    value: 250,
+    performance: 38,
+    vram: 16,
+    tier: "midrange"
+  },
+
+  "arc a750": {
+    name: "Intel Arc A750",
+    value: 200,
+    performance: 34,
+    vram: 8,
+    tier: "entry"
+  }
+
+};
+
+
+// ========================================
+// CPU DATABASE
+// ========================================
+
+const cpuDatabase = {
+
+  // -------------------------
+  // AMD AM5 X3D
+  // -------------------------
+
+  "ryzen 9 9950x3d": {
+    name: "Ryzen 9 9950X3D",
+    value: 850,
+    performance: 100,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 9 9900x3d": {
+    name: "Ryzen 9 9900X3D",
+    value: 700,
+    performance: 96,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 7 9800x3d": {
+    name: "Ryzen 7 9800X3D",
+    value: 650,
+    performance: 98,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 9 7950x3d": {
+    name: "Ryzen 9 7950X3D",
+    value: 600,
+    performance: 94,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 9 7900x3d": {
+    name: "Ryzen 9 7900X3D",
+    value: 470,
+    performance: 88,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 7 7800x3d": {
+    name: "Ryzen 7 7800X3D",
+    value: 400,
+    performance: 92,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+
+  // -------------------------
+  // AMD AM5
+  // -------------------------
+
+  "ryzen 9 9950x": {
+    name: "Ryzen 9 9950X",
+    value: 700,
+    performance: 90,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 9 9900x": {
+    name: "Ryzen 9 9900X",
+    value: 550,
+    performance: 86,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 7 9700x": {
+    name: "Ryzen 7 9700X",
+    value: 400,
+    performance: 82,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 5 9600x": {
+    name: "Ryzen 5 9600X",
+    value: 280,
+    performance: 76,
+    platform: "AM5",
+    generation: "Zen 5"
+  },
+
+  "ryzen 9 7950x": {
+    name: "Ryzen 9 7950X",
+    value: 500,
+    performance: 87,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 9 7900x": {
+    name: "Ryzen 9 7900X",
+    value: 380,
+    performance: 82,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 9 7900": {
+    name: "Ryzen 9 7900",
+    value: 350,
+    performance: 80,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 7 7700x": {
+    name: "Ryzen 7 7700X",
+    value: 270,
+    performance: 75,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 7 7700": {
+    name: "Ryzen 7 7700",
+    value: 250,
+    performance: 74,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 5 7600x": {
+    name: "Ryzen 5 7600X",
+    value: 200,
+    performance: 70,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 5 7600": {
+    name: "Ryzen 5 7600",
+    value: 190,
+    performance: 68,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+  "ryzen 5 7500f": {
+    name: "Ryzen 5 7500F",
+    value: 160,
+    performance: 65,
+    platform: "AM5",
+    generation: "Zen 4"
+  },
+
+
+  // -------------------------
+  // AMD AM4 X3D
+  // -------------------------
+
+  "ryzen 7 5800x3d": {
+    name: "Ryzen 7 5800X3D",
+    value: 280,
+    performance: 70,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 7 5700x3d": {
+    name: "Ryzen 7 5700X3D",
+    value: 220,
+    performance: 67,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 5 5600x3d": {
+    name: "Ryzen 5 5600X3D",
+    value: 200,
+    performance: 64,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+
+  // -------------------------
+  // AMD AM4
+  // -------------------------
+
+  "ryzen 9 5950x": {
+    name: "Ryzen 9 5950X",
+    value: 280,
+    performance: 68,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 9 5900x": {
+    name: "Ryzen 9 5900X",
+    value: 220,
+    performance: 64,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 7 5800x": {
+    name: "Ryzen 7 5800X",
+    value: 150,
+    performance: 57,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 7 5700x": {
+    name: "Ryzen 7 5700X",
+    value: 140,
+    performance: 55,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 7 5700g": {
+    name: "Ryzen 7 5700G",
+    value: 130,
+    performance: 50,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 5 5600x": {
+    name: "Ryzen 5 5600X",
+    value: 110,
+    performance: 50,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 5 5600": {
+    name: "Ryzen 5 5600",
+    value: 100,
+    performance: 48,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 5 5600g": {
+    name: "Ryzen 5 5600G",
+    value: 90,
+    performance: 44,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 5 5500": {
+    name: "Ryzen 5 5500",
+    value: 80,
+    performance: 41,
+    platform: "AM4",
+    generation: "Zen 3"
+  },
+
+  "ryzen 7 3700x": {
+    name: "Ryzen 7 3700X",
+    value: 90,
+    performance: 41,
+    platform: "AM4",
+    generation: "Zen 2"
+  },
+
+  "ryzen 5 3600x": {
+    name: "Ryzen 5 3600X",
+    value: 75,
+    performance: 36,
+    platform: "AM4",
+    generation: "Zen 2"
+  },
+
+  "ryzen 5 3600": {
+    name: "Ryzen 5 3600",
+    value: 70,
+    performance: 35,
+    platform: "AM4",
+    generation: "Zen 2"
+  },
+
+  "ryzen 5 2600": {
+    name: "Ryzen 5 2600",
+    value: 45,
+    performance: 27,
+    platform: "AM4",
+    generation: "Zen+"
+  },
+
+  "ryzen 5 1600": {
+    name: "Ryzen 5 1600",
+    value: 35,
+    performance: 22,
+    platform: "AM4",
+    generation: "Zen"
+  },
+
+
+  // -------------------------
+  // INTEL 14TH GEN
+  // -------------------------
+
+  "i9-14900k": {
+    name: "Core i9-14900K",
+    value: 500,
+    performance: 90,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i9-14900kf": {
+    name: "Core i9-14900KF",
+    value: 470,
+    performance: 90,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i7-14700k": {
+    name: "Core i7-14700K",
+    value: 380,
+    performance: 86,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i7-14700kf": {
+    name: "Core i7-14700KF",
+    value: 350,
+    performance: 85,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i5-14600k": {
+    name: "Core i5-14600K",
+    value: 260,
+    performance: 82,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i5-14600kf": {
+    name: "Core i5-14600KF",
+    value: 240,
+    performance: 81,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+  "i5-14400f": {
+    name: "Core i5-14400F",
+    value: 180,
+    performance: 68,
+    platform: "LGA1700",
+    generation: "14th Gen"
+  },
+
+
+  // -------------------------
+  // INTEL 13TH GEN
+  // -------------------------
+
+  "i9-13900k": {
+    name: "Core i9-13900K",
+    value: 420,
+    performance: 87,
+    platform: "LGA1700",
+    generation: "13th Gen"
+  },
+
+  "i7-13700k": {
+    name: "Core i7-13700K",
+    value: 300,
+    performance: 82,
+    platform: "LGA1700",
+    generation: "13th Gen"
+  },
+
+  "i5-13600k": {
+    name: "Core i5-13600K",
+    value: 230,
+    performance: 78,
+    platform: "LGA1700",
+    generation: "13th Gen"
+  },
+
+  "i5-13400f": {
+    name: "Core i5-13400F",
+    value: 150,
+    performance: 64,
+    platform: "LGA1700",
+    generation: "13th Gen"
+  },
+
+
+  // -------------------------
+  // INTEL 12TH GEN
+  // -------------------------
+
+  "i9-12900k": {
+    name: "Core i9-12900K",
+    value: 300,
+    performance: 77,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+  "i7-12700k": {
+    name: "Core i7-12700K",
+    value: 220,
+    performance: 72,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+  "i7-12700f": {
+    name: "Core i7-12700F",
+    value: 190,
+    performance: 69,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+  "i5-12600k": {
+    name: "Core i5-12600K",
+    value: 160,
+    performance: 65,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+  "i5-12400f": {
+    name: "Core i5-12400F",
+    value: 120,
+    performance: 55,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+  "i3-12100f": {
+    name: "Core i3-12100F",
+    value: 70,
+    performance: 45,
+    platform: "LGA1700",
+    generation: "12th Gen"
+  },
+
+
+  // -------------------------
+  // INTEL 11TH GEN
+  // -------------------------
+
+  "i9-11900k": {
+    name: "Core i9-11900K",
+    value: 170,
+    performance: 55,
+    platform: "LGA1200",
+    generation: "11th Gen"
+  },
+
+  "i7-11700k": {
+    name: "Core i7-11700K",
+    value: 140,
+    performance: 52,
+    platform: "LGA1200",
+    generation: "11th Gen"
+  },
+
+  "i5-11600k": {
+    name: "Core i5-11600K",
+    value: 100,
+    performance: 47,
+    platform: "LGA1200",
+    generation: "11th Gen"
+  },
+
+  "i5-11400f": {
+    name: "Core i5-11400F",
+    value: 80,
+    performance: 42,
+    platform: "LGA1200",
+    generation: "11th Gen"
+  },
+
+
+  // -------------------------
+  // INTEL 10TH GEN
+  // -------------------------
+
+  "i9-10900k": {
+    name: "Core i9-10900K",
+    value: 160,
+    performance: 52,
+    platform: "LGA1200",
+    generation: "10th Gen"
+  },
+
+  "i7-10700k": {
+    name: "Core i7-10700K",
+    value: 120,
+    performance: 48,
+    platform: "LGA1200",
+    generation: "10th Gen"
+  },
+
+  "i5-10600k": {
+    name: "Core i5-10600K",
+    value: 90,
+    performance: 42,
+    platform: "LGA1200",
+    generation: "10th Gen"
+  },
+
+  "i5-10400f": {
+    name: "Core i5-10400F",
+    value: 70,
+    performance: 37,
+    platform: "LGA1200",
+    generation: "10th Gen"
+  },
+
+
+  // -------------------------
+  // INTEL OLDER
+  // -------------------------
+
+  "i7-9700k": {
+    name: "Core i7-9700K",
+    value: 100,
+    performance: 40,
+    platform: "LGA1151",
+    generation: "9th Gen"
+  },
+
+  "i7-8700k": {
+    name: "Core i7-8700K",
+    value: 85,
+    performance: 37,
+    platform: "LGA1151",
+    generation: "8th Gen"
+  },
+
+  "i7-7700k": {
+    name: "Core i7-7700K",
+    value: 65,
+    performance: 30,
+    platform: "LGA1151",
+    generation: "7th Gen"
+  },
+
+  "i7-4790k": {
+    name: "Core i7-4790K",
+    value: 40,
+    performance: 22,
+    platform: "LGA1150",
+    generation: "4th Gen"
+  }
+
+};
+
+
+// ========================================
+// GPU ALIASES
+// ========================================
+
+const gpuAliases = {
+
+  "geforce rtx 4090": "rtx 4090",
+  "geforce rtx 4080": "rtx 4080",
+  "geforce rtx 4070": "rtx 4070",
+  "geforce rtx 4060": "rtx 4060",
+
+  "geforce rtx 3090": "rtx 3090",
+  "geforce rtx 3080": "rtx 3080",
+  "geforce rtx 3070": "rtx 3070",
+  "geforce rtx 3060": "rtx 3060",
+
+  "geforce gtx 1080 ti": "gtx 1080 ti",
+  "geforce gtx 1080": "gtx 1080",
+  "geforce gtx 1070": "gtx 1070",
+
+  "radeon rx 7900 xtx": "rx 7900 xtx",
+  "radeon rx 7800 xt": "rx 7800 xt",
+  "radeon rx 6800 xt": "rx 6800 xt",
+  "radeon rx 6700 xt": "rx 6700 xt",
+
+  "intel arc a770": "arc a770",
+  "intel arc a750": "arc a750",
+  "intel arc b580": "arc b580"
+
+};
+
+
+// ========================================
+// CPU ALIASES
+// ========================================
+
+const cpuAliases = {
+
+  "amd ryzen 7 5800x3d": "ryzen 7 5800x3d",
+  "amd ryzen 7 5700x3d": "ryzen 7 5700x3d",
+  "amd ryzen 7 7800x3d": "ryzen 7 7800x3d",
+  "amd ryzen 7 9800x3d": "ryzen 7 9800x3d",
+
+  "amd ryzen 5 5600x": "ryzen 5 5600x",
+  "amd ryzen 5 5600": "ryzen 5 5600",
+  "amd ryzen 5 7600": "ryzen 5 7600",
+
+  "intel core i9-14900k": "i9-14900k",
+  "intel core i7-14700k": "i7-14700k",
+  "intel core i5-14600k": "i5-14600k",
+
+  "intel core i9-13900k": "i9-13900k",
+  "intel core i7-13700k": "i7-13700k",
+  "intel core i5-13600k": "i5-13600k",
+
+  "intel core i9-12900k": "i9-12900k",
+  "intel core i7-12700k": "i7-12700k",
+  "intel core i5-12600k": "i5-12600k",
+  "intel core i5-12400f": "i5-12400f"
+
+};
+
+
+// ========================================
+// NORMALIZE PART NAME
+// ========================================
+
+function normalizePartName(name) {
+
+  return name
+    .toLowerCase()
+    .trim()
+
+    // Normalize common punctuation
+    .replace(/[(),]/g, " ")
+
+    // Normalize extra spaces
+    .replace(/\s+/g, " ")
+
+    .trim();
 
 }
 
 
 // ========================================
-// PASTE-A-LISTING PARSER
-// THIS IS THE FUNCTION THAT WAS MISSING
+// FIND GPU
 // ========================================
 
-function parseListing() {
+function findGPU(name) {
 
-  const listingBox =
-    document.getElementById("listingText");
-
-  const message =
-    document.getElementById("parseMessage");
+  let search =
+    normalizePartName(name);
 
 
-  if (!listingBox || !message) {
+  // Direct match
+  if (gpuDatabase[search]) {
 
-    alert(
-      "Paste-a-listing interface is not installed correctly."
+    return gpuDatabase[search];
+
+  }
+
+
+  // Alias match
+  if (gpuAliases[search]) {
+
+    const alias =
+      gpuAliases[search];
+
+    return gpuDatabase[alias];
+
+  }
+
+
+  // Try stripping manufacturer words
+  search = search
+    .replace("nvidia ", "")
+    .replace("geforce ", "")
+    .replace("amd ", "")
+    .replace("radeon ", "")
+    .replace("intel ", "")
+    .trim();
+
+
+  if (gpuDatabase[search]) {
+
+    return gpuDatabase[search];
+
+  }
+
+
+  return null;
+
+}
+
+
+// ========================================
+// FIND CPU
+// ========================================
+
+function findCPU(name) {
+
+  let search =
+    normalizePartName(name);
+
+
+  // Direct match
+  if (cpuDatabase[search]) {
+
+    return cpuDatabase[search];
+
+  }
+
+
+  // Alias match
+  if (cpuAliases[search]) {
+
+    const alias =
+      cpuAliases[search];
+
+    return cpuDatabase[alias];
+
+  }
+
+
+  // Strip common manufacturer naming
+  search = search
+    .replace("amd ", "")
+    .replace("intel core ", "")
+    .replace("intel ", "")
+    .trim();
+
+
+  if (cpuDatabase[search]) {
+
+    return cpuDatabase[search];
+
+  }
+
+
+  return null;
+
+}
+
+
+// ========================================
+// HELPER: GET ALL CPU NAMES
+// ========================================
+
+function getAllCPUNames() {
+
+  return Object
+    .values(cpuDatabase)
+    .map(
+      cpu => cpu.name
     );
 
-    return;
-
-  }
+}
 
 
-  const originalListing =
-    listingBox.value.trim();
+// ========================================
+// HELPER: GET ALL GPU NAMES
+// ========================================
 
+function getAllGPUNames() {
 
-  const listing =
-    originalListing.toLowerCase();
-
-
-  if (!listing) {
-
-    message.innerHTML =
-      "Paste a PC listing first.";
-
-    return;
-
-  }
-
-
-  let found = [];
-
-
-  // ========================================
-  // CPU DETECTION
-  // ========================================
-
-  const cpuKeys =
-    Object.keys(cpuDatabase)
-      .sort(
-        (a, b) =>
-          b.length - a.length
-      );
-
-
-  for (const key of cpuKeys) {
-
-    if (listing.includes(key)) {
-
-      const detectedCPU =
-        cpuDatabase[key];
-
-
-      document
-        .getElementById("cpu")
-        .value =
-        detectedCPU.name;
-
-
-      found.push(
-        "CPU: " +
-        detectedCPU.name
-      );
-
-
-      break;
-
-    }
-
-  }
-
-
-  // ========================================
-  // GPU DETECTION
-  // ========================================
-
-  const gpuKeys =
-    Object.keys(gpuDatabase)
-      .sort(
-        (a, b) =>
-          b.length - a.length
-      );
-
-
-  for (const key of gpuKeys) {
-
-    if (listing.includes(key)) {
-
-      const detectedGPU =
-        gpuDatabase[key];
-
-
-      document
-        .getElementById("gpu")
-        .value =
-        detectedGPU.name;
-
-
-      found.push(
-        "GPU: " +
-        detectedGPU.name
-      );
-
-
-      break;
-
-    }
-
-  }
-
-
-  // ========================================
-  // RAM CAPACITY
-  // ========================================
-
-  if (/\b64\s?gb\b/.test(listing)) {
-
-    document
-      .getElementById("ram")
-      .value =
-      "64GB+";
-
-
-    found.push(
-      "RAM: 64GB+"
+  return Object
+    .values(gpuDatabase)
+    .map(
+      gpu => gpu.name
     );
 
-  }
+}
 
-  else if (/\b32\s?gb\b/.test(listing)) {
 
-    document
-      .getElementById("ram")
-      .value =
-      "32GB";
+// ========================================
+// HELPER: DATABASE STATS
+// ========================================
 
+function getDatabaseStats() {
 
-    found.push(
-      "RAM: 32GB"
-    );
+  return {
 
-  }
+    cpuCount:
+      Object.keys(cpuDatabase).length,
 
-  else if (/\b16\s?gb\b/.test(listing)) {
+    gpuCount:
+      Object.keys(gpuDatabase).length
 
-    document
-      .getElementById("ram")
-      .value =
-      "16GB";
-
-
-    found.push(
-      "RAM: 16GB"
-    );
-
-  }
-
-  else if (/\b8\s?gb\b/.test(listing)) {
-
-    document
-      .getElementById("ram")
-      .value =
-      "8GB";
-
-
-    found.push(
-      "RAM: 8GB"
-    );
-
-  }
-
-
-  // ========================================
-  // RAM TYPE
-  // ========================================
-
-  if (listing.includes("ddr5")) {
-
-    document
-      .getElementById("ramType")
-      .value =
-      "DDR5";
-
-
-    found.push(
-      "RAM Type: DDR5"
-    );
-
-  }
-
-  else if (listing.includes("ddr4")) {
-
-    document
-      .getElementById("ramType")
-      .value =
-      "DDR4";
-
-
-    found.push(
-      "RAM Type: DDR4"
-    );
-
-  }
-
-
-  // ========================================
-  // STORAGE
-  // ========================================
-
-  if (
-    /\b2\s?tb\b/.test(listing) &&
-    (
-      listing.includes("ssd") ||
-      listing.includes("nvme")
-    )
-  ) {
-
-    document
-      .getElementById("storage")
-      .value =
-      "2TB SSD";
-
-
-    found.push(
-      "Storage: 2TB SSD"
-    );
-
-  }
-
-  else if (
-    /\b1\s?tb\b/.test(listing) &&
-    (
-      listing.includes("ssd") ||
-      listing.includes("nvme")
-    )
-  ) {
-
-    document
-      .getElementById("storage")
-      .value =
-      "1TB SSD";
-
-
-    found.push(
-      "Storage: 1TB SSD"
-    );
-
-  }
-
-  else if (
-    (
-      listing.includes("500gb") ||
-      listing.includes("512gb")
-    ) &&
-    (
-      listing.includes("ssd") ||
-      listing.includes("nvme")
-    )
-  ) {
-
-    document
-      .getElementById("storage")
-      .value =
-      "500GB SSD";
-
-
-    found.push(
-      "Storage: 500GB SSD"
-    );
-
-  }
-
-  else if (
-    listing.includes("256gb") &&
-    (
-      listing.includes("ssd") ||
-      listing.includes("nvme")
-    )
-  ) {
-
-    document
-      .getElementById("storage")
-      .value =
-      "256GB SSD";
-
-
-    found.push(
-      "Storage: 256GB SSD"
-    );
-
-  }
-
-
-  // ========================================
-  // MOTHERBOARD
-  // ========================================
-
-  const boardPatterns = [
-
-    "x870",
-    "x670",
-    "x570",
-
-    "b650",
-    "b550",
-    "b450",
-
-    "a520",
-    "a320",
-
-    "z890",
-    "z790",
-    "z690",
-
-    "b760",
-    "b660",
-
-    "h610",
-    "h510",
-    "h410"
-
-  ];
-
-
-  let detectedBoard =
-    null;
-
-
-  for (const boardName of boardPatterns) {
-
-    if (listing.includes(boardName)) {
-
-      detectedBoard =
-        boardName.toUpperCase();
-
-      break;
-
-    }
-
-  }
-
-
-  if (detectedBoard) {
-
-    document
-      .getElementById("motherboard")
-      .value =
-      detectedBoard;
-
-
-    found.push(
-      "Motherboard: " +
-      detectedBoard
-    );
-
-  }
-
-
-  // ========================================
-  // PSU
-  // ========================================
-
-  const wattMatch =
-    listing.match(
-      /\b(450|500|550|600|650|700|750|800|850|900|1000|1200|1300)\s?w\b/
-    );
-
-
-  if (wattMatch) {
-
-    const wattage =
-      wattMatch[1] + "W";
-
-
-    let psuDisplay =
-      wattage + " PSU";
-
-
-    if (
-      listing.includes("rm750x")
-    ) {
-
-      psuDisplay =
-        "Corsair RM750x 750W";
-
-    }
-
-    else if (
-      listing.includes("rm850x")
-    ) {
-
-      psuDisplay =
-        "Corsair RM850x 850W";
-
-    }
-
-    else if (
-      listing.includes("seasonic")
-    ) {
-
-      psuDisplay =
-        "Seasonic " +
-        wattage;
-
-    }
-
-    else if (
-      listing.includes("supernova")
-    ) {
-
-      psuDisplay =
-        "EVGA SuperNOVA " +
-        wattage;
-
-    }
-
-
-    document
-      .getElementById("psu")
-      .value =
-      psuDisplay;
-
-
-    found.push(
-      "PSU: " +
-      psuDisplay
-    );
-
-  }
-
-
-  // ========================================
-  // COOLER
-  // ========================================
-
-  if (
-    listing.includes("360mm aio") ||
-    listing.includes("360 aio")
-  ) {
-
-    document
-      .getElementById("cooler")
-      .value =
-      "aio360";
-
-
-    found.push(
-      "Cooler: 360mm AIO"
-    );
-
-  }
-
-  else if (
-    listing.includes("280mm aio") ||
-    listing.includes("280 aio")
-  ) {
-
-    document
-      .getElementById("cooler")
-      .value =
-      "aio280";
-
-
-    found.push(
-      "Cooler: 280mm AIO"
-    );
-
-  }
-
-  else if (
-    listing.includes("240mm aio") ||
-    listing.includes("240 aio")
-  ) {
-
-    document
-      .getElementById("cooler")
-      .value =
-      "aio240";
-
-
-    found.push(
-      "Cooler: 240mm AIO"
-    );
-
-  }
-
-
-  // ========================================
-  // CONDITION
-  // ========================================
-
-  if (
-    listing.includes("like new") ||
-    listing.includes("mint condition") ||
-    listing.includes("excellent condition")
-  ) {
-
-    document
-      .getElementById("condition")
-      .value =
-      "excellent";
-
-
-    found.push(
-      "Condition: Excellent"
-    );
-
-  }
-
-  else if (
-    listing.includes("fair condition")
-  ) {
-
-    document
-      .getElementById("condition")
-      .value =
-      "fair";
-
-
-    found.push(
-      "Condition: Fair"
-    );
-
-  }
-
-  else if (
-    listing.includes("poor condition")
-  ) {
-
-    document
-      .getElementById("condition")
-      .value =
-      "poor";
-
-
-    found.push(
-      "Condition: Poor"
-    );
-
-  }
-
-
-  // ========================================
-  // PRICE
-  // ========================================
-
-  let detectedPrice =
-    null;
-
-
-  const askingMatch =
-    listing.match(
-      /(?:asking|price|priced at|selling for)\s*:?\s*\$?\s*([0-9]{2,5}(?:,[0-9]{3})?)/i
-    );
-
-
-  if (askingMatch) {
-
-    detectedPrice =
-      askingMatch[1];
-
-  }
-
-  else {
-
-    const dollarMatches =
-      listing.match(
-        /\$\s?[0-9]{2,5}(?:,[0-9]{3})?/g
-      );
-
-
-    if (dollarMatches) {
-
-      detectedPrice =
-        dollarMatches[
-          dollarMatches.length - 1
-        ];
-
-    }
-
-  }
-
-
-  if (detectedPrice) {
-
-    const cleanPrice =
-      detectedPrice
-        .replace("$", "")
-        .replace(/,/g, "")
-        .trim();
-
-
-    document
-      .getElementById("price")
-      .value =
-      cleanPrice;
-
-
-    found.push(
-      "Price: $" +
-      Number(cleanPrice)
-        .toLocaleString()
-    );
-
-  }
-
-
-  // ========================================
-  // CURRENCY
-  // ========================================
-
-  if (
-    listing.includes("cad") ||
-    listing.includes("canadian")
-  ) {
-
-    document
-      .getElementById("currency")
-      .value =
-      "CAD";
-
-
-    found.push(
-      "Currency: CAD"
-    );
-
-  }
-
-  else if (
-    listing.includes("usd")
-  ) {
-
-    document
-      .getElementById("currency")
-      .value =
-      "USD";
-
-
-    found.push(
-      "Currency: USD"
-    );
-
-  }
-
-
-  // ========================================
-  // DISPLAY DETECTED SPECS
-  // ========================================
-
-  if (found.length === 0) {
-
-    message.innerHTML = `
-
-      ❌ <strong>
-      No supported hardware detected.
-      </strong>
-
-      <br><br>
-
-      Try including exact component names such as
-      Ryzen 7 5700X, RTX 3080, 32GB DDR4,
-      1TB NVMe and the asking price.
-
-    `;
-
-
-    return;
-
-  }
-
-
-  message.innerHTML = `
-
-    <strong>
-      Detected ${found.length} details:
-    </strong>
-
-    <br><br>
-
-    ${found.join("<br>")}
-
-    <br><br>
-
-    <strong>
-      Review the detected information below before analyzing.
-    </strong>
-
-  `;
-
-
-  document
-    .getElementById("cpu")
-    .scrollIntoView({
-
-      behavior: "smooth",
-      block: "center"
-
-    });
+  };
 
 }
