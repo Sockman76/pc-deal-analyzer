@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -11,15 +12,19 @@
 
   <meta
     name="description"
-    content="PCDeal helps you analyze used gaming PC listings and determine whether the asking price is worth it."
+    content="PCDeal analyzes used gaming PC listings, detects parts, checks compatibility, estimates value, and rates the deal."
   >
 
   <title>PCDeal — Used PC Deal Analyzer</title>
 
+
   <style>
+
     /* =========================================================
-       PCDEAL V2
+       PCDEAL V2.1
+       FULL ANIMATED INTERFACE
        ========================================================= */
+
 
     * {
       box-sizing: border-box;
@@ -27,40 +32,66 @@
       padding: 0;
     }
 
+
     :root {
-      --background: #07090d;
-      --background-soft: #0b0e14;
-      --panel: #10141c;
-      --panel-hover: #151a24;
-      --panel-light: #171c26;
 
-      --border: #242b38;
-      --border-light: #303949;
+      --bg:
+        #06080d;
 
-      --text: #f4f7fb;
-      --text-soft: #a8b1c1;
-      --text-muted: #737d8f;
+      --bg2:
+        #090c12;
 
-      --accent: #6c72ff;
-      --accent-hover: #8186ff;
-      --accent-soft: rgba(108, 114, 255, 0.13);
+      --panel:
+        #0d1118;
 
-      --green: #42d392;
-      --green-soft: rgba(66, 211, 146, 0.12);
+      --panel2:
+        #111722;
 
-      --yellow: #f2c94c;
-      --yellow-soft: rgba(242, 201, 76, 0.12);
+      --panel3:
+        #151c28;
 
-      --red: #ff667a;
-      --red-soft: rgba(255, 102, 122, 0.12);
+      --border:
+        #232c3a;
 
-      --radius-small: 10px;
-      --radius: 16px;
-      --radius-large: 24px;
+      --border2:
+        #313d50;
 
-      --shadow:
-        0 20px 60px
-        rgba(0, 0, 0, 0.35);
+      --text:
+        #f5f7fb;
+
+      --muted:
+        #a0aabd;
+
+      --muted2:
+        #697487;
+
+      --accent:
+        #7075ff;
+
+      --accent2:
+        #8b72ff;
+
+      --accent-soft:
+        rgba(112,117,255,.14);
+
+      --accent-glow:
+        rgba(112,117,255,.32);
+
+      --green:
+        #42d392;
+
+      --yellow:
+        #f1c75b;
+
+      --red:
+        #ff6578;
+
+      --radius:
+        16px;
+
+      --radius-large:
+        24px;
+
     }
 
 
@@ -70,28 +101,27 @@
 
 
     body {
-      min-height: 100vh;
+
+      min-height:
+        100vh;
+
+      color:
+        var(--text);
 
       background:
-        radial-gradient(
-          circle at 50% -20%,
-          rgba(108, 114, 255, 0.18),
-          transparent 38%
-        ),
-        var(--background);
-
-      color: var(--text);
+        var(--bg);
 
       font-family:
         Inter,
-        ui-sans-serif,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
         sans-serif;
 
-      line-height: 1.5;
+      overflow-x:
+        hidden;
+
     }
 
 
@@ -108,73 +138,279 @@
     }
 
 
+
+    /* =========================================================
+       BACKGROUND
+       ========================================================= */
+
+
+    .background-effects {
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      overflow:
+        hidden;
+
+      pointer-events:
+        none;
+
+      z-index:
+        -5;
+
+    }
+
+
+    .background-grid {
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      opacity:
+        .22;
+
+      background-image:
+
+        linear-gradient(
+          rgba(255,255,255,.025)
+          1px,
+          transparent
+          1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.025)
+          1px,
+          transparent
+          1px
+        );
+
+      background-size:
+        52px 52px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 80%
+        );
+
+    }
+
+
+    .orb {
+
+      position:
+        absolute;
+
+      border-radius:
+        50%;
+
+      filter:
+        blur(90px);
+
+      opacity:
+        .22;
+
+      animation:
+        orbMove
+        15s
+        ease-in-out
+        infinite alternate;
+
+    }
+
+
+    .orb-one {
+
+      width:
+        500px;
+
+      height:
+        500px;
+
+      left:
+        -140px;
+
+      top:
+        60px;
+
+      background:
+        #615cff;
+
+    }
+
+
+    .orb-two {
+
+      width:
+        420px;
+
+      height:
+        420px;
+
+      right:
+        -80px;
+
+      top:
+        320px;
+
+      background:
+        #7f5cff;
+
+      animation-delay:
+        -7s;
+
+    }
+
+
+    @keyframes orbMove {
+
+      from {
+
+        transform:
+          translate3d(
+            0,
+            0,
+            0
+          )
+          scale(1);
+
+      }
+
+      to {
+
+        transform:
+          translate3d(
+            50px,
+            40px,
+            0
+          )
+          scale(1.15);
+
+      }
+
+    }
+
+
+
     /* =========================================================
        NAVBAR
        ========================================================= */
 
+
     .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position:
+        sticky;
 
-      height: 72px;
+      top:
+        0;
+
+      z-index:
+        1000;
+
+      height:
+        72px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
 
       padding:
-        0 32px;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
+        0 34px;
 
       background:
-        rgba(7, 9, 13, 0.78);
+        rgba(
+          6,
+          8,
+          13,
+          .76
+        );
 
       backdrop-filter:
         blur(18px);
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.06);
+
     }
 
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
 
-      font-size: 20px;
-      font-weight: 800;
+      display:
+        flex;
 
-      letter-spacing: -0.4px;
+      align-items:
+        center;
+
+      gap:
+        11px;
+
+      font-size:
+        20px;
+
+      font-weight:
+        850;
+
+      letter-spacing:
+        -.4px;
+
     }
 
 
-    .brand-icon {
-      display: grid;
-      place-items: center;
+    .brand-logo {
 
-      width: 36px;
-      height: 36px;
+      width:
+        37px;
 
-      border-radius: 11px;
+      height:
+        37px;
+
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      border-radius:
+        11px;
 
       background:
         linear-gradient(
           135deg,
           var(--accent),
-          #9a6cff
+          var(--accent2)
         );
 
       box-shadow:
-        0 6px 20px
-        rgba(108, 114, 255, 0.35);
+        0 7px 25px
+        rgba(
+          112,
+          117,
+          255,
+          .35
+        );
 
-      font-size: 17px;
     }
 
 
     .version {
+
       padding:
         4px 8px;
 
@@ -186,63 +422,21 @@
         999px;
 
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        11px;
+        10px;
 
       font-weight:
-        700;
+        800;
+
     }
 
 
-    .nav-right {
-      color:
-        var(--text-muted);
+    .nav-status {
 
-      font-size:
-        13px;
-    }
-
-
-    /* =========================================================
-       PAGE
-       ========================================================= */
-
-    .page {
-      width:
-        min(1120px, calc(100% - 32px));
-
-      margin:
-        0 auto;
-
-      padding-bottom:
-        100px;
-    }
-
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-
-    .hero {
-      max-width:
-        850px;
-
-      margin:
-        0 auto;
-
-      padding:
-        92px 0 52px;
-
-      text-align:
-        center;
-    }
-
-
-    .hero-badge {
       display:
-        inline-flex;
+        flex;
 
       align-items:
         center;
@@ -250,34 +444,20 @@
       gap:
         8px;
 
-      margin-bottom:
-        22px;
-
-      padding:
-        8px 13px;
-
-      border:
-        1px solid
-        rgba(108,114,255,0.3);
-
-      border-radius:
-        999px;
-
-      background:
-        var(--accent-soft);
-
       color:
-        #bfc2ff;
+        var(--muted);
 
       font-size:
-        13px;
+        12px;
 
       font-weight:
-        700;
+        600;
+
     }
 
 
-    .hero-dot {
+    .status-dot {
+
       width:
         7px;
 
@@ -290,40 +470,202 @@
       background:
         var(--green);
 
-      box-shadow:
-        0 0 10px
-        var(--green);
+      animation:
+        statusPulse
+        2s
+        infinite;
+
+    }
+
+
+    @keyframes statusPulse {
+
+      0% {
+
+        box-shadow:
+          0 0 0
+          0
+          rgba(
+            66,
+            211,
+            146,
+            .6
+          );
+
+      }
+
+      75% {
+
+        box-shadow:
+          0 0 0
+          8px
+          rgba(
+            66,
+            211,
+            146,
+            0
+          );
+
+      }
+
+      100% {
+
+        box-shadow:
+          0 0 0
+          0
+          rgba(
+            66,
+            211,
+            146,
+            0
+          );
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       PAGE
+       ========================================================= */
+
+
+    .page {
+
+      width:
+        min(
+          1120px,
+          calc(
+            100% - 32px
+          )
+        );
+
+      margin:
+        auto;
+
+      padding-bottom:
+        100px;
+
+    }
+
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+
+    .hero {
+
+      max-width:
+        900px;
+
+      margin:
+        auto;
+
+      padding:
+        94px 0 55px;
+
+      text-align:
+        center;
+
+    }
+
+
+    .hero-badge {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      padding:
+        8px 14px;
+
+      margin-bottom:
+        24px;
+
+      border:
+        1px solid
+        rgba(
+          112,
+          117,
+          255,
+          .32
+        );
+
+      border-radius:
+        999px;
+
+      background:
+        rgba(
+          112,
+          117,
+          255,
+          .1
+        );
+
+      color:
+        #c8caff;
+
+      font-size:
+        12px;
+
+      font-weight:
+        750;
+
+      animation:
+        heroEnter
+        .6s
+        ease
+        both;
+
     }
 
 
     .hero h1 {
-      max-width:
-        800px;
 
       margin:
-        0 auto;
+        auto;
+
+      max-width:
+        850px;
 
       font-size:
         clamp(
-          42px,
+          44px,
           7vw,
-          72px
+          76px
         );
 
       line-height:
-        1.02;
+        .99;
 
       letter-spacing:
-        -3px;
+        -3.8px;
+
+      animation:
+        heroEnter
+        .7s
+        .08s
+        ease
+        both;
+
     }
 
 
-    .gradient-text {
+    .hero-gradient {
+
       background:
         linear-gradient(
           90deg,
-          #ffffff,
-          #aeb2ff
+          #fff,
+          #aeb0ff
         );
 
       -webkit-background-clip:
@@ -334,32 +676,74 @@
 
       color:
         transparent;
+
     }
 
 
     .hero p {
+
       max-width:
         650px;
 
       margin:
-        24px auto 0;
+        25px auto 0;
 
       color:
-        var(--text-soft);
+        var(--muted);
 
       font-size:
-        18px;
+        17px;
 
       line-height:
-        1.65;
+        1.7;
+
+      animation:
+        heroEnter
+        .7s
+        .16s
+        ease
+        both;
+
     }
 
 
+    @keyframes heroEnter {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(
+            22px
+          );
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(
+            0
+          );
+
+      }
+
+    }
+
+
+
     /* =========================================================
-       MAIN ANALYZER CARD
+       APP SHELL
        ========================================================= */
 
-    .analyzer-shell {
+
+    .app-shell {
+
       position:
         relative;
 
@@ -374,14 +758,69 @@
         var(--radius-large);
 
       background:
-        rgba(16, 20, 28, 0.92);
+        rgba(
+          13,
+          17,
+          24,
+          .94
+        );
 
       box-shadow:
-        var(--shadow);
+        0 28px 75px
+        rgba(
+          0,
+          0,
+          0,
+          .38
+        );
+
+      animation:
+        appEnter
+        .75s
+        .25s
+        ease
+        both;
+
     }
 
 
-    .analyzer-shell::before {
+    @keyframes appEnter {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(
+            26px
+          )
+          scale(
+            .992
+          );
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(
+            0
+          )
+          scale(
+            1
+          );
+
+      }
+
+    }
+
+
+    .app-shell::before {
+
       content:
         "";
 
@@ -389,13 +828,13 @@
         absolute;
 
       top:
-        -1px;
+        0;
 
       left:
-        15%;
+        10%;
 
       width:
-        70%;
+        80%;
 
       height:
         1px;
@@ -407,103 +846,133 @@
           var(--accent),
           transparent
         );
+
     }
 
 
-    .listing-area {
+
+    /* =========================================================
+       SECTION
+       ========================================================= */
+
+
+    .section {
+
       padding:
         32px;
+
     }
 
 
-    .section-top {
+    .section +
+    .section {
+
+      border-top:
+        1px solid
+        var(--border);
+
+    }
+
+
+    .section-heading {
+
       display:
         flex;
 
       align-items:
         flex-start;
 
-      justify-content:
-        space-between;
-
       gap:
-        20px;
+        14px;
 
       margin-bottom:
-        20px;
+        22px;
+
     }
 
 
     .section-number {
+
+      flex:
+        0 0 auto;
+
+      width:
+        32px;
+
+      height:
+        32px;
+
       display:
-        inline-grid;
+        grid;
 
       place-items:
         center;
 
-      width:
-        30px;
-
-      height:
-        30px;
-
-      margin-bottom:
-        11px;
-
       border-radius:
-        9px;
+        10px;
 
       background:
         var(--accent-soft);
 
       color:
-        #bfc2ff;
+        #bec1ff;
 
       font-size:
         13px;
 
       font-weight:
-        800;
+        850;
+
+      transition:
+        .25s ease;
+
     }
 
 
     .section-title {
+
       font-size:
         21px;
 
       font-weight:
-        750;
+        780;
 
       letter-spacing:
-        -0.4px;
+        -.5px;
+
     }
 
 
-    .section-description {
+    .section-subtitle {
+
       margin-top:
-        5px;
+        4px;
 
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        14px;
+        13px;
+
     }
+
 
 
     /* =========================================================
-       LISTING TEXTAREA
+       TEXTAREA
        ========================================================= */
 
+
     textarea {
-      display:
-        block;
 
       width:
         100%;
 
       min-height:
-        235px;
+        240px;
+
+      display:
+        block;
 
       resize:
         vertical;
@@ -515,14 +984,27 @@
         1px solid
         var(--border);
 
-      outline:
-        none;
-
       border-radius:
         var(--radius);
 
+      outline:
+        none;
+
       background:
-        #090c12;
+
+        radial-gradient(
+          circle at top left,
+          rgba(
+            112,
+            117,
+            255,
+            .05
+          ),
+          transparent
+          35%
+        ),
+
+        #080b11;
 
       color:
         var(--text);
@@ -534,64 +1016,95 @@
         1.7;
 
       transition:
-        0.2s ease;
+        border-color
+        .2s ease,
+        box-shadow
+        .2s ease;
+
     }
 
 
     textarea::placeholder {
+
       color:
-        #50596a;
+        #505b6e;
+
     }
 
 
     textarea:focus {
+
       border-color:
         var(--accent);
 
       box-shadow:
-        0 0 0 4px
+        0 0 0
+        4px
         var(--accent-soft);
+
     }
 
 
+
+    /* =========================================================
+       LISTING FOOTER
+       ========================================================= */
+
+
     .listing-footer {
+
       display:
         flex;
-
-      align-items:
-        center;
 
       justify-content:
         space-between;
 
+      align-items:
+        center;
+
       gap:
-        16px;
+        18px;
 
       margin-top:
-        16px;
+        17px;
+
     }
 
 
     #parseMessage {
+
       flex:
         1;
 
-      min-height:
-        20px;
-
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        13px;
+        12px;
+
+      line-height:
+        1.5;
+
     }
+
 
 
     /* =========================================================
        BUTTONS
        ========================================================= */
 
+
     .primary-button {
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      min-height:
+        49px;
+
       display:
         inline-flex;
 
@@ -604,128 +1117,345 @@
       gap:
         9px;
 
-      min-height:
-        48px;
-
       padding:
-        0 22px;
+        0 23px;
 
       border-radius:
         12px;
+
+      color:
+        white;
 
       background:
         linear-gradient(
           135deg,
           var(--accent),
-          #7d6cff
+          var(--accent2)
         );
-
-      color:
-        white;
 
       cursor:
         pointer;
 
       font-weight:
-        750;
-
-      transition:
-        0.2s ease;
+        760;
 
       box-shadow:
-        0 8px 24px
-        rgba(108,114,255,0.22);
+        0 9px 26px
+        rgba(
+          112,
+          117,
+          255,
+          .24
+        );
+
+      transition:
+        transform
+        .2s ease,
+        box-shadow
+        .2s ease;
+
+    }
+
+
+    .primary-button::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        65%;
+
+      height:
+        200%;
+
+      left:
+        -100%;
+
+      top:
+        -50%;
+
+      transform:
+        rotate(
+          15deg
+        );
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(
+            255,
+            255,
+            255,
+            .23
+          ),
+          transparent
+        );
+
+      transition:
+        left
+        .55s ease;
+
     }
 
 
     .primary-button:hover {
+
       transform:
-        translateY(-1px);
+        translateY(
+          -2px
+        );
 
       box-shadow:
-        0 12px 30px
-        rgba(108,114,255,0.32);
+        0 14px 32px
+        rgba(
+          112,
+          117,
+          255,
+          .33
+        );
+
     }
 
 
-    .primary-button:active {
-      transform:
-        translateY(0);
+    .primary-button:hover::before {
+
+      left:
+        150%;
+
     }
 
 
-    .secondary-button {
-      min-height:
-        44px;
+    .button-arrow {
 
-      padding:
-        0 18px;
-
-      border:
-        1px solid
-        var(--border);
-
-      border-radius:
-        11px;
-
-      background:
-        var(--panel-light);
-
-      color:
-        var(--text-soft);
-
-      cursor:
-        pointer;
-
-      font-weight:
-        650;
+      display:
+        inline-block;
 
       transition:
-        0.2s ease;
+        transform
+        .2s ease;
+
     }
 
 
-    .secondary-button:hover {
-      border-color:
-        var(--border-light);
+    .primary-button:hover
+    .button-arrow {
 
-      color:
+      transform:
+        translateX(
+          4px
+        );
+
+    }
+
+
+    .loader {
+
+      display:
+        none;
+
+      width:
+        18px;
+
+      height:
+        18px;
+
+      border:
+        2px solid
+        rgba(
+          255,
+          255,
+          255,
+          .3
+        );
+
+      border-top-color:
         white;
 
-      background:
-        var(--panel-hover);
+      border-radius:
+        50%;
+
+      animation:
+        loaderSpin
+        .65s
+        linear
+        infinite;
+
     }
+
+
+    @keyframes loaderSpin {
+
+      to {
+
+        transform:
+          rotate(
+            360deg
+          );
+
+      }
+
+    }
+
+
+    .is-loading
+    .loader {
+
+      display:
+        block;
+
+    }
+
+
+    .is-loading
+    .button-arrow {
+
+      display:
+        none;
+
+    }
+
 
 
     /* =========================================================
        BUILD SECTION
        ========================================================= */
 
-    .build-section {
-      padding:
-        32px;
 
-      border-top:
-        1px solid
-        var(--border);
+    #detectedSection {
+
+      position:
+        relative;
+
+      scroll-margin-top:
+        90px;
+
+      overflow:
+        hidden;
+
     }
 
 
+    #detectedSection::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      z-index:
+        20;
+
+      top:
+        -100px;
+
+      left:
+        0;
+
+      right:
+        0;
+
+      height:
+        90px;
+
+      opacity:
+        0;
+
+      pointer-events:
+        none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent,
+          rgba(
+            112,
+            117,
+            255,
+            .14
+          ),
+          transparent
+        );
+
+    }
+
+
+    #detectedSection.scanning::after {
+
+      animation:
+        scanBuild
+        .95s
+        ease-out;
+
+    }
+
+
+    @keyframes scanBuild {
+
+      0% {
+
+        top:
+          -100px;
+
+        opacity:
+          0;
+
+      }
+
+      15% {
+
+        opacity:
+          1;
+
+      }
+
+      100% {
+
+        top:
+          100%;
+
+        opacity:
+          0;
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       SPEC GRID
+       ========================================================= */
+
+
     .spec-grid {
+
       display:
         grid;
 
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+          2,
+          minmax(
+            0,
+            1fr
+          )
+        );
 
       gap:
-        16px;
+        15px;
+
     }
 
 
     .spec-card {
-      position:
-        relative;
+
+      min-width:
+        0;
 
       padding:
         17px;
@@ -738,30 +1468,56 @@
         14px;
 
       background:
-        #0c1017;
+        #0a0e15;
 
       transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
+        transform
+        .22s ease,
+        border-color
+        .22s ease,
+        background
+        .22s ease,
+        box-shadow
+        .22s ease;
+
     }
 
 
-    .spec-card:focus-within {
+    .spec-card:hover {
+
+      transform:
+        translateY(
+          -3px
+        );
+
       border-color:
-        rgba(108,114,255,0.8);
+        var(--border2);
 
       background:
-        #0e121b;
+        #0d121b;
+
+      box-shadow:
+        0 12px 26px
+        rgba(
+          0,
+          0,
+          0,
+          .2
+        );
+
     }
 
 
     .spec-wide {
+
       grid-column:
         span 2;
+
     }
 
 
     .spec-label {
+
       display:
         flex;
 
@@ -772,33 +1528,43 @@
         7px;
 
       margin-bottom:
-        8px;
+        9px;
 
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        12px;
+        11px;
 
       font-weight:
-        750;
+        800;
+
+      letter-spacing:
+        .7px;
 
       text-transform:
         uppercase;
 
-      letter-spacing:
-        0.7px;
     }
 
 
-    .spec-icon {
-      font-size:
-        13px;
+    .dual {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        9px;
+
     }
 
 
     input,
     select {
+
       width:
         100%;
 
@@ -812,85 +1578,174 @@
         1px solid
         transparent;
 
-      outline:
-        none;
-
       border-radius:
         9px;
 
-      background:
-        var(--panel-light);
+      outline:
+        none;
 
       color:
         var(--text);
 
+      background:
+        var(--panel3);
+
       transition:
-        0.2s ease;
+        .2s ease;
+
     }
 
 
     input::placeholder {
+
       color:
-        #596273;
+        #596476;
+
     }
 
 
     input:focus,
     select:focus {
+
       border-color:
         var(--accent);
 
       box-shadow:
-        0 0 0 3px
+        0 0 0
+        3px
         var(--accent-soft);
+
     }
 
 
     select:disabled {
-      cursor:
-        not-allowed;
 
       opacity:
-        0.78;
+        .75;
+
     }
 
-
-    .dual-input {
-      display:
-        grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap:
-        10px;
-    }
 
 
     /* =========================================================
-       PRICE
+       DETECT ANIMATIONS
        ========================================================= */
 
-    .price-card {
-      grid-column:
-        span 2;
 
-      display:
-        grid;
+    @keyframes cardReveal {
 
-      grid-template-columns:
-        1fr 150px;
+      0% {
 
-      gap:
-        10px;
+        opacity:
+          0;
+
+        transform:
+          translateY(
+            25px
+          )
+          scale(
+            .98
+          );
+
+      }
+
+      100% {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(
+            0
+          )
+          scale(
+            1
+          );
+
+      }
+
     }
 
 
+    .spec-card.animate-card {
+
+      animation:
+        cardReveal
+        .5s
+        cubic-bezier(
+          .2,
+          .8,
+          .2,
+          1
+        )
+        both;
+
+    }
+
+
+    @keyframes fieldFlash {
+
+      0% {
+
+        box-shadow:
+          0 0 0
+          rgba(
+            112,
+            117,
+            255,
+            0
+          );
+
+      }
+
+      35% {
+
+        box-shadow:
+          0 0 0
+          4px
+          rgba(
+            112,
+            117,
+            255,
+            .14
+          );
+
+      }
+
+      100% {
+
+        box-shadow:
+          0 0 0
+          rgba(
+            112,
+            117,
+            255,
+            0
+          );
+
+      }
+
+    }
+
+
+    input.field-flash,
+    select.field-flash {
+
+      animation:
+        fieldFlash
+        .85s ease;
+
+    }
+
+
+
     /* =========================================================
-       ANALYZE ACTION
+       ANALYZE SECTION
        ========================================================= */
+
 
     .analyze-section {
+
       display:
         flex;
 
@@ -904,45 +1759,69 @@
         20px;
 
       padding:
-        26px 32px;
+        25px 32px;
 
       border-top:
         1px solid
         var(--border);
 
       background:
-        #0a0d13;
+        #080b11;
+
     }
 
 
-    .analyze-note {
-      color:
-        var(--text-muted);
+    .analyze-copy
+    strong {
+
+      display:
+        block;
+
+      margin-bottom:
+        4px;
 
       font-size:
-        13px;
+        17px;
+
     }
 
 
-    .analyze-button {
+    .analyze-copy
+    span {
+
+      color:
+        var(--muted2);
+
+      font-size:
+        12px;
+
+    }
+
+
+    #analyzeButton {
+
       min-width:
-        210px;
+        220px;
 
       min-height:
         54px;
 
-      font-size:
-        15px;
     }
+
 
 
     /* =========================================================
        RESULT
        ========================================================= */
 
+
     #result {
+
       display:
         none;
+
+      scroll-margin-top:
+        90px;
 
       margin-top:
         28px;
@@ -961,23 +1840,84 @@
         var(--panel);
 
       box-shadow:
-        var(--shadow);
+        0 28px 75px
+        rgba(
+          0,
+          0,
+          0,
+          .38
+        );
+
     }
 
 
-    .result-header {
+    #result.result-enter {
+
+      animation:
+        resultEnter
+        .65s
+        cubic-bezier(
+          .2,
+          .8,
+          .2,
+          1
+        )
+        both;
+
+    }
+
+
+    @keyframes resultEnter {
+
+      from {
+
+        opacity:
+          0;
+
+        transform:
+          translateY(
+            30px
+          )
+          scale(
+            .985
+          );
+
+      }
+
+      to {
+
+        opacity:
+          1;
+
+        transform:
+          translateY(
+            0
+          )
+          scale(
+            1
+          );
+
+      }
+
+    }
+
+
+    .result-top {
+
       display:
         grid;
 
       grid-template-columns:
-        210px 1fr;
+        220px 1fr;
 
-      min-height:
-        200px;
     }
 
 
-    .score-area {
+    .score-block {
+
+      min-height:
+        210px;
+
       display:
         flex;
 
@@ -990,31 +1930,36 @@
       justify-content:
         center;
 
-      padding:
-        32px;
-
       border-right:
         1px solid
         var(--border);
 
       background:
-        linear-gradient(
-          145deg,
-          rgba(108,114,255,0.13),
+        radial-gradient(
+          circle at center,
+          rgba(
+            112,
+            117,
+            255,
+            .15
+          ),
           transparent
+          65%
         );
+
     }
 
 
     .score-label {
+
       margin-bottom:
-        8px;
+        5px;
 
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        12px;
+        11px;
 
       font-weight:
         800;
@@ -1024,22 +1969,79 @@
 
       text-transform:
         uppercase;
+
     }
 
 
     #score {
+
       font-size:
-        48px;
+        51px;
 
       font-weight:
-        850;
+        900;
 
       letter-spacing:
-        -2px;
+        -2.5px;
+
     }
 
 
-    .verdict-area {
+    #score.score-pop {
+
+      animation:
+        scorePop
+        .58s
+        cubic-bezier(
+          .34,
+          1.56,
+          .64,
+          1
+        );
+
+    }
+
+
+    @keyframes scorePop {
+
+      0% {
+
+        opacity:
+          0;
+
+        transform:
+          scale(
+            .55
+          );
+
+      }
+
+      70% {
+
+        opacity:
+          1;
+
+        transform:
+          scale(
+            1.12
+          );
+
+      }
+
+      100% {
+
+        transform:
+          scale(
+            1
+          );
+
+      }
+
+    }
+
+
+    .verdict-block {
+
       display:
         flex;
 
@@ -1050,16 +2052,18 @@
         center;
 
       padding:
-        32px;
+        34px;
+
     }
 
 
     .verdict-label {
+
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        12px;
+        11px;
 
       font-weight:
         800;
@@ -1069,25 +2073,29 @@
 
       text-transform:
         uppercase;
+
     }
 
 
     #verdict {
+
       margin-top:
-        6px;
+        7px;
 
       font-size:
         31px;
 
       font-weight:
-        800;
+        850;
 
       letter-spacing:
-        -0.8px;
+        -.8px;
+
     }
 
 
     .result-body {
+
       padding:
         32px;
 
@@ -1096,74 +2104,94 @@
         var(--border);
 
       color:
-        var(--text-soft);
+        var(--muted);
 
       line-height:
-        1.8;
+        1.85;
+
     }
 
 
-    #resultText strong {
+    #resultText
+    strong {
+
       color:
         var(--text);
+
     }
+
 
 
     /* =========================================================
        HOW IT WORKS
        ========================================================= */
 
+
     .info-section {
+
       padding:
-        90px 0 30px;
+        90px 0 20px;
+
     }
 
 
-    .info-heading {
-      margin-bottom:
-        26px;
+    .info-title {
 
       text-align:
         center;
+
+      margin-bottom:
+        28px;
+
     }
 
 
-    .info-heading h2 {
+    .info-title h2 {
+
       font-size:
-        32px;
+        31px;
 
       letter-spacing:
         -1px;
+
     }
 
 
-    .info-heading p {
+    .info-title p {
+
       max-width:
-        560px;
+        600px;
 
       margin:
-        10px auto 0;
+        9px auto 0;
 
       color:
-        var(--text-muted);
+        var(--muted2);
+
+      font-size:
+        14px;
+
     }
 
 
     .info-grid {
+
       display:
         grid;
 
       grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+          3,
+          1fr
+        );
 
       gap:
-        16px;
+        15px;
+
     }
 
 
     .info-card {
-      min-height:
-        180px;
 
       padding:
         24px;
@@ -1176,16 +2204,33 @@
         var(--radius);
 
       background:
-        var(--background-soft);
+        rgba(
+          9,
+          12,
+          18,
+          .7
+        );
+
+      transition:
+        .25s ease;
+
+    }
+
+
+    .info-card:hover {
+
+      transform:
+        translateY(
+          -4px
+        );
+
+      border-color:
+        var(--border2);
+
     }
 
 
     .info-icon {
-      display:
-        grid;
-
-      place-items:
-        center;
 
       width:
         42px;
@@ -1193,8 +2238,14 @@
       height:
         42px;
 
+      display:
+        grid;
+
+      place-items:
+        center;
+
       margin-bottom:
-        20px;
+        17px;
 
       border-radius:
         12px;
@@ -1203,146 +2254,181 @@
         var(--accent-soft);
 
       font-size:
-        19px;
+        18px;
+
     }
 
 
     .info-card h3 {
+
       margin-bottom:
-        8px;
+        7px;
 
       font-size:
         16px;
+
     }
 
 
     .info-card p {
+
       color:
-        var(--text-muted);
+        var(--muted2);
 
       font-size:
-        14px;
+        13px;
 
       line-height:
         1.65;
+
     }
+
 
 
     /* =========================================================
        FOOTER
        ========================================================= */
 
+
     footer {
+
       margin-top:
-        70px;
+        60px;
 
       padding:
-        30px 0;
+        28px;
 
       border-top:
         1px solid
         var(--border);
 
       color:
-        var(--text-muted);
+        var(--muted2);
 
       text-align:
         center;
 
       font-size:
-        12px;
+        11px;
+
     }
 
 
+
     /* =========================================================
-       RESPONSIVE
+       MOBILE
        ========================================================= */
 
+
     @media (
-      max-width: 760px
+      max-width:
+      760px
     ) {
 
       .navbar {
+
         padding:
           0 18px;
+
       }
 
 
-      .nav-right {
+      .nav-status {
+
         display:
           none;
+
       }
 
 
       .page {
+
         width:
-          min(
-            100% - 20px,
-            1120px
+          calc(
+            100% - 20px
           );
+
       }
 
 
       .hero {
+
         padding:
-          65px 8px 38px;
+          64px 6px
+          38px;
+
       }
 
 
       .hero h1 {
+
         letter-spacing:
-          -2px;
+          -2.4px;
+
       }
 
 
       .hero p {
+
         font-size:
-          16px;
+          15px;
+
       }
 
 
-      .listing-area,
-      .build-section {
+      .section {
+
         padding:
           21px;
+
       }
 
 
       .listing-footer {
+
         align-items:
           stretch;
 
         flex-direction:
           column;
+
       }
 
 
       .primary-button {
+
         width:
           100%;
+
       }
 
 
       .spec-grid {
+
         grid-template-columns:
           1fr;
+
       }
 
 
-      .spec-wide,
-      .price-card {
+      .spec-wide {
+
         grid-column:
           span 1;
+
       }
 
 
-      .price-card {
+      .dual {
+
         grid-template-columns:
           1fr;
+
       }
 
 
       .analyze-section {
+
         align-items:
           stretch;
 
@@ -1351,54 +2437,118 @@
 
         padding:
           21px;
+
       }
 
 
-      .analyze-button {
+      #analyzeButton {
+
         width:
           100%;
+
       }
 
 
-      .result-header {
+      .result-top {
+
         grid-template-columns:
           1fr;
+
       }
 
 
-      .score-area {
+      .score-block {
+
+        min-height:
+          170px;
+
         border-right:
           0;
 
         border-bottom:
           1px solid
           var(--border);
+
       }
 
 
       .info-grid {
+
         grid-template-columns:
           1fr;
+
+      }
+
+    }
+
+
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+
+    @media (
+      prefers-reduced-motion:
+      reduce
+    ) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+
+        scroll-behavior:
+          auto !important;
+
       }
 
     }
 
   </style>
+
 </head>
+
 
 
 <body>
 
 
   <!-- =======================================================
-       NAV
+       BACKGROUND
        ======================================================= -->
+
+
+  <div class="background-effects">
+
+    <div class="background-grid"></div>
+
+    <div class="orb orb-one"></div>
+
+    <div class="orb orb-two"></div>
+
+  </div>
+
+
+
+  <!-- =======================================================
+       NAVIGATION
+       ======================================================= -->
+
 
   <nav class="navbar">
 
     <div class="brand">
 
-      <div class="brand-icon">
+      <div class="brand-logo">
         P
       </div>
 
@@ -1413,8 +2563,12 @@
     </div>
 
 
-    <div class="nav-right">
-      Used PC Deal Analyzer
+    <div class="nav-status">
+
+      <span class="status-dot"></span>
+
+      Analyzer ready
+
     </div>
 
   </nav>
@@ -1428,32 +2582,37 @@
          HERO
          ===================================================== -->
 
+
     <section class="hero">
 
       <div class="hero-badge">
 
-        <span class="hero-dot"></span>
-
-        Smart used-PC analysis
+        ⚡ Smart used-PC analysis
 
       </div>
 
 
       <h1>
 
-        Is that PC actually
+        Know if a PC deal is
 
-        <span class="gradient-text">
-          worth buying?
+        <span class="hero-gradient">
+          actually worth it.
         </span>
 
       </h1>
 
 
       <p>
-        Paste a used gaming PC listing and PCDeal
-        will detect the hardware, check compatibility,
-        estimate its value and rate the deal.
+
+        Paste a Marketplace, Kijiji, Craigslist,
+        or other used PC listing.
+
+        PCDeal detects the hardware,
+        checks the platform,
+        estimates its value,
+        and rates the deal.
+
       </p>
 
     </section>
@@ -1461,30 +2620,38 @@
 
 
     <!-- =====================================================
-         ANALYZER
+         APP
          ===================================================== -->
 
-    <section class="analyzer-shell">
+
+    <section class="app-shell">
 
 
-      <!-- LISTING -->
+      <!-- ===================================================
+           STEP 1
+           =================================================== -->
 
-      <div class="listing-area">
 
-        <div class="section-top">
+      <div class="section">
+
+        <div class="section-heading">
+
+          <div class="section-number">
+            1
+          </div>
+
 
           <div>
-
-            <div class="section-number">
-              1
-            </div>
 
             <div class="section-title">
               Paste the listing
             </div>
 
-            <div class="section-description">
-              Copy the entire description from the listing.
+            <div class="section-subtitle">
+
+              Copy the whole description.
+              Messy listings are okay.
+
             </div>
 
           </div>
@@ -1503,7 +2670,7 @@ RTX 3060 12GB
 16GB DDR4
 1TB NVMe SSD
 MSI B550 motherboard
-650W PSU
+Corsair 650W PSU
 
 Mint condition
 Asking $650 CAD"
@@ -1513,17 +2680,28 @@ Asking $650 CAD"
         <div class="listing-footer">
 
           <div id="parseMessage">
-            PCDeal will automatically detect supported components.
+
+            Paste a listing and PCDeal will detect supported parts.
+
           </div>
 
 
           <button
-            type="button"
+            id="detectButton"
             class="primary-button"
-            onclick="parseListing()"
+            type="button"
           >
-            Detect Specs
-            <span>→</span>
+
+            <span class="detect-text">
+              Detect Specs
+            </span>
+
+            <span class="button-arrow">
+              →
+            </span>
+
+            <span class="loader"></span>
+
           </button>
 
         </div>
@@ -1533,28 +2711,33 @@ Asking $650 CAD"
 
 
       <!-- ===================================================
-           BUILD
+           STEP 2
            =================================================== -->
 
+
       <div
-        class="build-section"
+        class="section"
         id="detectedSection"
       >
 
-        <div class="section-top">
+        <div class="section-heading">
+
+          <div class="section-number">
+            2
+          </div>
+
 
           <div>
 
-            <div class="section-number">
-              2
-            </div>
-
             <div class="section-title">
-              Build details
+              Detected build
             </div>
 
-            <div class="section-description">
-              PCDeal fills these automatically. You can correct anything before analyzing.
+            <div class="section-subtitle">
+
+              Check the detected parts.
+              You can edit anything before analyzing.
+
             </div>
 
           </div>
@@ -1574,12 +2757,11 @@ Asking $650 CAD"
               class="spec-label"
               for="cpu"
             >
-              <span class="spec-icon">
-                🧠
-              </span>
 
-              CPU
+              🧠 CPU
+
             </label>
+
 
             <input
               id="cpu"
@@ -1600,12 +2782,11 @@ Asking $650 CAD"
               class="spec-label"
               for="gpu"
             >
-              <span class="spec-icon">
-                🎮
-              </span>
 
-              GPU
+              🎮 GPU
+
             </label>
+
 
             <input
               id="gpu"
@@ -1622,19 +2803,14 @@ Asking $650 CAD"
 
           <div class="spec-card">
 
-            <label
-              class="spec-label"
-              for="ram"
-            >
-              <span class="spec-icon">
-                💾
-              </span>
+            <label class="spec-label">
 
-              Memory
+              💾 Memory
+
             </label>
 
 
-            <div class="dual-input">
+            <div class="dual">
 
               <select id="ram">
 
@@ -1695,19 +2871,14 @@ Asking $650 CAD"
 
           <div class="spec-card">
 
-            <label
-              class="spec-label"
-              for="storageType"
-            >
-              <span class="spec-icon">
-                💿
-              </span>
+            <label class="spec-label">
 
-              Storage
+              💿 Storage
+
             </label>
 
 
-            <div class="dual-input">
+            <div class="dual">
 
               <select id="storageType">
 
@@ -1824,12 +2995,11 @@ Asking $650 CAD"
               class="spec-label"
               for="motherboard"
             >
-              <span class="spec-icon">
-                🧩
-              </span>
 
-              Motherboard
+              🧩 Motherboard
+
             </label>
+
 
             <input
               id="motherboard"
@@ -1850,12 +3020,11 @@ Asking $650 CAD"
               class="spec-label"
               for="psu"
             >
-              <span class="spec-icon">
-                ⚡
-              </span>
 
-              Power Supply
+              ⚡ Power Supply
+
             </label>
+
 
             <input
               id="psu"
@@ -1876,12 +3045,11 @@ Asking $650 CAD"
               class="spec-label"
               for="cooler"
             >
-              <span class="spec-icon">
-                ❄️
-              </span>
 
-              CPU Cooler
+              ❄️ CPU Cooler
+
             </label>
+
 
             <select id="cooler">
 
@@ -1923,12 +3091,11 @@ Asking $650 CAD"
               class="spec-label"
               for="caseQuality"
             >
-              <span class="spec-icon">
-                🖥️
-              </span>
 
-              Case
+              🖥️ Case
+
             </label>
+
 
             <select id="caseQuality">
 
@@ -1962,12 +3129,11 @@ Asking $650 CAD"
               class="spec-label"
               for="condition"
             >
-              <span class="spec-icon">
-                ✨
-              </span>
 
-              Condition
+              ✨ Condition
+
             </label>
+
 
             <select id="condition">
 
@@ -1998,20 +3164,16 @@ Asking $650 CAD"
 
           <!-- PRICE -->
 
-          <div class="spec-card price-card">
+          <div class="spec-card">
 
-            <div>
+            <label class="spec-label">
 
-              <label
-                class="spec-label"
-                for="price"
-              >
-                <span class="spec-icon">
-                  💰
-                </span>
+              💰 Asking Price
 
-                Asking Price
-              </label>
+            </label>
+
+
+            <div class="dual">
 
               <input
                 id="price"
@@ -2021,17 +3183,6 @@ Asking $650 CAD"
                 placeholder="650"
               >
 
-            </div>
-
-
-            <div>
-
-              <label
-                class="spec-label"
-                for="currency"
-              >
-                Currency
-              </label>
 
               <select id="currency">
 
@@ -2060,31 +3211,40 @@ Asking $650 CAD"
 
 
       <!-- ===================================================
-           ANALYZE
+           STEP 3
            =================================================== -->
+
 
       <div class="analyze-section">
 
-        <div>
+        <div class="analyze-copy">
 
-          <div class="section-title">
-            Ready?
-          </div>
+          <strong>
+            Ready to check the deal?
+          </strong>
 
-          <div class="analyze-note">
-            PCDeal will estimate the build's used value and rate the asking price.
-          </div>
+          <span>
+
+            PCDeal will calculate the system value
+            and compare it to the asking price.
+
+          </span>
 
         </div>
 
 
         <button
+          id="analyzeButton"
+          class="primary-button"
           type="button"
-          class="primary-button analyze-button"
-          onclick="analyzeDeal()"
         >
+
           Analyze This Deal
-          <span>→</span>
+
+          <span class="button-arrow">
+            →
+          </span>
+
         </button>
 
       </div>
@@ -2098,11 +3258,14 @@ Asking $650 CAD"
          RESULT
          ===================================================== -->
 
+
     <section id="result">
 
-      <div class="result-header">
 
-        <div class="score-area">
+      <div class="result-top">
+
+
+        <div class="score-block">
 
           <div class="score-label">
             PCDeal Score
@@ -2115,7 +3278,7 @@ Asking $650 CAD"
         </div>
 
 
-        <div class="verdict-area">
+        <div class="verdict-block">
 
           <div class="verdict-label">
             Verdict
@@ -2127,39 +3290,46 @@ Asking $650 CAD"
 
         </div>
 
+
       </div>
+
 
 
       <div class="result-body">
 
-        <div id="resultText">
-        </div>
+        <div id="resultText"></div>
 
       </div>
+
 
     </section>
 
 
 
     <!-- =====================================================
-         HOW IT WORKS
+         INFORMATION
          ===================================================== -->
+
 
     <section class="info-section">
 
-      <div class="info-heading">
+
+      <div class="info-title">
 
         <h2>
-          How PCDeal works
+          From listing to verdict
         </h2>
 
+
         <p>
-          PCDeal combines component detection,
-          compatibility information and estimated used values
-          to help you judge a listing.
+
+          PCDeal turns a messy used-PC listing
+          into a clearer breakdown before you spend your money.
+
         </p>
 
       </div>
+
 
 
       <div class="info-grid">
@@ -2172,16 +3342,19 @@ Asking $650 CAD"
           </div>
 
           <h3>
-            Detect
+            Detect hardware
           </h3>
 
           <p>
-            Paste a listing and PCDeal looks for
-            CPUs, GPUs, RAM, storage, motherboards,
-            power supplies and more.
+
+            CPU, GPU, RAM, storage, motherboard,
+            power supply and other information
+            can be pulled from listing text.
+
           </p>
 
         </article>
+
 
 
         <article class="info-card">
@@ -2191,15 +3364,19 @@ Asking $650 CAD"
           </div>
 
           <h3>
-            Check
+            Check compatibility
           </h3>
 
           <p>
-            CPU platform, chipset and memory information
-            help identify compatibility issues in the build.
+
+            Platform, socket, chipset and RAM
+            information helps identify whether
+            the detected hardware makes sense together.
+
           </p>
 
         </article>
+
 
 
         <article class="info-card">
@@ -2209,13 +3386,15 @@ Asking $650 CAD"
           </div>
 
           <h3>
-            Analyze
+            Rate the deal
           </h3>
 
           <p>
-            PCDeal compares the estimated system value
-            with the asking price and gives the listing
-            a simple deal score.
+
+            PCDeal estimates the system's value,
+            compares it with the seller's price,
+            and produces a simple deal score.
+
           </p>
 
         </article>
@@ -2223,22 +3402,19 @@ Asking $650 CAD"
 
       </div>
 
+
     </section>
 
 
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
 
     <footer>
 
       PCDeal V2
 
-      <br>
+      <br><br>
 
-      Estimates are approximate and should be used
-      as one part of your buying decision.
+      Used-value estimates are approximate.
+      Always verify hardware and condition before buying.
 
     </footer>
 
@@ -2248,8 +3424,10 @@ Asking $650 CAD"
 
 
   <!-- =======================================================
-       DATABASES + ENGINE
+       PCDEAL ENGINE
+       KEEP THIS ORDER
        ======================================================= -->
+
 
   <script src="platform.js?v=2"></script>
 
@@ -2260,6 +3438,401 @@ Asking $650 CAD"
   <script src="parts.js?v=5"></script>
 
   <script src="app-v4.js?v=18"></script>
+
+
+
+  <!-- =======================================================
+       V2 INTERFACE EFFECTS
+       ======================================================= -->
+
+
+  <script>
+
+    const detectButton =
+      document.getElementById(
+        "detectButton"
+      );
+
+
+    const analyzeButton =
+      document.getElementById(
+        "analyzeButton"
+      );
+
+
+    const detectedSection =
+      document.getElementById(
+        "detectedSection"
+      );
+
+
+    const resultSection =
+      document.getElementById(
+        "result"
+      );
+
+
+
+    // ========================================================
+    // RESTART ANIMATION
+    // ========================================================
+
+
+    function restartAnimation(
+      element,
+      className
+    ) {
+
+      if (!element) {
+        return;
+      }
+
+
+      element.classList.remove(
+        className
+      );
+
+
+      void element.offsetWidth;
+
+
+      element.classList.add(
+        className
+      );
+
+    }
+
+
+
+    // ========================================================
+    // ANIMATE PART CARDS
+    // ========================================================
+
+
+    function animatePartCards() {
+
+      const cards =
+        Array.from(
+          detectedSection
+            .querySelectorAll(
+              ".spec-card"
+            )
+        );
+
+
+      cards.forEach(
+        (
+          card,
+          index
+        ) => {
+
+          card.classList.remove(
+            "animate-card"
+          );
+
+
+          card.style.animationDelay =
+            `${index * 55}ms`;
+
+
+          void card.offsetWidth;
+
+
+          card.classList.add(
+            "animate-card"
+          );
+
+        }
+      );
+
+    }
+
+
+
+    // ========================================================
+    // FLASH DETECTED FIELDS
+    // ========================================================
+
+
+    function flashDetectedFields() {
+
+      const fields =
+        detectedSection
+          .querySelectorAll(
+            "input, select"
+          );
+
+
+      fields.forEach(
+        field => {
+
+          if (
+            !field.value
+          ) {
+            return;
+          }
+
+
+          field.classList.remove(
+            "field-flash"
+          );
+
+
+          void field.offsetWidth;
+
+
+          field.classList.add(
+            "field-flash"
+          );
+
+
+          setTimeout(
+            () => {
+
+              field.classList.remove(
+                "field-flash"
+              );
+
+            },
+            1000
+          );
+
+        }
+      );
+
+    }
+
+
+
+    // ========================================================
+    // SCAN EFFECT
+    // ========================================================
+
+
+    function runScanEffect() {
+
+      detectedSection
+        .classList
+        .remove(
+          "scanning"
+        );
+
+
+      void detectedSection
+        .offsetWidth;
+
+
+      detectedSection
+        .classList
+        .add(
+          "scanning"
+        );
+
+    }
+
+
+
+    // ========================================================
+    // DETECT SPECS
+    // ========================================================
+
+
+    detectButton
+      .addEventListener(
+        "click",
+        () => {
+
+
+          const listing =
+            document
+              .getElementById(
+                "listingText"
+              )
+              .value
+              .trim();
+
+
+          if (!listing) {
+
+            parseListing();
+
+            return;
+
+          }
+
+
+          const text =
+            detectButton
+              .querySelector(
+                ".detect-text"
+              );
+
+
+          detectButton
+            .classList
+            .add(
+              "is-loading"
+            );
+
+
+          text.textContent =
+            "Detecting...";
+
+
+          try {
+
+            parseListing();
+
+          }
+
+          catch (
+            error
+          ) {
+
+            console.error(
+              error
+            );
+
+
+            detectButton
+              .classList
+              .remove(
+                "is-loading"
+              );
+
+
+            text.textContent =
+              "Detect Specs";
+
+
+            return;
+
+          }
+
+
+          setTimeout(
+            () => {
+
+
+              runScanEffect();
+
+              animatePartCards();
+
+              flashDetectedFields();
+
+
+              detectedSection
+                .scrollIntoView({
+                  behavior:
+                    "smooth",
+
+                  block:
+                    "start"
+                });
+
+
+              detectButton
+                .classList
+                .remove(
+                  "is-loading"
+                );
+
+
+              text.textContent =
+                "Specs Detected";
+
+
+              setTimeout(
+                () => {
+
+                  text.textContent =
+                    "Detect Again";
+
+                },
+                1300
+              );
+
+
+            },
+            300
+          );
+
+
+        }
+      );
+
+
+
+    // ========================================================
+    // ANALYZE DEAL
+    // ========================================================
+
+
+    analyzeButton
+      .addEventListener(
+        "click",
+        () => {
+
+
+          try {
+
+            analyzeDeal();
+
+          }
+
+          catch (
+            error
+          ) {
+
+            console.error(
+              error
+            );
+
+            return;
+
+          }
+
+
+          restartAnimation(
+            resultSection,
+            "result-enter"
+          );
+
+
+          const score =
+            document.getElementById(
+              "score"
+            );
+
+
+          restartAnimation(
+            score,
+            "score-pop"
+          );
+
+
+          setTimeout(
+            () => {
+
+              resultSection
+                .scrollIntoView({
+                  behavior:
+                    "smooth",
+
+                  block:
+                    "start"
+                });
+
+            },
+            120
+          );
+
+
+        }
+      );
+
+
+  </script>
 
 
 </body>
