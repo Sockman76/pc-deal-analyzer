@@ -1,5 +1,11 @@
 // ========================================
-// PC DEAL ANALYZER - ANALYSIS ENGINE V2
+// PC DEAL ANALYZER - ANALYSIS ENGINE V3
+// Includes advanced valuation + listing parser
+// ========================================
+
+
+// ========================================
+// MAIN DEAL ANALYZER
 // ========================================
 
 function analyzeDeal() {
@@ -44,7 +50,6 @@ function analyzeDeal() {
   const currency =
     document.getElementById("currency").value;
 
-
   const result =
     document.getElementById("result");
 
@@ -64,9 +69,7 @@ function analyzeDeal() {
 
   if (!cpuInput || !gpuInput || !askingPrice) {
 
-    alert(
-      "Please enter the CPU, GPU and asking price."
-    );
+    alert("Please enter the CPU, GPU and asking price.");
 
     return;
   }
@@ -76,11 +79,8 @@ function analyzeDeal() {
   // LOOK UP CPU + GPU
   // ----------------------------------------
 
-  const cpu =
-    findCPU(cpuInput);
-
-  const gpu =
-    findGPU(gpuInput);
+  const cpu = findCPU(cpuInput);
+  const gpu = findGPU(gpuInput);
 
 
   if (!cpu) {
@@ -111,7 +111,6 @@ function analyzeDeal() {
 
   let ramValue = 0;
 
-
   if (ram === "8GB") {
     ramValue = 20;
   }
@@ -128,13 +127,8 @@ function analyzeDeal() {
     ramValue = 120;
   }
 
-
-  // DDR5 usually carries somewhat more value.
-
   if (ramType === "DDR5") {
-
     ramValue += 25;
-
   }
 
 
@@ -143,7 +137,6 @@ function analyzeDeal() {
   // ========================================
 
   let storageValue = 0;
-
 
   if (storage === "256GB SSD") {
     storageValue = 15;
@@ -176,56 +169,57 @@ function analyzeDeal() {
     motherboardInput.toLowerCase();
 
 
-  if (board.includes("a320") ||
-      board.includes("a520") ||
-      board.includes("h410") ||
-      board.includes("h510") ||
-      board.includes("h610")) {
+  if (
+    board.includes("a320") ||
+    board.includes("a520") ||
+    board.includes("h410") ||
+    board.includes("h510") ||
+    board.includes("h610")
+  ) {
 
     motherboardValue = 60;
-
   }
 
 
-  if (board.includes("b450") ||
-      board.includes("b550") ||
-      board.includes("b650") ||
-      board.includes("b760") ||
-      board.includes("b660")) {
+  if (
+    board.includes("b450") ||
+    board.includes("b550") ||
+    board.includes("b650") ||
+    board.includes("b660") ||
+    board.includes("b760")
+  ) {
 
     motherboardValue = 110;
-
   }
 
 
-  if (board.includes("x570") ||
-      board.includes("x670") ||
-      board.includes("x870") ||
-      board.includes("z690") ||
-      board.includes("z790") ||
-      board.includes("z890")) {
+  if (
+    board.includes("x570") ||
+    board.includes("x670") ||
+    board.includes("x870") ||
+    board.includes("z690") ||
+    board.includes("z790") ||
+    board.includes("z890")
+  ) {
 
     motherboardValue = 170;
-
   }
 
-
-  // No motherboard entered
 
   if (!motherboardInput) {
 
     if (cpu.platform === "AM5") {
+
       motherboardValue = 130;
-    }
 
-    else if (cpu.platform === "LGA1700") {
+    } else if (cpu.platform === "LGA1700") {
+
       motherboardValue = 110;
-    }
 
-    else {
+    } else {
+
       motherboardValue = 80;
     }
-
   }
 
 
@@ -251,7 +245,6 @@ function analyzeDeal() {
   ) {
 
     psuValue = 100;
-
   }
 
 
@@ -263,31 +256,18 @@ function analyzeDeal() {
 
     psuValue += 30;
 
-  }
-
-  else if (
-    psu.includes("850w")
-  ) {
+  } else if (psu.includes("850w")) {
 
     psuValue += 20;
 
-  }
-
-  else if (
-    psu.includes("750w")
-  ) {
+  } else if (psu.includes("750w")) {
 
     psuValue += 10;
-
   }
 
 
-  // PSU unknown
-
   if (!psuInput) {
-
     psuValue = 50;
-
   }
 
 
@@ -296,7 +276,6 @@ function analyzeDeal() {
   // ========================================
 
   let coolerValue = 20;
-
 
   if (cooler === "stock") {
     coolerValue = 10;
@@ -324,7 +303,6 @@ function analyzeDeal() {
   // ========================================
 
   let caseValue = 50;
-
 
   if (caseQuality === "basic") {
     caseValue = 35;
@@ -356,18 +334,17 @@ function analyzeDeal() {
 
 
   // ========================================
-  // CONDITION ADJUSTMENT
+  // CONDITION
   // ========================================
 
   let conditionMultiplier = 1;
-
 
   if (condition === "excellent") {
     conditionMultiplier = 1.05;
   }
 
   if (condition === "good") {
-    conditionMultiplier = 1.00;
+    conditionMultiplier = 1;
   }
 
   if (condition === "fair") {
@@ -381,8 +358,7 @@ function analyzeDeal() {
 
   estimatedValue =
     Math.round(
-      estimatedValue *
-      conditionMultiplier
+      estimatedValue * conditionMultiplier
     );
 
 
@@ -391,14 +367,10 @@ function analyzeDeal() {
   // ========================================
 
   const lowEstimate =
-    Math.round(
-      estimatedValue * 0.90
-    );
+    Math.round(estimatedValue * 0.90);
 
   const highEstimate =
-    Math.round(
-      estimatedValue * 1.10
-    );
+    Math.round(estimatedValue * 1.10);
 
 
   // ========================================
@@ -408,7 +380,6 @@ function analyzeDeal() {
   const priceRatio =
     askingPrice / estimatedValue;
 
-
   let dealScore;
 
 
@@ -416,42 +387,29 @@ function analyzeDeal() {
 
     dealScore = 95;
 
-  }
-
-  else if (priceRatio <= 0.80) {
+  } else if (priceRatio <= 0.80) {
 
     dealScore = 90;
 
-  }
-
-  else if (priceRatio <= 0.90) {
+  } else if (priceRatio <= 0.90) {
 
     dealScore = 85;
 
-  }
-
-  else if (priceRatio <= 1.00) {
+  } else if (priceRatio <= 1.00) {
 
     dealScore = 78;
 
-  }
-
-  else if (priceRatio <= 1.10) {
+  } else if (priceRatio <= 1.10) {
 
     dealScore = 68;
 
-  }
-
-  else if (priceRatio <= 1.20) {
+  } else if (priceRatio <= 1.20) {
 
     dealScore = 55;
 
-  }
-
-  else {
+  } else {
 
     dealScore = 35;
-
   }
 
 
@@ -464,37 +422,23 @@ function analyzeDeal() {
 
   if (dealScore >= 90) {
 
-    verdict =
-      "🔥 Excellent deal";
+    verdict = "🔥 Excellent deal";
 
-  }
+  } else if (dealScore >= 80) {
 
-  else if (dealScore >= 80) {
+    verdict = "🟢 Good deal";
 
-    verdict =
-      "🟢 Good deal";
+  } else if (dealScore >= 65) {
 
-  }
+    verdict = "🟡 Fair price";
 
-  else if (dealScore >= 65) {
+  } else if (dealScore >= 50) {
 
-    verdict =
-      "🟡 Fair price";
+    verdict = "🟠 Slightly overpriced";
 
-  }
+  } else {
 
-  else if (dealScore >= 50) {
-
-    verdict =
-      "🟠 Slightly overpriced";
-
-  }
-
-  else {
-
-    verdict =
-      "🔴 Overpriced";
-
+    verdict = "🔴 Overpriced";
   }
 
 
@@ -510,27 +454,20 @@ function analyzeDeal() {
     gamingTier =
       "Excellent high-end 1440p / 4K gaming";
 
-  }
-
-  else if (gpu.performance >= 60) {
+  } else if (gpu.performance >= 60) {
 
     gamingTier =
       "Excellent 1440p gaming";
 
-  }
-
-  else if (gpu.performance >= 45) {
+  } else if (gpu.performance >= 45) {
 
     gamingTier =
       "Excellent 1080p / strong 1440p gaming";
 
-  }
-
-  else {
+  } else {
 
     gamingTier =
       "Good 1080p gaming";
-
   }
 
 
@@ -539,9 +476,7 @@ function analyzeDeal() {
   // ========================================
 
   const performanceDifference =
-    gpu.performance -
-    cpu.performance;
-
+    gpu.performance - cpu.performance;
 
   let balanceMessage;
 
@@ -551,30 +486,23 @@ function analyzeDeal() {
     balanceMessage =
       "⚠️ GPU is considerably stronger than the CPU. CPU-heavy games may be limited.";
 
-  }
-
-  else if (performanceDifference < -30) {
+  } else if (performanceDifference < -30) {
 
     balanceMessage =
       "⚠️ This system has much more CPU performance than GPU performance.";
 
-  }
-
-  else {
+  } else {
 
     balanceMessage =
       "✅ CPU and GPU performance are reasonably balanced.";
-
   }
 
 
   // ========================================
-  // CONFIDENCE SCORE
+  // CONFIDENCE
   // ========================================
 
   let confidencePoints = 2;
-
-  // CPU + GPU already known = 2 points
 
   if (ram) {
     confidencePoints++;
@@ -605,14 +533,11 @@ function analyzeDeal() {
   }
 
 
-  const totalPossible =
-    9;
-
+  const totalPossible = 9;
 
   const confidencePercent =
     Math.round(
-      (confidencePoints / totalPossible)
-      * 100
+      (confidencePoints / totalPossible) * 100
     );
 
 
@@ -621,23 +546,15 @@ function analyzeDeal() {
 
   if (confidencePercent >= 80) {
 
-    confidenceLabel =
-      "High";
+    confidenceLabel = "High";
 
-  }
+  } else if (confidencePercent >= 55) {
 
-  else if (confidencePercent >= 55) {
+    confidenceLabel = "Medium";
 
-    confidenceLabel =
-      "Medium";
+  } else {
 
-  }
-
-  else {
-
-    confidenceLabel =
-      "Low";
-
+    confidenceLabel = "Low";
   }
 
 
@@ -649,47 +566,23 @@ function analyzeDeal() {
 
 
   if (!motherboardInput) {
-
-    missingItems.push(
-      "motherboard model"
-    );
-
+    missingItems.push("motherboard model");
   }
-
 
   if (!psuInput) {
-
-    missingItems.push(
-      "power supply model"
-    );
-
+    missingItems.push("power supply model");
   }
-
 
   if (!ramType) {
-
-    missingItems.push(
-      "RAM type"
-    );
-
+    missingItems.push("RAM type");
   }
-
 
   if (!cooler) {
-
-    missingItems.push(
-      "CPU cooler"
-    );
-
+    missingItems.push("CPU cooler");
   }
 
-
   if (!caseQuality) {
-
-    missingItems.push(
-      "case quality"
-    );
-
+    missingItems.push("case quality");
   }
 
 
@@ -698,10 +591,8 @@ function analyzeDeal() {
   // ========================================
 
   let suggestedOffer =
-
     Math.round(
-      estimatedValue *
-      0.85 / 10
+      estimatedValue * 0.85 / 10
     ) * 10;
 
 
@@ -713,12 +604,11 @@ function analyzeDeal() {
 
 
   // ========================================
-  // DISPLAY RESULTS
+  // DISPLAY
   // ========================================
 
   scoreElement.innerHTML =
     dealScore + "/100";
-
 
   verdictElement.innerHTML =
     verdict;
@@ -739,9 +629,7 @@ function analyzeDeal() {
 
     `;
 
-  }
-
-  else {
+  } else {
 
     missingText = `
 
@@ -750,7 +638,6 @@ function analyzeDeal() {
       ✅ <strong>Full component information provided.</strong>
 
     `;
-
   }
 
 
@@ -763,7 +650,6 @@ function analyzeDeal() {
     <br><br>
 
     Asking price:
-
     <strong>
       $${askingPrice.toLocaleString()} ${currency}
     </strong>
@@ -771,7 +657,6 @@ function analyzeDeal() {
     <br>
 
     Estimated system value:
-
     <strong>
       $${lowEstimate.toLocaleString()}
       –
@@ -821,7 +706,6 @@ function analyzeDeal() {
     <br><br>
 
     💬 <strong>Suggested starting offer:</strong>
-
     $${suggestedOffer.toLocaleString()} ${currency}
 
     ${missingText}
@@ -829,15 +713,712 @@ function analyzeDeal() {
   `;
 
 
-  result.style.display =
-    "block";
+  result.style.display = "block";
 
 
   result.scrollIntoView({
-
     behavior: "smooth",
     block: "nearest"
-
   });
+
+}
+
+
+
+// ========================================
+// PASTE-A-LISTING PARSER
+// ========================================
+
+function parseListing() {
+
+  const listingBox =
+    document.getElementById("listingText");
+
+  const message =
+    document.getElementById("parseMessage");
+
+
+  if (!listingBox || !message) {
+
+    alert(
+      "Paste-a-listing interface is not installed correctly."
+    );
+
+    return;
+  }
+
+
+  const originalListing =
+    listingBox.value.trim();
+
+  const listing =
+    originalListing.toLowerCase();
+
+
+  if (!listing) {
+
+    message.innerHTML =
+      "Paste a PC listing first.";
+
+    return;
+  }
+
+
+  let found = [];
+
+
+
+  // ========================================
+  // CPU DETECTION
+  // ========================================
+
+  let detectedCPU = null;
+
+
+  // Sort longest names first.
+  // This helps prevent something like
+  // 5600 matching before 5600X.
+
+  const cpuKeys =
+    Object.keys(cpuDatabase)
+      .sort(
+        (a, b) =>
+          b.length - a.length
+      );
+
+
+  for (const key of cpuKeys) {
+
+    if (listing.includes(key)) {
+
+      detectedCPU =
+        cpuDatabase[key];
+
+      document
+        .getElementById("cpu")
+        .value =
+        detectedCPU.name;
+
+      found.push(
+        "CPU: " +
+        detectedCPU.name
+      );
+
+      break;
+    }
+  }
+
+
+
+  // ========================================
+  // GPU DETECTION
+  // ========================================
+
+  let detectedGPU = null;
+
+
+  const gpuKeys =
+    Object.keys(gpuDatabase)
+      .sort(
+        (a, b) =>
+          b.length - a.length
+      );
+
+
+  for (const key of gpuKeys) {
+
+    if (listing.includes(key)) {
+
+      detectedGPU =
+        gpuDatabase[key];
+
+      document
+        .getElementById("gpu")
+        .value =
+        detectedGPU.name;
+
+      found.push(
+        "GPU: " +
+        detectedGPU.name
+      );
+
+      break;
+    }
+  }
+
+
+
+  // ========================================
+  // RAM CAPACITY
+  // ========================================
+
+  if (
+    /\b(64)\s?gb\b/.test(listing)
+  ) {
+
+    document
+      .getElementById("ram")
+      .value = "64GB+";
+
+    found.push("RAM: 64GB+");
+
+  }
+
+  else if (
+    /\b(32)\s?gb\b/.test(listing)
+  ) {
+
+    document
+      .getElementById("ram")
+      .value = "32GB";
+
+    found.push("RAM: 32GB");
+
+  }
+
+  else if (
+    /\b(16)\s?gb\b/.test(listing)
+  ) {
+
+    document
+      .getElementById("ram")
+      .value = "16GB";
+
+    found.push("RAM: 16GB");
+
+  }
+
+  else if (
+    /\b(8)\s?gb\b/.test(listing)
+  ) {
+
+    document
+      .getElementById("ram")
+      .value = "8GB";
+
+    found.push("RAM: 8GB");
+  }
+
+
+
+  // ========================================
+  // RAM TYPE
+  // ========================================
+
+  if (listing.includes("ddr5")) {
+
+    document
+      .getElementById("ramType")
+      .value = "DDR5";
+
+    found.push("RAM Type: DDR5");
+
+  }
+
+  else if (listing.includes("ddr4")) {
+
+    document
+      .getElementById("ramType")
+      .value = "DDR4";
+
+    found.push("RAM Type: DDR4");
+  }
+
+
+
+  // ========================================
+  // STORAGE
+  // ========================================
+
+  if (
+    /\b2\s?tb\b/.test(listing) &&
+    (
+      listing.includes("ssd") ||
+      listing.includes("nvme")
+    )
+  ) {
+
+    document
+      .getElementById("storage")
+      .value = "2TB SSD";
+
+    found.push("Storage: 2TB SSD");
+
+  }
+
+  else if (
+    /\b1\s?tb\b/.test(listing) &&
+    (
+      listing.includes("ssd") ||
+      listing.includes("nvme")
+    )
+  ) {
+
+    document
+      .getElementById("storage")
+      .value = "1TB SSD";
+
+    found.push("Storage: 1TB SSD");
+
+  }
+
+  else if (
+    (
+      listing.includes("500gb") ||
+      listing.includes("512gb")
+    ) &&
+    (
+      listing.includes("ssd") ||
+      listing.includes("nvme")
+    )
+  ) {
+
+    document
+      .getElementById("storage")
+      .value = "500GB SSD";
+
+    found.push("Storage: 500GB SSD");
+
+  }
+
+  else if (
+    listing.includes("256gb") &&
+    (
+      listing.includes("ssd") ||
+      listing.includes("nvme")
+    )
+  ) {
+
+    document
+      .getElementById("storage")
+      .value = "256GB SSD";
+
+    found.push("Storage: 256GB SSD");
+  }
+
+
+
+  // ========================================
+  // MOTHERBOARD
+  // ========================================
+
+  const boardPatterns = [
+
+    "x870",
+    "x670",
+    "x570",
+
+    "b650",
+    "b550",
+    "b450",
+
+    "a520",
+    "a320",
+
+    "z890",
+    "z790",
+    "z690",
+
+    "b760",
+    "b660",
+
+    "h610",
+    "h510",
+    "h410"
+
+  ];
+
+
+  let detectedBoard = null;
+
+
+  for (const boardName of boardPatterns) {
+
+    if (listing.includes(boardName)) {
+
+      detectedBoard =
+        boardName.toUpperCase();
+
+      break;
+    }
+  }
+
+
+  if (detectedBoard) {
+
+    // Try to preserve a little more information
+    // around the board name if possible.
+
+    const boardRegex =
+      new RegExp(
+        "([a-z0-9-]+\\s+){0,2}" +
+        detectedBoard.toLowerCase() +
+        "([a-z0-9-]+\\s*){0,2}",
+        "i"
+      );
+
+
+    const boardMatch =
+      originalListing.match(
+        boardRegex
+      );
+
+
+    let boardDisplay =
+      detectedBoard;
+
+
+    if (boardMatch) {
+
+      boardDisplay =
+        boardMatch[0]
+          .replace(/[,.]/g, "")
+          .trim();
+
+    }
+
+
+    document
+      .getElementById("motherboard")
+      .value =
+      boardDisplay;
+
+
+    found.push(
+      "Motherboard: " +
+      boardDisplay
+    );
+  }
+
+
+
+  // ========================================
+  // PSU DETECTION
+  // ========================================
+
+  const wattMatch =
+    listing.match(
+      /\b(450|500|550|600|650|700|750|800|850|900|1000|1200|1300)\s?w\b/
+    );
+
+
+  if (wattMatch) {
+
+    const wattage =
+      wattMatch[1] + "W";
+
+
+    let psuDisplay =
+      wattage + " PSU";
+
+
+    // Recognize some common PSU names.
+
+    if (
+      listing.includes("rm750x")
+    ) {
+
+      psuDisplay =
+        "Corsair RM750x 750W";
+
+    }
+
+    else if (
+      listing.includes("rm850x")
+    ) {
+
+      psuDisplay =
+        "Corsair RM850x 850W";
+
+    }
+
+    else if (
+      listing.includes("seasonic")
+    ) {
+
+      psuDisplay =
+        "Seasonic " +
+        wattage;
+
+    }
+
+    else if (
+      listing.includes("supernova")
+    ) {
+
+      psuDisplay =
+        "EVGA SuperNOVA " +
+        wattage;
+
+    }
+
+
+    document
+      .getElementById("psu")
+      .value =
+      psuDisplay;
+
+
+    found.push(
+      "PSU: " +
+      psuDisplay
+    );
+  }
+
+
+
+  // ========================================
+  // COOLER DETECTION
+  // ========================================
+
+  if (
+    listing.includes("360mm aio") ||
+    listing.includes("360 aio")
+  ) {
+
+    document
+      .getElementById("cooler")
+      .value =
+      "aio360";
+
+    found.push(
+      "Cooler: 360mm AIO"
+    );
+
+  }
+
+  else if (
+    listing.includes("280mm aio") ||
+    listing.includes("280 aio")
+  ) {
+
+    document
+      .getElementById("cooler")
+      .value =
+      "aio280";
+
+    found.push(
+      "Cooler: 280mm AIO"
+    );
+
+  }
+
+  else if (
+    listing.includes("240mm aio") ||
+    listing.includes("240 aio")
+  ) {
+
+    document
+      .getElementById("cooler")
+      .value =
+      "aio240";
+
+    found.push(
+      "Cooler: 240mm AIO"
+    );
+  }
+
+
+
+  // ========================================
+  // CONDITION DETECTION
+  // ========================================
+
+  if (
+    listing.includes("like new") ||
+    listing.includes("mint condition") ||
+    listing.includes("excellent condition")
+  ) {
+
+    document
+      .getElementById("condition")
+      .value =
+      "excellent";
+
+    found.push(
+      "Condition: Excellent"
+    );
+
+  }
+
+  else if (
+    listing.includes("fair condition")
+  ) {
+
+    document
+      .getElementById("condition")
+      .value =
+      "fair";
+
+    found.push(
+      "Condition: Fair"
+    );
+
+  }
+
+  else if (
+    listing.includes("poor condition")
+  ) {
+
+    document
+      .getElementById("condition")
+      .value =
+      "poor";
+
+    found.push(
+      "Condition: Poor"
+    );
+  }
+
+
+
+  // ========================================
+  // PRICE DETECTION
+  // ========================================
+
+  let detectedPrice = null;
+
+
+  // First look for phrases such as:
+  // asking $1000
+  // price: $850
+  // $1,200 CAD
+
+  const askingMatch =
+    listing.match(
+      /(?:asking|price|priced at|selling for)\s*:?\s*\$?\s*([0-9]{2,5}(?:,[0-9]{3})?)/i
+    );
+
+
+  if (askingMatch) {
+
+    detectedPrice =
+      askingMatch[1];
+
+  }
+
+  else {
+
+    const dollarMatches =
+      listing.match(
+        /\$\s?[0-9]{2,5}(?:,[0-9]{3})?/g
+      );
+
+
+    if (dollarMatches) {
+
+      detectedPrice =
+        dollarMatches[
+          dollarMatches.length - 1
+        ];
+    }
+  }
+
+
+  if (detectedPrice) {
+
+    const cleanPrice =
+      detectedPrice
+        .replace("$", "")
+        .replace(/,/g, "")
+        .trim();
+
+
+    document
+      .getElementById("price")
+      .value =
+      cleanPrice;
+
+
+    found.push(
+      "Price: $" +
+      Number(cleanPrice)
+        .toLocaleString()
+    );
+  }
+
+
+
+  // ========================================
+  // CURRENCY
+  // ========================================
+
+  if (
+    listing.includes("cad") ||
+    listing.includes("canadian")
+  ) {
+
+    document
+      .getElementById("currency")
+      .value =
+      "CAD";
+
+    found.push(
+      "Currency: CAD"
+    );
+
+  }
+
+  else if (
+    listing.includes("usd")
+  ) {
+
+    document
+      .getElementById("currency")
+      .value =
+      "USD";
+
+    found.push(
+      "Currency: USD"
+    );
+  }
+
+
+
+  // ========================================
+  // SHOW RESULTS
+  // ========================================
+
+  if (found.length === 0) {
+
+    message.innerHTML = `
+
+      ❌ <strong>No supported hardware detected.</strong>
+
+      <br><br>
+
+      Try including exact component names such as
+      Ryzen 7 5700X, RTX 3080, 32GB DDR4,
+      1TB NVMe, and the asking price.
+
+    `;
+
+    return;
+  }
+
+
+  message.innerHTML = `
+
+    <strong>Detected ${found.length} details:</strong>
+
+    <br><br>
+
+    ${found.join("<br>")}
+
+    <br><br>
+
+    <strong>
+      Review the detected information below before analyzing.
+    </strong>
+
+  `;
+
+
+  document
+    .getElementById("cpu")
+    .scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
 
 }
