@@ -1,1651 +1,278 @@
 // ============================================================
-// PCDEAL - PARTS DATABASE
-// VERSION 3
+// PCDEAL - PARTS ENGINE
+// VERSION 4
 // ============================================================
 //
-// IMPORTANT:
+// Requires:
 //
-// platform.js MUST load before this file.
+// cpu-data.js
+// gpu-data.js
+// platform.js
 //
-// Correct index.html order:
+// Handles:
 //
-// <script src="platform.js"></script>
-// <script src="parts.js"></script>
-// <script src="app.js"></script>
+// - CPU exact lookup
+// - GPU exact lookup
+// - Alias lookup
+// - Flexible text normalization
+// - Listing CPU detection
+// - Listing GPU detection
+// - Basic CPU family fallback
+// - Compatibility helpers
+// - Database stats
 //
-// CPU entries use:
-//
-// socket: "AM4"
-// socket: "AM5"
-// socket: "LGA1150"
-// etc.
-//
-// RAM compatibility comes from platform.js automatically.
-//
-// Used values are rough CAD estimates for now.
-// They are NOT live market prices.
 // ============================================================
 
 
 
 // ============================================================
-// GPU DATABASE
+// CPU ALIASES
 // ============================================================
 
-const gpuDatabase = {
-
-  // ==========================================================
-  // NVIDIA RTX 50 SERIES
-  // ==========================================================
-
-  "rtx 5090": {
-    name: "RTX 5090",
-    value: 3200,
-    performance: 100,
-    vram: 32,
-    manufacturer: "NVIDIA",
-    generation: "RTX 50"
-  },
-
-  "rtx 5080": {
-    name: "RTX 5080",
-    value: 1700,
-    performance: 90,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 50"
-  },
-
-  "rtx 5070 ti": {
-    name: "RTX 5070 Ti",
-    value: 1100,
-    performance: 78,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 50"
-  },
-
-  "rtx 5070": {
-    name: "RTX 5070",
-    value: 850,
-    performance: 69,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 50"
-  },
-
-
-  // ==========================================================
-  // NVIDIA RTX 40 SERIES
-  // ==========================================================
-
-  "rtx 4090": {
-    name: "RTX 4090",
-    value: 2200,
-    performance: 96,
-    vram: 24,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4080 super": {
-    name: "RTX 4080 Super",
-    value: 1300,
-    performance: 86,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4080": {
-    name: "RTX 4080",
-    value: 1150,
-    performance: 83,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4070 ti super": {
-    name: "RTX 4070 Ti Super",
-    value: 950,
-    performance: 76,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4070 ti": {
-    name: "RTX 4070 Ti",
-    value: 800,
-    performance: 71,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4070 super": {
-    name: "RTX 4070 Super",
-    value: 700,
-    performance: 67,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4070": {
-    name: "RTX 4070",
-    value: 600,
-    performance: 62,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4060 ti 16gb": {
-    name: "RTX 4060 Ti 16GB",
-    value: 450,
-    performance: 49,
-    vram: 16,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4060 ti": {
-    name: "RTX 4060 Ti",
-    value: 400,
-    performance: 48,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-  "rtx 4060": {
-    name: "RTX 4060",
-    value: 300,
-    performance: 40,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 40"
-  },
-
-
-  // ==========================================================
-  // NVIDIA RTX 30 SERIES
-  // ==========================================================
-
-  "rtx 3090 ti": {
-    name: "RTX 3090 Ti",
-    value: 850,
-    performance: 72,
-    vram: 24,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3090": {
-    name: "RTX 3090",
-    value: 750,
-    performance: 69,
-    vram: 24,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3080 ti": {
-    name: "RTX 3080 Ti",
-    value: 600,
-    performance: 64,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3080 12gb": {
-    name: "RTX 3080 12GB",
-    value: 540,
-    performance: 62,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3080": {
-    name: "RTX 3080",
-    value: 500,
-    performance: 60,
-    vram: 10,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3070 ti": {
-    name: "RTX 3070 Ti",
-    value: 400,
-    performance: 52,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3070": {
-    name: "RTX 3070",
-    value: 350,
-    performance: 48,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3060 ti": {
-    name: "RTX 3060 Ti",
-    value: 300,
-    performance: 43,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3060 12gb": {
-    name: "RTX 3060 12GB",
-    value: 250,
-    performance: 36,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3060": {
-    name: "RTX 3060",
-    value: 240,
-    performance: 35,
-    vram: 12,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-  "rtx 3050": {
-    name: "RTX 3050",
-    value: 170,
-    performance: 27,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 30"
-  },
-
-
-  // ==========================================================
-  // NVIDIA RTX 20 SERIES
-  // ==========================================================
-
-  "rtx 2080 ti": {
-    name: "RTX 2080 Ti",
-    value: 320,
-    performance: 45,
-    vram: 11,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2080 super": {
-    name: "RTX 2080 Super",
-    value: 250,
-    performance: 39,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2080": {
-    name: "RTX 2080",
-    value: 220,
-    performance: 37,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2070 super": {
-    name: "RTX 2070 Super",
-    value: 200,
-    performance: 34,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2070": {
-    name: "RTX 2070",
-    value: 170,
-    performance: 31,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2060 super": {
-    name: "RTX 2060 Super",
-    value: 160,
-    performance: 29,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-  "rtx 2060": {
-    name: "RTX 2060",
-    value: 140,
-    performance: 26,
-    vram: 6,
-    manufacturer: "NVIDIA",
-    generation: "RTX 20"
-  },
-
-
-  // ==========================================================
-  // NVIDIA GTX 10 / 16 SERIES
-  // ==========================================================
-
-  "gtx 1080 ti": {
-    name: "GTX 1080 Ti",
-    value: 220,
-    performance: 32,
-    vram: 11,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1080": {
-    name: "GTX 1080",
-    value: 150,
-    performance: 27,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1070 ti": {
-    name: "GTX 1070 Ti",
-    value: 130,
-    performance: 24,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1070": {
-    name: "GTX 1070",
-    value: 110,
-    performance: 22,
-    vram: 8,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1060 6gb": {
-    name: "GTX 1060 6GB",
-    value: 80,
-    performance: 17,
-    vram: 6,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1060 3gb": {
-    name: "GTX 1060 3GB",
-    value: 60,
-    performance: 14,
-    vram: 3,
-    manufacturer: "NVIDIA",
-    generation: "GTX 10"
-  },
-
-  "gtx 1660 super": {
-    name: "GTX 1660 Super",
-    value: 120,
-    performance: 23,
-    vram: 6,
-    manufacturer: "NVIDIA",
-    generation: "GTX 16"
-  },
-
-  "gtx 1660 ti": {
-    name: "GTX 1660 Ti",
-    value: 115,
-    performance: 22,
-    vram: 6,
-    manufacturer: "NVIDIA",
-    generation: "GTX 16"
-  },
-
-  "gtx 1660": {
-    name: "GTX 1660",
-    value: 100,
-    performance: 20,
-    vram: 6,
-    manufacturer: "NVIDIA",
-    generation: "GTX 16"
-  },
-
-  "gtx 1650 super": {
-    name: "GTX 1650 Super",
-    value: 90,
-    performance: 18,
-    vram: 4,
-    manufacturer: "NVIDIA",
-    generation: "GTX 16"
-  },
-
-  "gtx 1650": {
-    name: "GTX 1650",
-    value: 70,
-    performance: 14,
-    vram: 4,
-    manufacturer: "NVIDIA",
-    generation: "GTX 16"
-  },
-
-
-  // ==========================================================
-  // AMD RX 9000 SERIES
-  // ==========================================================
-
-  "rx 9070 xt": {
-    name: "RX 9070 XT",
-    value: 900,
-    performance: 76,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 9000"
-  },
-
-  "rx 9070": {
-    name: "RX 9070",
-    value: 750,
-    performance: 69,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 9000"
-  },
-
-
-  // ==========================================================
-  // AMD RX 7000 SERIES
-  // ==========================================================
-
-  "rx 7900 xtx": {
-    name: "RX 7900 XTX",
-    value: 1000,
-    performance: 80,
-    vram: 24,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7900 xt": {
-    name: "RX 7900 XT",
-    value: 800,
-    performance: 73,
-    vram: 20,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7900 gre": {
-    name: "RX 7900 GRE",
-    value: 620,
-    performance: 64,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7800 xt": {
-    name: "RX 7800 XT",
-    value: 600,
-    performance: 61,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7700 xt": {
-    name: "RX 7700 XT",
-    value: 450,
-    performance: 52,
-    vram: 12,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7600 xt": {
-    name: "RX 7600 XT",
-    value: 350,
-    performance: 42,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-  "rx 7600": {
-    name: "RX 7600",
-    value: 280,
-    performance: 37,
-    vram: 8,
-    manufacturer: "AMD",
-    generation: "RX 7000"
-  },
-
-
-  // ==========================================================
-  // AMD RX 6000 SERIES
-  // ==========================================================
-
-  "rx 6950 xt": {
-    name: "RX 6950 XT",
-    value: 500,
-    performance: 61,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6900 xt": {
-    name: "RX 6900 XT",
-    value: 470,
-    performance: 58,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6800 xt": {
-    name: "RX 6800 XT",
-    value: 450,
-    performance: 56,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6800": {
-    name: "RX 6800",
-    value: 390,
-    performance: 50,
-    vram: 16,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6750 xt": {
-    name: "RX 6750 XT",
-    value: 320,
-    performance: 45,
-    vram: 12,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6700 xt": {
-    name: "RX 6700 XT",
-    value: 300,
-    performance: 43,
-    vram: 12,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6650 xt": {
-    name: "RX 6650 XT",
-    value: 220,
-    performance: 35,
-    vram: 8,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6600 xt": {
-    name: "RX 6600 XT",
-    value: 200,
-    performance: 33,
-    vram: 8,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6600": {
-    name: "RX 6600",
-    value: 170,
-    performance: 30,
-    vram: 8,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-  "rx 6500 xt": {
-    name: "RX 6500 XT",
-    value: 100,
-    performance: 18,
-    vram: 4,
-    manufacturer: "AMD",
-    generation: "RX 6000"
-  },
-
-
-  // ==========================================================
-  // INTEL ARC
-  // ==========================================================
-
-  "arc b580": {
-    name: "Intel Arc B580",
-    value: 350,
-    performance: 44,
-    vram: 12,
-    manufacturer: "Intel",
-    generation: "Battlemage"
-  },
-
-  "arc a770": {
-    name: "Intel Arc A770",
-    value: 250,
-    performance: 38,
-    vram: 16,
-    manufacturer: "Intel",
-    generation: "Alchemist"
-  },
-
-  "arc a750": {
-    name: "Intel Arc A750",
-    value: 200,
-    performance: 34,
-    vram: 8,
-    manufacturer: "Intel",
-    generation: "Alchemist"
-  }
-
-};
-
-
-
-// ============================================================
-// CPU DATABASE
-// ============================================================
-
-const cpuDatabase = {
-
-  // ==========================================================
-  // AMD AM5 - ZEN 5 X3D
-  // ==========================================================
-
-  "ryzen 9 9950x3d": {
-    name: "Ryzen 9 9950X3D",
-    value: 850,
-    performance: 100,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 9900x3d": {
-    name: "Ryzen 9 9900X3D",
-    value: 700,
-    performance: 96,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 9800x3d": {
-    name: "Ryzen 7 9800X3D",
-    value: 650,
-    performance: 98,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM5 - ZEN 5
-  // ==========================================================
-
-  "ryzen 9 9950x": {
-    name: "Ryzen 9 9950X",
-    value: 700,
-    performance: 90,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 9900x": {
-    name: "Ryzen 9 9900X",
-    value: 550,
-    performance: 86,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 9700x": {
-    name: "Ryzen 7 9700X",
-    value: 400,
-    performance: 82,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 9600x": {
-    name: "Ryzen 5 9600X",
-    value: 280,
-    performance: 76,
-    socket: "AM5",
-    generation: "Zen 5",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM5 - ZEN 4 X3D
-  // ==========================================================
-
-  "ryzen 9 7950x3d": {
-    name: "Ryzen 9 7950X3D",
-    value: 600,
-    performance: 94,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 7900x3d": {
-    name: "Ryzen 9 7900X3D",
-    value: 470,
-    performance: 88,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 7800x3d": {
-    name: "Ryzen 7 7800X3D",
-    value: 400,
-    performance: 92,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM5 - ZEN 4
-  // ==========================================================
-
-  "ryzen 9 7950x": {
-    name: "Ryzen 9 7950X",
-    value: 500,
-    performance: 87,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 7900x": {
-    name: "Ryzen 9 7900X",
-    value: 380,
-    performance: 82,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 7900": {
-    name: "Ryzen 9 7900",
-    value: 350,
-    performance: 80,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 7700x": {
-    name: "Ryzen 7 7700X",
-    value: 270,
-    performance: 75,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 7700": {
-    name: "Ryzen 7 7700",
-    value: 250,
-    performance: 74,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 7600x": {
-    name: "Ryzen 5 7600X",
-    value: 200,
-    performance: 70,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 7600": {
-    name: "Ryzen 5 7600",
-    value: 190,
-    performance: 68,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 7500f": {
-    name: "Ryzen 5 7500F",
-    value: 160,
-    performance: 65,
-    socket: "AM5",
-    generation: "Zen 4",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM4 - X3D
-  // ==========================================================
-
-  "ryzen 7 5800x3d": {
-    name: "Ryzen 7 5800X3D",
-    value: 280,
-    performance: 70,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 5700x3d": {
-    name: "Ryzen 7 5700X3D",
-    value: 220,
-    performance: 67,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 5600x3d": {
-    name: "Ryzen 5 5600X3D",
-    value: 200,
-    performance: 64,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM4 - ZEN 3
-  // ==========================================================
-
-  "ryzen 9 5950x": {
-    name: "Ryzen 9 5950X",
-    value: 280,
-    performance: 68,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 9 5900x": {
-    name: "Ryzen 9 5900X",
-    value: 220,
-    performance: 64,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 5800x": {
-    name: "Ryzen 7 5800X",
-    value: 150,
-    performance: 57,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 5700x": {
-    name: "Ryzen 7 5700X",
-    value: 140,
-    performance: 55,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 7 5700g": {
-    name: "Ryzen 7 5700G",
-    value: 130,
-    performance: 50,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 5600x": {
-    name: "Ryzen 5 5600X",
-    value: 110,
-    performance: 50,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 5600": {
-    name: "Ryzen 5 5600",
-    value: 100,
-    performance: 48,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 5600g": {
-    name: "Ryzen 5 5600G",
-    value: 90,
-    performance: 44,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 5500": {
-    name: "Ryzen 5 5500",
-    value: 80,
-    performance: 41,
-    socket: "AM4",
-    generation: "Zen 3",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM4 - ZEN 2
-  // ==========================================================
-
-  "ryzen 7 3700x": {
-    name: "Ryzen 7 3700X",
-    value: 90,
-    performance: 41,
-    socket: "AM4",
-    generation: "Zen 2",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 3600x": {
-    name: "Ryzen 5 3600X",
-    value: 75,
-    performance: 36,
-    socket: "AM4",
-    generation: "Zen 2",
-    manufacturer: "AMD"
-  },
-
-  "ryzen 5 3600": {
-    name: "Ryzen 5 3600",
-    value: 70,
-    performance: 35,
-    socket: "AM4",
-    generation: "Zen 2",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM4 - ZEN+
-  // ==========================================================
-
-  "ryzen 5 2600": {
-    name: "Ryzen 5 2600",
-    value: 45,
-    performance: 27,
-    socket: "AM4",
-    generation: "Zen+",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // AMD AM4 - ZEN 1
-  // ==========================================================
-
-  "ryzen 5 1600": {
-    name: "Ryzen 5 1600",
-    value: 35,
-    performance: 22,
-    socket: "AM4",
-    generation: "Zen",
-    manufacturer: "AMD"
-  },
-
-
-  // ==========================================================
-  // INTEL LGA1851
-  // ==========================================================
-
-  "ultra 9 285k": {
-    name: "Core Ultra 9 285K",
-    value: 650,
-    performance: 90,
-    socket: "LGA1851",
-    generation: "Arrow Lake",
-    manufacturer: "Intel"
-  },
-
-  "ultra 7 265k": {
-    name: "Core Ultra 7 265K",
-    value: 450,
-    performance: 84,
-    socket: "LGA1851",
-    generation: "Arrow Lake",
-    manufacturer: "Intel"
-  },
-
-  "ultra 5 245k": {
-    name: "Core Ultra 5 245K",
-    value: 320,
-    performance: 77,
-    socket: "LGA1851",
-    generation: "Arrow Lake",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 14TH GEN - LGA1700
-  // ==========================================================
-
-  "i9-14900k": {
-    name: "Core i9-14900K",
-    value: 500,
-    performance: 90,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i9-14900kf": {
-    name: "Core i9-14900KF",
-    value: 470,
-    performance: 90,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-14700k": {
-    name: "Core i7-14700K",
-    value: 380,
-    performance: 86,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-14700kf": {
-    name: "Core i7-14700KF",
-    value: 350,
-    performance: 85,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-14600k": {
-    name: "Core i5-14600K",
-    value: 260,
-    performance: 82,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-14600kf": {
-    name: "Core i5-14600KF",
-    value: 240,
-    performance: 81,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-14400f": {
-    name: "Core i5-14400F",
-    value: 180,
-    performance: 68,
-    socket: "LGA1700",
-    generation: "14th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 13TH GEN - LGA1700
-  // ==========================================================
-
-  "i9-13900k": {
-    name: "Core i9-13900K",
-    value: 420,
-    performance: 87,
-    socket: "LGA1700",
-    generation: "13th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-13700k": {
-    name: "Core i7-13700K",
-    value: 300,
-    performance: 82,
-    socket: "LGA1700",
-    generation: "13th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-13600k": {
-    name: "Core i5-13600K",
-    value: 230,
-    performance: 78,
-    socket: "LGA1700",
-    generation: "13th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-13400f": {
-    name: "Core i5-13400F",
-    value: 150,
-    performance: 64,
-    socket: "LGA1700",
-    generation: "13th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 12TH GEN - LGA1700
-  // ==========================================================
-
-  "i9-12900k": {
-    name: "Core i9-12900K",
-    value: 300,
-    performance: 77,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-12700k": {
-    name: "Core i7-12700K",
-    value: 220,
-    performance: 72,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-12700f": {
-    name: "Core i7-12700F",
-    value: 190,
-    performance: 69,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-12600k": {
-    name: "Core i5-12600K",
-    value: 160,
-    performance: 65,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-12400f": {
-    name: "Core i5-12400F",
-    value: 120,
-    performance: 55,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i3-12100f": {
-    name: "Core i3-12100F",
-    value: 70,
-    performance: 45,
-    socket: "LGA1700",
-    generation: "12th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 11TH GEN - LGA1200
-  // ==========================================================
-
-  "i9-11900k": {
-    name: "Core i9-11900K",
-    value: 170,
-    performance: 55,
-    socket: "LGA1200",
-    generation: "11th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-11700k": {
-    name: "Core i7-11700K",
-    value: 140,
-    performance: 52,
-    socket: "LGA1200",
-    generation: "11th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-11600k": {
-    name: "Core i5-11600K",
-    value: 100,
-    performance: 47,
-    socket: "LGA1200",
-    generation: "11th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-11400f": {
-    name: "Core i5-11400F",
-    value: 80,
-    performance: 42,
-    socket: "LGA1200",
-    generation: "11th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 10TH GEN - LGA1200
-  // ==========================================================
-
-  "i9-10900k": {
-    name: "Core i9-10900K",
-    value: 160,
-    performance: 52,
-    socket: "LGA1200",
-    generation: "10th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-10700k": {
-    name: "Core i7-10700K",
-    value: 120,
-    performance: 48,
-    socket: "LGA1200",
-    generation: "10th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-10600k": {
-    name: "Core i5-10600K",
-    value: 90,
-    performance: 42,
-    socket: "LGA1200",
-    generation: "10th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-10400f": {
-    name: "Core i5-10400F",
-    value: 70,
-    performance: 37,
-    socket: "LGA1200",
-    generation: "10th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 9TH GEN - LGA1151 300 SERIES
-  // ==========================================================
-
-  "i9-9900k": {
-    name: "Core i9-9900K",
-    value: 150,
-    performance: 48,
-    socket: "LGA1151-300",
-    generation: "9th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-9700k": {
-    name: "Core i7-9700K",
-    value: 100,
-    performance: 40,
-    socket: "LGA1151-300",
-    generation: "9th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-9600k": {
-    name: "Core i5-9600K",
-    value: 75,
-    performance: 34,
-    socket: "LGA1151-300",
-    generation: "9th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 8TH GEN - LGA1151 300 SERIES
-  // ==========================================================
-
-  "i7-8700k": {
-    name: "Core i7-8700K",
-    value: 85,
-    performance: 37,
-    socket: "LGA1151-300",
-    generation: "8th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-8600k": {
-    name: "Core i5-8600K",
-    value: 65,
-    performance: 31,
-    socket: "LGA1151-300",
-    generation: "8th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 7TH GEN - LGA1151 100/200 SERIES
-  // ==========================================================
-
-  "i7-7700k": {
-    name: "Core i7-7700K",
-    value: 65,
-    performance: 30,
-    socket: "LGA1151-100-200",
-    generation: "7th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-7700": {
-    name: "Core i7-7700",
-    value: 55,
-    performance: 27,
-    socket: "LGA1151-100-200",
-    generation: "7th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-7600k": {
-    name: "Core i5-7600K",
-    value: 45,
-    performance: 23,
-    socket: "LGA1151-100-200",
-    generation: "7th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 6TH GEN - LGA1151 100/200 SERIES
-  // ==========================================================
-
-  "i7-6700k": {
-    name: "Core i7-6700K",
-    value: 55,
-    performance: 27,
-    socket: "LGA1151-100-200",
-    generation: "6th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-6700": {
-    name: "Core i7-6700",
-    value: 45,
-    performance: 24,
-    socket: "LGA1151-100-200",
-    generation: "6th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-6600k": {
-    name: "Core i5-6600K",
-    value: 35,
-    performance: 21,
-    socket: "LGA1151-100-200",
-    generation: "6th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 4TH GEN HASWELL - LGA1150
-  // ==========================================================
-
-  "i7-4790k": {
-    name: "Core i7-4790K",
-    value: 40,
-    performance: 22,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-4790": {
-    name: "Core i7-4790",
-    value: 35,
-    performance: 20,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-4770k": {
-    name: "Core i7-4770K",
-    value: 35,
-    performance: 20,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-4770": {
-    name: "Core i7-4770",
-    value: 30,
-    performance: 19,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-4690k": {
-    name: "Core i5-4690K",
-    value: 25,
-    performance: 16,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-4670k": {
-    name: "Core i5-4670K",
-    value: 20,
-    performance: 15,
-    socket: "LGA1150",
-    generation: "4th Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 3RD GEN IVY BRIDGE - LGA1155
-  // ==========================================================
-
-  "i7-3770k": {
-    name: "Core i7-3770K",
-    value: 30,
-    performance: 18,
-    socket: "LGA1155",
-    generation: "3rd Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-3770": {
-    name: "Core i7-3770",
-    value: 25,
-    performance: 17,
-    socket: "LGA1155",
-    generation: "3rd Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-3570k": {
-    name: "Core i5-3570K",
-    value: 15,
-    performance: 13,
-    socket: "LGA1155",
-    generation: "3rd Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 2ND GEN SANDY BRIDGE - LGA1155
-  // ==========================================================
-
-  "i7-2700k": {
-    name: "Core i7-2700K",
-    value: 25,
-    performance: 16,
-    socket: "LGA1155",
-    generation: "2nd Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-2600k": {
-    name: "Core i7-2600K",
-    value: 25,
-    performance: 15,
-    socket: "LGA1155",
-    generation: "2nd Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-2600": {
-    name: "Core i7-2600",
-    value: 20,
-    performance: 14,
-    socket: "LGA1155",
-    generation: "2nd Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-2500k": {
-    name: "Core i5-2500K",
-    value: 15,
-    performance: 12,
-    socket: "LGA1155",
-    generation: "2nd Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL 1ST GEN - LGA1156
-  // ==========================================================
-
-  "i7-870": {
-    name: "Core i7-870",
-    value: 15,
-    performance: 10,
-    socket: "LGA1156",
-    generation: "1st Gen",
-    manufacturer: "Intel"
-  },
-
-  "i7-860": {
-    name: "Core i7-860",
-    value: 12,
-    performance: 9,
-    socket: "LGA1156",
-    generation: "1st Gen",
-    manufacturer: "Intel"
-  },
-
-  "i5-750": {
-    name: "Core i5-750",
-    value: 8,
-    performance: 7,
-    socket: "LGA1156",
-    generation: "1st Gen",
-    manufacturer: "Intel"
-  },
-
-
-  // ==========================================================
-  // INTEL HEDT
-  // ==========================================================
-
-  "i7-980x": {
-    name: "Core i7-980X",
-    value: 35,
-    performance: 13,
-    socket: "LGA1366",
-    generation: "Gulftown",
-    manufacturer: "Intel"
-  },
-
-  "i7-5960x": {
-    name: "Core i7-5960X",
-    value: 55,
-    performance: 24,
-    socket: "LGA2011-3",
-    generation: "Haswell-E",
-    manufacturer: "Intel"
-  },
-
-  "i7-6950x": {
-    name: "Core i7-6950X",
-    value: 80,
-    performance: 30,
-    socket: "LGA2011-3",
-    generation: "Broadwell-E",
-    manufacturer: "Intel"
-  },
-
-  "i9-7900x": {
-    name: "Core i9-7900X",
-    value: 100,
-    performance: 38,
-    socket: "LGA2066",
-    generation: "Skylake-X",
-    manufacturer: "Intel"
-  },
-
-  "i9-10980xe": {
-    name: "Core i9-10980XE",
-    value: 180,
-    performance: 48,
-    socket: "LGA2066",
-    generation: "Cascade Lake-X",
-    manufacturer: "Intel"
-  }
+const cpuAliases = {
+
+  // Intel common shorthand
+
+  "i9 14900ks": "Core i9-14900KS",
+  "i9 14900k": "Core i9-14900K",
+  "i9 14900kf": "Core i9-14900KF",
+  "i9 14900": "Core i9-14900",
+
+  "i7 14700k": "Core i7-14700K",
+  "i7 14700kf": "Core i7-14700KF",
+  "i7 14700": "Core i7-14700",
+  "i7 14700f": "Core i7-14700F",
+
+  "i5 14600k": "Core i5-14600K",
+  "i5 14600kf": "Core i5-14600KF",
+  "i5 14500": "Core i5-14500",
+  "i5 14400f": "Core i5-14400F",
+
+  "i3 14100f": "Core i3-14100F",
+
+  "i9 13900ks": "Core i9-13900KS",
+  "i9 13900k": "Core i9-13900K",
+  "i9 13900kf": "Core i9-13900KF",
+  "i9 13900": "Core i9-13900",
+
+  "i7 13700k": "Core i7-13700K",
+  "i7 13700kf": "Core i7-13700KF",
+  "i7 13700": "Core i7-13700",
+
+  "i5 13600k": "Core i5-13600K",
+  "i5 13600kf": "Core i5-13600KF",
+  "i5 13500": "Core i5-13500",
+  "i5 13400f": "Core i5-13400F",
+
+  "i3 13100f": "Core i3-13100F",
+
+  "i9 12900ks": "Core i9-12900KS",
+  "i9 12900k": "Core i9-12900K",
+  "i9 12900kf": "Core i9-12900KF",
+  "i9 12900": "Core i9-12900",
+
+  "i7 12700k": "Core i7-12700K",
+  "i7 12700kf": "Core i7-12700KF",
+  "i7 12700f": "Core i7-12700F",
+
+  "i5 12600k": "Core i5-12600K",
+  "i5 12600kf": "Core i5-12600KF",
+  "i5 12500": "Core i5-12500",
+  "i5 12400f": "Core i5-12400F",
+
+  "i3 12300": "Core i3-12300",
+  "i3 12100f": "Core i3-12100F",
+
+  "i9 11900k": "Core i9-11900K",
+  "i9 11900kf": "Core i9-11900KF",
+  "i9 11900": "Core i9-11900",
+
+  "i7 11700k": "Core i7-11700K",
+  "i7 11700f": "Core i7-11700F",
+
+  "i5 11600k": "Core i5-11600K",
+  "i5 11500": "Core i5-11500",
+  "i5 11400f": "Core i5-11400F",
+
+  "i9 10900k": "Core i9-10900K",
+  "i9 10900kf": "Core i9-10900KF",
+  "i9 10900": "Core i9-10900",
+
+  "i7 10700k": "Core i7-10700K",
+  "i7 10700f": "Core i7-10700F",
+
+  "i5 10600k": "Core i5-10600K",
+  "i5 10500": "Core i5-10500",
+  "i5 10400f": "Core i5-10400F",
+
+  "i3 10300": "Core i3-10300",
+  "i3 10100f": "Core i3-10100F",
+
+  "i9 9900ks": "Core i9-9900KS",
+  "i9 9900k": "Core i9-9900K",
+  "i9 9900kf": "Core i9-9900KF",
+
+  "i7 9700k": "Core i7-9700K",
+  "i7 9700f": "Core i7-9700F",
+
+  "i5 9600k": "Core i5-9600K",
+  "i5 9500": "Core i5-9500",
+  "i5 9400f": "Core i5-9400F",
+
+  "i7 8700k": "Core i7-8700K",
+  "i7 8700": "Core i7-8700",
+
+  "i5 8600k": "Core i5-8600K",
+  "i5 8500": "Core i5-8500",
+  "i5 8400": "Core i5-8400",
+
+  "i7 7700k": "Core i7-7700K",
+  "i7 7700": "Core i7-7700",
+
+  "i5 7600k": "Core i5-7600K",
+  "i5 7500": "Core i5-7500",
+  "i5 7400": "Core i5-7400",
+
+  "i7 6700k": "Core i7-6700K",
+  "i7 6700": "Core i7-6700",
+
+  "i5 6600k": "Core i5-6600K",
+  "i5 6500": "Core i5-6500",
+  "i5 6400": "Core i5-6400",
+
+  "i7 5775c": "Core i7-5775C",
+  "i5 5675c": "Core i5-5675C",
+
+  "i7 4790k": "Core i7-4790K",
+  "i7 4790": "Core i7-4790",
+  "i7 4770k": "Core i7-4770K",
+  "i7 4770": "Core i7-4770",
+
+  "i5 4690k": "Core i5-4690K",
+  "i5 4690": "Core i5-4690",
+  "i5 4670k": "Core i5-4670K",
+  "i5 4670": "Core i5-4670",
+  "i5 4590": "Core i5-4590",
+  "i5 4570": "Core i5-4570",
+  "i5 4460": "Core i5-4460",
+  "i5 4440": "Core i5-4440",
+
+  "i7 3770k": "Core i7-3770K",
+  "i7 3770": "Core i7-3770",
+  "i5 3570k": "Core i5-3570K",
+  "i5 3570": "Core i5-3570",
+  "i5 3470": "Core i5-3470",
+
+  "i7 2700k": "Core i7-2700K",
+  "i7 2600k": "Core i7-2600K",
+  "i7 2600": "Core i7-2600",
+  "i5 2500k": "Core i5-2500K",
+  "i5 2500": "Core i5-2500",
+  "i5 2400": "Core i5-2400",
+
+  "i7 880": "Core i7-880",
+  "i7 870": "Core i7-870",
+  "i7 860": "Core i7-860",
+  "i5 760": "Core i5-760",
+  "i5 750": "Core i5-750",
+
+  // Core Ultra shorthand
+
+  "ultra 9 285k": "Core Ultra 9 285K",
+  "ultra 7 265k": "Core Ultra 7 265K",
+  "ultra 7 265kf": "Core Ultra 7 265KF",
+  "ultra 5 245k": "Core Ultra 5 245K",
+  "ultra 5 245kf": "Core Ultra 5 245KF",
+
+  // AMD shorthand
+
+  "9950x3d": "Ryzen 9 9950X3D",
+  "9900x3d": "Ryzen 9 9900X3D",
+  "9800x3d": "Ryzen 7 9800X3D",
+  "9950x": "Ryzen 9 9950X",
+  "9900x": "Ryzen 9 9900X",
+  "9700x": "Ryzen 7 9700X",
+  "9600x": "Ryzen 5 9600X",
+
+  "8700g": "Ryzen 7 8700G",
+  "8600g": "Ryzen 5 8600G",
+  "8500g": "Ryzen 5 8500G",
+
+  "7950x3d": "Ryzen 9 7950X3D",
+  "7900x3d": "Ryzen 9 7900X3D",
+  "7800x3d": "Ryzen 7 7800X3D",
+  "7950x": "Ryzen 9 7950X",
+  "7900x": "Ryzen 9 7900X",
+  "7900": "Ryzen 9 7900",
+  "7700x": "Ryzen 7 7700X",
+  "7700": "Ryzen 7 7700",
+  "7600x": "Ryzen 5 7600X",
+  "7600": "Ryzen 5 7600",
+  "7500f": "Ryzen 5 7500F",
+
+  "5950x": "Ryzen 9 5950X",
+  "5900xt": "Ryzen 9 5900XT",
+  "5900x": "Ryzen 9 5900X",
+
+  "5800x3d": "Ryzen 7 5800X3D",
+  "5800xt": "Ryzen 7 5800XT",
+  "5800x": "Ryzen 7 5800X",
+  "5700x3d": "Ryzen 7 5700X3D",
+  "5700x": "Ryzen 7 5700X",
+  "5700g": "Ryzen 7 5700G",
+
+  "5600x3d": "Ryzen 5 5600X3D",
+  "5600xt": "Ryzen 5 5600XT",
+  "5600x": "Ryzen 5 5600X",
+  "5600": "Ryzen 5 5600",
+  "5600g": "Ryzen 5 5600G",
+  "5600gt": "Ryzen 5 5600GT",
+  "5500gt": "Ryzen 5 5500GT",
+  "5500": "Ryzen 5 5500",
+
+  "3950x": "Ryzen 9 3950X",
+  "3900xt": "Ryzen 9 3900XT",
+  "3900x": "Ryzen 9 3900X",
+  "3800xt": "Ryzen 7 3800XT",
+  "3800x": "Ryzen 7 3800X",
+  "3700x": "Ryzen 7 3700X",
+  "3600xt": "Ryzen 5 3600XT",
+  "3600x": "Ryzen 5 3600X",
+  "3600": "Ryzen 5 3600",
+  "3500x": "Ryzen 5 3500X",
+  "3500": "Ryzen 5 3500",
+  "3300x": "Ryzen 3 3300X",
+  "3100": "Ryzen 3 3100",
+
+  "2700x": "Ryzen 7 2700X",
+  "2700": "Ryzen 7 2700",
+  "2600x": "Ryzen 5 2600X",
+  "2600": "Ryzen 5 2600",
+  "2500x": "Ryzen 5 2500X",
+  "2300x": "Ryzen 3 2300X",
+
+  "1800x": "Ryzen 7 1800X",
+  "1700x": "Ryzen 7 1700X",
+  "1700": "Ryzen 7 1700",
+  "1600x": "Ryzen 5 1600X",
+  "1600": "Ryzen 5 1600",
+  "1500x": "Ryzen 5 1500X",
+  "1400": "Ryzen 5 1400",
+  "1300x": "Ryzen 3 1300X",
+  "1200": "Ryzen 3 1200",
+
+  // FX
+
+  "fx 9590": "FX-9590",
+  "fx 9370": "FX-9370",
+  "fx 8370": "FX-8370",
+  "fx 8350": "FX-8350",
+  "fx 8320": "FX-8320",
+  "fx 8150": "FX-8150",
+  "fx 6300": "FX-6300",
+  "fx 6100": "FX-6100",
+  "fx 4350": "FX-4350",
+  "fx 4300": "FX-4300"
 
 };
 
@@ -1659,353 +286,456 @@ const gpuAliases = {
 
   // NVIDIA
 
-  "geforce rtx 5090": "rtx 5090",
-  "geforce rtx 5080": "rtx 5080",
-  "geforce rtx 5070 ti": "rtx 5070 ti",
-  "geforce rtx 5070": "rtx 5070",
+  "5090": "RTX 5090",
+  "5080": "RTX 5080",
+  "5070 ti": "RTX 5070 Ti",
+  "5070ti": "RTX 5070 Ti",
+  "5070": "RTX 5070",
 
-  "geforce rtx 4090": "rtx 4090",
-  "geforce rtx 4080 super": "rtx 4080 super",
-  "geforce rtx 4080": "rtx 4080",
-  "geforce rtx 4070 ti super": "rtx 4070 ti super",
-  "geforce rtx 4070 ti": "rtx 4070 ti",
-  "geforce rtx 4070 super": "rtx 4070 super",
-  "geforce rtx 4070": "rtx 4070",
-  "geforce rtx 4060 ti": "rtx 4060 ti",
-  "geforce rtx 4060": "rtx 4060",
+  "4090": "RTX 4090",
+  "4080 super": "RTX 4080 Super",
+  "4080s": "RTX 4080 Super",
+  "4080": "RTX 4080",
 
-  "geforce rtx 3090 ti": "rtx 3090 ti",
-  "geforce rtx 3090": "rtx 3090",
-  "geforce rtx 3080 ti": "rtx 3080 ti",
-  "geforce rtx 3080": "rtx 3080",
-  "geforce rtx 3070 ti": "rtx 3070 ti",
-  "geforce rtx 3070": "rtx 3070",
-  "geforce rtx 3060 ti": "rtx 3060 ti",
-  "geforce rtx 3060": "rtx 3060",
-  "geforce rtx 3050": "rtx 3050",
+  "4070 ti super": "RTX 4070 Ti Super",
+  "4070tis": "RTX 4070 Ti Super",
+  "4070 ti": "RTX 4070 Ti",
+  "4070ti": "RTX 4070 Ti",
+  "4070 super": "RTX 4070 Super",
+  "4070s": "RTX 4070 Super",
+  "4070": "RTX 4070",
 
-  "geforce rtx 2080 ti": "rtx 2080 ti",
-  "geforce rtx 2080 super": "rtx 2080 super",
-  "geforce rtx 2080": "rtx 2080",
-  "geforce rtx 2070 super": "rtx 2070 super",
-  "geforce rtx 2070": "rtx 2070",
-  "geforce rtx 2060 super": "rtx 2060 super",
-  "geforce rtx 2060": "rtx 2060",
+  "4060 ti 16gb": "RTX 4060 Ti 16GB",
+  "4060ti 16gb": "RTX 4060 Ti 16GB",
+  "4060 ti 8gb": "RTX 4060 Ti 8GB",
+  "4060ti 8gb": "RTX 4060 Ti 8GB",
+  "4060 ti": "RTX 4060 Ti",
+  "4060ti": "RTX 4060 Ti",
+  "4060": "RTX 4060",
 
-  "geforce gtx 1080 ti": "gtx 1080 ti",
-  "geforce gtx 1080": "gtx 1080",
-  "geforce gtx 1070 ti": "gtx 1070 ti",
-  "geforce gtx 1070": "gtx 1070",
-  "geforce gtx 1060 6gb": "gtx 1060 6gb",
-  "geforce gtx 1060 3gb": "gtx 1060 3gb",
+  "3090 ti": "RTX 3090 Ti",
+  "3090ti": "RTX 3090 Ti",
+  "3090": "RTX 3090",
 
-  "geforce gtx 1660 super": "gtx 1660 super",
-  "geforce gtx 1660 ti": "gtx 1660 ti",
-  "geforce gtx 1660": "gtx 1660",
-  "geforce gtx 1650 super": "gtx 1650 super",
-  "geforce gtx 1650": "gtx 1650",
+  "3080 ti": "RTX 3080 Ti",
+  "3080ti": "RTX 3080 Ti",
+  "3080 12gb": "RTX 3080 12GB",
+  "3080 10gb": "RTX 3080 10GB",
+  "3080": "RTX 3080",
+
+  "3070 ti": "RTX 3070 Ti",
+  "3070ti": "RTX 3070 Ti",
+  "3070": "RTX 3070",
+
+  "3060 ti": "RTX 3060 Ti",
+  "3060ti": "RTX 3060 Ti",
+  "3060 12gb": "RTX 3060 12GB",
+  "3060 8gb": "RTX 3060 8GB",
+  "3060": "RTX 3060",
+
+  "3050 8gb": "RTX 3050 8GB",
+  "3050 6gb": "RTX 3050 6GB",
+  "3050": "RTX 3050",
+
+  "2080 ti": "RTX 2080 Ti",
+  "2080ti": "RTX 2080 Ti",
+  "2080 super": "RTX 2080 Super",
+  "2080s": "RTX 2080 Super",
+  "2080": "RTX 2080",
+
+  "2070 super": "RTX 2070 Super",
+  "2070s": "RTX 2070 Super",
+  "2070": "RTX 2070",
+
+  "2060 super": "RTX 2060 Super",
+  "2060s": "RTX 2060 Super",
+  "2060 12gb": "RTX 2060 12GB",
+  "2060": "RTX 2060",
+
+  "1660 ti": "GTX 1660 Ti",
+  "1660ti": "GTX 1660 Ti",
+  "1660 super": "GTX 1660 Super",
+  "1660s": "GTX 1660 Super",
+  "1660": "GTX 1660",
+
+  "1650 super": "GTX 1650 Super",
+  "1650s": "GTX 1650 Super",
+  "1650": "GTX 1650",
+
+  "1080 ti": "GTX 1080 Ti",
+  "1080ti": "GTX 1080 Ti",
+  "1080": "GTX 1080",
+
+  "1070 ti": "GTX 1070 Ti",
+  "1070ti": "GTX 1070 Ti",
+  "1070": "GTX 1070",
+
+  "1060 6gb": "GTX 1060 6GB",
+  "1060 5gb": "GTX 1060 5GB",
+  "1060 3gb": "GTX 1060 3GB",
+
+  "1050 ti": "GTX 1050 Ti",
+  "1050ti": "GTX 1050 Ti",
+  "1050": "GTX 1050",
+
+  "980 ti": "GTX 980 Ti",
+  "980ti": "GTX 980 Ti",
+  "980": "GTX 980",
+  "970": "GTX 970",
+
+  "960 4gb": "GTX 960 4GB",
+  "960 2gb": "GTX 960 2GB",
+  "950": "GTX 950",
+
+  "780 ti": "GTX 780 Ti",
+  "780ti": "GTX 780 Ti",
+  "780": "GTX 780",
+  "770": "GTX 770",
+  "760": "GTX 760",
+  "750 ti": "GTX 750 Ti",
+  "750ti": "GTX 750 Ti",
+  "750": "GTX 750",
 
   // AMD
 
-  "radeon rx 9070 xt": "rx 9070 xt",
-  "radeon rx 9070": "rx 9070",
+  "9070 xt": "RX 9070 XT",
+  "9070xt": "RX 9070 XT",
+  "9070": "RX 9070",
 
-  "radeon rx 7900 xtx": "rx 7900 xtx",
-  "radeon rx 7900 xt": "rx 7900 xt",
-  "radeon rx 7900 gre": "rx 7900 gre",
-  "radeon rx 7800 xt": "rx 7800 xt",
-  "radeon rx 7700 xt": "rx 7700 xt",
-  "radeon rx 7600 xt": "rx 7600 xt",
-  "radeon rx 7600": "rx 7600",
+  "7900 xtx": "RX 7900 XTX",
+  "7900xtx": "RX 7900 XTX",
+  "7900 xt": "RX 7900 XT",
+  "7900xt": "RX 7900 XT",
+  "7900 gre": "RX 7900 GRE",
+  "7900gre": "RX 7900 GRE",
 
-  "radeon rx 6950 xt": "rx 6950 xt",
-  "radeon rx 6900 xt": "rx 6900 xt",
-  "radeon rx 6800 xt": "rx 6800 xt",
-  "radeon rx 6800": "rx 6800",
-  "radeon rx 6750 xt": "rx 6750 xt",
-  "radeon rx 6700 xt": "rx 6700 xt",
-  "radeon rx 6650 xt": "rx 6650 xt",
-  "radeon rx 6600 xt": "rx 6600 xt",
-  "radeon rx 6600": "rx 6600",
-  "radeon rx 6500 xt": "rx 6500 xt",
+  "7800 xt": "RX 7800 XT",
+  "7800xt": "RX 7800 XT",
+  "7700 xt": "RX 7700 XT",
+  "7700xt": "RX 7700 XT",
+  "7600 xt": "RX 7600 XT",
+  "7600xt": "RX 7600 XT",
+  "7600": "RX 7600",
+
+  "6950 xt": "RX 6950 XT",
+  "6950xt": "RX 6950 XT",
+  "6900 xt": "RX 6900 XT",
+  "6900xt": "RX 6900 XT",
+  "6800 xt": "RX 6800 XT",
+  "6800xt": "RX 6800 XT",
+  "6800": "RX 6800",
+  "6750 xt": "RX 6750 XT",
+  "6750xt": "RX 6750 XT",
+  "6700 xt": "RX 6700 XT",
+  "6700xt": "RX 6700 XT",
+  "6650 xt": "RX 6650 XT",
+  "6650xt": "RX 6650 XT",
+  "6600 xt": "RX 6600 XT",
+  "6600xt": "RX 6600 XT",
+  "6600": "RX 6600",
+  "6500 xt": "RX 6500 XT",
+  "6500xt": "RX 6500 XT",
+  "6400": "RX 6400",
+
+  "5700 xt": "RX 5700 XT",
+  "5700xt": "RX 5700 XT",
+  "5700": "RX 5700",
+  "5600 xt": "RX 5600 XT",
+  "5600xt": "RX 5600 XT",
+
+  "590": "RX 590",
+  "580 8gb": "RX 580 8GB",
+  "580 4gb": "RX 580 4GB",
+  "580": "RX 580",
+  "570 8gb": "RX 570 8GB",
+  "570 4gb": "RX 570 4GB",
+  "570": "RX 570",
+  "560": "RX 560",
+  "550": "RX 550",
+
+  "vega 64": "RX Vega 64",
+  "vega64": "RX Vega 64",
+  "vega 56": "RX Vega 56",
+  "vega56": "RX Vega 56",
 
   // Intel
 
-  "intel arc b580": "arc b580",
-  "intel arc a770": "arc a770",
-  "intel arc a750": "arc a750"
+  "b580": "Arc B580",
+  "b570": "Arc B570",
+  "a770 16gb": "Arc A770 16GB",
+  "a770 8gb": "Arc A770 8GB",
+  "a750": "Arc A750",
+  "a580": "Arc A580",
+  "a380": "Arc A380",
+  "a310": "Arc A310"
 
 };
 
 
 
 // ============================================================
-// CPU ALIASES
+// NORMALIZE PART NAME
 // ============================================================
 
-const cpuAliases = {
+function normalizePartName(text) {
 
-  // AMD prefixes
-
-  "amd ryzen 9 9950x3d": "ryzen 9 9950x3d",
-  "amd ryzen 9 9900x3d": "ryzen 9 9900x3d",
-  "amd ryzen 7 9800x3d": "ryzen 7 9800x3d",
-
-  "amd ryzen 9 7950x3d": "ryzen 9 7950x3d",
-  "amd ryzen 9 7900x3d": "ryzen 9 7900x3d",
-  "amd ryzen 7 7800x3d": "ryzen 7 7800x3d",
-
-  "amd ryzen 7 5800x3d": "ryzen 7 5800x3d",
-  "amd ryzen 7 5700x3d": "ryzen 7 5700x3d",
-  "amd ryzen 5 5600x3d": "ryzen 5 5600x3d",
-
-  "amd ryzen 7 5700x": "ryzen 7 5700x",
-  "amd ryzen 5 5600x": "ryzen 5 5600x",
-  "amd ryzen 5 5600": "ryzen 5 5600",
-
-  // Intel Core
-
-  "intel core i9 14900k": "i9-14900k",
-  "intel core i9-14900k": "i9-14900k",
-
-  "intel core i7 14700k": "i7-14700k",
-  "intel core i7-14700k": "i7-14700k",
-
-  "intel core i5 14600k": "i5-14600k",
-  "intel core i5-14600k": "i5-14600k",
-
-  "intel core i9 13900k": "i9-13900k",
-  "intel core i9-13900k": "i9-13900k",
-
-  "intel core i7 13700k": "i7-13700k",
-  "intel core i7-13700k": "i7-13700k",
-
-  "intel core i5 13600k": "i5-13600k",
-  "intel core i5-13600k": "i5-13600k",
-
-  "intel core i9 12900k": "i9-12900k",
-  "intel core i9-12900k": "i9-12900k",
-
-  "intel core i7 12700k": "i7-12700k",
-  "intel core i7-12700k": "i7-12700k",
-
-  "intel core i5 12600k": "i5-12600k",
-  "intel core i5-12600k": "i5-12600k",
-
-  "intel core i7 4790k": "i7-4790k",
-  "intel core i7-4790k": "i7-4790k",
-
-  "core i7 4790k": "i7-4790k",
-  "core i7-4790k": "i7-4790k",
-
-  "i7 4790k": "i7-4790k",
-
-  "intel core i7 3770k": "i7-3770k",
-  "intel core i7-3770k": "i7-3770k",
-
-  "intel core i7 2600k": "i7-2600k",
-  "intel core i7-2600k": "i7-2600k",
-
-  // Core Ultra
-
-  "intel core ultra 9 285k": "ultra 9 285k",
-  "core ultra 9 285k": "ultra 9 285k",
-
-  "intel core ultra 7 265k": "ultra 7 265k",
-  "core ultra 7 265k": "ultra 7 265k",
-
-  "intel core ultra 5 245k": "ultra 5 245k",
-  "core ultra 5 245k": "ultra 5 245k"
-
-};
-
-
-
-// ============================================================
-// NORMALIZATION
-// ============================================================
-
-function normalizePartName(name) {
-
-  if (!name) {
+  if (!text) {
     return "";
   }
 
-  return name
+  return text
     .toLowerCase()
-    .trim()
-    .replace(/[(),]/g, "")
-    .replace(/\s+/g, " ");
-}
-
-
-
-// ============================================================
-// MORE AGGRESSIVE NORMALIZATION FOR DETECTION
-// ============================================================
-//
-// Makes:
-//
-// i7-4790K
-// i7 4790K
-// Intel Core i7-4790K
-//
-// easier for app.js to detect.
-//
-// ============================================================
-
-function normalizePartForDetection(name) {
-
-  if (!name) {
-    return "";
-  }
-
-  return name
-    .toLowerCase()
-    .replace(/[-_/(),]/g, " ")
+    .replace(/nvidia/g, "")
+    .replace(/geforce/g, "")
+    .replace(/amd\s+radeon/g, "")
+    .replace(/radeon/g, "")
+    .replace(/intel\s+core/g, "core")
+    .replace(/®|™/g, "")
+    .replace(/[-_/(),.:]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+
 }
 
 
 
 // ============================================================
-// FIND GPU
+// AGGRESSIVE DETECTION NORMALIZER
 // ============================================================
 
-function findGPU(name) {
+function normalizePartForDetection(text) {
 
-  if (!name) {
+  if (!text) {
+    return "";
+  }
+
+  return text
+    .toLowerCase()
+    .replace(/®|™/g, "")
+    .replace(/nvidia/g, "")
+    .replace(/geforce/g, "")
+    .replace(/amd\s+radeon/g, "")
+    .replace(/radeon/g, "")
+    .replace(/intel\s+core/g, "core")
+    .replace(/[-_/(),.:]/g, " ")
+    .replace(/\bgb\b/g, " gb ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+}
+
+
+
+// ============================================================
+// COMPACT NORMALIZER
+// ============================================================
+//
+// Useful for:
+//
+// GTX1080Ti
+// RTX4070Super
+// i74790K
+// Ryzen75800X3D
+//
+// ============================================================
+
+function compactPartText(text) {
+
+  return normalizePartForDetection(text)
+    .replace(/\s+/g, "");
+
+}
+
+
+
+// ============================================================
+// FIND CPU EXACT / ALIAS
+// ============================================================
+
+function findCPU(input) {
+
+  if (!input) {
     return null;
   }
 
-  const normalized =
-    normalizePartName(name);
 
-  // Direct database hit
-
-  if (gpuDatabase[normalized]) {
-    return gpuDatabase[normalized];
-  }
+  const normalizedInput =
+    normalizePartForDetection(input);
 
 
-  // Alias hit
+  const compactInput =
+    compactPartText(input);
 
-  if (
-    gpuAliases[normalized] &&
-    gpuDatabase[gpuAliases[normalized]]
+
+  // ----------------------------------------------------------
+  // EXACT DATABASE MATCH
+  // ----------------------------------------------------------
+
+  for (
+    const [key, cpu]
+    of Object.entries(cpuDatabase)
   ) {
 
-    return gpuDatabase[
-      gpuAliases[normalized]
-    ];
+    const normalizedKey =
+      normalizePartForDetection(key);
+
+    const normalizedName =
+      normalizePartForDetection(cpu.name);
+
+
+    if (
+      normalizedInput === normalizedKey ||
+      normalizedInput === normalizedName
+    ) {
+
+      return cpu;
+
+    }
+
+
+    if (
+      compactInput ===
+        compactPartText(key) ||
+      compactInput ===
+        compactPartText(cpu.name)
+    ) {
+
+      return cpu;
+
+    }
+
   }
 
 
-  // Remove common manufacturer words
+  // ----------------------------------------------------------
+  // ALIAS MATCH
+  // ----------------------------------------------------------
 
-  const cleaned = normalized
-    .replace("nvidia ", "")
-    .replace("geforce ", "")
-    .replace("amd ", "")
-    .replace("radeon ", "")
-    .replace("intel ", "")
-    .trim();
+  for (
+    const [alias, canonical]
+    of Object.entries(cpuAliases)
+  ) {
 
+    if (
+      normalizedInput ===
+        normalizePartForDetection(alias) ||
+      compactInput ===
+        compactPartText(alias)
+    ) {
 
-  if (gpuDatabase[cleaned]) {
-    return gpuDatabase[cleaned];
+      return (
+        cpuDatabase[canonical] ||
+        null
+      );
+
+    }
+
   }
 
 
   return null;
+
 }
 
 
 
 // ============================================================
-// FIND CPU
+// FIND GPU EXACT / ALIAS
 // ============================================================
 
-function findCPU(name) {
+function findGPU(input) {
 
-  if (!name) {
+  if (!input) {
     return null;
   }
 
-  const normalized =
-    normalizePartName(name);
+
+  const normalizedInput =
+    normalizePartForDetection(input);
 
 
-  // Direct hit
-
-  if (cpuDatabase[normalized]) {
-    return cpuDatabase[normalized];
-  }
+  const compactInput =
+    compactPartText(input);
 
 
-  // Alias hit
+  // ----------------------------------------------------------
+  // EXACT DATABASE MATCH
+  // ----------------------------------------------------------
 
-  if (
-    cpuAliases[normalized] &&
-    cpuDatabase[cpuAliases[normalized]]
+  for (
+    const [key, gpu]
+    of Object.entries(gpuDatabase)
   ) {
 
-    return cpuDatabase[
-      cpuAliases[normalized]
-    ];
+    if (
+      normalizedInput ===
+        normalizePartForDetection(key) ||
+      normalizedInput ===
+        normalizePartForDetection(gpu.name) ||
+      compactInput ===
+        compactPartText(key) ||
+      compactInput ===
+        compactPartText(gpu.name)
+    ) {
+
+      return gpu;
+
+    }
+
   }
 
 
-  // Remove common prefixes
+  // ----------------------------------------------------------
+  // ALIAS MATCH
+  // ----------------------------------------------------------
 
-  let cleaned = normalized
-    .replace(/^amd /, "")
-    .replace(/^intel core /, "")
-    .replace(/^intel /, "")
-    .replace(/^core /, "")
-    .trim();
+  for (
+    const [alias, canonical]
+    of Object.entries(gpuAliases)
+  ) {
 
+    if (
+      normalizedInput ===
+        normalizePartForDetection(alias) ||
+      compactInput ===
+        compactPartText(alias)
+    ) {
 
-  if (cpuDatabase[cleaned]) {
-    return cpuDatabase[cleaned];
-  }
+      return (
+        gpuDatabase[canonical] ||
+        null
+      );
 
+    }
 
-  // Handle Intel spacing:
-  //
-  // i7 4790k
-  // becomes
-  // i7-4790k
-
-  cleaned = cleaned.replace(
-    /^(i[3579])\s+(\d+[a-z]*)$/,
-    "$1-$2"
-  );
-
-
-  if (cpuDatabase[cleaned]) {
-    return cpuDatabase[cleaned];
   }
 
 
   return null;
+
 }
 
 
 
 // ============================================================
-// CPU PLATFORM INFORMATION
+// CPU PLATFORM HELPERS
 // ============================================================
 
 function getCPUPlatform(cpu) {
 
-  if (!cpu || !cpu.socket) {
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
     return null;
+
   }
 
+
   if (
-    typeof getPlatform !== "function"
+    typeof getPlatform !==
+    "function"
   ) {
 
     console.warn(
@@ -2013,62 +743,77 @@ function getCPUPlatform(cpu) {
     );
 
     return null;
+
   }
 
-  return getPlatform(cpu.socket);
+
+  return getPlatform(
+    cpu.socket
+  );
+
 }
 
 
 
-// ============================================================
-// GET CPU MEMORY TYPES
-// ============================================================
-
 function getCPUMemoryTypes(cpu) {
 
-  if (!cpu || !cpu.socket) {
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
     return [];
+
   }
 
+
   if (
-    typeof getPlatformMemory !== "function"
+    typeof getPlatformMemory !==
+    "function"
   ) {
+
     return [];
+
   }
+
 
   return getPlatformMemory(
     cpu.socket
   );
+
 }
 
 
 
-// ============================================================
-// GET CPU COMPATIBLE CHIPSETS
-// ============================================================
-
 function getCPUChipsets(cpu) {
 
-  if (!cpu || !cpu.socket) {
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
     return [];
+
   }
 
+
   if (
-    typeof getCompatibleChipsets !== "function"
+    typeof getCompatibleChipsets !==
+    "function"
   ) {
+
     return [];
+
   }
+
 
   return getCompatibleChipsets(
     cpu.socket
   );
+
 }
 
 
-
-// ============================================================
-// GET FULL CPU COMPATIBILITY DATA
-// ============================================================
 
 function getCPUCompatibility(cpu) {
 
@@ -2076,17 +821,30 @@ function getCPUCompatibility(cpu) {
     return null;
   }
 
+
   const platform =
     getCPUPlatform(cpu);
+
 
   if (!platform) {
 
     return {
-      cpu: cpu.name,
-      socket: cpu.socket || null,
-      memory: [],
-      chipsets: [],
-      automaticMemory: false
+
+      cpu:
+        cpu.name,
+
+      socket:
+        cpu.socket || null,
+
+      memory:
+        [],
+
+      chipsets:
+        [],
+
+      automaticMemory:
+        false
+
     };
 
   }
@@ -2094,6 +852,7 @@ function getCPUCompatibility(cpu) {
 
   const memory =
     platform.memory || [];
+
 
   return {
 
@@ -2133,7 +892,7 @@ function getCPUCompatibility(cpu) {
 
 
 // ============================================================
-// CPU + CHIPSET COMPATIBILITY CHECK
+// CPU + CHIPSET CHECK
 // ============================================================
 
 function checkCPUChipsetCompatibility(
@@ -2147,52 +906,38 @@ function checkCPUChipsetCompatibility(
     !chipset
   ) {
 
-    return {
-      compatible: null,
-      reason:
-        "Not enough information."
-    };
+    return null;
+
   }
 
 
-  const normalizedChipset =
-    chipset
-      .toUpperCase()
-      .trim();
+  if (
+    typeof isChipsetCompatible ===
+    "function"
+  ) {
+
+    return isChipsetCompatible(
+      cpu.socket,
+      chipset
+    );
+
+  }
 
 
   const chipsets =
     getCPUChipsets(cpu);
 
 
-  if (
-    chipsets.includes(
-      normalizedChipset
-    )
-  ) {
-
-    return {
-      compatible: true,
-
-      reason:
-        `${cpu.name} uses ${cpu.socket}, and ${normalizedChipset} is listed for that platform.`
-    };
-  }
-
-
-  return {
-    compatible: false,
-
-    reason:
-      `${cpu.name} uses ${cpu.socket}, but ${normalizedChipset} is not listed as a compatible chipset.`
-  };
+  return chipsets.includes(
+    chipset.toUpperCase()
+  );
 
 }
 
 
 
 // ============================================================
-// CPU + RAM COMPATIBILITY CHECK
+// CPU + MEMORY CHECK
 // ============================================================
 
 function checkCPUMemoryCompatibility(
@@ -2205,68 +950,38 @@ function checkCPUMemoryCompatibility(
     !memoryType
   ) {
 
-    return {
-      compatible: null,
-      reason:
-        "Not enough information."
-    };
+    return null;
+
   }
-
-
-  const supportedMemory =
-    getCPUMemoryTypes(cpu);
-
-
-  const normalizedMemory =
-    memoryType
-      .toUpperCase()
-      .trim();
 
 
   if (
-    supportedMemory.includes(
-      normalizedMemory
-    )
+    typeof isMemoryCompatible ===
+    "function"
   ) {
 
-    return {
-      compatible: true,
+    return isMemoryCompatible(
+      cpu.socket,
+      memoryType
+    );
 
-      reason:
-        `${cpu.name} supports ${normalizedMemory} on the ${cpu.socket} platform.`
-    };
   }
 
 
-  return {
-    compatible: false,
-
-    reason:
-      `${cpu.name} uses ${cpu.socket}, which supports ${supportedMemory.join(" / ")}.`
-  };
+  return getCPUMemoryTypes(cpu)
+    .includes(
+      memoryType.toUpperCase()
+    );
 
 }
 
 
 
 // ============================================================
-// DETECT CPU FROM TEXT
-// ============================================================
-//
-// This is much more reliable than exact key matching.
-//
+// BUILD CPU DETECTION CANDIDATES
 // ============================================================
 
-function detectCPUFromText(text) {
-
-  if (!text) {
-    return null;
-  }
-
-
-  const listing =
-    normalizePartForDetection(text);
-
+function buildCPUCandidates() {
 
   const candidates = [];
 
@@ -2277,110 +992,73 @@ function detectCPUFromText(text) {
   ) {
 
     candidates.push({
-      cpu,
-      text:
-        normalizePartForDetection(key)
+
+      text: key,
+      cpu: cpu,
+      weight: key.length
+
     });
-
-
-    candidates.push({
-      cpu,
-      text:
-        normalizePartForDetection(
-          cpu.name
-        )
-    });
-
-
-    for (
-      const [alias, target]
-      of Object.entries(cpuAliases)
-    ) {
-
-      if (target === key) {
-
-        candidates.push({
-          cpu,
-          text:
-            normalizePartForDetection(
-              alias
-            )
-        });
-
-      }
-
-    }
-
-  }
-
-
-  candidates.sort(
-    (a, b) =>
-      b.text.length -
-      a.text.length
-  );
-
-
-  const seen =
-    new Set();
-
-
-  for (
-    const candidate
-    of candidates
-  ) {
-
-    if (!candidate.text) {
-      continue;
-    }
-
-
-    const id =
-      candidate.cpu.name +
-      "|" +
-      candidate.text;
-
-
-    if (seen.has(id)) {
-      continue;
-    }
-
-
-    seen.add(id);
 
 
     if (
-      listing.includes(
-        candidate.text
-      )
+      cpu.name &&
+      cpu.name !== key
     ) {
 
-      return candidate.cpu;
+      candidates.push({
+
+        text: cpu.name,
+        cpu: cpu,
+        weight:
+          cpu.name.length
+
+      });
 
     }
 
   }
 
 
-  return null;
+  for (
+    const [alias, canonical]
+    of Object.entries(cpuAliases)
+  ) {
+
+    const cpu =
+      cpuDatabase[canonical];
+
+
+    if (cpu) {
+
+      candidates.push({
+
+        text: alias,
+        cpu: cpu,
+        weight:
+          alias.length
+
+      });
+
+    }
+
+  }
+
+
+  return candidates.sort(
+    (a, b) =>
+      b.weight -
+      a.weight
+  );
+
 }
 
 
 
 // ============================================================
-// DETECT GPU FROM TEXT
+// BUILD GPU DETECTION CANDIDATES
 // ============================================================
 
-function detectGPUFromText(text) {
-
-  if (!text) {
-    return null;
-  }
-
-
-  const listing =
-    normalizePartForDetection(text);
-
+function buildGPUCandidates() {
 
   const candidates = [];
 
@@ -2391,91 +1069,657 @@ function detectGPUFromText(text) {
   ) {
 
     candidates.push({
-      gpu,
-      text:
-        normalizePartForDetection(key)
+
+      text: key,
+      gpu: gpu,
+      weight:
+        key.length
+
     });
 
 
-    candidates.push({
-      gpu,
-      text:
-        normalizePartForDetection(
-          gpu.name
-        )
-    });
-
-
-    for (
-      const [alias, target]
-      of Object.entries(gpuAliases)
+    if (
+      gpu.name &&
+      gpu.name !== key
     ) {
 
-      if (target === key) {
+      candidates.push({
 
-        candidates.push({
-          gpu,
-          text:
-            normalizePartForDetection(
-              alias
-            )
-        });
+        text: gpu.name,
+        gpu: gpu,
+        weight:
+          gpu.name.length
 
-      }
+      });
 
     }
 
   }
 
 
-  // Longest names first.
-  //
-  // This prevents:
-  //
-  // RTX 3080
-  //
-  // being selected before:
-  //
-  // RTX 3080 12GB
+  for (
+    const [alias, canonical]
+    of Object.entries(gpuAliases)
+  ) {
 
-  candidates.sort(
+    const gpu =
+      gpuDatabase[canonical];
+
+
+    if (gpu) {
+
+      candidates.push({
+
+        text: alias,
+        gpu: gpu,
+        weight:
+          alias.length
+
+      });
+
+    }
+
+  }
+
+
+  return candidates.sort(
     (a, b) =>
-      b.text.length -
-      a.text.length
+      b.weight -
+      a.weight
   );
 
+}
 
-  const seen =
-    new Set();
 
+
+// ============================================================
+// DETECT CPU FROM LISTING
+// ============================================================
+
+function detectCPUFromText(text) {
+
+  if (!text) {
+    return null;
+  }
+
+
+  const normalizedListing =
+    normalizePartForDetection(
+      text
+    );
+
+
+  const compactListing =
+    compactPartText(
+      text
+    );
+
+
+  const candidates =
+    buildCPUCandidates();
+
+
+  // ----------------------------------------------------------
+  // DATABASE / ALIAS SEARCH
+  // ----------------------------------------------------------
 
   for (
     const candidate
     of candidates
   ) {
 
-    if (!candidate.text) {
-      continue;
-    }
+    const normalizedCandidate =
+      normalizePartForDetection(
+        candidate.text
+      );
 
 
-    const id =
-      candidate.gpu.name +
-      "|" +
-      candidate.text;
-
-
-    if (seen.has(id)) {
-      continue;
-    }
-
-
-    seen.add(id);
+    const compactCandidate =
+      compactPartText(
+        candidate.text
+      );
 
 
     if (
-      listing.includes(
+      normalizedListing.includes(
+        normalizedCandidate
+      )
+    ) {
+
+      return candidate.cpu;
+
+    }
+
+
+    if (
+      compactCandidate.length >= 5 &&
+      compactListing.includes(
+        compactCandidate
+      )
+    ) {
+
+      return candidate.cpu;
+
+    }
+
+  }
+
+
+  // ----------------------------------------------------------
+  // INTEL FALLBACK PATTERN
+  // ----------------------------------------------------------
+  //
+  // Examples:
+  //
+  // i7-4790K
+  // i5 13600KF
+  // Intel Core i9 14900K
+  //
+  // ----------------------------------------------------------
+
+  const intelMatch =
+    text.match(
+      /\b(?:intel\s+)?(?:core\s+)?i([3579])[\s-]*([0-9]{3,5})([a-z]{0,3})\b/i
+    );
+
+
+  if (intelMatch) {
+
+    const tier =
+      intelMatch[1];
+
+    const model =
+      intelMatch[2];
+
+    const suffix =
+      intelMatch[3]
+        .toUpperCase();
+
+
+    const guessedName =
+      `Core i${tier}-${model}${suffix}`;
+
+
+    const exact =
+      findCPU(
+        guessedName
+      );
+
+
+    if (exact) {
+
+      return exact;
+
+    }
+
+
+    return createIntelFallbackCPU(
+      tier,
+      model,
+      suffix
+    );
+
+  }
+
+
+  // ----------------------------------------------------------
+  // AMD RYZEN FALLBACK
+  // ----------------------------------------------------------
+
+  const ryzenMatch =
+    text.match(
+      /\b(?:amd\s+)?ryzen\s*([3579])?\s*([0-9]{4})(x3d|xt|x|g|ge|f)?\b/i
+    );
+
+
+  if (ryzenMatch) {
+
+    const tier =
+      ryzenMatch[1] || "";
+
+    const model =
+      ryzenMatch[2];
+
+    const suffix =
+      (
+        ryzenMatch[3] ||
+        ""
+      ).toUpperCase();
+
+
+    const guessedName =
+      tier
+        ? `Ryzen ${tier} ${model}${suffix}`
+        : `Ryzen ${model}${suffix}`;
+
+
+    const exact =
+      findCPU(
+        guessedName
+      );
+
+
+    if (exact) {
+
+      return exact;
+
+    }
+
+
+    return createRyzenFallbackCPU(
+      tier,
+      model,
+      suffix
+    );
+
+  }
+
+
+  // ----------------------------------------------------------
+  // AMD FX FALLBACK
+  // ----------------------------------------------------------
+
+  const fxMatch =
+    text.match(
+      /\bfx[\s-]*([0-9]{4})\b/i
+    );
+
+
+  if (fxMatch) {
+
+    const guessed =
+      findCPU(
+        `FX-${fxMatch[1]}`
+      );
+
+
+    if (guessed) {
+
+      return guessed;
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+
+// ============================================================
+// INTEL FALLBACK CPU
+// ============================================================
+//
+// This is not used for precise pricing.
+//
+// It is mainly so compatibility can still work for an Intel CPU
+// missing from cpu-data.js.
+//
+// ============================================================
+
+function createIntelFallbackCPU(
+  tier,
+  model,
+  suffix = ""
+) {
+
+  const number =
+    Number(model);
+
+
+  let generation = null;
+  let socket = null;
+  let family = "Unknown Intel";
+  let performance = 20;
+
+
+  // ----------------------------------------------------------
+  // GENERATION
+  // ----------------------------------------------------------
+
+  if (
+    number >= 10000
+  ) {
+
+    generation =
+      Number(
+        model.slice(
+          0,
+          2
+        )
+      );
+
+  }
+
+  else if (
+    number >= 2000
+  ) {
+
+    generation =
+      Number(
+        model.charAt(0)
+      );
+
+  }
+
+  else {
+
+    generation = 1;
+
+  }
+
+
+  // ----------------------------------------------------------
+  // SOCKET
+  // ----------------------------------------------------------
+
+  if (
+    generation >= 12 &&
+    generation <= 14
+  ) {
+
+    socket =
+      "LGA1700";
+
+  }
+
+
+  else if (
+    generation === 10 ||
+    generation === 11
+  ) {
+
+    socket =
+      "LGA1200";
+
+  }
+
+
+  else if (
+    generation === 8 ||
+    generation === 9
+  ) {
+
+    socket =
+      "LGA1151-300";
+
+  }
+
+
+  else if (
+    generation === 6 ||
+    generation === 7
+  ) {
+
+    socket =
+      "LGA1151-100-200";
+
+  }
+
+
+  else if (
+    generation === 4 ||
+    generation === 5
+  ) {
+
+    socket =
+      "LGA1150";
+
+  }
+
+
+  else if (
+    generation === 2 ||
+    generation === 3
+  ) {
+
+    socket =
+      "LGA1155";
+
+  }
+
+
+  else if (
+    generation === 1
+  ) {
+
+    socket =
+      "LGA1156";
+
+  }
+
+
+  family =
+    `${generation}${
+      generation === 1
+        ? "st"
+        : generation === 2
+        ? "nd"
+        : generation === 3
+        ? "rd"
+        : "th"
+    } Gen fallback`;
+
+
+  // ----------------------------------------------------------
+  // ROUGH PERFORMANCE
+  // ----------------------------------------------------------
+
+  const tierBase = {
+
+    "3": 10,
+    "5": 16,
+    "7": 22,
+    "9": 28
+
+  };
+
+
+  performance =
+    (
+      tierBase[tier] ||
+      12
+    ) +
+    generation * 2;
+
+
+  return {
+
+    name:
+      `Core i${tier}-${model}${suffix}`,
+
+    value:
+      0,
+
+    performance:
+      performance,
+
+    socket:
+      socket,
+
+    family:
+      family,
+
+    fallback:
+      true,
+
+    exactMarketValue:
+      false
+
+  };
+
+}
+
+
+
+// ============================================================
+// RYZEN FALLBACK CPU
+// ============================================================
+
+function createRyzenFallbackCPU(
+  tier,
+  model,
+  suffix = ""
+) {
+
+  const firstDigit =
+    Number(
+      model.charAt(0)
+    );
+
+
+  let socket = null;
+  let family = "Ryzen fallback";
+
+
+  // Ryzen desktop numbering broadly maps like this for our
+  // used-PC purposes.
+
+  if (
+    firstDigit >= 7
+  ) {
+
+    socket = "AM5";
+
+  }
+
+  else if (
+    firstDigit >= 1 &&
+    firstDigit <= 5
+  ) {
+
+    socket = "AM4";
+
+  }
+
+
+  let performance =
+    20;
+
+
+  const tierBase = {
+
+    "3": 18,
+    "5": 28,
+    "7": 38,
+    "9": 48
+
+  };
+
+
+  performance =
+    (
+      tierBase[tier] ||
+      25
+    ) +
+    firstDigit * 4;
+
+
+  if (
+    suffix === "X3D"
+  ) {
+
+    performance += 10;
+
+  }
+
+
+  return {
+
+    name:
+      tier
+        ? `Ryzen ${tier} ${model}${suffix}`
+        : `Ryzen ${model}${suffix}`,
+
+    value:
+      0,
+
+    performance:
+      performance,
+
+    socket:
+      socket,
+
+    family:
+      family,
+
+    fallback:
+      true,
+
+    exactMarketValue:
+      false
+
+  };
+
+}
+
+
+
+// ============================================================
+// DETECT GPU FROM LISTING
+// ============================================================
+
+function detectGPUFromText(text) {
+
+  if (!text) {
+    return null;
+  }
+
+
+  const normalizedListing =
+    normalizePartForDetection(
+      text
+    );
+
+
+  const compactListing =
+    compactPartText(
+      text
+    );
+
+
+  const candidates =
+    buildGPUCandidates();
+
+
+  // ----------------------------------------------------------
+  // FULL DATABASE SEARCH
+  // ----------------------------------------------------------
+
+  for (
+    const candidate
+    of candidates
+  ) {
+
+    const normalizedCandidate =
+      normalizePartForDetection(
         candidate.text
+      );
+
+
+    const compactCandidate =
+      compactPartText(
+        candidate.text
+      );
+
+
+    if (
+      normalizedListing.includes(
+        normalizedCandidate
+      )
+    ) {
+
+      return candidate.gpu;
+
+    }
+
+
+    if (
+      compactCandidate.length >= 4 &&
+      compactListing.includes(
+        compactCandidate
       )
     ) {
 
@@ -2486,125 +1730,394 @@ function detectGPUFromText(text) {
   }
 
 
+  // ----------------------------------------------------------
+  // NVIDIA FALLBACK
+  // ----------------------------------------------------------
+
+  const nvidiaMatch =
+    text.match(
+      /\b(?:nvidia\s+)?(?:geforce\s+)?(rtx|gtx|gt)\s*[- ]?\s*([0-9]{3,4})\s*(ti|super)?\b/i
+    );
+
+
+  if (nvidiaMatch) {
+
+    const prefix =
+      nvidiaMatch[1]
+        .toUpperCase();
+
+    const model =
+      nvidiaMatch[2];
+
+    const suffix =
+      nvidiaMatch[3]
+        ? " " +
+          formatGPUSuffix(
+            nvidiaMatch[3]
+          )
+        : "";
+
+
+    const guessedName =
+      `${prefix} ${model}${suffix}`;
+
+
+    const exact =
+      findGPU(
+        guessedName
+      );
+
+
+    if (exact) {
+
+      return exact;
+
+    }
+
+
+    return {
+
+      name:
+        guessedName,
+
+      value:
+        0,
+
+      performance:
+        estimateUnknownGPUPerformance(
+          prefix,
+          Number(model)
+        ),
+
+      vram:
+        null,
+
+      vendor:
+        "NVIDIA",
+
+      family:
+        "Detected fallback",
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
+
+  }
+
+
+  // ----------------------------------------------------------
+  // AMD RX FALLBACK
+  // ----------------------------------------------------------
+
+  const amdMatch =
+    text.match(
+      /\b(?:amd\s+)?(?:radeon\s+)?rx\s*[- ]?\s*([0-9]{3,4})\s*(xtx|xt|gre)?\b/i
+    );
+
+
+  if (amdMatch) {
+
+    const model =
+      amdMatch[1];
+
+    const suffix =
+      amdMatch[2]
+        ? " " +
+          amdMatch[2]
+            .toUpperCase()
+        : "";
+
+
+    const guessedName =
+      `RX ${model}${suffix}`;
+
+
+    const exact =
+      findGPU(
+        guessedName
+      );
+
+
+    if (exact) {
+
+      return exact;
+
+    }
+
+
+    return {
+
+      name:
+        guessedName,
+
+      value:
+        0,
+
+      performance:
+        estimateUnknownAMDPerformance(
+          Number(model)
+        ),
+
+      vram:
+        null,
+
+      vendor:
+        "AMD",
+
+      family:
+        "Detected fallback",
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
+
+  }
+
+
   return null;
+
 }
 
 
 
 // ============================================================
-// ALL CPU NAMES
+// FORMAT GPU SUFFIX
 // ============================================================
 
-function getAllCPUNames() {
+function formatGPUSuffix(
+  suffix
+) {
 
-  return Object.values(
-    cpuDatabase
-  )
-    .map(cpu => cpu.name)
-    .sort();
+  const lower =
+    suffix.toLowerCase();
+
+
+  if (
+    lower === "ti"
+  ) {
+
+    return "Ti";
+
+  }
+
+
+  if (
+    lower === "super"
+  ) {
+
+    return "Super";
+
+  }
+
+
+  return suffix;
+
 }
 
 
 
 // ============================================================
-// ALL GPU NAMES
+// UNKNOWN NVIDIA PERFORMANCE
+// ============================================================
+//
+// This is intentionally rough.
+// It is only for fallback display / balance,
+// not accurate pricing.
+//
 // ============================================================
 
-function getAllGPUNames() {
+function estimateUnknownGPUPerformance(
+  prefix,
+  model
+) {
 
-  return Object.values(
-    gpuDatabase
-  )
-    .map(gpu => gpu.name)
-    .sort();
+  let score = 10;
+
+
+  if (
+    prefix === "RTX"
+  ) {
+
+    const generation =
+      Math.floor(
+        model /
+        1000
+      );
+
+
+    const tier =
+      model %
+      1000;
+
+
+    score =
+      generation * 10;
+
+
+    if (tier >= 90) {
+      score += 30;
+    }
+
+    else if (
+      tier >= 80
+    ) {
+      score += 24;
+    }
+
+    else if (
+      tier >= 70
+    ) {
+      score += 18;
+    }
+
+    else if (
+      tier >= 60
+    ) {
+      score += 12;
+    }
+
+    else {
+      score += 7;
+    }
+
+  }
+
+
+  else if (
+    prefix === "GTX"
+  ) {
+
+    if (model >= 1000) {
+      score = 15;
+    }
+
+    else if (
+      model >= 900
+    ) {
+      score = 12;
+    }
+
+    else if (
+      model >= 700
+    ) {
+      score = 9;
+    }
+
+    else {
+      score = 6;
+    }
+
+  }
+
+
+  else {
+
+    score = 3;
+
+  }
+
+
+  return score;
+
 }
 
 
 
 // ============================================================
-// CPU DATABASE STATS
+// UNKNOWN AMD PERFORMANCE
 // ============================================================
 
-function getCPUCount() {
+function estimateUnknownAMDPerformance(
+  model
+) {
 
-  return Object.keys(
-    cpuDatabase
-  ).length;
+  if (
+    model >= 9000
+  ) {
+
+    return 65;
+
+  }
+
+
+  if (
+    model >= 7000
+  ) {
+
+    return 50;
+
+  }
+
+
+  if (
+    model >= 6000
+  ) {
+
+    return 38;
+
+  }
+
+
+  if (
+    model >= 5000
+  ) {
+
+    return 25;
+
+  }
+
+
+  if (
+    model >= 500
+  ) {
+
+    return 15;
+
+  }
+
+
+  return 8;
+
 }
 
 
 
 // ============================================================
-// GPU DATABASE STATS
-// ============================================================
-
-function getGPUCount() {
-
-  return Object.keys(
-    gpuDatabase
-  ).length;
-}
-
-
-
-// ============================================================
-// COMPLETE DATABASE STATS
+// DATABASE STATS
 // ============================================================
 
 function getDatabaseStats() {
 
   return {
 
-    cpus:
-      getCPUCount(),
+    cpuCount:
+      Object.keys(
+        cpuDatabase
+      ).length,
 
-    gpus:
-      getGPUCount(),
+    gpuCount:
+      Object.keys(
+        gpuDatabase
+      ).length,
 
-    totalParts:
-      getCPUCount() +
-      getGPUCount(),
+    cpuAliases:
+      Object.keys(
+        cpuAliases
+      ).length,
 
-    platforms:
-      typeof platformDatabase !==
-      "undefined"
-        ? Object.keys(
-            platformDatabase
-          ).length
-        : 0,
-
-    chipsets:
-      typeof chipsetDatabase !==
-      "undefined"
-        ? Object.keys(
-            chipsetDatabase
-          ).length
-        : 0
+    gpuAliases:
+      Object.keys(
+        gpuAliases
+      ).length
 
   };
 
 }
-
-
-
-// ============================================================
-// DEBUG CHECK
-// ============================================================
-//
-// You can type:
-//
-// getDatabaseStats()
-//
-// into the browser console.
-//
-// Example:
-//
-// {
-//   cpus: ...
-//   gpus: ...
-//   totalParts: ...
-//   platforms: ...
-//   chipsets: ...
-// }
-//
-// ============================================================
