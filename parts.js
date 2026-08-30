@@ -1,5 +1,5 @@
 // ========================================
-// PC DEAL ANALYZER - HARDWARE DATABASE
+// PC DEAL ANALYZER  HARDWARE DATABASE
 // ========================================
 //
 // Prices are estimated USED values in CAD.
