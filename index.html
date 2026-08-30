@@ -324,7 +324,7 @@ placeholder="e.g. RTX 3070"
 
 <div>
 
-<label>Memory</label>
+<label>Memory Capacity</label>
 
 <select id="ram">
 
@@ -341,6 +341,25 @@ placeholder="e.g. RTX 3070"
 
 <div>
 
+<label>RAM Type</label>
+
+<select id="ramType">
+
+<option value="">Unknown</option>
+<option>DDR4</option>
+<option>DDR5</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="row">
+
+<div>
+
 <label>Storage</label>
 
 <select id="storage">
@@ -351,6 +370,76 @@ placeholder="e.g. RTX 3070"
 <option>1TB SSD</option>
 <option>2TB SSD</option>
 <option>HDD Only</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Condition</label>
+
+<select id="condition">
+
+<option value="good">Good</option>
+<option value="excellent">Excellent</option>
+<option value="fair">Fair</option>
+<option value="poor">Poor</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<label>Motherboard</label>
+
+<input
+id="motherboard"
+placeholder="e.g. MSI B550 Tomahawk"
+>
+
+
+<label>Power Supply</label>
+
+<input
+id="psu"
+placeholder="e.g. Corsair RM750x 750W"
+>
+
+
+<div class="row">
+
+<div>
+
+<label>CPU Cooler</label>
+
+<select id="cooler">
+
+<option value="">Unknown</option>
+<option value="stock">Stock cooler</option>
+<option value="air">Aftermarket air cooler</option>
+<option value="aio240">240mm AIO</option>
+<option value="aio280">280mm AIO</option>
+<option value="aio360">360mm AIO</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Case</label>
+
+<select id="caseQuality">
+
+<option value="">Unknown</option>
+<option value="basic">Basic</option>
+<option value="mid">Mid-range</option>
+<option value="premium">Premium</option>
 
 </select>
 
