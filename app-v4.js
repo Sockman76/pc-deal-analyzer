@@ -912,11 +912,6 @@ function detectRamCapacity(text) {
     .replace(/×/g, "x")
     .replace(/\s+/g, " ");
 
-  // Examples:
-  // 2x16gb
-  // 2 x 16 gb
-  // 4x8
-  // 4 x 8gb
   const kit = t.match(
     /(\d)\s*x\s*(4|8|16|24|32|48|64)\s*(?:gb)?/i
   );
@@ -932,10 +927,6 @@ function detectRamCapacity(text) {
     if (total >= 8) return "8GB";
   }
 
-  // Examples:
-  // 32gb ddr4
-  // 16gb ram
-  // 64 gigs memory
   const direct = t.match(
     /(8|16|32|64|96|128)\s*(?:gb|gigs?|gigabytes?)/i
   );
