@@ -1,4 +1,4 @@
-# PCDeal V5.0
+# PCDeal V5.1
 
 PCDeal V5.0 is a multi-page used-PC buying, comparison, inspection, performance and flipping toolkit.
 
@@ -39,3 +39,24 @@ Upload/replace the V5 files from this package in the same repository root.
 
 ## Cache
 V5 pages reference `pcdeal-v5.js?v=5` and `styles.css?v=5`.
+
+
+## V5.1 Visual Experience
+
+V5.1 adds a presentation-only visual layer without changing PCDeal's valuation or parsing logic:
+
+- moving ambient glow background and drifting grid
+- pointer-following desktop spotlight
+- page-load and scroll-reveal animations
+- button ripple and processing sweep feedback
+- animated result emphasis
+- polished hover sheen for cards/panels
+- animated navigation indicators
+- top scroll-progress line
+- optional FX toggle saved locally
+- back-to-top control
+- keyboard shortcuts on the Analyzer (`/` to focus the listing and Ctrl/Cmd + Enter to detect)
+- lightweight page transitions between PCDeal tools
+- `prefers-reduced-motion` support
+
+The visual layer is isolated in `pcdeal-visuals.js` and the V5.1 section of `styles.css`, so it can be refined without touching analysis logic.

@@ -41,3 +41,111 @@ footer{text-align:center;color:#726a7b;padding:0 20px 42px;font-size:12px}
 @media(max-width:900px){.grid4,.cards,.tool-grid{grid-template-columns:repeat(2,1fr)}.compare-score-grid{grid-template-columns:1fr}.compare-input-grid{grid-template-columns:1fr}.versus-badge{height:34px}.winner-layout{flex-direction:column}.winner-score-box{width:100%}}
 @media(max-width:680px){.wrap{width:min(100% - 16px,1180px)}.panel{padding:16px;border-radius:17px}.grid2,.grid3,.grid4,.cards,.tool-grid{grid-template-columns:1fr}.hero{padding-top:38px}.hero h1{font-size:41px}.split{align-items:flex-start;flex-direction:column}.nav{gap:9px;padding:10px 12px}.brand{font-size:18px}.badge{display:none}.navlinks a{padding:7px 8px}.compare-title-row,.section-heading-row{flex-direction:column}.score-ring{width:116px;height:116px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ============================================================
+   PCDeal V5.1 — Visual Experience Layer
+   Purely presentational: keeps analysis logic untouched.
+   ============================================================ */
+:root{
+  --glow:rgba(157,108,255,.22);
+  --glow-strong:rgba(157,108,255,.42);
+  --ease-spring:cubic-bezier(.2,.8,.2,1);
+}
+
+html{background:var(--bg)}
+body{overflow-x:hidden;position:relative}
+body:before{
+  animation:pcdealGridDrift 24s linear infinite;
+  will-change:background-position;
+}
+@keyframes pcdealGridDrift{to{background-position:32px 32px,32px 32px}}
+
+/* Ambient backdrop */
+.pcdeal-ambient{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.pcdeal-orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.2;will-change:transform;animation:pcdealFloat 18s ease-in-out infinite alternate}
+.pcdeal-orb.one{width:34vw;height:34vw;min-width:310px;min-height:310px;left:-10vw;top:8vh;background:#6d43ff}
+.pcdeal-orb.two{width:28vw;height:28vw;min-width:260px;min-height:260px;right:-7vw;top:42vh;background:#2f8dff;animation-duration:23s;animation-delay:-7s}
+.pcdeal-orb.three{width:24vw;height:24vw;min-width:230px;min-height:230px;left:42vw;bottom:-12vw;background:#ad4dff;animation-duration:27s;animation-delay:-12s}
+@keyframes pcdealFloat{0%{transform:translate3d(-2vw,-2vh,0) scale(.92)}50%{transform:translate3d(4vw,4vh,0) scale(1.08)}100%{transform:translate3d(-1vw,7vh,0) scale(.98)}}
+
+/* Pointer spotlight */
+.pcdeal-cursor-glow{position:fixed;width:460px;height:460px;border-radius:50%;pointer-events:none;z-index:-1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(157,108,255,.105),rgba(157,108,255,.035) 34%,transparent 68%);opacity:0;transition:opacity .35s ease;will-change:left,top}
+body.pcdeal-pointer-on .pcdeal-cursor-glow{opacity:1}
+
+/* Scroll progress */
+.pcdeal-scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:1000;background:linear-gradient(90deg,#68d8ff,#9d6cff,#d89fff);box-shadow:0 0 18px rgba(157,108,255,.75);pointer-events:none}
+
+/* Glass/nav polish */
+.topbar,nav{box-shadow:0 10px 38px rgba(0,0,0,.18)}
+.navlinks a{position:relative;transition:background .22s ease,color .22s ease,transform .22s var(--ease-spring)}
+.navlinks a:hover{transform:translateY(-1px)}
+.navlinks a:after{content:"";position:absolute;left:10px;right:10px;bottom:3px;height:2px;border-radius:99px;background:linear-gradient(90deg,var(--accent),#70d8ff);transform:scaleX(0);opacity:0;transition:.22s var(--ease-spring)}
+.navlinks a:hover:after,.navlinks a.active:after{transform:scaleX(1);opacity:.78}
+.brand,.logo{transition:filter .25s ease,transform .25s var(--ease-spring)}
+.brand:hover,.logo:hover{filter:drop-shadow(0 0 15px rgba(157,108,255,.48));transform:translateY(-1px)}
+.badge,.v3-pill{box-shadow:inset 0 0 18px rgba(157,108,255,.07),0 0 24px rgba(157,108,255,.06)}
+
+/* Hero motion */
+.hero h1{animation:pcdealHeroIn .72s var(--ease-spring) both}
+.hero p,.hero .eyebrow{animation:pcdealHeroIn .72s .08s var(--ease-spring) both}
+@keyframes pcdealHeroIn{from{opacity:0;transform:translateY(18px);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
+.gradient,.hero h1 span{background-size:180% 100%!important;animation:pcdealGradientShift 7s ease-in-out infinite alternate}
+@keyframes pcdealGradientShift{from{background-position:0% 50%}to{background-position:100% 50%}}
+
+/* Cards + panels */
+.panel,.card,.glass,.tool-link,.compare-system-card,.comparison-center-card,.saved-card,.hardware-card,.insight,.inspector-step{
+  position:relative;
+  isolation:isolate;
+  transition:border-color .28s ease,box-shadow .28s ease,transform .28s var(--ease-spring),background .28s ease;
+}
+.panel:after,.card:after,.tool-link:after,.compare-system-card:after,.saved-card:after,.hardware-card:after,.insight:after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.035) 46%,transparent 68%);
+  transform:translateX(-65%);opacity:0;transition:transform .65s var(--ease-spring),opacity .35s ease;
+}
+.panel:hover,.card:hover,.tool-link:hover,.compare-system-card:hover,.saved-card:hover,.hardware-card:hover,.insight:hover{
+  border-color:rgba(157,108,255,.47);box-shadow:0 28px 90px rgba(0,0,0,.32),0 0 34px rgba(157,108,255,.055)
+}
+.card:hover,.tool-link:hover,.compare-system-card:hover,.saved-card:hover,.hardware-card:hover,.insight:hover{transform:translateY(-3px)}
+.panel:hover:after,.card:hover:after,.tool-link:hover:after,.compare-system-card:hover:after,.saved-card:hover:after,.hardware-card:hover:after,.insight:hover:after{transform:translateX(65%);opacity:1}
+
+/* Inputs */
+textarea,input,select{transition:border-color .22s ease,box-shadow .22s ease,transform .22s var(--ease-spring),background .22s ease}
+textarea:hover,input:hover,select:hover{border-color:#4b3960}
+textarea:focus,input:focus,select:focus{transform:translateY(-1px);background:#0d0914;box-shadow:0 0 0 3px rgba(157,108,255,.12),0 10px 28px rgba(0,0,0,.18)}
+
+/* Buttons: glow, ripple, processing pulse */
+button,.btn{position:relative;overflow:hidden;isolation:isolate;box-shadow:0 9px 28px rgba(101,68,232,.16);transition:transform .18s var(--ease-spring),filter .18s ease,box-shadow .22s ease}
+button:hover,.btn:hover{box-shadow:0 13px 32px rgba(101,68,232,.25),0 0 26px rgba(157,108,255,.1)}
+button:active,.btn:active{transform:translateY(1px) scale(.985)}
+.pcdeal-ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.25);pointer-events:none;transform:translate(-50%,-50%) scale(0);animation:pcdealRipple .62s ease-out forwards;z-index:3}
+@keyframes pcdealRipple{to{transform:translate(-50%,-50%) scale(1);opacity:0}}
+button.pcdeal-running:before,.btn.pcdeal-running:before{content:"";position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);animation:pcdealRunSweep .72s ease}
+@keyframes pcdealRunSweep{to{transform:translateX(100%)}}
+
+/* Result / score emphasis */
+.score,.system-score,.winner-score-box strong,.huge,.big{font-variant-numeric:tabular-nums}
+.score.pcdeal-pop,.system-score.pcdeal-pop,.winner-score-box strong.pcdeal-pop,.big.pcdeal-pop,.huge.pcdeal-pop{animation:pcdealNumberPop .42s var(--ease-spring)}
+@keyframes pcdealNumberPop{0%{transform:scale(.92);opacity:.6}55%{transform:scale(1.06)}100%{transform:none;opacity:1}}
+.meter-fill,.confidence-fill,.bar>span{box-shadow:0 0 18px rgba(157,108,255,.24)}
+.winner-panel{box-shadow:0 28px 90px rgba(0,0,0,.32),0 0 48px rgba(157,108,255,.08)}
+.winner-glow{animation:pcdealWinnerGlow 4.5s ease-in-out infinite alternate}
+@keyframes pcdealWinnerGlow{from{transform:translate(-8px,-4px) scale(.92);opacity:.65}to{transform:translate(12px,8px) scale(1.08);opacity:1}}
+
+/* Scroll reveal */
+.pcdeal-reveal{opacity:0;transform:translateY(18px);filter:blur(4px)}
+.pcdeal-reveal.pcdeal-visible{opacity:1;transform:none;filter:none;transition:opacity .55s ease,transform .6s var(--ease-spring),filter .5s ease}
+
+/* Tiny visual HUD */
+.pcdeal-fx-toggle,.pcdeal-top-button{position:fixed;right:16px;z-index:90;width:auto!important;min-width:44px;height:40px;padding:0 12px!important;border-radius:999px!important;background:rgba(18,13,27,.82)!important;border:1px solid rgba(157,108,255,.32)!important;backdrop-filter:blur(14px);font-size:11px!important;box-shadow:0 10px 34px rgba(0,0,0,.3)!important}
+.pcdeal-fx-toggle{bottom:16px}.pcdeal-top-button{bottom:64px;opacity:0;transform:translateY(8px);pointer-events:none}.pcdeal-top-button.show{opacity:1;transform:none;pointer-events:auto}
+.pcdeal-shortcut-hint{position:fixed;left:16px;bottom:16px;z-index:80;padding:8px 11px;border-radius:999px;background:rgba(10,7,16,.62);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(12px);color:#8e8499;font-size:10px;pointer-events:none;opacity:.75}
+
+/* FX disabled state */
+body.pcdeal-fx-off .pcdeal-ambient,body.pcdeal-fx-off .pcdeal-cursor-glow{display:none}
+body.pcdeal-fx-off:before{animation:none!important}
+body.pcdeal-fx-off .gradient,body.pcdeal-fx-off .hero h1 span,body.pcdeal-fx-off .winner-glow{animation:none!important}
+
+@media (pointer:coarse){.pcdeal-cursor-glow,.pcdeal-shortcut-hint{display:none}.card:hover,.tool-link:hover,.compare-system-card:hover,.saved-card:hover,.hardware-card:hover,.insight:hover{transform:none}}
+@media(max-width:680px){.pcdeal-orb{opacity:.14;filter:blur(80px)}.pcdeal-fx-toggle{right:10px;bottom:10px}.pcdeal-top-button{right:10px;bottom:58px}}
+@media(prefers-reduced-motion:reduce){.pcdeal-ambient,.pcdeal-cursor-glow,.pcdeal-shortcut-hint{display:none!important}body:before{animation:none!important}.pcdeal-reveal{opacity:1!important;transform:none!important;filter:none!important}}
