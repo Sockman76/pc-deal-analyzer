@@ -1,36 +1,36 @@
 // ============================================================
-// PCDEAL - PLATFORM & CHIPSET COMPATIBILITY DATABASE
+// PCDEAL - PLATFORM DATABASE
+// VERSION 2
 // ============================================================
 //
-// Purpose:
-// - Determine CPU socket/platform compatibility
-// - Determine motherboard chipset compatibility
-// - Automatically determine compatible RAM generation
-// - Allow PCDeal to detect impossible CPU/RAM/motherboard combos
-//
-// IMPORTANT:
-// CPU database entries will eventually point to a socket.
-// Example:
-// socket: "AM4"
-// socket: "LGA1150"
+// Handles:
+// - CPU socket/platform lookup
+// - Compatible motherboard chipsets
+// - RAM generation compatibility
+// - Chipset → platform lookup
+// - CPU + chipset checking
+// - CPU + RAM checking
+// - Motherboard RAM narrowing
 //
 // ============================================================
 
 
+
 // ============================================================
-// PLATFORM / SOCKET DATABASE
+// PLATFORM DATABASE
 // ============================================================
 
 const platformDatabase = {
 
   // ==========================================================
-  // AMD - MODERN
+  // AMD AM5
   // ==========================================================
 
   "AM5": {
     manufacturer: "AMD",
-    memory: ["DDR5"],
     category: "Mainstream Desktop",
+    memory: ["DDR5"],
+
     chipsets: [
       "A620",
       "B650",
@@ -44,10 +44,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD AM4
+  // ==========================================================
+
   "AM4": {
     manufacturer: "AMD",
-    memory: ["DDR4"],
     category: "Mainstream Desktop",
+    memory: ["DDR4"],
+
     chipsets: [
       "A300",
       "A320",
@@ -65,13 +71,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // AMD - FM SERIES
+  // AMD FM2+
   // ==========================================================
 
   "FM2+": {
     manufacturer: "AMD",
+    category: "Legacy Desktop",
     memory: ["DDR3"],
-    category: "Mainstream Desktop",
+
     chipsets: [
       "A58",
       "A68H",
@@ -80,10 +87,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD FM2
+  // ==========================================================
+
   "FM2": {
     manufacturer: "AMD",
+    category: "Legacy Desktop",
     memory: ["DDR3"],
-    category: "Mainstream Desktop",
+
     chipsets: [
       "A55",
       "A75",
@@ -91,10 +104,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD FM1
+  // ==========================================================
+
   "FM1": {
     manufacturer: "AMD",
+    category: "Legacy Desktop",
     memory: ["DDR3"],
-    category: "Mainstream Desktop",
+
     chipsets: [
       "A55",
       "A75"
@@ -103,13 +122,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // AMD - AM3 / AM2 ERA
+  // AMD AM3+
   // ==========================================================
 
   "AM3+": {
     manufacturer: "AMD",
+    category: "Legacy Desktop",
     memory: ["DDR3"],
-    category: "Mainstream Desktop",
+
     chipsets: [
       "760G",
       "770",
@@ -123,10 +143,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD AM3
+  // ==========================================================
+
   "AM3": {
     manufacturer: "AMD",
+    category: "Legacy Desktop",
     memory: ["DDR3"],
-    category: "Mainstream Desktop",
+
     chipsets: [
       "760G",
       "770",
@@ -142,10 +168,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD AM2+
+  // ==========================================================
+
   "AM2+": {
     manufacturer: "AMD",
-    memory: ["DDR2"],
     category: "Legacy Desktop",
+    memory: ["DDR2"],
+
     chipsets: [
       "740G",
       "760G",
@@ -158,10 +190,16 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // AMD AM2
+  // ==========================================================
+
   "AM2": {
     manufacturer: "AMD",
-    memory: ["DDR2"],
     category: "Legacy Desktop",
+    memory: ["DDR2"],
+
     chipsets: [
       "480X",
       "570X",
@@ -174,13 +212,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // INTEL - CURRENT / RECENT
+  // INTEL LGA1851
   // ==========================================================
 
   "LGA1851": {
     manufacturer: "Intel",
-    memory: ["DDR5"],
     category: "Mainstream Desktop",
+    memory: ["DDR5"],
+
     chipsets: [
       "H810",
       "B860",
@@ -190,10 +229,20 @@ const platformDatabase = {
     ]
   },
 
+
+  // ==========================================================
+  // INTEL LGA1700
+  // ==========================================================
+
   "LGA1700": {
     manufacturer: "Intel",
-    memory: ["DDR4", "DDR5"],
     category: "Mainstream Desktop",
+
+    memory: [
+      "DDR4",
+      "DDR5"
+    ],
+
     chipsets: [
       "H610",
       "B660",
@@ -201,21 +250,26 @@ const platformDatabase = {
       "Q670",
       "W680",
       "Z690",
+
       "B760",
       "H770",
-      "Q670",
-      "W680",
       "Z790"
     ],
 
     memoryNote:
-      "DDR4 or DDR5 support depends on the specific motherboard."
+      "DDR4 or DDR5 depends on the specific motherboard model."
   },
+
+
+  // ==========================================================
+  // INTEL LGA1200
+  // ==========================================================
 
   "LGA1200": {
     manufacturer: "Intel",
-    memory: ["DDR4"],
     category: "Mainstream Desktop",
+    memory: ["DDR4"],
+
     chipsets: [
       "H410",
       "B460",
@@ -223,6 +277,7 @@ const platformDatabase = {
       "Q470",
       "W480",
       "Z490",
+
       "H510",
       "B560",
       "H570",
@@ -234,13 +289,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // INTEL - LGA1151
+  // INTEL LGA1151 - 300 SERIES
   // ==========================================================
 
   "LGA1151-300": {
     manufacturer: "Intel",
-    memory: ["DDR4"],
     category: "Mainstream Desktop",
+    memory: ["DDR4"],
+
     chipsets: [
       "H310",
       "B360",
@@ -249,16 +305,19 @@ const platformDatabase = {
       "Q370",
       "Z370",
       "Z390"
-    ],
-
-    generationNote:
-      "Used for Coffee Lake and Coffee Lake Refresh CPUs."
+    ]
   },
+
+
+  // ==========================================================
+  // INTEL LGA1151 - 100 / 200 SERIES
+  // ==========================================================
 
   "LGA1151-100-200": {
     manufacturer: "Intel",
-    memory: ["DDR4"],
     category: "Mainstream Desktop",
+    memory: ["DDR4"],
+
     chipsets: [
       "H110",
       "B150",
@@ -266,26 +325,25 @@ const platformDatabase = {
       "Q150",
       "Q170",
       "Z170",
+
       "B250",
       "H270",
       "Q250",
       "Q270",
       "Z270"
-    ],
-
-    generationNote:
-      "Used primarily for Skylake and Kaby Lake CPUs."
+    ]
   },
 
 
   // ==========================================================
-  // INTEL - HASWELL
+  // INTEL LGA1150
   // ==========================================================
 
   "LGA1150": {
     manufacturer: "Intel",
-    memory: ["DDR3"],
     category: "Mainstream Desktop",
+    memory: ["DDR3"],
+
     chipsets: [
       "H81",
       "B85",
@@ -300,13 +358,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // INTEL - IVY BRIDGE / SANDY BRIDGE
+  // INTEL LGA1155
   // ==========================================================
 
   "LGA1155": {
     manufacturer: "Intel",
-    memory: ["DDR3"],
     category: "Mainstream Desktop",
+    memory: ["DDR3"],
+
     chipsets: [
       "H61",
       "B65",
@@ -315,6 +374,7 @@ const platformDatabase = {
       "H67",
       "P67",
       "Z68",
+
       "B75",
       "Q75",
       "Q77",
@@ -326,13 +386,14 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // INTEL - FIRST GEN CORE
+  // INTEL LGA1156
   // ==========================================================
 
   "LGA1156": {
     manufacturer: "Intel",
-    memory: ["DDR3"],
     category: "Legacy Desktop",
+    memory: ["DDR3"],
+
     chipsets: [
       "H55",
       "H57",
@@ -343,25 +404,27 @@ const platformDatabase = {
 
 
   // ==========================================================
-  // INTEL - CORE 2 ERA
+  // INTEL LGA775
   // ==========================================================
 
   "LGA775": {
     manufacturer: "Intel",
-
-    // LGA775 existed across multiple memory generations.
-    // The motherboard determines actual RAM support.
-    memory: ["DDR2", "DDR3"],
-
     category: "Legacy Desktop",
+
+    memory: [
+      "DDR2",
+      "DDR3"
+    ],
 
     chipsets: [
       "945P",
       "945G",
       "946GZ",
+
       "P965",
       "G965",
       "Q965",
+
       "P31",
       "G31",
       "P35",
@@ -369,18 +432,20 @@ const platformDatabase = {
       "G35",
       "Q33",
       "Q35",
+
       "P43",
       "G43",
       "P45",
       "G45",
       "Q43",
       "Q45",
+
       "X38",
       "X48"
     ],
 
     memoryNote:
-      "RAM type depends on the specific motherboard."
+      "RAM type depends on the exact motherboard."
   },
 
 
@@ -390,35 +455,42 @@ const platformDatabase = {
 
   "LGA1366": {
     manufacturer: "Intel",
-    memory: ["DDR3"],
     category: "HEDT",
+    memory: ["DDR3"],
+
     chipsets: [
       "X58"
     ]
   },
 
+
   "LGA2011": {
     manufacturer: "Intel",
-    memory: ["DDR3"],
     category: "HEDT",
+    memory: ["DDR3"],
+
     chipsets: [
       "X79"
     ]
   },
 
+
   "LGA2011-3": {
     manufacturer: "Intel",
-    memory: ["DDR4"],
     category: "HEDT",
+    memory: ["DDR4"],
+
     chipsets: [
       "X99"
     ]
   },
 
+
   "LGA2066": {
     manufacturer: "Intel",
-    memory: ["DDR4"],
     category: "HEDT",
+    memory: ["DDR4"],
+
     chipsets: [
       "X299"
     ]
@@ -427,36 +499,62 @@ const platformDatabase = {
 };
 
 
+
 // ============================================================
-// CHIPSET LOOKUP DATABASE
+// CHIPSET DATABASE
 // ============================================================
 //
-// This gets generated from platformDatabase automatically.
+// Generated automatically.
 //
 // Example:
-// chipsetDatabase["B550"]
 //
-// returns possible platform information.
+// chipsetDatabase["Z97"]
 //
-// We use arrays because some chipset names were reused across
-// different AMD platforms.
+// [
+//   {
+//     platform: "LGA1150",
+//     memory: ["DDR3"]
+//   }
+// ]
+//
+// Arrays are used because some chipset names were reused.
+//
 // ============================================================
 
 const chipsetDatabase = {};
 
-for (const [platformName, platform] of Object.entries(platformDatabase)) {
 
-  for (const chipset of platform.chipsets) {
+for (
+  const [platformName, platform]
+  of Object.entries(platformDatabase)
+) {
+
+  for (
+    const chipset
+    of platform.chipsets
+  ) {
 
     if (!chipsetDatabase[chipset]) {
+
       chipsetDatabase[chipset] = [];
+
     }
 
+
     chipsetDatabase[chipset].push({
-      platform: platformName,
-      manufacturer: platform.manufacturer,
-      memory: platform.memory,
-      category: platform.category
+
+      platform:
+        platformName,
+
+      manufacturer:
+        platform.manufacturer,
+
+      memory:
+        [...platform.memory],
+
+      category:
+        platform.category
+
     });
 
   }
@@ -464,12 +562,71 @@ for (const [platformName, platform] of Object.entries(platformDatabase)) {
 }
 
 
+
 // ============================================================
-// HELPER FUNCTIONS
+// OPTIONAL MOTHERBOARD MEMORY OVERRIDES
+// ============================================================
+//
+// This becomes important for platforms like LGA1700.
+//
+// A chipset alone cannot tell us DDR4 vs DDR5.
+//
+// Example boards:
+//
+// MSI PRO B760M-A WIFI DDR4
+// ASUS TUF Z790-PLUS WIFI D4
+//
+// Later we can add exact board models here.
+//
 // ============================================================
 
+const motherboardMemoryOverrides = {
 
-// Get platform information from socket/platform name.
+  // Examples for testing / future expansion
+
+  "msi pro b760m-a wifi ddr4": {
+    memory: "DDR4"
+  },
+
+  "asus tuf gaming z790-plus wifi d4": {
+    memory: "DDR4"
+  },
+
+  "asus prime z690-p d4": {
+    memory: "DDR4"
+  },
+
+  "gigabyte z790 aorus elite ax": {
+    memory: "DDR5"
+  }
+
+};
+
+
+
+// ============================================================
+// NORMALIZE PLATFORM TEXT
+// ============================================================
+
+function normalizePlatformText(text) {
+
+  if (!text) {
+    return "";
+  }
+
+
+  return text
+    .toLowerCase()
+    .replace(/[-_/(),]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+
+
+// ============================================================
+// GET PLATFORM
+// ============================================================
 
 function getPlatform(platformName) {
 
@@ -477,117 +634,251 @@ function getPlatform(platformName) {
     return null;
   }
 
-  return platformDatabase[platformName] || null;
+
+  return (
+    platformDatabase[
+      platformName
+    ] || null
+  );
 }
 
 
-// Get compatible memory types for a platform.
 
-function getPlatformMemory(platformName) {
+// ============================================================
+// GET PLATFORM MEMORY
+// ============================================================
 
-  const platform = getPlatform(platformName);
+function getPlatformMemory(
+  platformName
+) {
+
+  const platform =
+    getPlatform(
+      platformName
+    );
+
 
   if (!platform) {
     return [];
   }
 
-  return platform.memory || [];
+
+  return (
+    platform.memory || []
+  );
 }
 
 
-// Get compatible chipsets for a platform.
 
-function getCompatibleChipsets(platformName) {
+// ============================================================
+// GET COMPATIBLE CHIPSETS
+// ============================================================
 
-  const platform = getPlatform(platformName);
+function getCompatibleChipsets(
+  platformName
+) {
+
+  const platform =
+    getPlatform(
+      platformName
+    );
+
 
   if (!platform) {
     return [];
   }
 
-  return platform.chipsets || [];
+
+  return (
+    platform.chipsets || []
+  );
 }
 
 
-// Find possible platforms from a chipset.
 
-function findPlatformsByChipset(chipset) {
+// ============================================================
+// FIND PLATFORM(S) BY CHIPSET
+// ============================================================
+
+function findPlatformsByChipset(
+  chipset
+) {
 
   if (!chipset) {
     return [];
   }
 
+
   const normalizedChipset =
-    chipset.toUpperCase().trim();
+    chipset
+      .toUpperCase()
+      .trim();
 
-  return chipsetDatabase[normalizedChipset] || [];
-}
 
-
-// Check whether a RAM generation is supported by a platform.
-
-function isMemoryCompatible(platformName, memoryType) {
-
-  if (!platformName || !memoryType) {
-    return null;
-  }
-
-  const supportedMemory =
-    getPlatformMemory(platformName);
-
-  return supportedMemory.includes(
-    memoryType.toUpperCase()
+  return (
+    chipsetDatabase[
+      normalizedChipset
+    ] || []
   );
 }
 
 
-// Check whether a chipset belongs to a platform.
 
-function isChipsetCompatible(platformName, chipset) {
+// ============================================================
+// FIND CHIPSET FROM TEXT
+// ============================================================
 
-  if (!platformName || !chipset) {
+function findChipsetInText(text) {
+
+  if (!text) {
     return null;
   }
 
-  const compatibleChipsets =
-    getCompatibleChipsets(platformName);
 
-  return compatibleChipsets.includes(
-    chipset.toUpperCase()
+  const normalized =
+    normalizePlatformText(
+      text
+    );
+
+
+  const chipsets =
+    Object.keys(
+      chipsetDatabase
+    )
+      .sort(
+        (a, b) =>
+          b.length - a.length
+      );
+
+
+  for (
+    const chipset
+    of chipsets
+  ) {
+
+    const normalizedChipset =
+      normalizePlatformText(
+        chipset
+      );
+
+
+    const escaped =
+      normalizedChipset.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&"
+      );
+
+
+    const regex =
+      new RegExp(
+        `(^|\\s)${escaped}(?=\\s|$)`,
+        "i"
+      );
+
+
+    if (
+      regex.test(
+        normalized
+      )
+    ) {
+
+      return chipset;
+
+    }
+
+  }
+
+
+  return null;
+}
+
+
+
+// ============================================================
+// BASIC MEMORY COMPATIBILITY
+// ============================================================
+
+function isMemoryCompatible(
+  platformName,
+  memoryType
+) {
+
+  if (
+    !platformName ||
+    !memoryType
+  ) {
+
+    return null;
+
+  }
+
+
+  const memory =
+    getPlatformMemory(
+      platformName
+    );
+
+
+  return memory.includes(
+    memoryType
+      .toUpperCase()
+      .trim()
   );
 }
 
 
+
 // ============================================================
-// AUTOMATIC RAM TYPE LOGIC
-// ============================================================
-//
-// Returns:
-//
-// {
-//   automatic: true,
-//   memory: "DDR4",
-//   options: ["DDR4"]
-// }
-//
-// OR:
-//
-// {
-//   automatic: false,
-//   memory: null,
-//   options: ["DDR4", "DDR5"]
-// }
-//
-// This allows app.js to decide whether the RAM field should
-// automatically lock or allow the user to choose.
+// BASIC CHIPSET COMPATIBILITY
 // ============================================================
 
-function getAutomaticMemorySelection(platformName) {
+function isChipsetCompatible(
+  platformName,
+  chipset
+) {
 
-  const memoryOptions =
-    getPlatformMemory(platformName);
+  if (
+    !platformName ||
+    !chipset
+  ) {
 
-  if (memoryOptions.length === 0) {
+    return null;
+
+  }
+
+
+  const compatible =
+    getCompatibleChipsets(
+      platformName
+    );
+
+
+  return compatible.includes(
+    chipset
+      .toUpperCase()
+      .trim()
+  );
+}
+
+
+
+// ============================================================
+// AUTOMATIC MEMORY SELECTION
+// ============================================================
+
+function getAutomaticMemorySelection(
+  platformName
+) {
+
+  const options =
+    getPlatformMemory(
+      platformName
+    );
+
+
+  if (
+    options.length === 0
+  ) {
 
     return {
       automatic: false,
@@ -598,12 +889,14 @@ function getAutomaticMemorySelection(platformName) {
   }
 
 
-  if (memoryOptions.length === 1) {
+  if (
+    options.length === 1
+  ) {
 
     return {
       automatic: true,
-      memory: memoryOptions[0],
-      options: memoryOptions
+      memory: options[0],
+      options: options
     };
 
   }
@@ -612,10 +905,717 @@ function getAutomaticMemorySelection(platformName) {
   return {
     automatic: false,
     memory: null,
-    options: memoryOptions
+    options: options
   };
-
 }
+
+
+
+// ============================================================
+// FIND EXACT MOTHERBOARD MEMORY OVERRIDE
+// ============================================================
+
+function findMotherboardMemoryOverride(
+  motherboardText
+) {
+
+  if (!motherboardText) {
+    return null;
+  }
+
+
+  const normalized =
+    normalizePlatformText(
+      motherboardText
+    );
+
+
+  for (
+    const [board, data]
+    of Object.entries(
+      motherboardMemoryOverrides
+    )
+  ) {
+
+    const normalizedBoard =
+      normalizePlatformText(
+        board
+      );
+
+
+    if (
+      normalized.includes(
+        normalizedBoard
+      )
+    ) {
+
+      return {
+        board: board,
+        memory: data.memory
+      };
+
+    }
+
+  }
+
+
+  return null;
+}
+
+
+
+// ============================================================
+// DETECT DDR MARKERS FROM MOTHERBOARD NAME
+// ============================================================
+//
+// Many LGA1700 boards expose memory type directly:
+//
+// D4
+// DDR4
+// DDR5
+//
+// ============================================================
+
+function detectMotherboardMemoryMarker(
+  motherboardText
+) {
+
+  if (!motherboardText) {
+    return null;
+  }
+
+
+  const normalized =
+    motherboardText
+      .toLowerCase();
+
+
+  if (
+    /\bddr5\b/i.test(
+      normalized
+    )
+  ) {
+
+    return "DDR5";
+
+  }
+
+
+  if (
+    /\bddr4\b/i.test(
+      normalized
+    )
+  ) {
+
+    return "DDR4";
+
+  }
+
+
+  if (
+    /\bd4\b/i.test(
+      normalized
+    )
+  ) {
+
+    return "DDR4";
+
+  }
+
+
+  return null;
+}
+
+
+
+// ============================================================
+// GET MOTHERBOARD MEMORY TYPE
+// ============================================================
+//
+// Priority:
+//
+// 1. Exact motherboard override
+// 2. DDR marker in board name
+// 3. Platform only has one RAM generation
+// 4. Multiple options → unknown until exact board known
+//
+// ============================================================
+
+function getMotherboardMemoryType(
+  motherboardText
+) {
+
+  if (!motherboardText) {
+    return null;
+  }
+
+
+  // Exact model override
+
+  const override =
+    findMotherboardMemoryOverride(
+      motherboardText
+    );
+
+
+  if (override) {
+
+    return {
+      memory:
+        override.memory,
+
+      confidence:
+        "High",
+
+      source:
+        "Exact motherboard model"
+    };
+
+  }
+
+
+  // D4 / DDR4 / DDR5 marker
+
+  const marker =
+    detectMotherboardMemoryMarker(
+      motherboardText
+    );
+
+
+  if (marker) {
+
+    return {
+      memory:
+        marker,
+
+      confidence:
+        "High",
+
+      source:
+        "Motherboard name"
+    };
+
+  }
+
+
+  // Determine chipset
+
+  const chipset =
+    findChipsetInText(
+      motherboardText
+    );
+
+
+  if (!chipset) {
+
+    return null;
+
+  }
+
+
+  const possiblePlatforms =
+    findPlatformsByChipset(
+      chipset
+    );
+
+
+  if (
+    possiblePlatforms.length === 1
+  ) {
+
+    const memory =
+      possiblePlatforms[0]
+        .memory;
+
+
+    if (
+      memory.length === 1
+    ) {
+
+      return {
+        memory:
+          memory[0],
+
+        confidence:
+          "High",
+
+        source:
+          `${chipset} platform`
+      };
+
+    }
+
+
+    return {
+      memory:
+        null,
+
+      options:
+        memory,
+
+      confidence:
+        "Medium",
+
+      source:
+        `${chipset} chipset`
+    };
+
+  }
+
+
+  return {
+    memory: null,
+    options: [],
+    confidence: "Low",
+    source:
+      "Ambiguous chipset"
+  };
+}
+
+
+
+// ============================================================
+// CPU + MOTHERBOARD PLATFORM CHECK
+// ============================================================
+//
+// Takes a CPU object from parts.js.
+//
+// ============================================================
+
+function checkCPUAndMotherboard(
+  cpu,
+  motherboardText
+) {
+
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
+    return {
+      compatible: null,
+      reason:
+        "CPU platform is unknown."
+    };
+
+  }
+
+
+  if (!motherboardText) {
+
+    return {
+      compatible: null,
+      reason:
+        "Motherboard is unknown."
+    };
+
+  }
+
+
+  const chipset =
+    findChipsetInText(
+      motherboardText
+    );
+
+
+  if (!chipset) {
+
+    return {
+      compatible: null,
+
+      cpuSocket:
+        cpu.socket,
+
+      chipset:
+        null,
+
+      reason:
+        "Motherboard chipset could not be detected."
+    };
+
+  }
+
+
+  const compatible =
+    isChipsetCompatible(
+      cpu.socket,
+      chipset
+    );
+
+
+  if (compatible) {
+
+    return {
+      compatible: true,
+
+      cpuSocket:
+        cpu.socket,
+
+      chipset:
+        chipset,
+
+      reason:
+        `${chipset} is compatible with ${cpu.socket}.`
+    };
+
+  }
+
+
+  const platforms =
+    findPlatformsByChipset(
+      chipset
+    );
+
+
+  return {
+    compatible: false,
+
+    cpuSocket:
+      cpu.socket,
+
+    chipset:
+      chipset,
+
+    motherboardPlatforms:
+      platforms.map(
+        item =>
+          item.platform
+      ),
+
+    reason:
+      `${cpu.name} uses ${cpu.socket}, but ${chipset} belongs to a different platform.`
+  };
+}
+
+
+
+// ============================================================
+// CPU + MOTHERBOARD + RAM CHECK
+// ============================================================
+
+function checkFullPlatformCompatibility(
+  cpu,
+  motherboardText,
+  ramType
+) {
+
+  const issues = [];
+  const warnings = [];
+  const passed = [];
+
+
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
+    issues.push(
+      "CPU socket is unknown."
+    );
+
+
+    return {
+      compatible: false,
+      issues,
+      warnings,
+      passed
+    };
+
+  }
+
+
+  const platform =
+    getPlatform(
+      cpu.socket
+    );
+
+
+  if (!platform) {
+
+    issues.push(
+      `Platform ${cpu.socket} is missing from platformDatabase.`
+    );
+
+
+    return {
+      compatible: false,
+      issues,
+      warnings,
+      passed
+    };
+
+  }
+
+
+  // ----------------------------------------------------------
+  // CPU / motherboard
+  // ----------------------------------------------------------
+
+  if (motherboardText) {
+
+    const boardCheck =
+      checkCPUAndMotherboard(
+        cpu,
+        motherboardText
+      );
+
+
+    if (
+      boardCheck.compatible ===
+      true
+    ) {
+
+      passed.push(
+        `CPU and ${boardCheck.chipset} motherboard are compatible.`
+      );
+
+    }
+
+
+    else if (
+      boardCheck.compatible ===
+      false
+    ) {
+
+      issues.push(
+        boardCheck.reason
+      );
+
+    }
+
+
+    else {
+
+      warnings.push(
+        boardCheck.reason
+      );
+
+    }
+
+  }
+
+
+  // ----------------------------------------------------------
+  // CPU / RAM
+  // ----------------------------------------------------------
+
+  if (ramType) {
+
+    const ramCompatible =
+      isMemoryCompatible(
+        cpu.socket,
+        ramType
+      );
+
+
+    if (
+      ramCompatible === true
+    ) {
+
+      passed.push(
+        `${ramType} is supported by ${cpu.socket}.`
+      );
+
+    }
+
+
+    else if (
+      ramCompatible === false
+    ) {
+
+      issues.push(
+        `${cpu.name} uses ${cpu.socket}, which supports ${platform.memory.join(" / ")} rather than ${ramType}.`
+      );
+
+    }
+
+  }
+
+
+  // ----------------------------------------------------------
+  // Motherboard specific RAM
+  // ----------------------------------------------------------
+
+  if (
+    motherboardText &&
+    ramType
+  ) {
+
+    const boardMemory =
+      getMotherboardMemoryType(
+        motherboardText
+      );
+
+
+    if (
+      boardMemory &&
+      boardMemory.memory
+    ) {
+
+      if (
+        boardMemory.memory ===
+        ramType
+      ) {
+
+        passed.push(
+          `Motherboard requires ${boardMemory.memory}, matching the selected RAM.`
+        );
+
+      }
+
+      else {
+
+        issues.push(
+          `Motherboard appears to require ${boardMemory.memory}, but the system lists ${ramType}.`
+        );
+
+      }
+
+    }
+
+
+    else if (
+      boardMemory &&
+      boardMemory.options &&
+      boardMemory.options.length >
+      1
+    ) {
+
+      warnings.push(
+        `Exact motherboard RAM type is unknown. This platform may use ${boardMemory.options.join(" or ")} depending on the board.`
+      );
+
+    }
+
+  }
+
+
+  return {
+
+    compatible:
+      issues.length === 0,
+
+    issues:
+      issues,
+
+    warnings:
+      warnings,
+
+    passed:
+      passed
+
+  };
+}
+
+
+
+// ============================================================
+// GET BEST MEMORY OPTIONS FOR CPU + MOTHERBOARD
+// ============================================================
+//
+// This is the function app.js will eventually use
+// to automatically control the RAM dropdown.
+//
+// ============================================================
+
+function getBestMemorySelection(
+  cpu,
+  motherboardText = ""
+) {
+
+  if (
+    !cpu ||
+    !cpu.socket
+  ) {
+
+    return {
+      automatic: false,
+      memory: null,
+      options: []
+    };
+
+  }
+
+
+  const platformMemory =
+    getPlatformMemory(
+      cpu.socket
+    );
+
+
+  // Single-memory platform:
+  // automatic immediately.
+
+  if (
+    platformMemory.length === 1
+  ) {
+
+    return {
+      automatic: true,
+      memory:
+        platformMemory[0],
+      options:
+        platformMemory,
+      source:
+        "CPU platform"
+    };
+
+  }
+
+
+  // Multi-memory platform:
+  // check motherboard.
+
+  if (motherboardText) {
+
+    const boardMemory =
+      getMotherboardMemoryType(
+        motherboardText
+      );
+
+
+    if (
+      boardMemory &&
+      boardMemory.memory &&
+      platformMemory.includes(
+        boardMemory.memory
+      )
+    ) {
+
+      return {
+        automatic: true,
+
+        memory:
+          boardMemory.memory,
+
+        options: [
+          boardMemory.memory
+        ],
+
+        source:
+          boardMemory.source
+      };
+
+    }
+
+  }
+
+
+  return {
+
+    automatic: false,
+
+    memory:
+      null,
+
+    options:
+      platformMemory,
+
+    source:
+      "CPU platform"
+  };
+}
+
 
 
 // ============================================================
@@ -625,11 +1625,21 @@ function getAutomaticMemorySelection(platformName) {
 function getPlatformDatabaseStats() {
 
   return {
+
     platforms:
-      Object.keys(platformDatabase).length,
+      Object.keys(
+        platformDatabase
+      ).length,
 
     chipsets:
-      Object.keys(chipsetDatabase).length
-  };
+      Object.keys(
+        chipsetDatabase
+      ).length,
 
+    motherboardOverrides:
+      Object.keys(
+        motherboardMemoryOverrides
+      ).length
+
+  };
 }
