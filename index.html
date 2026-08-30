@@ -395,80 +395,76 @@ placeholder="e.g. RTX 3070"
 </div>
 
 
-<div class="row">
+<div class="form-group">
+  <label>Storage</label>
 
-<div>
+  <div id="storageList">
+    <select id="storage">
+      <option value="">Select storage</option>
 
-<label>Storage</label>
+      <option value="120GB HDD">120GB HDD</option>
+      <option value="128GB HDD">128GB HDD</option>
+      <option value="250GB HDD">250GB HDD</option>
+      <option value="500GB HDD">500GB HDD</option>
+      <option value="1TB HDD">1TB HDD</option>
+      <option value="2TB HDD">2TB HDD</option>
+      <option value="3TB HDD">3TB HDD</option>
+      <option value="4TB HDD">4TB HDD</option>
+      <option value="6TB HDD">6TB HDD</option>
+      <option value="8TB HDD">8TB HDD</option>
 
-<select id="storage">
-  <option value="">Select storage</option>
+      <option value="120GB SATA SSD">120GB SATA SSD</option>
+      <option value="128GB SATA SSD">128GB SATA SSD</option>
+      <option value="240GB SATA SSD">240GB SATA SSD</option>
+      <option value="250GB SATA SSD">250GB SATA SSD</option>
+      <option value="256GB SATA SSD">256GB SATA SSD</option>
+      <option value="480GB SATA SSD">480GB SATA SSD</option>
+      <option value="500GB SATA SSD">500GB SATA SSD</option>
+      <option value="512GB SATA SSD">512GB SATA SSD</option>
+      <option value="1TB SATA SSD">1TB SATA SSD</option>
+      <option value="2TB SATA SSD">2TB SATA SSD</option>
+      <option value="4TB SATA SSD">4TB SATA SSD</option>
 
-  <!-- HDD -->
-  <option value="250GB HDD">250GB HDD</option>
-  <option value="500GB HDD">500GB HDD</option>
-  <option value="1TB HDD">1TB HDD</option>
-  <option value="2TB HDD">2TB HDD</option>
-  <option value="3TB HDD">3TB HDD</option>
-  <option value="4TB HDD">4TB HDD</option>
-  <option value="6TB HDD">6TB HDD</option>
-  <option value="8TB HDD">8TB HDD</option>
+      <option value="128GB M.2 SATA SSD">128GB M.2 SATA SSD</option>
+      <option value="256GB M.2 SATA SSD">256GB M.2 SATA SSD</option>
+      <option value="500GB M.2 SATA SSD">500GB M.2 SATA SSD</option>
+      <option value="512GB M.2 SATA SSD">512GB M.2 SATA SSD</option>
+      <option value="1TB M.2 SATA SSD">1TB M.2 SATA SSD</option>
+      <option value="2TB M.2 SATA SSD">2TB M.2 SATA SSD</option>
 
-  <!-- SATA SSD -->
-  <option value="120GB SATA SSD">120GB SATA SSD</option>
-  <option value="128GB SATA SSD">128GB SATA SSD</option>
-  <option value="240GB SATA SSD">240GB SATA SSD</option>
-  <option value="250GB SATA SSD">250GB SATA SSD</option>
-  <option value="256GB SATA SSD">256GB SATA SSD</option>
-  <option value="480GB SATA SSD">480GB SATA SSD</option>
-  <option value="500GB SATA SSD">500GB SATA SSD</option>
-  <option value="512GB SATA SSD">512GB SATA SSD</option>
-  <option value="1TB SATA SSD">1TB SATA SSD</option>
-  <option value="2TB SATA SSD">2TB SATA SSD</option>
-  <option value="4TB SATA SSD">4TB SATA SSD</option>
+      <option value="128GB NVMe SSD">128GB NVMe SSD</option>
+      <option value="256GB NVMe SSD">256GB NVMe SSD</option>
+      <option value="500GB NVMe SSD">500GB NVMe SSD</option>
+      <option value="512GB NVMe SSD">512GB NVMe SSD</option>
+      <option value="1TB NVMe SSD">1TB NVMe SSD</option>
+      <option value="2TB NVMe SSD">2TB NVMe SSD</option>
+      <option value="4TB NVMe SSD">4TB NVMe SSD</option>
+      <option value="8TB NVMe SSD">8TB NVMe SSD</option>
 
-  <!-- M.2 SATA -->
-  <option value="128GB M.2 SATA SSD">128GB M.2 SATA SSD</option>
-  <option value="256GB M.2 SATA SSD">256GB M.2 SATA SSD</option>
-  <option value="500GB M.2 SATA SSD">500GB M.2 SATA SSD</option>
-  <option value="512GB M.2 SATA SSD">512GB M.2 SATA SSD</option>
-  <option value="1TB M.2 SATA SSD">1TB M.2 SATA SSD</option>
-  <option value="2TB M.2 SATA SSD">2TB M.2 SATA SSD</option>
+      <option value="120GB SSD">120GB SSD</option>
+      <option value="128GB SSD">128GB SSD</option>
+      <option value="240GB SSD">240GB SSD</option>
+      <option value="250GB SSD">250GB SSD</option>
+      <option value="256GB SSD">256GB SSD</option>
+      <option value="480GB SSD">480GB SSD</option>
+      <option value="500GB SSD">500GB SSD</option>
+      <option value="512GB SSD">512GB SSD</option>
+      <option value="1TB SSD">1TB SSD</option>
+      <option value="2TB SSD">2TB SSD</option>
+      <option value="4TB SSD">4TB SSD</option>
 
-  <!-- NVMe / M.2 NVMe -->
-  <option value="128GB NVMe SSD">128GB NVMe SSD</option>
-  <option value="256GB NVMe SSD">256GB NVMe SSD</option>
-  <option value="500GB NVMe SSD">500GB NVMe SSD</option>
-  <option value="512GB NVMe SSD">512GB NVMe SSD</option>
-  <option value="1TB NVMe SSD">1TB NVMe SSD</option>
-  <option value="2TB NVMe SSD">2TB NVMe SSD</option>
-  <option value="4TB NVMe SSD">4TB NVMe SSD</option>
-  <option value="8TB NVMe SSD">8TB NVMe SSD</option>
+      <option value="128GB Storage">128GB Storage (type unknown)</option>
+      <option value="256GB Storage">256GB Storage (type unknown)</option>
+      <option value="500GB Storage">500GB Storage (type unknown)</option>
+      <option value="512GB Storage">512GB Storage (type unknown)</option>
+      <option value="1TB Storage">1TB Storage (type unknown)</option>
+      <option value="2TB Storage">2TB Storage (type unknown)</option>
+      <option value="4TB Storage">4TB Storage (type unknown)</option>
+    </select>
+  </div>
 
-  <!-- Unknown SSD type -->
-  <option value="128GB SSD">128GB SSD</option>
-  <option value="256GB SSD">256GB SSD</option>
-  <option value="500GB SSD">500GB SSD</option>
-  <option value="512GB SSD">512GB SSD</option>
-  <option value="1TB SSD">1TB SSD</option>
-  <option value="2TB SSD">2TB SSD</option>
-  <option value="4TB SSD">4TB SSD</option>
-
-  <!-- Unknown storage type -->
-  <option value="128GB Storage">128GB Storage (type unknown)</option>
-  <option value="256GB Storage">256GB Storage (type unknown)</option>
-  <option value="500GB Storage">500GB Storage (type unknown)</option>
-  <option value="512GB Storage">512GB Storage (type unknown)</option>
-  <option value="1TB Storage">1TB Storage (type unknown)</option>
-  <option value="2TB Storage">2TB Storage (type unknown)</option>
-  <option value="4TB Storage">4TB Storage (type unknown)</option>
-</select> value="HDD Only">HDD Only</option>
-</select>
-
+  <div id="detectedStorageList" style="margin-top:10px;"></div>
 </div>
-
-
-<div>
 
 <label>Condition</label>
 
