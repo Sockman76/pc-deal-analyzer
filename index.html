@@ -2,1164 +2,2266 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+  <meta
+    name="description"
+    content="PCDeal helps you analyze used gaming PC listings and determine whether the asking price is worth it."
+  >
 
-<title>PC Deal Analyzer</title>
+  <title>PCDeal — Used PC Deal Analyzer</title>
 
+  <style>
+    /* =========================================================
+       PCDEAL V2
+       ========================================================= */
 
-<style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    :root {
+      --background: #07090d;
+      --background-soft: #0b0e14;
+      --panel: #10141c;
+      --panel-hover: #151a24;
+      --panel-light: #171c26;
 
+      --border: #242b38;
+      --border-light: #303949;
 
-body {
-  margin: 0;
+      --text: #f4f7fb;
+      --text-soft: #a8b1c1;
+      --text-muted: #737d8f;
 
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
+      --accent: #6c72ff;
+      --accent-hover: #8186ff;
+      --accent-soft: rgba(108, 114, 255, 0.13);
 
-  background: #090b10;
-  color: white;
-}
+      --green: #42d392;
+      --green-soft: rgba(66, 211, 146, 0.12);
 
+      --yellow: #f2c94c;
+      --yellow-soft: rgba(242, 201, 76, 0.12);
 
-/* ============================================================
-   HEADER
-   ============================================================ */
+      --red: #ff667a;
+      --red-soft: rgba(255, 102, 122, 0.12);
 
-header {
-  border-bottom: 1px solid #20242e;
-  background: #0d1017;
-}
+      --radius-small: 10px;
+      --radius: 16px;
+      --radius-large: 24px;
 
+      --shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.35);
+    }
 
-.nav {
-  max-width: 1050px;
-  margin: auto;
 
-  padding: 18px 20px;
+    html {
+      scroll-behavior: smooth;
+    }
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
+    body {
+      min-height: 100vh;
 
-.logo {
-  font-size: 20px;
-  font-weight: 800;
-}
+      background:
+        radial-gradient(
+          circle at 50% -20%,
+          rgba(108, 114, 255, 0.18),
+          transparent 38%
+        ),
+        var(--background);
 
+      color: var(--text);
 
-.logo span {
-  color: #6c8cff;
-}
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
+      line-height: 1.5;
+    }
 
-.badge {
-  font-size: 12px;
 
-  background: #1b2030;
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
 
-  padding: 7px 11px;
 
-  border-radius: 20px;
+    button {
+      border: 0;
+    }
 
-  color: #aeb9d8;
-}
 
+    /* =========================================================
+       NAVBAR
+       ========================================================= */
 
-/* ============================================================
-   HERO
-   ============================================================ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
 
-.hero {
-  max-width: 850px;
-  margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-  text-align: center;
+      height: 72px;
 
-  padding: 70px 20px 35px;
-}
+      padding:
+        0 32px;
 
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.06);
 
-.hero h1 {
-  font-size: clamp(38px, 7vw, 64px);
-  line-height: 1.05;
+      background:
+        rgba(7, 9, 13, 0.78);
 
-  margin: 0;
-}
+      backdrop-filter:
+        blur(18px);
+    }
 
 
-.hero h1 span {
-  color: #6c8cff;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
 
+      font-size: 20px;
+      font-weight: 800;
 
-.hero p {
-  color: #9ba3b5;
+      letter-spacing: -0.4px;
+    }
 
-  font-size: 18px;
-  line-height: 1.6;
 
-  max-width: 650px;
+    .brand-icon {
+      display: grid;
+      place-items: center;
 
-  margin: 20px auto;
-}
+      width: 36px;
+      height: 36px;
 
+      border-radius: 11px;
 
-/* ============================================================
-   MAIN
-   ============================================================ */
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          #9a6cff
+        );
 
-.container {
-  max-width: 750px;
+      box-shadow:
+        0 6px 20px
+        rgba(108, 114, 255, 0.35);
 
-  margin: auto;
+      font-size: 17px;
+    }
 
-  padding: 20px 20px 80px;
-}
 
+    .version {
+      padding:
+        4px 8px;
 
-.card {
-  background: #11151d;
+      border:
+        1px solid
+        var(--border);
 
-  border: 1px solid #242a36;
-  border-radius: 18px;
+      border-radius:
+        999px;
 
-  padding: 25px;
+      color:
+        var(--text-muted);
 
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.25);
-}
+      font-size:
+        11px;
 
+      font-weight:
+        700;
+    }
 
-.card h2 {
-  margin-top: 0;
 
-  font-size: 23px;
-}
+    .nav-right {
+      color:
+        var(--text-muted);
 
+      font-size:
+        13px;
+    }
 
-.subtitle {
-  color: #8f98aa;
 
-  font-size: 14px;
+    /* =========================================================
+       PAGE
+       ========================================================= */
 
-  margin-bottom: 25px;
-}
+    .page {
+      width:
+        min(1120px, calc(100% - 32px));
 
+      margin:
+        0 auto;
 
-/* ============================================================
-   FORM
-   ============================================================ */
+      padding-bottom:
+        100px;
+    }
 
-label {
-  display: block;
 
-  margin-bottom: 7px;
+    /* =========================================================
+       HERO
+       ========================================================= */
 
-  font-weight: 600;
-  font-size: 14px;
-}
+    .hero {
+      max-width:
+        850px;
 
+      margin:
+        0 auto;
 
-input,
-select,
-textarea {
-  width: 100%;
+      padding:
+        92px 0 52px;
 
-  padding: 14px;
+      text-align:
+        center;
+    }
 
-  background: #090c12;
 
-  color: white;
+    .hero-badge {
+      display:
+        inline-flex;
 
-  border: 1px solid #303747;
-  border-radius: 10px;
+      align-items:
+        center;
 
-  font-size: 16px;
+      gap:
+        8px;
 
-  outline: none;
-}
+      margin-bottom:
+        22px;
 
+      padding:
+        8px 13px;
 
-input,
-select {
-  margin-bottom: 18px;
-}
+      border:
+        1px solid
+        rgba(108,114,255,0.3);
 
+      border-radius:
+        999px;
 
-textarea {
-  min-height: 180px;
+      background:
+        var(--accent-soft);
 
-  resize: vertical;
+      color:
+        #bfc2ff;
 
-  margin-bottom: 15px;
+      font-size:
+        13px;
 
-  font-family: inherit;
+      font-weight:
+        700;
+    }
 
-  line-height: 1.5;
-}
 
+    .hero-dot {
+      width:
+        7px;
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #6c8cff;
-}
+      height:
+        7px;
 
+      border-radius:
+        50%;
 
-.row {
-  display: grid;
+      background:
+        var(--green);
 
-  grid-template-columns:
-    1fr 1fr;
+      box-shadow:
+        0 0 10px
+        var(--green);
+    }
 
-  gap: 15px;
-}
 
+    .hero h1 {
+      max-width:
+        800px;
 
-button {
-  width: 100%;
+      margin:
+        0 auto;
 
-  border: none;
+      font-size:
+        clamp(
+          42px,
+          7vw,
+          72px
+        );
 
-  padding: 16px;
+      line-height:
+        1.02;
 
-  background: #5978ff;
+      letter-spacing:
+        -3px;
+    }
 
-  color: white;
 
-  border-radius: 11px;
+    .gradient-text {
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #aeb2ff
+        );
 
-  font-size: 16px;
-  font-weight: 700;
+      -webkit-background-clip:
+        text;
 
-  cursor: pointer;
-}
+      background-clip:
+        text;
 
+      color:
+        transparent;
+    }
 
-button:hover {
-  background: #6684ff;
-}
 
+    .hero p {
+      max-width:
+        650px;
 
-button:active {
-  transform: scale(0.99);
-}
+      margin:
+        24px auto 0;
 
+      color:
+        var(--text-soft);
 
-/* ============================================================
-   PARSER MESSAGE
-   ============================================================ */
+      font-size:
+        18px;
 
-#parseMessage {
-  margin-top: 15px;
+      line-height:
+        1.65;
+    }
 
-  color: #a6adba;
 
-  line-height: 1.6;
+    /* =========================================================
+       MAIN ANALYZER CARD
+       ========================================================= */
 
-  overflow-wrap: anywhere;
-}
+    .analyzer-shell {
+      position:
+        relative;
 
+      overflow:
+        hidden;
 
-/* ============================================================
-   RESULT
-   ============================================================ */
+      border:
+        1px solid
+        var(--border);
 
-#result {
-  display: none;
+      border-radius:
+        var(--radius-large);
 
-  margin-top: 25px;
+      background:
+        rgba(16, 20, 28, 0.92);
 
-  padding-top: 25px;
+      box-shadow:
+        var(--shadow);
+    }
 
-  border-top: 1px solid #292f3a;
-}
 
+    .analyzer-shell::before {
+      content:
+        "";
 
-.score {
-  font-size: 42px;
-  font-weight: 800;
-}
+      position:
+        absolute;
 
+      top:
+        -1px;
 
-.verdict {
-  font-size: 19px;
+      left:
+        15%;
 
-  margin-top: 5px;
-}
+      width:
+        70%;
 
+      height:
+        1px;
 
-.resultText {
-  color: #a6adba;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+    }
 
-  margin-top: 15px;
 
-  line-height: 1.6;
-}
+    .listing-area {
+      padding:
+        32px;
+    }
 
 
-.warning {
-  margin-top: 18px;
+    .section-top {
+      display:
+        flex;
 
-  background: #171b25;
+      align-items:
+        flex-start;
 
-  padding: 15px;
+      justify-content:
+        space-between;
 
-  border-radius: 10px;
+      gap:
+        20px;
 
-  color: #c7ccda;
+      margin-bottom:
+        20px;
+    }
 
-  line-height: 1.5;
-}
 
+    .section-number {
+      display:
+        inline-grid;
 
-/* ============================================================
-   FEATURES
-   ============================================================ */
+      place-items:
+        center;
 
-.features {
-  max-width: 900px;
+      width:
+        30px;
 
-  margin: 30px auto 80px;
+      height:
+        30px;
 
-  padding: 0 20px;
+      margin-bottom:
+        11px;
 
-  display: grid;
+      border-radius:
+        9px;
 
-  grid-template-columns:
-    repeat(3, 1fr);
+      background:
+        var(--accent-soft);
 
-  gap: 15px;
-}
+      color:
+        #bfc2ff;
 
+      font-size:
+        13px;
 
-.feature {
-  background: #10141c;
+      font-weight:
+        800;
+    }
 
-  border: 1px solid #222834;
 
-  border-radius: 15px;
+    .section-title {
+      font-size:
+        21px;
 
-  padding: 20px;
-}
+      font-weight:
+        750;
 
+      letter-spacing:
+        -0.4px;
+    }
 
-.featureIcon {
-  font-size: 25px;
-}
 
+    .section-description {
+      margin-top:
+        5px;
 
-.feature h3 {
-  margin-bottom: 7px;
-}
+      color:
+        var(--text-muted);
 
+      font-size:
+        14px;
+    }
 
-.feature p {
-  margin: 0;
 
-  color: #8e97a8;
+    /* =========================================================
+       LISTING TEXTAREA
+       ========================================================= */
 
-  line-height: 1.5;
+    textarea {
+      display:
+        block;
 
-  font-size: 14px;
-}
+      width:
+        100%;
 
+      min-height:
+        235px;
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+      resize:
+        vertical;
 
-footer {
-  text-align: center;
+      padding:
+        20px;
 
-  color: #606979;
+      border:
+        1px solid
+        var(--border);
 
-  padding: 30px;
+      outline:
+        none;
 
-  border-top: 1px solid #1c2028;
+      border-radius:
+        var(--radius);
 
-  font-size: 13px;
-}
+      background:
+        #090c12;
 
+      color:
+        var(--text);
 
-/* ============================================================
-   MOBILE
-   ============================================================ */
+      font-size:
+        15px;
 
-@media (max-width: 600px) {
+      line-height:
+        1.7;
 
-  .hero {
-    padding-top: 50px;
-  }
+      transition:
+        0.2s ease;
+    }
 
 
-  .row {
-    grid-template-columns:
-      1fr;
+    textarea::placeholder {
+      color:
+        #50596a;
+    }
 
-    gap: 0;
-  }
 
+    textarea:focus {
+      border-color:
+        var(--accent);
 
-  .features {
-    grid-template-columns:
-      1fr;
-  }
+      box-shadow:
+        0 0 0 4px
+        var(--accent-soft);
+    }
 
-}
 
-</style>
+    .listing-footer {
+      display:
+        flex;
 
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        16px;
+
+      margin-top:
+        16px;
+    }
+
+
+    #parseMessage {
+      flex:
+        1;
+
+      min-height:
+        20px;
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        13px;
+    }
+
+
+    /* =========================================================
+       BUTTONS
+       ========================================================= */
+
+    .primary-button {
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        9px;
+
+      min-height:
+        48px;
+
+      padding:
+        0 22px;
+
+      border-radius:
+        12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--accent),
+          #7d6cff
+        );
+
+      color:
+        white;
+
+      cursor:
+        pointer;
+
+      font-weight:
+        750;
+
+      transition:
+        0.2s ease;
+
+      box-shadow:
+        0 8px 24px
+        rgba(108,114,255,0.22);
+    }
+
+
+    .primary-button:hover {
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 12px 30px
+        rgba(108,114,255,0.32);
+    }
+
+
+    .primary-button:active {
+      transform:
+        translateY(0);
+    }
+
+
+    .secondary-button {
+      min-height:
+        44px;
+
+      padding:
+        0 18px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        11px;
+
+      background:
+        var(--panel-light);
+
+      color:
+        var(--text-soft);
+
+      cursor:
+        pointer;
+
+      font-weight:
+        650;
+
+      transition:
+        0.2s ease;
+    }
+
+
+    .secondary-button:hover {
+      border-color:
+        var(--border-light);
+
+      color:
+        white;
+
+      background:
+        var(--panel-hover);
+    }
+
+
+    /* =========================================================
+       BUILD SECTION
+       ========================================================= */
+
+    .build-section {
+      padding:
+        32px;
+
+      border-top:
+        1px solid
+        var(--border);
+    }
+
+
+    .spec-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap:
+        16px;
+    }
+
+
+    .spec-card {
+      position:
+        relative;
+
+      padding:
+        17px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        14px;
+
+      background:
+        #0c1017;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+    }
+
+
+    .spec-card:focus-within {
+      border-color:
+        rgba(108,114,255,0.8);
+
+      background:
+        #0e121b;
+    }
+
+
+    .spec-wide {
+      grid-column:
+        span 2;
+    }
+
+
+    .spec-label {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        8px;
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        12px;
+
+      font-weight:
+        750;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        0.7px;
+    }
+
+
+    .spec-icon {
+      font-size:
+        13px;
+    }
+
+
+    input,
+    select {
+      width:
+        100%;
+
+      min-height:
+        43px;
+
+      padding:
+        0 12px;
+
+      border:
+        1px solid
+        transparent;
+
+      outline:
+        none;
+
+      border-radius:
+        9px;
+
+      background:
+        var(--panel-light);
+
+      color:
+        var(--text);
+
+      transition:
+        0.2s ease;
+    }
+
+
+    input::placeholder {
+      color:
+        #596273;
+    }
+
+
+    input:focus,
+    select:focus {
+      border-color:
+        var(--accent);
+
+      box-shadow:
+        0 0 0 3px
+        var(--accent-soft);
+    }
+
+
+    select:disabled {
+      cursor:
+        not-allowed;
+
+      opacity:
+        0.78;
+    }
+
+
+    .dual-input {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        10px;
+    }
+
+
+    /* =========================================================
+       PRICE
+       ========================================================= */
+
+    .price-card {
+      grid-column:
+        span 2;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 150px;
+
+      gap:
+        10px;
+    }
+
+
+    /* =========================================================
+       ANALYZE ACTION
+       ========================================================= */
+
+    .analyze-section {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+      padding:
+        26px 32px;
+
+      border-top:
+        1px solid
+        var(--border);
+
+      background:
+        #0a0d13;
+    }
+
+
+    .analyze-note {
+      color:
+        var(--text-muted);
+
+      font-size:
+        13px;
+    }
+
+
+    .analyze-button {
+      min-width:
+        210px;
+
+      min-height:
+        54px;
+
+      font-size:
+        15px;
+    }
+
+
+    /* =========================================================
+       RESULT
+       ========================================================= */
+
+    #result {
+      display:
+        none;
+
+      margin-top:
+        28px;
+
+      overflow:
+        hidden;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        var(--radius-large);
+
+      background:
+        var(--panel);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+
+    .result-header {
+      display:
+        grid;
+
+      grid-template-columns:
+        210px 1fr;
+
+      min-height:
+        200px;
+    }
+
+
+    .score-area {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        32px;
+
+      border-right:
+        1px solid
+        var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(108,114,255,0.13),
+          transparent
+        );
+    }
+
+
+    .score-label {
+      margin-bottom:
+        8px;
+
+      color:
+        var(--text-muted);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        1.2px;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    #score {
+      font-size:
+        48px;
+
+      font-weight:
+        850;
+
+      letter-spacing:
+        -2px;
+    }
+
+
+    .verdict-area {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      justify-content:
+        center;
+
+      padding:
+        32px;
+    }
+
+
+    .verdict-label {
+      color:
+        var(--text-muted);
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        1px;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    #verdict {
+      margin-top:
+        6px;
+
+      font-size:
+        31px;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        -0.8px;
+    }
+
+
+    .result-body {
+      padding:
+        32px;
+
+      border-top:
+        1px solid
+        var(--border);
+
+      color:
+        var(--text-soft);
+
+      line-height:
+        1.8;
+    }
+
+
+    #resultText strong {
+      color:
+        var(--text);
+    }
+
+
+    /* =========================================================
+       HOW IT WORKS
+       ========================================================= */
+
+    .info-section {
+      padding:
+        90px 0 30px;
+    }
+
+
+    .info-heading {
+      margin-bottom:
+        26px;
+
+      text-align:
+        center;
+    }
+
+
+    .info-heading h2 {
+      font-size:
+        32px;
+
+      letter-spacing:
+        -1px;
+    }
+
+
+    .info-heading p {
+      max-width:
+        560px;
+
+      margin:
+        10px auto 0;
+
+      color:
+        var(--text-muted);
+    }
+
+
+    .info-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap:
+        16px;
+    }
+
+
+    .info-card {
+      min-height:
+        180px;
+
+      padding:
+        24px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius:
+        var(--radius);
+
+      background:
+        var(--background-soft);
+    }
+
+
+    .info-icon {
+      display:
+        grid;
+
+      place-items:
+        center;
+
+      width:
+        42px;
+
+      height:
+        42px;
+
+      margin-bottom:
+        20px;
+
+      border-radius:
+        12px;
+
+      background:
+        var(--accent-soft);
+
+      font-size:
+        19px;
+    }
+
+
+    .info-card h3 {
+      margin-bottom:
+        8px;
+
+      font-size:
+        16px;
+    }
+
+
+    .info-card p {
+      color:
+        var(--text-muted);
+
+      font-size:
+        14px;
+
+      line-height:
+        1.65;
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      margin-top:
+        70px;
+
+      padding:
+        30px 0;
+
+      border-top:
+        1px solid
+        var(--border);
+
+      color:
+        var(--text-muted);
+
+      text-align:
+        center;
+
+      font-size:
+        12px;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (
+      max-width: 760px
+    ) {
+
+      .navbar {
+        padding:
+          0 18px;
+      }
+
+
+      .nav-right {
+        display:
+          none;
+      }
+
+
+      .page {
+        width:
+          min(
+            100% - 20px,
+            1120px
+          );
+      }
+
+
+      .hero {
+        padding:
+          65px 8px 38px;
+      }
+
+
+      .hero h1 {
+        letter-spacing:
+          -2px;
+      }
+
+
+      .hero p {
+        font-size:
+          16px;
+      }
+
+
+      .listing-area,
+      .build-section {
+        padding:
+          21px;
+      }
+
+
+      .listing-footer {
+        align-items:
+          stretch;
+
+        flex-direction:
+          column;
+      }
+
+
+      .primary-button {
+        width:
+          100%;
+      }
+
+
+      .spec-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .spec-wide,
+      .price-card {
+        grid-column:
+          span 1;
+      }
+
+
+      .price-card {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .analyze-section {
+        align-items:
+          stretch;
+
+        flex-direction:
+          column;
+
+        padding:
+          21px;
+      }
+
+
+      .analyze-button {
+        width:
+          100%;
+      }
+
+
+      .result-header {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .score-area {
+        border-right:
+          0;
+
+        border-bottom:
+          1px solid
+          var(--border);
+      }
+
+
+      .info-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+    }
+
+  </style>
 </head>
 
 
 <body>
 
 
-<!-- ============================================================
-     HEADER
-     ============================================================ -->
+  <!-- =======================================================
+       NAV
+       ======================================================= -->
 
-<header>
+  <nav class="navbar">
 
-  <div class="nav">
+    <div class="brand">
 
-    <div class="logo">
-      PC<span>Deal</span>
-    </div>
+      <div class="brand-icon">
+        P
+      </div>
 
-    <div class="badge">
-      BETA
-    </div>
+      <span>
+        PCDeal
+      </span>
 
-  </div>
+      <span class="version">
+        V2
+      </span>
 
-</header>
-
-
-
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-
-<section class="hero">
-
-  <h1>
-    Stop overpaying for
-    <span>used PCs.</span>
-  </h1>
-
-  <p>
-    Enter the components and asking price of a used gaming PC.
-    We'll help you figure out whether you're looking at a bargain
-    or a bad deal.
-  </p>
-
-</section>
-
-
-
-<!-- ============================================================
-     MAIN
-     ============================================================ -->
-
-<main class="container">
-
-
-  <!-- ==========================================================
-       PASTE LISTING
-       ========================================================== -->
-
-  <div
-    class="card"
-    style="margin-bottom:20px;"
-  >
-
-    <h2>
-      Paste a Listing
-    </h2>
-
-
-    <div class="subtitle">
-      Paste a Facebook Marketplace, Kijiji, or other PC listing
-      and we'll try to detect the specs automatically.
     </div>
 
 
-    <textarea
-      id="listingText"
-      placeholder="Example: Ryzen 7 5800X3D, RTX 3080 Ti, 32GB DDR4, 1TB NVMe SSD, MSI B550 Tomahawk, Corsair RM850x. Asking $950 CAD."
-    ></textarea>
-
-
-    <button
-      type="button"
-      onclick="parseListing()"
-    >
-      Detect Specs →
-    </button>
-
-
-    <div id="parseMessage"></div>
-
-  </div>
-
-
-
-  <!-- ==========================================================
-       ANALYZER
-       ========================================================== -->
-
-  <div class="card">
-
-    <h2>
-      Analyze a PC
-    </h2>
-
-
-    <div class="subtitle">
-      Enter as much information as you know.
+    <div class="nav-right">
+      Used PC Deal Analyzer
     </div>
 
-
-
-    <!-- ========================================================
-         CPU
-         ======================================================== -->
-
-    <label for="cpu">
-      CPU
-    </label>
-
-
-    <input
-      id="cpu"
-      type="text"
-      placeholder="e.g. Ryzen 5 5600X"
-    >
+  </nav>
 
 
 
-    <!-- ========================================================
-         GPU
-         ======================================================== -->
-
-    <label for="gpu">
-      GPU
-    </label>
+  <main class="page">
 
 
-    <input
-      id="gpu"
-      type="text"
-      placeholder="e.g. RTX 3070"
-    >
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="hero">
+
+      <div class="hero-badge">
+
+        <span class="hero-dot"></span>
+
+        Smart used-PC analysis
+
+      </div>
+
+
+      <h1>
+
+        Is that PC actually
+
+        <span class="gradient-text">
+          worth buying?
+        </span>
+
+      </h1>
+
+
+      <p>
+        Paste a used gaming PC listing and PCDeal
+        will detect the hardware, check compatibility,
+        estimate its value and rate the deal.
+      </p>
+
+    </section>
 
 
 
-    <!-- ========================================================
-         RAM
-         ======================================================== -->
+    <!-- =====================================================
+         ANALYZER
+         ===================================================== -->
 
-    <div class="row">
-
-
-      <div>
-
-        <label for="ram">
-          Memory Capacity
-        </label>
+    <section class="analyzer-shell">
 
 
-        <select id="ram">
+      <!-- LISTING -->
 
-          <option value="">
-            Select RAM
-          </option>
+      <div class="listing-area">
 
-          <option value="8GB">
-            8GB
-          </option>
+        <div class="section-top">
 
-          <option value="16GB">
-            16GB
-          </option>
+          <div>
 
-          <option value="32GB">
-            32GB
-          </option>
+            <div class="section-number">
+              1
+            </div>
 
-          <option value="64GB+">
-            64GB+
-          </option>
+            <div class="section-title">
+              Paste the listing
+            </div>
 
-        </select>
+            <div class="section-description">
+              Copy the entire description from the listing.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <textarea
+          id="listingText"
+          placeholder="Example:
+
+Gaming PC for sale
+
+Ryzen 5 5600
+RTX 3060 12GB
+16GB DDR4
+1TB NVMe SSD
+MSI B550 motherboard
+650W PSU
+
+Mint condition
+Asking $650 CAD"
+        ></textarea>
+
+
+        <div class="listing-footer">
+
+          <div id="parseMessage">
+            PCDeal will automatically detect supported components.
+          </div>
+
+
+          <button
+            type="button"
+            class="primary-button"
+            onclick="parseListing()"
+          >
+            Detect Specs
+            <span>→</span>
+          </button>
+
+        </div>
 
       </div>
 
 
 
-      <div>
+      <!-- ===================================================
+           BUILD
+           =================================================== -->
 
-        <label for="ramType">
-          RAM Type
-        </label>
+      <div
+        class="build-section"
+        id="detectedSection"
+      >
+
+        <div class="section-top">
+
+          <div>
+
+            <div class="section-number">
+              2
+            </div>
+
+            <div class="section-title">
+              Build details
+            </div>
+
+            <div class="section-description">
+              PCDeal fills these automatically. You can correct anything before analyzing.
+            </div>
+
+          </div>
+
+        </div>
 
 
-        <select id="ramType">
 
-          <option value="">
-            Unknown
-          </option>
+        <div class="spec-grid">
 
-          <option value="DDR2">
-            DDR2
-          </option>
 
-          <option value="DDR3">
-            DDR3
-          </option>
+          <!-- CPU -->
 
-          <option value="DDR4">
-            DDR4
-          </option>
+          <div class="spec-card">
 
-          <option value="DDR5">
-            DDR5
-          </option>
+            <label
+              class="spec-label"
+              for="cpu"
+            >
+              <span class="spec-icon">
+                🧠
+              </span>
 
-        </select>
+              CPU
+            </label>
+
+            <input
+              id="cpu"
+              type="text"
+              placeholder="Ryzen 5 5600"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+
+          <!-- GPU -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="gpu"
+            >
+              <span class="spec-icon">
+                🎮
+              </span>
+
+              GPU
+            </label>
+
+            <input
+              id="gpu"
+              type="text"
+              placeholder="RTX 3060"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+
+          <!-- RAM -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="ram"
+            >
+              <span class="spec-icon">
+                💾
+              </span>
+
+              Memory
+            </label>
+
+
+            <div class="dual-input">
+
+              <select id="ram">
+
+                <option value="">
+                  RAM Size
+                </option>
+
+                <option value="8GB">
+                  8GB
+                </option>
+
+                <option value="16GB">
+                  16GB
+                </option>
+
+                <option value="32GB">
+                  32GB
+                </option>
+
+                <option value="64GB+">
+                  64GB+
+                </option>
+
+              </select>
+
+
+              <select id="ramType">
+
+                <option value="">
+                  RAM Type
+                </option>
+
+                <option value="DDR2">
+                  DDR2
+                </option>
+
+                <option value="DDR3">
+                  DDR3
+                </option>
+
+                <option value="DDR4">
+                  DDR4
+                </option>
+
+                <option value="DDR5">
+                  DDR5
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- STORAGE -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="storageType"
+            >
+              <span class="spec-icon">
+                💿
+              </span>
+
+              Storage
+            </label>
+
+
+            <div class="dual-input">
+
+              <select id="storageType">
+
+                <option value="">
+                  Drive Type
+                </option>
+
+                <option value="NVMe SSD">
+                  NVMe SSD
+                </option>
+
+                <option value="M.2 SATA SSD">
+                  M.2 SATA SSD
+                </option>
+
+                <option value="SATA SSD">
+                  SATA SSD
+                </option>
+
+                <option value="SSD">
+                  SSD
+                </option>
+
+                <option value="HDD">
+                  HDD
+                </option>
+
+                <option value="Unknown">
+                  Unknown
+                </option>
+
+              </select>
+
+
+              <select id="storageSize">
+
+                <option value="">
+                  Drive Size
+                </option>
+
+                <option value="120GB">
+                  120GB
+                </option>
+
+                <option value="128GB">
+                  128GB
+                </option>
+
+                <option value="240GB">
+                  240GB
+                </option>
+
+                <option value="250GB">
+                  250GB
+                </option>
+
+                <option value="256GB">
+                  256GB
+                </option>
+
+                <option value="480GB">
+                  480GB
+                </option>
+
+                <option value="500GB">
+                  500GB
+                </option>
+
+                <option value="512GB">
+                  512GB
+                </option>
+
+                <option value="1TB">
+                  1TB
+                </option>
+
+                <option value="1.5TB">
+                  1.5TB
+                </option>
+
+                <option value="2TB">
+                  2TB
+                </option>
+
+                <option value="3TB">
+                  3TB
+                </option>
+
+                <option value="4TB">
+                  4TB
+                </option>
+
+                <option value="6TB">
+                  6TB
+                </option>
+
+                <option value="8TB">
+                  8TB
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- MOTHERBOARD -->
+
+          <div class="spec-card spec-wide">
+
+            <label
+              class="spec-label"
+              for="motherboard"
+            >
+              <span class="spec-icon">
+                🧩
+              </span>
+
+              Motherboard
+            </label>
+
+            <input
+              id="motherboard"
+              type="text"
+              placeholder="MSI B550 Tomahawk"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+
+          <!-- PSU -->
+
+          <div class="spec-card spec-wide">
+
+            <label
+              class="spec-label"
+              for="psu"
+            >
+              <span class="spec-icon">
+                ⚡
+              </span>
+
+              Power Supply
+            </label>
+
+            <input
+              id="psu"
+              type="text"
+              placeholder="Corsair RM750x 750W"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+
+          <!-- COOLER -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="cooler"
+            >
+              <span class="spec-icon">
+                ❄️
+              </span>
+
+              CPU Cooler
+            </label>
+
+            <select id="cooler">
+
+              <option value="">
+                Unknown
+              </option>
+
+              <option value="Stock cooler">
+                Stock cooler
+              </option>
+
+              <option value="Air cooler">
+                Aftermarket air cooler
+              </option>
+
+              <option value="240mm AIO">
+                240mm AIO
+              </option>
+
+              <option value="280mm AIO">
+                280mm AIO
+              </option>
+
+              <option value="360mm AIO">
+                360mm AIO
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- CASE -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="caseQuality"
+            >
+              <span class="spec-icon">
+                🖥️
+              </span>
+
+              Case
+            </label>
+
+            <select id="caseQuality">
+
+              <option value="">
+                Unknown
+              </option>
+
+              <option value="basic">
+                Basic case
+              </option>
+
+              <option value="mid">
+                Mid-range case
+              </option>
+
+              <option value="premium">
+                Premium case
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- CONDITION -->
+
+          <div class="spec-card">
+
+            <label
+              class="spec-label"
+              for="condition"
+            >
+              <span class="spec-icon">
+                ✨
+              </span>
+
+              Condition
+            </label>
+
+            <select id="condition">
+
+              <option value="excellent">
+                Excellent / Like New
+              </option>
+
+              <option
+                value="good"
+                selected
+              >
+                Good
+              </option>
+
+              <option value="fair">
+                Fair
+              </option>
+
+              <option value="poor">
+                Poor
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- PRICE -->
+
+          <div class="spec-card price-card">
+
+            <div>
+
+              <label
+                class="spec-label"
+                for="price"
+              >
+                <span class="spec-icon">
+                  💰
+                </span>
+
+                Asking Price
+              </label>
+
+              <input
+                id="price"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="650"
+              >
+
+            </div>
+
+
+            <div>
+
+              <label
+                class="spec-label"
+                for="currency"
+              >
+                Currency
+              </label>
+
+              <select id="currency">
+
+                <option
+                  value="CAD"
+                  selected
+                >
+                  CAD
+                </option>
+
+                <option value="USD">
+                  USD
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+        </div>
 
       </div>
 
 
-    </div>
 
+      <!-- ===================================================
+           ANALYZE
+           =================================================== -->
 
+      <div class="analyze-section">
 
-    <!-- ========================================================
-         STORAGE
-         ======================================================== -->
+        <div>
 
-    <div class="row">
+          <div class="section-title">
+            Ready?
+          </div>
 
+          <div class="analyze-note">
+            PCDeal will estimate the build's used value and rate the asking price.
+          </div>
 
-      <!-- DRIVE TYPE -->
+        </div>
 
-      <div>
 
-        <label for="storageType">
-          Drive Type
-        </label>
-
-
-        <select id="storageType">
-
-          <option value="">
-            Select drive type
-          </option>
-
-
-          <option value="NVMe SSD">
-            NVMe SSD
-          </option>
-
-
-          <option value="M.2 SATA SSD">
-            M.2 SATA SSD
-          </option>
-
-
-          <option value="SATA SSD">
-            SATA SSD
-          </option>
-
-
-          <option value="SSD">
-            SSD (type unknown)
-          </option>
-
-
-          <option value="HDD">
-            HDD
-          </option>
-
-
-          <option value="Unknown">
-            Unknown drive type
-          </option>
-
-        </select>
-
-      </div>
-
-
-
-      <!-- DRIVE SIZE -->
-
-      <div>
-
-        <label for="storageSize">
-          Drive Size
-        </label>
-
-
-        <select id="storageSize">
-
-          <option value="">
-            Select drive size
-          </option>
-
-
-          <option value="120GB">
-            120GB
-          </option>
-
-
-          <option value="128GB">
-            128GB
-          </option>
-
-
-          <option value="240GB">
-            240GB
-          </option>
-
-
-          <option value="250GB">
-            250GB
-          </option>
-
-
-          <option value="256GB">
-            256GB
-          </option>
-
-
-          <option value="480GB">
-            480GB
-          </option>
-
-
-          <option value="500GB">
-            500GB
-          </option>
-
-
-          <option value="512GB">
-            512GB
-          </option>
-
-
-          <option value="1TB">
-            1TB
-          </option>
-
-
-          <option value="1.5TB">
-            1.5TB
-          </option>
-
-
-          <option value="2TB">
-            2TB
-          </option>
-
-
-          <option value="3TB">
-            3TB
-          </option>
-
-
-          <option value="4TB">
-            4TB
-          </option>
-
-
-          <option value="6TB">
-            6TB
-          </option>
-
-
-          <option value="8TB">
-            8TB
-          </option>
-
-        </select>
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- ========================================================
-         CONDITION
-         ======================================================== -->
-
-    <label for="condition">
-      Condition
-    </label>
-
-
-    <select id="condition">
-
-      <option value="good">
-        Good
-      </option>
-
-      <option value="excellent">
-        Excellent
-      </option>
-
-      <option value="fair">
-        Fair
-      </option>
-
-      <option value="poor">
-        Poor
-      </option>
-
-    </select>
-
-
-
-    <!-- ========================================================
-         MOTHERBOARD
-         ======================================================== -->
-
-    <label for="motherboard">
-      Motherboard
-    </label>
-
-
-    <input
-      id="motherboard"
-      type="text"
-      placeholder="e.g. MSI B550 Tomahawk"
-    >
-
-
-
-    <!-- ========================================================
-         POWER SUPPLY
-         ======================================================== -->
-
-    <label for="psu">
-      Power Supply
-    </label>
-
-
-    <input
-      id="psu"
-      type="text"
-      placeholder="e.g. Corsair RM750x 750W"
-    >
-
-
-
-    <!-- ========================================================
-         COOLER + CASE
-         ======================================================== -->
-
-    <div class="row">
-
-
-      <div>
-
-        <label for="cooler">
-          CPU Cooler
-        </label>
-
-
-        <select id="cooler">
-
-          <option value="">
-            Unknown
-          </option>
-
-
-          <option value="Stock cooler">
-            Stock cooler
-          </option>
-
-
-          <option value="Air cooler">
-            Aftermarket air cooler
-          </option>
-
-
-          <option value="240mm AIO">
-            240mm AIO
-          </option>
-
-
-          <option value="280mm AIO">
-            280mm AIO
-          </option>
-
-
-          <option value="360mm AIO">
-            360mm AIO
-          </option>
-
-        </select>
-
-      </div>
-
-
-
-      <div>
-
-        <label for="caseQuality">
-          Case
-        </label>
-
-
-        <select id="caseQuality">
-
-          <option value="">
-            Unknown
-          </option>
-
-
-          <option value="basic">
-            Basic
-          </option>
-
-
-          <option value="mid">
-            Mid-range
-          </option>
-
-
-          <option value="premium">
-            Premium
-          </option>
-
-        </select>
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- ========================================================
-         PRICE + CURRENCY
-         ======================================================== -->
-
-    <div class="row">
-
-
-      <div>
-
-        <label for="price">
-          Asking Price
-        </label>
-
-
-        <input
-          id="price"
-          type="number"
-          min="0"
-          step="1"
-          placeholder="e.g. 850"
+        <button
+          type="button"
+          class="primary-button analyze-button"
+          onclick="analyzeDeal()"
         >
+          Analyze This Deal
+          <span>→</span>
+        </button>
 
       </div>
 
 
-
-      <div>
-
-        <label for="currency">
-          Currency
-        </label>
+    </section>
 
 
-        <select id="currency">
 
-          <option value="CAD">
-            CAD
-          </option>
+    <!-- =====================================================
+         RESULT
+         ===================================================== -->
 
-          <option value="USD">
-            USD
-          </option>
+    <section id="result">
 
-        </select>
+      <div class="result-header">
+
+        <div class="score-area">
+
+          <div class="score-label">
+            PCDeal Score
+          </div>
+
+          <div id="score">
+            --
+          </div>
+
+        </div>
+
+
+        <div class="verdict-area">
+
+          <div class="verdict-label">
+            Verdict
+          </div>
+
+          <div id="verdict">
+            Waiting for analysis
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="result-body">
+
+        <div id="resultText">
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HOW IT WORKS
+         ===================================================== -->
+
+    <section class="info-section">
+
+      <div class="info-heading">
+
+        <h2>
+          How PCDeal works
+        </h2>
+
+        <p>
+          PCDeal combines component detection,
+          compatibility information and estimated used values
+          to help you judge a listing.
+        </p>
 
       </div>
 
 
-    </div>
+      <div class="info-grid">
 
 
+        <article class="info-card">
 
-    <!-- ========================================================
-         ANALYZE BUTTON
-         ======================================================== -->
+          <div class="info-icon">
+            🔎
+          </div>
 
-    <button
-      type="button"
-      onclick="analyzeDeal()"
-    >
-      Analyze Deal →
-    </button>
+          <h3>
+            Detect
+          </h3>
 
+          <p>
+            Paste a listing and PCDeal looks for
+            CPUs, GPUs, RAM, storage, motherboards,
+            power supplies and more.
+          </p>
 
-
-    <!-- ========================================================
-         RESULTS
-         ======================================================== -->
-
-    <div id="result">
-
-      <div
-        id="score"
-        class="score"
-      ></div>
+        </article>
 
 
-      <div
-        id="verdict"
-        class="verdict"
-      ></div>
+        <article class="info-card">
+
+          <div class="info-icon">
+            🧩
+          </div>
+
+          <h3>
+            Check
+          </h3>
+
+          <p>
+            CPU platform, chipset and memory information
+            help identify compatibility issues in the build.
+          </p>
+
+        </article>
 
 
-      <div
-        id="resultText"
-        class="resultText"
-      ></div>
+        <article class="info-card">
 
+          <div class="info-icon">
+            📊
+          </div>
 
-      <div class="warning">
+          <h3>
+            Analyze
+          </h3>
 
-        <strong>
-          Before buying:
-        </strong>
+          <p>
+            PCDeal compares the estimated system value
+            with the asking price and gives the listing
+            a simple deal score.
+          </p>
 
-        <br><br>
+        </article>
 
-        Always test a used PC in person when possible.
-        Check temperatures, storage health, GPU stability,
-        and the exact power supply model.
 
       </div>
 
-    </div>
-
-
-  </div>
-
-</main>
+    </section>
 
 
 
-<!-- ============================================================
-     FEATURES
-     ============================================================ -->
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
-<section class="features">
+    <footer>
+
+      PCDeal V2
+
+      <br>
+
+      Estimates are approximate and should be used
+      as one part of your buying decision.
+
+    </footer>
 
 
-  <div class="feature">
-
-    <div class="featureIcon">
-      💰
-    </div>
-
-    <h3>
-      Deal Rating
-    </h3>
-
-    <p>
-      Quickly see whether the asking price looks reasonable.
-    </p>
-
-  </div>
+  </main>
 
 
 
-  <div class="feature">
+  <!-- =======================================================
+       DATABASES + ENGINE
+       ======================================================= -->
 
-    <div class="featureIcon">
-      🎮
-    </div>
+  <script src="platform.js?v=2"></script>
 
-    <h3>
-      Performance
-    </h3>
+  <script src="cpu-data.js?v=1"></script>
 
-    <p>
-      Understand what kind of gaming experience the hardware
-      can provide.
-    </p>
+  <script src="gpu-data.js?v=1"></script>
 
-  </div>
+  <script src="parts.js?v=5"></script>
 
+  <script src="app-v4.js?v=18"></script>
 
-
-  <div class="feature">
-
-    <div class="featureIcon">
-      🔧
-    </div>
-
-    <h3>
-      Upgrade Check
-    </h3>
-
-    <p>
-      Spot potential weaknesses before spending your money.
-    </p>
-
-  </div>
-
-
-</section>
-
-
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-
-<footer>
-  PCDeal • Built for smarter PC buying
-</footer>
-
-
-
-<!-- ============================================================
-     DATABASES + APP
-     LOAD ORDER MATTERS
-     ============================================================ -->
-
-<script src="platform.js?v=2"></script>
-<script src="cpu-data.js?v=1"></script>
-<script src="gpu-data.js?v=1"></script>
-<script src="parts.js?v=5"></script>
-<script src="app-v4.js?v=18"></script>
 
 </body>
+
 </html>
