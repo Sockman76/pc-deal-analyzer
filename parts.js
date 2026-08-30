@@ -1,28 +1,31 @@
 // ============================================================
-// PCDEAL - PARTS ENGINE
-// VERSION 4
+// PCDEAL PARTS ENGINE
+// VERSION 5
 // ============================================================
 //
 // Requires:
-//
 // cpu-data.js
 // gpu-data.js
 // platform.js
 //
-// Handles:
+// IMPORTANT:
+// This file DOES NOT create cpuDatabase, gpuDatabase,
+// or platformDatabase.
 //
-// - CPU exact lookup
-// - GPU exact lookup
-// - Alias lookup
-// - Flexible text normalization
-// - Listing CPU detection
-// - Listing GPU detection
-// - Basic CPU family fallback
-// - Compatibility helpers
-// - Database stats
+// Those are loaded from the other files.
+//
+// V5 improvements:
+// - Better Marketplace/Kijiji shorthand
+// - Ryzen shorthand: r7 5800x3d
+// - Intel shorthand: i7 12700k / i712700k
+// - NVIDIA shorthand: 3080ti / rtx3080ti / 4070s
+// - AMD shorthand: 6800xt / rx6800xt
+// - Better spacing/hyphen tolerance
+// - Better aliases
+// - Generic fallback detection
+// - Does NOT invent prices for unknown parts
 //
 // ============================================================
-
 
 
 // ============================================================
@@ -31,251 +34,335 @@
 
 const cpuAliases = {
 
-  // Intel common shorthand
-
-  "i9 14900ks": "Core i9-14900KS",
-  "i9 14900k": "Core i9-14900K",
-  "i9 14900kf": "Core i9-14900KF",
-  "i9 14900": "Core i9-14900",
-
-  "i7 14700k": "Core i7-14700K",
-  "i7 14700kf": "Core i7-14700KF",
-  "i7 14700": "Core i7-14700",
-  "i7 14700f": "Core i7-14700F",
-
-  "i5 14600k": "Core i5-14600K",
-  "i5 14600kf": "Core i5-14600KF",
-  "i5 14500": "Core i5-14500",
-  "i5 14400f": "Core i5-14400F",
-
-  "i3 14100f": "Core i3-14100F",
-
-  "i9 13900ks": "Core i9-13900KS",
-  "i9 13900k": "Core i9-13900K",
-  "i9 13900kf": "Core i9-13900KF",
-  "i9 13900": "Core i9-13900",
-
-  "i7 13700k": "Core i7-13700K",
-  "i7 13700kf": "Core i7-13700KF",
-  "i7 13700": "Core i7-13700",
-
-  "i5 13600k": "Core i5-13600K",
-  "i5 13600kf": "Core i5-13600KF",
-  "i5 13500": "Core i5-13500",
-  "i5 13400f": "Core i5-13400F",
-
-  "i3 13100f": "Core i3-13100F",
-
-  "i9 12900ks": "Core i9-12900KS",
-  "i9 12900k": "Core i9-12900K",
-  "i9 12900kf": "Core i9-12900KF",
-  "i9 12900": "Core i9-12900",
-
-  "i7 12700k": "Core i7-12700K",
-  "i7 12700kf": "Core i7-12700KF",
-  "i7 12700f": "Core i7-12700F",
-
-  "i5 12600k": "Core i5-12600K",
-  "i5 12600kf": "Core i5-12600KF",
-  "i5 12500": "Core i5-12500",
-  "i5 12400f": "Core i5-12400F",
-
-  "i3 12300": "Core i3-12300",
-  "i3 12100f": "Core i3-12100F",
-
-  "i9 11900k": "Core i9-11900K",
-  "i9 11900kf": "Core i9-11900KF",
-  "i9 11900": "Core i9-11900",
-
-  "i7 11700k": "Core i7-11700K",
-  "i7 11700f": "Core i7-11700F",
-
-  "i5 11600k": "Core i5-11600K",
-  "i5 11500": "Core i5-11500",
-  "i5 11400f": "Core i5-11400F",
-
-  "i9 10900k": "Core i9-10900K",
-  "i9 10900kf": "Core i9-10900KF",
-  "i9 10900": "Core i9-10900",
-
-  "i7 10700k": "Core i7-10700K",
-  "i7 10700f": "Core i7-10700F",
-
-  "i5 10600k": "Core i5-10600K",
-  "i5 10500": "Core i5-10500",
-  "i5 10400f": "Core i5-10400F",
-
-  "i3 10300": "Core i3-10300",
-  "i3 10100f": "Core i3-10100F",
-
-  "i9 9900ks": "Core i9-9900KS",
-  "i9 9900k": "Core i9-9900K",
-  "i9 9900kf": "Core i9-9900KF",
-
-  "i7 9700k": "Core i7-9700K",
-  "i7 9700f": "Core i7-9700F",
-
-  "i5 9600k": "Core i5-9600K",
-  "i5 9500": "Core i5-9500",
-  "i5 9400f": "Core i5-9400F",
-
-  "i7 8700k": "Core i7-8700K",
-  "i7 8700": "Core i7-8700",
-
-  "i5 8600k": "Core i5-8600K",
-  "i5 8500": "Core i5-8500",
-  "i5 8400": "Core i5-8400",
-
-  "i7 7700k": "Core i7-7700K",
-  "i7 7700": "Core i7-7700",
-
-  "i5 7600k": "Core i5-7600K",
-  "i5 7500": "Core i5-7500",
-  "i5 7400": "Core i5-7400",
-
-  "i7 6700k": "Core i7-6700K",
-  "i7 6700": "Core i7-6700",
-
-  "i5 6600k": "Core i5-6600K",
-  "i5 6500": "Core i5-6500",
-  "i5 6400": "Core i5-6400",
-
-  "i7 5775c": "Core i7-5775C",
-  "i5 5675c": "Core i5-5675C",
+  // ----------------------------------------------------------
+  // INTEL OLDER
+  // ----------------------------------------------------------
 
   "i7 4790k": "Core i7-4790K",
-  "i7 4790": "Core i7-4790",
-  "i7 4770k": "Core i7-4770K",
-  "i7 4770": "Core i7-4770",
+  "i74790k": "Core i7-4790K",
+  "4790k": "Core i7-4790K",
 
-  "i5 4690k": "Core i5-4690K",
-  "i5 4690": "Core i5-4690",
-  "i5 4670k": "Core i5-4670K",
-  "i5 4670": "Core i5-4670",
-  "i5 4590": "Core i5-4590",
-  "i5 4570": "Core i5-4570",
-  "i5 4460": "Core i5-4460",
-  "i5 4440": "Core i5-4440",
+  "i7 4770k": "Core i7-4770K",
+  "i74770k": "Core i7-4770K",
+  "4770k": "Core i7-4770K",
 
   "i7 3770k": "Core i7-3770K",
-  "i7 3770": "Core i7-3770",
-  "i5 3570k": "Core i5-3570K",
-  "i5 3570": "Core i5-3570",
-  "i5 3470": "Core i5-3470",
+  "i73770k": "Core i7-3770K",
+  "3770k": "Core i7-3770K",
 
-  "i7 2700k": "Core i7-2700K",
   "i7 2600k": "Core i7-2600K",
-  "i7 2600": "Core i7-2600",
-  "i5 2500k": "Core i5-2500K",
-  "i5 2500": "Core i5-2500",
-  "i5 2400": "Core i5-2400",
+  "i72600k": "Core i7-2600K",
 
-  "i7 880": "Core i7-880",
-  "i7 870": "Core i7-870",
-  "i7 860": "Core i7-860",
-  "i5 760": "Core i5-760",
-  "i5 750": "Core i5-750",
+  // ----------------------------------------------------------
+  // INTEL 6TH / 7TH
+  // ----------------------------------------------------------
 
-  // Core Ultra shorthand
+  "i7 6700k": "Core i7-6700K",
+  "i76700k": "Core i7-6700K",
 
-  "ultra 9 285k": "Core Ultra 9 285K",
-  "ultra 7 265k": "Core Ultra 7 265K",
-  "ultra 7 265kf": "Core Ultra 7 265KF",
-  "ultra 5 245k": "Core Ultra 5 245K",
-  "ultra 5 245kf": "Core Ultra 5 245KF",
+  "i7 7700k": "Core i7-7700K",
+  "i77700k": "Core i7-7700K",
 
-  // AMD shorthand
+  "i5 6600k": "Core i5-6600K",
+  "i56600k": "Core i5-6600K",
 
-  "9950x3d": "Ryzen 9 9950X3D",
-  "9900x3d": "Ryzen 9 9900X3D",
-  "9800x3d": "Ryzen 7 9800X3D",
-  "9950x": "Ryzen 9 9950X",
-  "9900x": "Ryzen 9 9900X",
-  "9700x": "Ryzen 7 9700X",
-  "9600x": "Ryzen 5 9600X",
+  "i5 7600k": "Core i5-7600K",
+  "i57600k": "Core i5-7600K",
 
-  "8700g": "Ryzen 7 8700G",
-  "8600g": "Ryzen 5 8600G",
-  "8500g": "Ryzen 5 8500G",
+  // ----------------------------------------------------------
+  // INTEL 8TH / 9TH
+  // ----------------------------------------------------------
 
-  "7950x3d": "Ryzen 9 7950X3D",
-  "7900x3d": "Ryzen 9 7900X3D",
-  "7800x3d": "Ryzen 7 7800X3D",
-  "7950x": "Ryzen 9 7950X",
-  "7900x": "Ryzen 9 7900X",
-  "7900": "Ryzen 9 7900",
-  "7700x": "Ryzen 7 7700X",
-  "7700": "Ryzen 7 7700",
-  "7600x": "Ryzen 5 7600X",
-  "7600": "Ryzen 5 7600",
-  "7500f": "Ryzen 5 7500F",
+  "i7 8700k": "Core i7-8700K",
+  "i78700k": "Core i7-8700K",
 
-  "5950x": "Ryzen 9 5950X",
-  "5900xt": "Ryzen 9 5900XT",
-  "5900x": "Ryzen 9 5900X",
+  "i7 9700k": "Core i7-9700K",
+  "i79700k": "Core i7-9700K",
 
-  "5800x3d": "Ryzen 7 5800X3D",
-  "5800xt": "Ryzen 7 5800XT",
-  "5800x": "Ryzen 7 5800X",
+  "i9 9900k": "Core i9-9900K",
+  "i99900k": "Core i9-9900K",
+
+  "i5 8400": "Core i5-8400",
+  "i58400": "Core i5-8400",
+
+  "i5 9400f": "Core i5-9400F",
+  "i59400f": "Core i5-9400F",
+
+  "i5 9600k": "Core i5-9600K",
+  "i59600k": "Core i5-9600K",
+
+  // ----------------------------------------------------------
+  // INTEL 10TH
+  // ----------------------------------------------------------
+
+  "i5 10400": "Core i5-10400",
+  "i510400": "Core i5-10400",
+
+  "i5 10400f": "Core i5-10400F",
+  "i510400f": "Core i5-10400F",
+
+  "i5 10600k": "Core i5-10600K",
+  "i510600k": "Core i5-10600K",
+
+  "i7 10700k": "Core i7-10700K",
+  "i710700k": "Core i7-10700K",
+
+  "i9 10900k": "Core i9-10900K",
+  "i910900k": "Core i9-10900K",
+
+  // ----------------------------------------------------------
+  // INTEL 11TH
+  // ----------------------------------------------------------
+
+  "i5 11400": "Core i5-11400",
+  "i511400": "Core i5-11400",
+
+  "i5 11400f": "Core i5-11400F",
+  "i511400f": "Core i5-11400F",
+
+  "i5 11600k": "Core i5-11600K",
+  "i511600k": "Core i5-11600K",
+
+  "i7 11700k": "Core i7-11700K",
+  "i711700k": "Core i7-11700K",
+
+  "i9 11900k": "Core i9-11900K",
+  "i911900k": "Core i9-11900K",
+
+  // ----------------------------------------------------------
+  // INTEL 12TH
+  // ----------------------------------------------------------
+
+  "i3 12100": "Core i3-12100",
+  "i312100": "Core i3-12100",
+
+  "i3 12100f": "Core i3-12100F",
+  "i312100f": "Core i3-12100F",
+
+  "i5 12400": "Core i5-12400",
+  "i512400": "Core i5-12400",
+
+  "i5 12400f": "Core i5-12400F",
+  "i512400f": "Core i5-12400F",
+
+  "i5 12600k": "Core i5-12600K",
+  "i512600k": "Core i5-12600K",
+
+  "i5 12600kf": "Core i5-12600KF",
+  "i512600kf": "Core i5-12600KF",
+
+  "i7 12700": "Core i7-12700",
+  "i712700": "Core i7-12700",
+
+  "i7 12700f": "Core i7-12700F",
+  "i712700f": "Core i7-12700F",
+
+  "i7 12700k": "Core i7-12700K",
+  "i712700k": "Core i7-12700K",
+
+  "i7 12700kf": "Core i7-12700KF",
+  "i712700kf": "Core i7-12700KF",
+
+  "i9 12900k": "Core i9-12900K",
+  "i912900k": "Core i9-12900K",
+
+  // ----------------------------------------------------------
+  // INTEL 13TH
+  // ----------------------------------------------------------
+
+  "i3 13100": "Core i3-13100",
+  "i313100": "Core i3-13100",
+
+  "i3 13100f": "Core i3-13100F",
+  "i313100f": "Core i3-13100F",
+
+  "i5 13400": "Core i5-13400",
+  "i513400": "Core i5-13400",
+
+  "i5 13400f": "Core i5-13400F",
+  "i513400f": "Core i5-13400F",
+
+  "i5 13600k": "Core i5-13600K",
+  "i513600k": "Core i5-13600K",
+
+  "i5 13600kf": "Core i5-13600KF",
+  "i513600kf": "Core i5-13600KF",
+
+  "i7 13700k": "Core i7-13700K",
+  "i713700k": "Core i7-13700K",
+
+  "i7 13700kf": "Core i7-13700KF",
+  "i713700kf": "Core i7-13700KF",
+
+  "i9 13900k": "Core i9-13900K",
+  "i913900k": "Core i9-13900K",
+
+  // ----------------------------------------------------------
+  // INTEL 14TH
+  // ----------------------------------------------------------
+
+  "i5 14400": "Core i5-14400",
+  "i514400": "Core i5-14400",
+
+  "i5 14400f": "Core i5-14400F",
+  "i514400f": "Core i5-14400F",
+
+  "i5 14600k": "Core i5-14600K",
+  "i514600k": "Core i5-14600K",
+
+  "i5 14600kf": "Core i5-14600KF",
+  "i514600kf": "Core i5-14600KF",
+
+  "i7 14700k": "Core i7-14700K",
+  "i714700k": "Core i7-14700K",
+
+  "i7 14700kf": "Core i7-14700KF",
+  "i714700kf": "Core i7-14700KF",
+
+  "i9 14900k": "Core i9-14900K",
+  "i914900k": "Core i9-14900K",
+
+  // ----------------------------------------------------------
+  // AMD RYZEN 1000 / 2000 / 3000
+  // ----------------------------------------------------------
+
+  "r5 1600": "Ryzen 5 1600",
+  "r51600": "Ryzen 5 1600",
+
+  "r7 1700": "Ryzen 7 1700",
+  "r71700": "Ryzen 7 1700",
+
+  "r5 2600": "Ryzen 5 2600",
+  "r52600": "Ryzen 5 2600",
+
+  "r5 2600x": "Ryzen 5 2600X",
+  "r52600x": "Ryzen 5 2600X",
+
+  "r7 2700x": "Ryzen 7 2700X",
+  "r72700x": "Ryzen 7 2700X",
+
+  "r5 3600": "Ryzen 5 3600",
+  "r53600": "Ryzen 5 3600",
+
+  "r5 3600x": "Ryzen 5 3600X",
+  "r53600x": "Ryzen 5 3600X",
+
+  "r7 3700x": "Ryzen 7 3700X",
+  "r73700x": "Ryzen 7 3700X",
+
+  "r7 3800x": "Ryzen 7 3800X",
+  "r73800x": "Ryzen 7 3800X",
+
+  "r9 3900x": "Ryzen 9 3900X",
+  "r93900x": "Ryzen 9 3900X",
+
+  "r9 3950x": "Ryzen 9 3950X",
+  "r93950x": "Ryzen 9 3950X",
+
+  // ----------------------------------------------------------
+  // AMD RYZEN 5000
+  // ----------------------------------------------------------
+
+  "r5 5500": "Ryzen 5 5500",
+  "r55500": "Ryzen 5 5500",
+
+  "r5 5600": "Ryzen 5 5600",
+  "r55600": "Ryzen 5 5600",
+
+  "r5 5600x": "Ryzen 5 5600X",
+  "r55600x": "Ryzen 5 5600X",
+
+  "r7 5700x": "Ryzen 7 5700X",
+  "r75700x": "Ryzen 7 5700X",
+
+  "r7 5700x3d": "Ryzen 7 5700X3D",
+  "r75700x3d": "Ryzen 7 5700X3D",
   "5700x3d": "Ryzen 7 5700X3D",
-  "5700x": "Ryzen 7 5700X",
-  "5700g": "Ryzen 7 5700G",
 
-  "5600x3d": "Ryzen 5 5600X3D",
-  "5600xt": "Ryzen 5 5600XT",
-  "5600x": "Ryzen 5 5600X",
-  "5600": "Ryzen 5 5600",
-  "5600g": "Ryzen 5 5600G",
-  "5600gt": "Ryzen 5 5600GT",
-  "5500gt": "Ryzen 5 5500GT",
-  "5500": "Ryzen 5 5500",
+  "r7 5800x": "Ryzen 7 5800X",
+  "r75800x": "Ryzen 7 5800X",
 
-  "3950x": "Ryzen 9 3950X",
-  "3900xt": "Ryzen 9 3900XT",
-  "3900x": "Ryzen 9 3900X",
-  "3800xt": "Ryzen 7 3800XT",
-  "3800x": "Ryzen 7 3800X",
-  "3700x": "Ryzen 7 3700X",
-  "3600xt": "Ryzen 5 3600XT",
-  "3600x": "Ryzen 5 3600X",
-  "3600": "Ryzen 5 3600",
-  "3500x": "Ryzen 5 3500X",
-  "3500": "Ryzen 5 3500",
-  "3300x": "Ryzen 3 3300X",
-  "3100": "Ryzen 3 3100",
+  "r7 5800x3d": "Ryzen 7 5800X3D",
+  "r75800x3d": "Ryzen 7 5800X3D",
+  "5800x3d": "Ryzen 7 5800X3D",
 
-  "2700x": "Ryzen 7 2700X",
-  "2700": "Ryzen 7 2700",
-  "2600x": "Ryzen 5 2600X",
-  "2600": "Ryzen 5 2600",
-  "2500x": "Ryzen 5 2500X",
-  "2300x": "Ryzen 3 2300X",
+  "r9 5900x": "Ryzen 9 5900X",
+  "r95900x": "Ryzen 9 5900X",
 
-  "1800x": "Ryzen 7 1800X",
-  "1700x": "Ryzen 7 1700X",
-  "1700": "Ryzen 7 1700",
-  "1600x": "Ryzen 5 1600X",
-  "1600": "Ryzen 5 1600",
-  "1500x": "Ryzen 5 1500X",
-  "1400": "Ryzen 5 1400",
-  "1300x": "Ryzen 3 1300X",
-  "1200": "Ryzen 3 1200",
+  "r9 5950x": "Ryzen 9 5950X",
+  "r95950x": "Ryzen 9 5950X",
 
-  // FX
+  // ----------------------------------------------------------
+  // AMD RYZEN 7000
+  // ----------------------------------------------------------
 
-  "fx 9590": "FX-9590",
-  "fx 9370": "FX-9370",
-  "fx 8370": "FX-8370",
-  "fx 8350": "FX-8350",
-  "fx 8320": "FX-8320",
-  "fx 8150": "FX-8150",
-  "fx 6300": "FX-6300",
-  "fx 6100": "FX-6100",
-  "fx 4350": "FX-4350",
-  "fx 4300": "FX-4300"
+  "r5 7500f": "Ryzen 5 7500F",
+  "r57500f": "Ryzen 5 7500F",
 
+  "r5 7600": "Ryzen 5 7600",
+  "r57600": "Ryzen 5 7600",
+
+  "r5 7600x": "Ryzen 5 7600X",
+  "r57600x": "Ryzen 5 7600X",
+
+  "r7 7700": "Ryzen 7 7700",
+  "r77700": "Ryzen 7 7700",
+
+  "r7 7700x": "Ryzen 7 7700X",
+  "r77700x": "Ryzen 7 7700X",
+
+  "r7 7800x3d": "Ryzen 7 7800X3D",
+  "r77800x3d": "Ryzen 7 7800X3D",
+  "7800x3d": "Ryzen 7 7800X3D",
+
+  "r9 7900": "Ryzen 9 7900",
+  "r97900": "Ryzen 9 7900",
+
+  "r9 7900x": "Ryzen 9 7900X",
+  "r97900x": "Ryzen 9 7900X",
+
+  "r9 7900x3d": "Ryzen 9 7900X3D",
+  "r97900x3d": "Ryzen 9 7900X3D",
+
+  "r9 7950x": "Ryzen 9 7950X",
+  "r97950x": "Ryzen 9 7950X",
+
+  "r9 7950x3d": "Ryzen 9 7950X3D",
+  "r97950x3d": "Ryzen 9 7950X3D",
+
+  // ----------------------------------------------------------
+  // AMD RYZEN 8000G
+  // ----------------------------------------------------------
+
+  "r5 8500g": "Ryzen 5 8500G",
+  "r58500g": "Ryzen 5 8500G",
+
+  "r5 8600g": "Ryzen 5 8600G",
+  "r58600g": "Ryzen 5 8600G",
+
+  "r7 8700g": "Ryzen 7 8700G",
+  "r78700g": "Ryzen 7 8700G",
+
+  // ----------------------------------------------------------
+  // AMD RYZEN 9000
+  // ----------------------------------------------------------
+
+  "r5 9600x": "Ryzen 5 9600X",
+  "r59600x": "Ryzen 5 9600X",
+
+  "r7 9700x": "Ryzen 7 9700X",
+  "r79700x": "Ryzen 7 9700X",
+
+  "r7 9800x3d": "Ryzen 7 9800X3D",
+  "r79800x3d": "Ryzen 7 9800X3D",
+  "9800x3d": "Ryzen 7 9800X3D",
+
+  "r9 9900x": "Ryzen 9 9900X",
+  "r99900x": "Ryzen 9 9900X",
+
+  "r9 9950x": "Ryzen 9 9950X",
+  "r99950x": "Ryzen 9 9950X"
 };
-
 
 
 // ============================================================
@@ -284,272 +371,318 @@ const cpuAliases = {
 
 const gpuAliases = {
 
-  // NVIDIA
+  // ----------------------------------------------------------
+  // NVIDIA GTX
+  // ----------------------------------------------------------
 
-  "5090": "RTX 5090",
-  "5080": "RTX 5080",
-  "5070 ti": "RTX 5070 Ti",
-  "5070ti": "RTX 5070 Ti",
-  "5070": "RTX 5070",
+  "1050": "GTX 1050",
+  "1050ti": "GTX 1050 Ti",
+  "1050 ti": "GTX 1050 Ti",
 
-  "4090": "RTX 4090",
-  "4080 super": "RTX 4080 Super",
-  "4080s": "RTX 4080 Super",
-  "4080": "RTX 4080",
+  "1060": "GTX 1060",
+  "10603gb": "GTX 1060 3GB",
+  "10606gb": "GTX 1060 6GB",
 
-  "4070 ti super": "RTX 4070 Ti Super",
-  "4070tis": "RTX 4070 Ti Super",
-  "4070 ti": "RTX 4070 Ti",
-  "4070ti": "RTX 4070 Ti",
-  "4070 super": "RTX 4070 Super",
-  "4070s": "RTX 4070 Super",
-  "4070": "RTX 4070",
+  "1070": "GTX 1070",
+  "1070ti": "GTX 1070 Ti",
+  "1070 ti": "GTX 1070 Ti",
 
-  "4060 ti 16gb": "RTX 4060 Ti 16GB",
-  "4060ti 16gb": "RTX 4060 Ti 16GB",
-  "4060 ti 8gb": "RTX 4060 Ti 8GB",
-  "4060ti 8gb": "RTX 4060 Ti 8GB",
-  "4060 ti": "RTX 4060 Ti",
-  "4060ti": "RTX 4060 Ti",
-  "4060": "RTX 4060",
+  "1080": "GTX 1080",
+  "1080ti": "GTX 1080 Ti",
+  "1080 ti": "GTX 1080 Ti",
 
-  "3090 ti": "RTX 3090 Ti",
-  "3090ti": "RTX 3090 Ti",
-  "3090": "RTX 3090",
+  "1650": "GTX 1650",
+  "1650s": "GTX 1650 Super",
+  "1650 super": "GTX 1650 Super",
 
-  "3080 ti": "RTX 3080 Ti",
-  "3080ti": "RTX 3080 Ti",
-  "3080 12gb": "RTX 3080 12GB",
-  "3080 10gb": "RTX 3080 10GB",
-  "3080": "RTX 3080",
+  "1660": "GTX 1660",
+  "1660s": "GTX 1660 Super",
+  "1660 super": "GTX 1660 Super",
+  "1660ti": "GTX 1660 Ti",
+  "1660 ti": "GTX 1660 Ti",
 
-  "3070 ti": "RTX 3070 Ti",
-  "3070ti": "RTX 3070 Ti",
-  "3070": "RTX 3070",
+  // ----------------------------------------------------------
+  // RTX 20
+  // ----------------------------------------------------------
 
-  "3060 ti": "RTX 3060 Ti",
-  "3060ti": "RTX 3060 Ti",
-  "3060 12gb": "RTX 3060 12GB",
-  "3060 8gb": "RTX 3060 8GB",
-  "3060": "RTX 3060",
+  "2060": "RTX 2060",
+  "2060s": "RTX 2060 Super",
+  "2060 super": "RTX 2060 Super",
 
-  "3050 8gb": "RTX 3050 8GB",
-  "3050 6gb": "RTX 3050 6GB",
+  "2070": "RTX 2070",
+  "2070s": "RTX 2070 Super",
+  "2070 super": "RTX 2070 Super",
+
+  "2080": "RTX 2080",
+  "2080s": "RTX 2080 Super",
+  "2080 super": "RTX 2080 Super",
+  "2080ti": "RTX 2080 Ti",
+  "2080 ti": "RTX 2080 Ti",
+
+  // ----------------------------------------------------------
+  // RTX 30
+  // ----------------------------------------------------------
+
   "3050": "RTX 3050",
 
-  "2080 ti": "RTX 2080 Ti",
-  "2080ti": "RTX 2080 Ti",
-  "2080 super": "RTX 2080 Super",
-  "2080s": "RTX 2080 Super",
-  "2080": "RTX 2080",
+  "3060": "RTX 3060",
+  "3060ti": "RTX 3060 Ti",
+  "3060 ti": "RTX 3060 Ti",
 
-  "2070 super": "RTX 2070 Super",
-  "2070s": "RTX 2070 Super",
-  "2070": "RTX 2070",
+  "3070": "RTX 3070",
+  "3070ti": "RTX 3070 Ti",
+  "3070 ti": "RTX 3070 Ti",
 
-  "2060 super": "RTX 2060 Super",
-  "2060s": "RTX 2060 Super",
-  "2060 12gb": "RTX 2060 12GB",
-  "2060": "RTX 2060",
+  "3080": "RTX 3080",
+  "3080ti": "RTX 3080 Ti",
+  "3080 ti": "RTX 3080 Ti",
 
-  "1660 ti": "GTX 1660 Ti",
-  "1660ti": "GTX 1660 Ti",
-  "1660 super": "GTX 1660 Super",
-  "1660s": "GTX 1660 Super",
-  "1660": "GTX 1660",
+  "3090": "RTX 3090",
+  "3090ti": "RTX 3090 Ti",
+  "3090 ti": "RTX 3090 Ti",
 
-  "1650 super": "GTX 1650 Super",
-  "1650s": "GTX 1650 Super",
-  "1650": "GTX 1650",
+  // ----------------------------------------------------------
+  // RTX 40
+  // ----------------------------------------------------------
 
-  "1080 ti": "GTX 1080 Ti",
-  "1080ti": "GTX 1080 Ti",
-  "1080": "GTX 1080",
+  "4060": "RTX 4060",
+  "4060ti": "RTX 4060 Ti",
+  "4060 ti": "RTX 4060 Ti",
 
-  "1070 ti": "GTX 1070 Ti",
-  "1070ti": "GTX 1070 Ti",
-  "1070": "GTX 1070",
+  "4070": "RTX 4070",
+  "4070s": "RTX 4070 Super",
+  "4070 super": "RTX 4070 Super",
+  "4070ti": "RTX 4070 Ti",
+  "4070 ti": "RTX 4070 Ti",
+  "4070tis": "RTX 4070 Ti Super",
+  "4070 ti super": "RTX 4070 Ti Super",
 
-  "1060 6gb": "GTX 1060 6GB",
-  "1060 5gb": "GTX 1060 5GB",
-  "1060 3gb": "GTX 1060 3GB",
+  "4080": "RTX 4080",
+  "4080s": "RTX 4080 Super",
+  "4080 super": "RTX 4080 Super",
 
-  "1050 ti": "GTX 1050 Ti",
-  "1050ti": "GTX 1050 Ti",
-  "1050": "GTX 1050",
+  "4090": "RTX 4090",
 
-  "980 ti": "GTX 980 Ti",
-  "980ti": "GTX 980 Ti",
-  "980": "GTX 980",
-  "970": "GTX 970",
+  // ----------------------------------------------------------
+  // RTX 50
+  // ----------------------------------------------------------
 
-  "960 4gb": "GTX 960 4GB",
-  "960 2gb": "GTX 960 2GB",
-  "950": "GTX 950",
+  "5060": "RTX 5060",
+  "5060ti": "RTX 5060 Ti",
 
-  "780 ti": "GTX 780 Ti",
-  "780ti": "GTX 780 Ti",
-  "780": "GTX 780",
-  "770": "GTX 770",
-  "760": "GTX 760",
-  "750 ti": "GTX 750 Ti",
-  "750ti": "GTX 750 Ti",
-  "750": "GTX 750",
+  "5070": "RTX 5070",
+  "5070ti": "RTX 5070 Ti",
 
-  // AMD
+  "5080": "RTX 5080",
+  "5090": "RTX 5090",
 
-  "9070 xt": "RX 9070 XT",
-  "9070xt": "RX 9070 XT",
-  "9070": "RX 9070",
+  // ----------------------------------------------------------
+  // AMD RX 500
+  // ----------------------------------------------------------
 
-  "7900 xtx": "RX 7900 XTX",
-  "7900xtx": "RX 7900 XTX",
-  "7900 xt": "RX 7900 XT",
-  "7900xt": "RX 7900 XT",
-  "7900 gre": "RX 7900 GRE",
-  "7900gre": "RX 7900 GRE",
+  "rx570": "RX 570",
+  "rx 570": "RX 570",
 
-  "7800 xt": "RX 7800 XT",
-  "7800xt": "RX 7800 XT",
-  "7700 xt": "RX 7700 XT",
-  "7700xt": "RX 7700 XT",
-  "7600 xt": "RX 7600 XT",
-  "7600xt": "RX 7600 XT",
-  "7600": "RX 7600",
+  "rx580": "RX 580",
+  "rx 580": "RX 580",
 
-  "6950 xt": "RX 6950 XT",
-  "6950xt": "RX 6950 XT",
-  "6900 xt": "RX 6900 XT",
-  "6900xt": "RX 6900 XT",
-  "6800 xt": "RX 6800 XT",
-  "6800xt": "RX 6800 XT",
-  "6800": "RX 6800",
-  "6750 xt": "RX 6750 XT",
-  "6750xt": "RX 6750 XT",
-  "6700 xt": "RX 6700 XT",
-  "6700xt": "RX 6700 XT",
-  "6650 xt": "RX 6650 XT",
-  "6650xt": "RX 6650 XT",
-  "6600 xt": "RX 6600 XT",
-  "6600xt": "RX 6600 XT",
-  "6600": "RX 6600",
-  "6500 xt": "RX 6500 XT",
-  "6500xt": "RX 6500 XT",
-  "6400": "RX 6400",
+  "rx590": "RX 590",
+  "rx 590": "RX 590",
 
-  "5700 xt": "RX 5700 XT",
-  "5700xt": "RX 5700 XT",
-  "5700": "RX 5700",
-  "5600 xt": "RX 5600 XT",
+  // ----------------------------------------------------------
+  // RX 5000
+  // ----------------------------------------------------------
+
+  "5500xt": "RX 5500 XT",
+  "rx5500xt": "RX 5500 XT",
+
   "5600xt": "RX 5600 XT",
+  "rx5600xt": "RX 5600 XT",
 
-  "590": "RX 590",
-  "580 8gb": "RX 580 8GB",
-  "580 4gb": "RX 580 4GB",
-  "580": "RX 580",
-  "570 8gb": "RX 570 8GB",
-  "570 4gb": "RX 570 4GB",
-  "570": "RX 570",
-  "560": "RX 560",
-  "550": "RX 550",
+  "5700": "RX 5700",
+  "rx5700": "RX 5700",
 
-  "vega 64": "RX Vega 64",
-  "vega64": "RX Vega 64",
-  "vega 56": "RX Vega 56",
-  "vega56": "RX Vega 56",
+  "5700xt": "RX 5700 XT",
+  "rx5700xt": "RX 5700 XT",
 
-  // Intel
+  // ----------------------------------------------------------
+  // RX 6000
+  // ----------------------------------------------------------
+
+  "6600": "RX 6600",
+  "rx6600": "RX 6600",
+
+  "6600xt": "RX 6600 XT",
+  "rx6600xt": "RX 6600 XT",
+
+  "6650xt": "RX 6650 XT",
+  "rx6650xt": "RX 6650 XT",
+
+  "6700": "RX 6700",
+  "rx6700": "RX 6700",
+
+  "6700xt": "RX 6700 XT",
+  "rx6700xt": "RX 6700 XT",
+
+  "6750xt": "RX 6750 XT",
+  "rx6750xt": "RX 6750 XT",
+
+  "6800": "RX 6800",
+  "rx6800": "RX 6800",
+
+  "6800xt": "RX 6800 XT",
+  "rx6800xt": "RX 6800 XT",
+
+  "6900xt": "RX 6900 XT",
+  "rx6900xt": "RX 6900 XT",
+
+  "6950xt": "RX 6950 XT",
+  "rx6950xt": "RX 6950 XT",
+
+  // ----------------------------------------------------------
+  // RX 7000
+  // ----------------------------------------------------------
+
+  "7600": "RX 7600",
+  "rx7600": "RX 7600",
+
+  "7600xt": "RX 7600 XT",
+  "rx7600xt": "RX 7600 XT",
+
+  "7700xt": "RX 7700 XT",
+  "rx7700xt": "RX 7700 XT",
+
+  "7800xt": "RX 7800 XT",
+  "rx7800xt": "RX 7800 XT",
+
+  "7900gre": "RX 7900 GRE",
+  "rx7900gre": "RX 7900 GRE",
+
+  "7900xt": "RX 7900 XT",
+  "rx7900xt": "RX 7900 XT",
+
+  "7900xtx": "RX 7900 XTX",
+  "rx7900xtx": "RX 7900 XTX",
+
+  // ----------------------------------------------------------
+  // INTEL ARC
+  // ----------------------------------------------------------
+
+  "a380": "Arc A380",
+  "arca380": "Arc A380",
+
+  "a580": "Arc A580",
+  "arca580": "Arc A580",
+
+  "a750": "Arc A750",
+  "arca750": "Arc A750",
+
+  "a770": "Arc A770",
+  "arca770": "Arc A770",
+
+  "b570": "Arc B570",
+  "arcb570": "Arc B570",
 
   "b580": "Arc B580",
-  "b570": "Arc B570",
-  "a770 16gb": "Arc A770 16GB",
-  "a770 8gb": "Arc A770 8GB",
-  "a750": "Arc A750",
-  "a580": "Arc A580",
-  "a380": "Arc A380",
-  "a310": "Arc A310"
-
+  "arcb580": "Arc B580"
 };
 
 
-
 // ============================================================
-// NORMALIZE PART NAME
+// NORMALIZATION
 // ============================================================
 
 function normalizePartName(text) {
 
-  if (!text) {
-    return "";
-  }
-
-  return text
+  return String(text || "")
     .toLowerCase()
-    .replace(/nvidia/g, "")
-    .replace(/geforce/g, "")
-    .replace(/amd\s+radeon/g, "")
-    .replace(/radeon/g, "")
-    .replace(/intel\s+core/g, "core")
-    .replace(/®|™/g, "")
-    .replace(/[-_/(),.:]/g, " ")
+
+    // vendor names
+    .replace(/\bintel\b/g, "")
+    .replace(/\bamd\b/g, "")
+    .replace(/\bnvidia\b/g, "")
+    .replace(/\bgeforce\b/g, "")
+    .replace(/\bradeon\b/g, "")
+
+    // CPU brand words
+    .replace(/\bprocessor\b/g, "")
+    .replace(/\bcpu\b/g, "")
+
+    // punctuation
+    .replace(/[™®]/g, "")
+    .replace(/[_/(),:]/g, " ")
+    .replace(/-/g, " ")
+
     .replace(/\s+/g, " ")
     .trim();
-
 }
 
-
-
-// ============================================================
-// AGGRESSIVE DETECTION NORMALIZER
-// ============================================================
 
 function normalizePartForDetection(text) {
 
-  if (!text) {
-    return "";
-  }
-
-  return text
+  return String(text || "")
     .toLowerCase()
-    .replace(/®|™/g, "")
-    .replace(/nvidia/g, "")
-    .replace(/geforce/g, "")
-    .replace(/amd\s+radeon/g, "")
-    .replace(/radeon/g, "")
-    .replace(/intel\s+core/g, "core")
-    .replace(/[-_/(),.:]/g, " ")
-    .replace(/\bgb\b/g, " gb ")
+    .replace(/[™®]/g, "")
+    .replace(/[-_/(),:]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-
 }
 
-
-
-// ============================================================
-// COMPACT NORMALIZER
-// ============================================================
-//
-// Useful for:
-//
-// GTX1080Ti
-// RTX4070Super
-// i74790K
-// Ryzen75800X3D
-//
-// ============================================================
 
 function compactPartText(text) {
 
-  return normalizePartForDetection(text)
+  return normalizePartName(text)
     .replace(/\s+/g, "");
-
 }
 
 
+// ============================================================
+// DATABASE HELPERS
+// ============================================================
+
+function getCPUEntries() {
+
+  if (
+    typeof cpuDatabase === "undefined" ||
+    !cpuDatabase
+  ) {
+    return [];
+  }
+
+  return Object.entries(cpuDatabase);
+}
+
+
+function getGPUEntries() {
+
+  if (
+    typeof gpuDatabase === "undefined" ||
+    !gpuDatabase
+  ) {
+    return [];
+  }
+
+  return Object.entries(gpuDatabase);
+}
+
+
+function clonePart(part, fallbackName = "") {
+
+  if (!part) {
+    return null;
+  }
+
+  return {
+    ...part,
+    name:
+      part.name ||
+      fallbackName
+  };
+}
+
 
 // ============================================================
-// FIND CPU EXACT / ALIAS
+// EXACT CPU LOOKUP
 // ============================================================
 
 function findCPU(input) {
@@ -558,57 +691,57 @@ function findCPU(input) {
     return null;
   }
 
+  const normal =
+    normalizePartName(input);
 
-  const normalizedInput =
-    normalizePartForDetection(input);
-
-
-  const compactInput =
+  const compact =
     compactPartText(input);
 
 
   // ----------------------------------------------------------
-  // EXACT DATABASE MATCH
+  // DATABASE FIRST
   // ----------------------------------------------------------
 
   for (
     const [key, cpu]
-    of Object.entries(cpuDatabase)
+    of getCPUEntries()
   ) {
 
-    const normalizedKey =
-      normalizePartForDetection(key);
+    const names = [
+      key,
+      cpu?.name || ""
+    ];
 
-    const normalizedName =
-      normalizePartForDetection(cpu.name);
+
+    for (const name of names) {
+
+      if (!name) {
+        continue;
+      }
+
+      const dbNormal =
+        normalizePartName(name);
+
+      const dbCompact =
+        compactPartText(name);
 
 
-    if (
-      normalizedInput === normalizedKey ||
-      normalizedInput === normalizedName
-    ) {
+      if (
+        normal === dbNormal ||
+        compact === dbCompact
+      ) {
 
-      return cpu;
-
+        return clonePart(
+          cpu,
+          cpu?.name || key
+        );
+      }
     }
-
-
-    if (
-      compactInput ===
-        compactPartText(key) ||
-      compactInput ===
-        compactPartText(cpu.name)
-    ) {
-
-      return cpu;
-
-    }
-
   }
 
 
   // ----------------------------------------------------------
-  // ALIAS MATCH
+  // ALIAS
   // ----------------------------------------------------------
 
   for (
@@ -617,30 +750,69 @@ function findCPU(input) {
   ) {
 
     if (
-      normalizedInput ===
-        normalizePartForDetection(alias) ||
-      compactInput ===
-        compactPartText(alias)
+      normal === normalizePartName(alias) ||
+      compact === compactPartText(alias)
     ) {
 
-      return (
-        cpuDatabase[canonical] ||
-        null
+      return findCPUByCanonicalName(
+        canonical
       );
-
     }
-
   }
 
 
   return null;
-
 }
 
 
+function findCPUByCanonicalName(name) {
+
+  const targetNormal =
+    normalizePartName(name);
+
+  const targetCompact =
+    compactPartText(name);
+
+
+  for (
+    const [key, cpu]
+    of getCPUEntries()
+  ) {
+
+    const names = [
+      key,
+      cpu?.name || ""
+    ];
+
+
+    for (const candidate of names) {
+
+      if (!candidate) {
+        continue;
+      }
+
+      if (
+        normalizePartName(candidate) ===
+          targetNormal ||
+        compactPartText(candidate) ===
+          targetCompact
+      ) {
+
+        return clonePart(
+          cpu,
+          cpu?.name || key
+        );
+      }
+    }
+  }
+
+
+  return null;
+}
+
 
 // ============================================================
-// FIND GPU EXACT / ALIAS
+// EXACT GPU LOOKUP
 // ============================================================
 
 function findGPU(input) {
@@ -650,43 +822,53 @@ function findGPU(input) {
   }
 
 
-  const normalizedInput =
-    normalizePartForDetection(input);
+  const normal =
+    normalizePartName(input);
 
-
-  const compactInput =
+  const compact =
     compactPartText(input);
 
 
   // ----------------------------------------------------------
-  // EXACT DATABASE MATCH
+  // DATABASE
   // ----------------------------------------------------------
 
   for (
     const [key, gpu]
-    of Object.entries(gpuDatabase)
+    of getGPUEntries()
   ) {
 
-    if (
-      normalizedInput ===
-        normalizePartForDetection(key) ||
-      normalizedInput ===
-        normalizePartForDetection(gpu.name) ||
-      compactInput ===
-        compactPartText(key) ||
-      compactInput ===
-        compactPartText(gpu.name)
-    ) {
+    const names = [
+      key,
+      gpu?.name || ""
+    ];
 
-      return gpu;
 
+    for (const name of names) {
+
+      if (!name) {
+        continue;
+      }
+
+
+      if (
+        normal ===
+          normalizePartName(name) ||
+        compact ===
+          compactPartText(name)
+      ) {
+
+        return clonePart(
+          gpu,
+          gpu?.name || key
+        );
+      }
     }
-
   }
 
 
   // ----------------------------------------------------------
-  // ALIAS MATCH
+  // ALIASES
   // ----------------------------------------------------------
 
   for (
@@ -695,26 +877,66 @@ function findGPU(input) {
   ) {
 
     if (
-      normalizedInput ===
-        normalizePartForDetection(alias) ||
-      compactInput ===
-        compactPartText(alias)
+      normal === normalizePartName(alias) ||
+      compact === compactPartText(alias)
     ) {
 
-      return (
-        gpuDatabase[canonical] ||
-        null
+      return findGPUByCanonicalName(
+        canonical
       );
-
     }
-
   }
 
 
   return null;
-
 }
 
+
+function findGPUByCanonicalName(name) {
+
+  const targetNormal =
+    normalizePartName(name);
+
+  const targetCompact =
+    compactPartText(name);
+
+
+  for (
+    const [key, gpu]
+    of getGPUEntries()
+  ) {
+
+    const names = [
+      key,
+      gpu?.name || ""
+    ];
+
+
+    for (const candidate of names) {
+
+      if (!candidate) {
+        continue;
+      }
+
+
+      if (
+        normalizePartName(candidate) ===
+          targetNormal ||
+        compactPartText(candidate) ===
+          targetCompact
+      ) {
+
+        return clonePart(
+          gpu,
+          gpu?.name || key
+        );
+      }
+    }
+  }
+
+
+  return null;
+}
 
 
 // ============================================================
@@ -723,96 +945,92 @@ function findGPU(input) {
 
 function getCPUPlatform(cpu) {
 
-  if (
-    !cpu ||
-    !cpu.socket
-  ) {
-
+  if (!cpu) {
     return null;
-
   }
 
 
+  const platformName =
+    cpu.platform ||
+    cpu.socket ||
+    "";
+
+
   if (
-    typeof getPlatform !==
-    "function"
+    typeof getPlatform === "function"
   ) {
 
-    console.warn(
-      "platform.js has not loaded before parts.js."
+    return getPlatform(
+      platformName
     );
-
-    return null;
-
   }
 
 
-  return getPlatform(
-    cpu.socket
-  );
-
+  return null;
 }
-
 
 
 function getCPUMemoryTypes(cpu) {
 
+  if (!cpu) {
+    return [];
+  }
+
+
+  const platformName =
+    cpu.platform ||
+    cpu.socket ||
+    "";
+
+
   if (
-    !cpu ||
-    !cpu.socket
+    typeof getPlatformMemory === "function"
   ) {
 
-    return [];
-
+    return getPlatformMemory(
+      platformName
+    ) || [];
   }
 
 
   if (
-    typeof getPlatformMemory !==
-    "function"
+    Array.isArray(cpu.memory)
   ) {
 
-    return [];
-
+    return cpu.memory;
   }
 
 
-  return getPlatformMemory(
-    cpu.socket
-  );
-
+  return [];
 }
-
 
 
 function getCPUChipsets(cpu) {
 
-  if (
-    !cpu ||
-    !cpu.socket
-  ) {
-
+  if (!cpu) {
     return [];
-
   }
 
 
+  const platformName =
+    cpu.platform ||
+    cpu.socket ||
+    "";
+
+
   if (
-    typeof getCompatibleChipsets !==
-    "function"
+    typeof getCompatibleChipsets ===
+      "function"
   ) {
 
-    return [];
-
+    return getCompatibleChipsets(
+      platformName
+    ) || [];
   }
 
 
-  return getCompatibleChipsets(
-    cpu.socket
-  );
-
+  return [];
 }
-
 
 
 function getCPUCompatibility(cpu) {
@@ -822,78 +1040,27 @@ function getCPUCompatibility(cpu) {
   }
 
 
-  const platform =
-    getCPUPlatform(cpu);
-
-
-  if (!platform) {
-
-    return {
-
-      cpu:
-        cpu.name,
-
-      socket:
-        cpu.socket || null,
-
-      memory:
-        [],
-
-      chipsets:
-        [],
-
-      automaticMemory:
-        false
-
-    };
-
-  }
-
-
-  const memory =
-    platform.memory || [];
-
-
   return {
 
-    cpu:
-      cpu.name,
-
     socket:
-      cpu.socket,
+      cpu.socket ||
+      cpu.platform ||
+      "Unknown",
 
-    manufacturer:
-      platform.manufacturer,
+    platform:
+      cpu.platform ||
+      cpu.socket ||
+      "Unknown",
 
     memory:
-      memory,
+      getCPUMemoryTypes(cpu),
 
     chipsets:
-      platform.chipsets || [],
-
-    category:
-      platform.category || null,
-
-    automaticMemory:
-      memory.length === 1,
-
-    automaticMemoryType:
-      memory.length === 1
-        ? memory[0]
-        : null,
-
-    memoryNote:
-      platform.memoryNote || null
+      getCPUChipsets(cpu)
 
   };
-
 }
 
-
-
-// ============================================================
-// CPU + CHIPSET CHECK
-// ============================================================
 
 function checkCPUChipsetCompatibility(
   cpu,
@@ -902,43 +1069,33 @@ function checkCPUChipsetCompatibility(
 
   if (
     !cpu ||
-    !cpu.socket ||
     !chipset
   ) {
 
     return null;
-
   }
+
+
+  const platform =
+    cpu.platform ||
+    cpu.socket;
 
 
   if (
     typeof isChipsetCompatible ===
-    "function"
+      "function"
   ) {
 
     return isChipsetCompatible(
-      cpu.socket,
+      platform,
       chipset
     );
-
   }
 
 
-  const chipsets =
-    getCPUChipsets(cpu);
-
-
-  return chipsets.includes(
-    chipset.toUpperCase()
-  );
-
+  return null;
 }
 
-
-
-// ============================================================
-// CPU + MEMORY CHECK
-// ============================================================
 
 function checkCPUMemoryCompatibility(
   cpu,
@@ -951,34 +1108,32 @@ function checkCPUMemoryCompatibility(
   ) {
 
     return null;
-
   }
+
+
+  const platform =
+    cpu.platform ||
+    cpu.socket;
 
 
   if (
     typeof isMemoryCompatible ===
-    "function"
+      "function"
   ) {
 
     return isMemoryCompatible(
-      cpu.socket,
+      platform,
       memoryType
     );
-
   }
 
 
-  return getCPUMemoryTypes(cpu)
-    .includes(
-      memoryType.toUpperCase()
-    );
-
+  return null;
 }
 
 
-
 // ============================================================
-// BUILD CPU DETECTION CANDIDATES
+// CANDIDATE BUILDERS
 // ============================================================
 
 function buildCPUCandidates() {
@@ -988,34 +1143,39 @@ function buildCPUCandidates() {
 
   for (
     const [key, cpu]
-    of Object.entries(cpuDatabase)
+    of getCPUEntries()
   ) {
 
-    candidates.push({
-
-      text: key,
-      cpu: cpu,
-      weight: key.length
-
-    });
+    const names =
+      new Set([
+        key,
+        cpu?.name || ""
+      ]);
 
 
-    if (
-      cpu.name &&
-      cpu.name !== key
-    ) {
+    for (const name of names) {
+
+      if (!name) {
+        continue;
+      }
+
 
       candidates.push({
 
-        text: cpu.name,
-        cpu: cpu,
-        weight:
-          cpu.name.length
+        search:
+          compactPartText(name),
+
+        normal:
+          normalizePartName(name),
+
+        cpu:
+          clonePart(
+            cpu,
+            cpu?.name || key
+          )
 
       });
-
     }
-
   }
 
 
@@ -1025,38 +1185,31 @@ function buildCPUCandidates() {
   ) {
 
     const cpu =
-      cpuDatabase[canonical];
+      findCPUByCanonicalName(
+        canonical
+      );
 
 
     if (cpu) {
 
       candidates.push({
 
-        text: alias,
-        cpu: cpu,
-        weight:
-          alias.length
+        search:
+          compactPartText(alias),
+
+        normal:
+          normalizePartName(alias),
+
+        cpu
 
       });
-
     }
-
   }
 
 
-  return candidates.sort(
-    (a, b) =>
-      b.weight -
-      a.weight
-  );
-
+  return candidates;
 }
 
-
-
-// ============================================================
-// BUILD GPU DETECTION CANDIDATES
-// ============================================================
 
 function buildGPUCandidates() {
 
@@ -1065,35 +1218,39 @@ function buildGPUCandidates() {
 
   for (
     const [key, gpu]
-    of Object.entries(gpuDatabase)
+    of getGPUEntries()
   ) {
 
-    candidates.push({
-
-      text: key,
-      gpu: gpu,
-      weight:
-        key.length
-
-    });
+    const names =
+      new Set([
+        key,
+        gpu?.name || ""
+      ]);
 
 
-    if (
-      gpu.name &&
-      gpu.name !== key
-    ) {
+    for (const name of names) {
+
+      if (!name) {
+        continue;
+      }
+
 
       candidates.push({
 
-        text: gpu.name,
-        gpu: gpu,
-        weight:
-          gpu.name.length
+        search:
+          compactPartText(name),
+
+        normal:
+          normalizePartName(name),
+
+        gpu:
+          clonePart(
+            gpu,
+            gpu?.name || key
+          )
 
       });
-
     }
-
   }
 
 
@@ -1103,37 +1260,34 @@ function buildGPUCandidates() {
   ) {
 
     const gpu =
-      gpuDatabase[canonical];
+      findGPUByCanonicalName(
+        canonical
+      );
 
 
     if (gpu) {
 
       candidates.push({
 
-        text: alias,
-        gpu: gpu,
-        weight:
-          alias.length
+        search:
+          compactPartText(alias),
+
+        normal:
+          normalizePartName(alias),
+
+        gpu
 
       });
-
     }
-
   }
 
 
-  return candidates.sort(
-    (a, b) =>
-      b.weight -
-      a.weight
-  );
-
+  return candidates;
 }
 
 
-
 // ============================================================
-// DETECT CPU FROM LISTING
+// CPU DETECTION FROM LISTING
 // ============================================================
 
 function detectCPUFromText(text) {
@@ -1143,83 +1297,65 @@ function detectCPUFromText(text) {
   }
 
 
-  const normalizedListing =
+  const normalized =
     normalizePartForDetection(
       text
     );
 
 
-  const compactListing =
-    compactPartText(
-      text
-    );
+  const compact =
+    String(text)
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
 
+
+  // ----------------------------------------------------------
+  // EXACT DATABASE / ALIAS CANDIDATES
+  // longest first prevents 5800X matching before 5800X3D
+  // ----------------------------------------------------------
 
   const candidates =
-    buildCPUCandidates();
+    buildCPUCandidates()
+      .sort(
+        (a, b) =>
+          b.search.length -
+          a.search.length
+      );
 
-
-  // ----------------------------------------------------------
-  // DATABASE / ALIAS SEARCH
-  // ----------------------------------------------------------
 
   for (
     const candidate
     of candidates
   ) {
 
-    const normalizedCandidate =
-      normalizePartForDetection(
-        candidate.text
-      );
-
-
-    const compactCandidate =
-      compactPartText(
-        candidate.text
-      );
-
-
     if (
-      normalizedListing.includes(
-        normalizedCandidate
+      candidate.search.length >= 4 &&
+      compact.includes(
+        candidate.search
       )
     ) {
 
       return candidate.cpu;
-
     }
-
-
-    if (
-      compactCandidate.length >= 5 &&
-      compactListing.includes(
-        compactCandidate
-      )
-    ) {
-
-      return candidate.cpu;
-
-    }
-
   }
 
 
   // ----------------------------------------------------------
-  // INTEL FALLBACK PATTERN
-  // ----------------------------------------------------------
+  // INTEL CORE
   //
   // Examples:
-  //
-  // i7-4790K
-  // i5 13600KF
-  // Intel Core i9 14900K
-  //
+  // i7-12700k
+  // i7 12700k
+  // i712700k
+  // Intel Core i5 14600KF
   // ----------------------------------------------------------
 
   const intelMatch =
-    text.match(
-      /\b(?:intel\s+)?(?:core\s+)?i([3579])[\s-]*([0-9]{3,5})([a-z]{0,3})\b/i
+    normalized.match(
+      /\b(?:intel\s+)?(?:core\s+)?i(3|5|7|9)\s*[- ]?\s*(\d{4,5})\s*(kf|ks|f|k|t|s)?\b/i
+    ) ||
+    compact.match(
+      /i(3|5|7|9)(\d{4,5})(kf|ks|f|k|t|s)?/i
     );
 
 
@@ -1232,24 +1368,23 @@ function detectCPUFromText(text) {
       intelMatch[2];
 
     const suffix =
-      intelMatch[3]
-        .toUpperCase();
+      (
+        intelMatch[3] || ""
+      ).toUpperCase();
 
 
-    const guessedName =
+    const canonical =
       `Core i${tier}-${model}${suffix}`;
 
 
     const exact =
-      findCPU(
-        guessedName
+      findCPUByCanonicalName(
+        canonical
       );
 
 
     if (exact) {
-
       return exact;
-
     }
 
 
@@ -1258,51 +1393,60 @@ function detectCPUFromText(text) {
       model,
       suffix
     );
-
   }
 
 
   // ----------------------------------------------------------
-  // AMD RYZEN FALLBACK
+  // RYZEN
+  //
+  // Examples:
+  // Ryzen 7 5800X3D
+  // R7 5800X3D
+  // r75800x3d
+  // 5800x3d
   // ----------------------------------------------------------
 
-  const ryzenMatch =
-    text.match(
-      /\b(?:amd\s+)?ryzen\s*([3579])?\s*([0-9]{4})(x3d|xt|x|g|ge|f)?\b/i
+  let ryzenMatch =
+    normalized.match(
+      /\b(?:amd\s+)?(?:ryzen\s*)?(?:r\s*)?(3|5|7|9)\s*[- ]?\s*(\d{4})\s*(x3d|xt|x|g|ge|f)?\b/i
     );
+
+
+  if (!ryzenMatch) {
+
+    ryzenMatch =
+      compact.match(
+        /r(3|5|7|9)(\d{4})(x3d|xt|x|g|ge|f)?/i
+      );
+  }
 
 
   if (ryzenMatch) {
 
     const tier =
-      ryzenMatch[1] || "";
+      ryzenMatch[1];
 
     const model =
       ryzenMatch[2];
 
     const suffix =
       (
-        ryzenMatch[3] ||
-        ""
+        ryzenMatch[3] || ""
       ).toUpperCase();
 
 
-    const guessedName =
-      tier
-        ? `Ryzen ${tier} ${model}${suffix}`
-        : `Ryzen ${model}${suffix}`;
+    const canonical =
+      `Ryzen ${tier} ${model}${suffix}`;
 
 
     const exact =
-      findCPU(
-        guessedName
+      findCPUByCanonicalName(
+        canonical
       );
 
 
     if (exact) {
-
       return exact;
-
     }
 
 
@@ -1311,52 +1455,113 @@ function detectCPUFromText(text) {
       model,
       suffix
     );
-
   }
 
 
   // ----------------------------------------------------------
-  // AMD FX FALLBACK
+  // X3D WITHOUT R7/R9
+  //
+  // Example:
+  // 5800x3d
+  // 7800x3d
+  // 9800x3d
+  // ----------------------------------------------------------
+
+  const x3dMatch =
+    normalized.match(
+      /\b(5[789]00|7[789]00|9[89]00)\s*x3d\b/i
+    );
+
+
+  if (x3dMatch) {
+
+    const model =
+      x3dMatch[1];
+
+
+    let tier =
+      "7";
+
+
+    if (
+      /^59/.test(model) ||
+      /^79/.test(model) ||
+      /^99/.test(model)
+    ) {
+
+      tier =
+        "9";
+    }
+
+
+    const canonical =
+      `Ryzen ${tier} ${model}X3D`;
+
+
+    const exact =
+      findCPUByCanonicalName(
+        canonical
+      );
+
+
+    if (exact) {
+      return exact;
+    }
+
+
+    return createRyzenFallbackCPU(
+      tier,
+      model,
+      "X3D"
+    );
+  }
+
+
+  // ----------------------------------------------------------
+  // AMD FX
   // ----------------------------------------------------------
 
   const fxMatch =
-    text.match(
-      /\bfx[\s-]*([0-9]{4})\b/i
+    normalized.match(
+      /\bfx\s*[- ]?\s*(\d{4})\b/i
     );
 
 
   if (fxMatch) {
 
-    const guessed =
-      findCPU(
-        `FX-${fxMatch[1]}`
-      );
+    return {
 
+      name:
+        `AMD FX-${fxMatch[1]}`,
 
-    if (guessed) {
+      socket:
+        "AM3+",
 
-      return guessed;
+      platform:
+        "AM3+",
 
-    }
+      value:
+        0,
 
+      performance:
+        8,
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
   }
 
 
   return null;
-
 }
-
 
 
 // ============================================================
 // INTEL FALLBACK CPU
-// ============================================================
-//
-// This is not used for precise pricing.
-//
-// It is mainly so compatibility can still work for an Intel CPU
-// missing from cpu-data.js.
-//
 // ============================================================
 
 function createIntelFallbackCPU(
@@ -1369,51 +1574,30 @@ function createIntelFallbackCPU(
     Number(model);
 
 
-  let generation = null;
-  let socket = null;
-  let family = "Unknown Intel";
-  let performance = 20;
+  let generation = 0;
 
-
-  // ----------------------------------------------------------
-  // GENERATION
-  // ----------------------------------------------------------
 
   if (
     number >= 10000
   ) {
 
     generation =
-      Number(
-        model.slice(
-          0,
-          2
-        )
+      Math.floor(
+        number / 1000
       );
 
-  }
-
-  else if (
-    number >= 2000
-  ) {
+  } else {
 
     generation =
-      Number(
-        model.charAt(0)
+      Math.floor(
+        number / 1000
       );
-
-  }
-
-  else {
-
-    generation = 1;
-
   }
 
 
-  // ----------------------------------------------------------
-  // SOCKET
-  // ----------------------------------------------------------
+  let socket =
+    "Unknown";
+
 
   if (
     generation >= 12 &&
@@ -1423,106 +1607,83 @@ function createIntelFallbackCPU(
     socket =
       "LGA1700";
 
-  }
-
-
-  else if (
-    generation === 10 ||
-    generation === 11
+  } else if (
+    generation >= 10 &&
+    generation <= 11
   ) {
 
     socket =
       "LGA1200";
 
-  }
-
-
-  else if (
-    generation === 8 ||
-    generation === 9
+  } else if (
+    generation >= 8 &&
+    generation <= 9
   ) {
 
     socket =
       "LGA1151-300";
 
-  }
-
-
-  else if (
-    generation === 6 ||
-    generation === 7
+  } else if (
+    generation >= 6 &&
+    generation <= 7
   ) {
 
     socket =
       "LGA1151-100-200";
 
-  }
-
-
-  else if (
-    generation === 4 ||
-    generation === 5
+  } else if (
+    generation >= 4 &&
+    generation <= 5
   ) {
 
     socket =
       "LGA1150";
 
-  }
-
-
-  else if (
-    generation === 2 ||
-    generation === 3
+  } else if (
+    generation >= 2 &&
+    generation <= 3
   ) {
 
     socket =
       "LGA1155";
 
-  }
-
-
-  else if (
+  } else if (
     generation === 1
   ) {
 
     socket =
       "LGA1156";
-
   }
 
 
-  family =
-    `${generation}${
-      generation === 1
-        ? "st"
-        : generation === 2
-        ? "nd"
-        : generation === 3
-        ? "rd"
-        : "th"
-    } Gen fallback`;
+  let performance =
+    20;
 
 
-  // ----------------------------------------------------------
-  // ROUGH PERFORMANCE
-  // ----------------------------------------------------------
+  if (generation >= 14) {
+    performance = 70;
+  } else if (generation >= 13) {
+    performance = 65;
+  } else if (generation >= 12) {
+    performance = 58;
+  } else if (generation >= 10) {
+    performance = 45;
+  } else if (generation >= 8) {
+    performance = 35;
+  } else if (generation >= 6) {
+    performance = 25;
+  } else if (generation >= 4) {
+    performance = 18;
+  }
 
-  const tierBase = {
 
-    "3": 10,
-    "5": 16,
-    "7": 22,
-    "9": 28
-
-  };
-
-
-  performance =
-    (
-      tierBase[tier] ||
-      12
-    ) +
-    generation * 2;
+  if (tier === "9") {
+    performance += 12;
+  } else if (tier === "7") {
+    performance += 8;
+  } else if (tier === "5") {
+    performance += 4;
+  }
 
 
   return {
@@ -1530,17 +1691,15 @@ function createIntelFallbackCPU(
     name:
       `Core i${tier}-${model}${suffix}`,
 
+    socket,
+
+    platform:
+      socket,
+
     value:
       0,
 
-    performance:
-      performance,
-
-    socket:
-      socket,
-
-    family:
-      family,
+    performance,
 
     fallback:
       true,
@@ -1549,9 +1708,7 @@ function createIntelFallbackCPU(
       false
 
   };
-
 }
-
 
 
 // ============================================================
@@ -1566,84 +1723,74 @@ function createRyzenFallbackCPU(
 
   const firstDigit =
     Number(
-      model.charAt(0)
+      String(model)[0]
     );
 
 
-  let socket = null;
-  let family = "Ryzen fallback";
+  let socket =
+    "AM4";
 
 
-  // Ryzen desktop numbering broadly maps like this for our
-  // used-PC purposes.
+  // Current broad desktop-family inference.
+  // Exact database entries always override this.
 
   if (
     firstDigit >= 7
   ) {
 
-    socket = "AM5";
-
-  }
-
-  else if (
-    firstDigit >= 1 &&
-    firstDigit <= 5
-  ) {
-
-    socket = "AM4";
-
+    socket =
+      "AM5";
   }
 
 
   let performance =
-    20;
+    30;
 
 
-  const tierBase = {
+  if (firstDigit >= 9) {
+    performance = 70;
+  } else if (firstDigit >= 7) {
+    performance = 60;
+  } else if (firstDigit >= 5) {
+    performance = 48;
+  } else if (firstDigit >= 3) {
+    performance = 35;
+  } else if (firstDigit >= 2) {
+    performance = 25;
+  }
 
-    "3": 18,
-    "5": 28,
-    "7": 38,
-    "9": 48
 
-  };
-
-
-  performance =
-    (
-      tierBase[tier] ||
-      25
-    ) +
-    firstDigit * 4;
+  if (tier === "9") {
+    performance += 10;
+  } else if (tier === "7") {
+    performance += 7;
+  } else if (tier === "5") {
+    performance += 3;
+  }
 
 
   if (
     suffix === "X3D"
   ) {
 
-    performance += 10;
-
+    performance += 12;
   }
 
 
   return {
 
     name:
-      tier
-        ? `Ryzen ${tier} ${model}${suffix}`
-        : `Ryzen ${model}${suffix}`,
+      `Ryzen ${tier} ${model}${suffix}`,
+
+    socket,
+
+    platform:
+      socket,
 
     value:
       0,
 
-    performance:
-      performance,
-
-    socket:
-      socket,
-
-    family:
-      family,
+    performance,
 
     fallback:
       true,
@@ -1652,13 +1799,11 @@ function createRyzenFallbackCPU(
       false
 
   };
-
 }
 
 
-
 // ============================================================
-// DETECT GPU FROM LISTING
+// GPU DETECTION
 // ============================================================
 
 function detectGPUFromText(text) {
@@ -1668,81 +1813,72 @@ function detectGPUFromText(text) {
   }
 
 
-  const normalizedListing =
+  const normalized =
     normalizePartForDetection(
       text
     );
 
 
-  const compactListing =
-    compactPartText(
-      text
-    );
+  const compact =
+    String(text)
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
 
+
+  // ----------------------------------------------------------
+  // DATABASE / ALIASES
+  // Longest first:
+  // RTX 3080 Ti before RTX 3080
+  // ----------------------------------------------------------
 
   const candidates =
-    buildGPUCandidates();
+    buildGPUCandidates()
+      .sort(
+        (a, b) =>
+          b.search.length -
+          a.search.length
+      );
 
-
-  // ----------------------------------------------------------
-  // FULL DATABASE SEARCH
-  // ----------------------------------------------------------
 
   for (
     const candidate
     of candidates
   ) {
 
-    const normalizedCandidate =
-      normalizePartForDetection(
-        candidate.text
-      );
-
-
-    const compactCandidate =
-      compactPartText(
-        candidate.text
-      );
-
-
     if (
-      normalizedListing.includes(
-        normalizedCandidate
+      candidate.search.length >= 4 &&
+      compact.includes(
+        candidate.search
       )
     ) {
 
       return candidate.gpu;
-
     }
-
-
-    if (
-      compactCandidate.length >= 4 &&
-      compactListing.includes(
-        compactCandidate
-      )
-    ) {
-
-      return candidate.gpu;
-
-    }
-
   }
 
 
   // ----------------------------------------------------------
-  // NVIDIA FALLBACK
+  // NVIDIA FULL FORM
   // ----------------------------------------------------------
 
-  const nvidiaMatch =
-    text.match(
-      /\b(?:nvidia\s+)?(?:geforce\s+)?(rtx|gtx|gt)\s*[- ]?\s*([0-9]{3,4})\s*(ti|super)?\b/i
+  let nvidiaMatch =
+    normalized.match(
+      /\b(rtx|gtx|gt)\s*[- ]?\s*(\d{3,4})\s*(ti\s*super|super|ti)?\b/i
     );
+
+
+  if (!nvidiaMatch) {
+
+    nvidiaMatch =
+      compact.match(
+        /(rtx|gtx|gt)(\d{3,4})(tisuper|super|ti|s)?/i
+      );
+  }
 
 
   if (nvidiaMatch) {
 
-    const prefix =
+    const family =
       nvidiaMatch[1]
         .toUpperCase();
 
@@ -1750,53 +1886,40 @@ function detectGPUFromText(text) {
       nvidiaMatch[2];
 
     const suffix =
-      nvidiaMatch[3]
-        ? " " +
-          formatGPUSuffix(
-            nvidiaMatch[3]
-          )
-        : "";
+      formatGPUSuffix(
+        nvidiaMatch[3] || ""
+      );
 
 
-    const guessedName =
-      `${prefix} ${model}${suffix}`;
+    const canonical =
+      `${family} ${model}${suffix}`;
 
 
     const exact =
-      findGPU(
-        guessedName
+      findGPUByCanonicalName(
+        canonical
       );
 
 
     if (exact) {
-
       return exact;
-
     }
 
 
     return {
 
       name:
-        guessedName,
+        canonical,
 
       value:
         0,
 
       performance:
         estimateUnknownGPUPerformance(
-          prefix,
-          Number(model)
+          family,
+          model,
+          suffix
         ),
-
-      vram:
-        null,
-
-      vendor:
-        "NVIDIA",
-
-      family:
-        "Detected fallback",
 
       fallback:
         true,
@@ -1805,18 +1928,119 @@ function detectGPUFromText(text) {
         false
 
     };
-
   }
 
 
   // ----------------------------------------------------------
-  // AMD RX FALLBACK
+  // NVIDIA SHORTHAND
+  //
+  // 3080ti
+  // 4070s
+  // 4070tis
+  //
   // ----------------------------------------------------------
 
-  const amdMatch =
-    text.match(
-      /\b(?:amd\s+)?(?:radeon\s+)?rx\s*[- ]?\s*([0-9]{3,4})\s*(xtx|xt|gre)?\b/i
+  const shortNvidia =
+    normalized.match(
+      /\b(20[678]0|30[56789]0|40[6789]0|50[6789]0)\s*(ti\s*super|tis|ti|super|s)?\b/i
     );
+
+
+  if (shortNvidia) {
+
+    const model =
+      shortNvidia[1];
+
+
+    let rawSuffix =
+      shortNvidia[2] || "";
+
+
+    if (
+      /^s$/i.test(rawSuffix)
+    ) {
+
+      rawSuffix =
+        "super";
+    }
+
+
+    if (
+      /^tis$/i.test(rawSuffix)
+    ) {
+
+      rawSuffix =
+        "ti super";
+    }
+
+
+    const suffix =
+      formatGPUSuffix(
+        rawSuffix
+      );
+
+
+    let family =
+      "RTX";
+
+
+    const canonical =
+      `${family} ${model}${suffix}`;
+
+
+    const exact =
+      findGPUByCanonicalName(
+        canonical
+      );
+
+
+    if (exact) {
+      return exact;
+    }
+
+
+    return {
+
+      name:
+        canonical,
+
+      value:
+        0,
+
+      performance:
+        estimateUnknownGPUPerformance(
+          family,
+          model,
+          suffix
+        ),
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
+  }
+
+
+  // ----------------------------------------------------------
+  // AMD RX
+  // ----------------------------------------------------------
+
+  let amdMatch =
+    normalized.match(
+      /\b(?:amd\s+)?(?:radeon\s+)?rx\s*[- ]?\s*(\d{3,4})\s*(xtx|xt|gre)?\b/i
+    );
+
+
+  if (!amdMatch) {
+
+    amdMatch =
+      compact.match(
+        /rx(\d{3,4})(xtx|xt|gre)?/i
+      );
+  }
 
 
   if (amdMatch) {
@@ -1825,51 +2049,43 @@ function detectGPUFromText(text) {
       amdMatch[1];
 
     const suffix =
-      amdMatch[2]
-        ? " " +
-          amdMatch[2]
-            .toUpperCase()
-        : "";
+      (
+        amdMatch[2] || ""
+      ).toUpperCase();
 
 
-    const guessedName =
-      `RX ${model}${suffix}`;
+    const canonical =
+      `RX ${model}${
+        suffix
+          ? ` ${suffix}`
+          : ""
+      }`;
 
 
     const exact =
-      findGPU(
-        guessedName
+      findGPUByCanonicalName(
+        canonical
       );
 
 
     if (exact) {
-
       return exact;
-
     }
 
 
     return {
 
       name:
-        guessedName,
+        canonical,
 
       value:
         0,
 
       performance:
         estimateUnknownAMDPerformance(
-          Number(model)
+          model,
+          suffix
         ),
-
-      vram:
-        null,
-
-      vendor:
-        "AMD",
-
-      family:
-        "Detected fallback",
 
       fallback:
         true,
@@ -1878,216 +2094,374 @@ function detectGPUFromText(text) {
         false
 
     };
+  }
 
+
+  // ----------------------------------------------------------
+  // AMD SHORTHAND
+  //
+  // 6800xt
+  // 7900xtx
+  //
+  // ----------------------------------------------------------
+
+  const shortAMD =
+    normalized.match(
+      /\b(5[567]00|6[56789]00|7[6789]00)\s*(xtx|xt|gre)\b/i
+    );
+
+
+  if (shortAMD) {
+
+    const model =
+      shortAMD[1];
+
+    const suffix =
+      shortAMD[2]
+        .toUpperCase();
+
+
+    const canonical =
+      `RX ${model} ${suffix}`;
+
+
+    const exact =
+      findGPUByCanonicalName(
+        canonical
+      );
+
+
+    if (exact) {
+      return exact;
+    }
+
+
+    return {
+
+      name:
+        canonical,
+
+      value:
+        0,
+
+      performance:
+        estimateUnknownAMDPerformance(
+          model,
+          suffix
+        ),
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
+  }
+
+
+  // ----------------------------------------------------------
+  // INTEL ARC
+  // ----------------------------------------------------------
+
+  const arcMatch =
+    normalized.match(
+      /\b(?:intel\s+)?arc\s+([ab]\s*\d{3})\b/i
+    );
+
+
+  if (arcMatch) {
+
+    const model =
+      arcMatch[1]
+        .replace(/\s+/g, "")
+        .toUpperCase();
+
+
+    const canonical =
+      `Arc ${model}`;
+
+
+    const exact =
+      findGPUByCanonicalName(
+        canonical
+      );
+
+
+    if (exact) {
+      return exact;
+    }
+
+
+    return {
+
+      name:
+        canonical,
+
+      value:
+        0,
+
+      performance:
+        30,
+
+      fallback:
+        true,
+
+      exactMarketValue:
+        false
+
+    };
   }
 
 
   return null;
-
 }
 
 
-
 // ============================================================
-// FORMAT GPU SUFFIX
+// GPU SUFFIX FORMATTER
 // ============================================================
 
 function formatGPUSuffix(
   suffix
 ) {
 
-  const lower =
-    suffix.toLowerCase();
+  const s =
+    String(suffix || "")
+      .toLowerCase()
+      .replace(/\s+/g, "");
 
 
   if (
-    lower === "ti"
+    s === "tisuper"
   ) {
 
-    return "Ti";
-
+    return " Ti Super";
   }
 
 
   if (
-    lower === "super"
+    s === "ti"
   ) {
 
-    return "Super";
-
+    return " Ti";
   }
 
 
-  return suffix;
+  if (
+    s === "super" ||
+    s === "s"
+  ) {
 
+    return " Super";
+  }
+
+
+  return "";
 }
 
 
-
 // ============================================================
-// UNKNOWN NVIDIA PERFORMANCE
-// ============================================================
-//
-// This is intentionally rough.
-// It is only for fallback display / balance,
-// not accurate pricing.
-//
+// NVIDIA PERFORMANCE FALLBACK
 // ============================================================
 
 function estimateUnknownGPUPerformance(
-  prefix,
-  model
+  family,
+  model,
+  suffix
 ) {
 
-  let score = 10;
+  const number =
+    Number(model);
+
+
+  let score =
+    15;
 
 
   if (
-    prefix === "RTX"
+    family === "RTX"
   ) {
 
     const generation =
       Math.floor(
-        model /
-        1000
+        number / 1000
       );
 
 
     const tier =
-      model %
-      1000;
+      number % 1000;
 
 
-    score =
-      generation * 10;
+    if (generation >= 5) {
+
+      score =
+        50;
+
+    } else if (
+      generation >= 4
+    ) {
+
+      score =
+        45;
+
+    } else if (
+      generation >= 3
+    ) {
+
+      score =
+        35;
+
+    } else if (
+      generation >= 2
+    ) {
+
+      score =
+        25;
+    }
 
 
     if (tier >= 90) {
-      score += 30;
-    }
-
-    else if (
-      tier >= 80
-    ) {
-      score += 24;
-    }
-
-    else if (
-      tier >= 70
-    ) {
+      score += 35;
+    } else if (tier >= 80) {
+      score += 27;
+    } else if (tier >= 70) {
       score += 18;
+    } else if (tier >= 60) {
+      score += 10;
+    } else if (tier >= 50) {
+      score += 4;
     }
 
-    else if (
-      tier >= 60
-    ) {
-      score += 12;
-    }
-
-    else {
-      score += 7;
-    }
-
-  }
-
-
-  else if (
-    prefix === "GTX"
+  } else if (
+    family === "GTX"
   ) {
 
-    if (model >= 1000) {
-      score = 15;
-    }
-
-    else if (
-      model >= 900
+    if (
+      number >= 1600
     ) {
-      score = 12;
-    }
 
-    else if (
-      model >= 700
+      score =
+        25;
+
+    } else if (
+      number >= 1000
     ) {
-      score = 9;
-    }
 
-    else {
-      score = 6;
-    }
+      score =
+        20;
 
+    } else {
+
+      score =
+        10;
+    }
   }
 
 
-  else {
+  if (
+    /Ti Super/i.test(suffix)
+  ) {
 
-    score = 3;
+    score += 8;
 
+  } else if (
+    /Ti/i.test(suffix)
+  ) {
+
+    score += 5;
+
+  } else if (
+    /Super/i.test(suffix)
+  ) {
+
+    score += 4;
   }
 
 
   return score;
-
 }
 
 
-
 // ============================================================
-// UNKNOWN AMD PERFORMANCE
+// AMD PERFORMANCE FALLBACK
 // ============================================================
 
 function estimateUnknownAMDPerformance(
-  model
+  model,
+  suffix
 ) {
 
+  const number =
+    Number(model);
+
+
+  let score =
+    20;
+
+
   if (
-    model >= 9000
+    number >= 7000
   ) {
 
-    return 65;
+    score =
+      45;
 
+  } else if (
+    number >= 6000
+  ) {
+
+    score =
+      35;
+
+  } else if (
+    number >= 5000
+  ) {
+
+    score =
+      25;
+  }
+
+
+  const tier =
+    number % 1000;
+
+
+  if (tier >= 900) {
+    score += 30;
+  } else if (tier >= 800) {
+    score += 23;
+  } else if (tier >= 700) {
+    score += 16;
+  } else if (tier >= 600) {
+    score += 10;
+  } else if (tier >= 500) {
+    score += 5;
   }
 
 
   if (
-    model >= 7000
+    suffix === "XTX"
   ) {
 
-    return 50;
+    score += 9;
 
+  } else if (
+    suffix === "XT"
+  ) {
+
+    score += 5;
+
+  } else if (
+    suffix === "GRE"
+  ) {
+
+    score += 4;
   }
 
 
-  if (
-    model >= 6000
-  ) {
-
-    return 38;
-
-  }
-
-
-  if (
-    model >= 5000
-  ) {
-
-    return 25;
-
-  }
-
-
-  if (
-    model >= 500
-  ) {
-
-    return 15;
-
-  }
-
-
-  return 8;
-
+  return score;
 }
-
 
 
 // ============================================================
@@ -2098,15 +2472,11 @@ function getDatabaseStats() {
 
   return {
 
-    cpuCount:
-      Object.keys(
-        cpuDatabase
-      ).length,
+    cpus:
+      getCPUEntries().length,
 
-    gpuCount:
-      Object.keys(
-        gpuDatabase
-      ).length,
+    gpus:
+      getGPUEntries().length,
 
     cpuAliases:
       Object.keys(
@@ -2119,5 +2489,4 @@ function getDatabaseStats() {
       ).length
 
   };
-
 }
