@@ -433,3 +433,10 @@ select option{background:#100b17;color:#f8f5ff}
     display:none;
   }
 }
+
+/* PCDeal V8.3 — compact analyzer editor */
+.detected-editor{margin-top:14px;border:1px solid rgba(157,108,255,.28);border-radius:15px;background:rgba(9,6,14,.62);overflow:hidden}
+.detected-editor>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;user-select:none}
+.detected-editor>summary::-webkit-details-marker{display:none}.detected-editor>summary span:first-child{display:flex;flex-direction:column;gap:3px}.detected-editor>summary strong{font-size:12px}.detected-editor>summary small{font-size:9px;color:var(--muted);font-weight:600}.details-chevron{font-size:18px;color:#bfa6ff;transition:transform .2s ease}.detected-editor[open] .details-chevron{transform:rotate(180deg)}.detected-editor-body{padding:4px 15px 16px;border-top:1px solid rgba(157,108,255,.16)}
+#detectedSection .hardware-grid{grid-template-columns:repeat(8,minmax(70px,1fr));gap:7px}#detectedSection .hardware-card{min-height:70px;padding:9px}#detectedSection .hardware-icon{font-size:18px}
+@media(max-width:850px){#detectedSection .hardware-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:480px){#detectedSection .hardware-grid{grid-template-columns:repeat(2,1fr)}}

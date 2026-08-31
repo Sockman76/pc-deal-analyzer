@@ -110,62 +110,77 @@ function usageFit(s,profile=s.usageProfile||"gaming"){
  return {...x,note,all};
 }
 function fpsEstimate(s,opts={}){
- const game=opts.game||"Fortnite", res=String(opts.resolution||"1440"), preset=opts.preset||"high";
+ const game=opts.game||"Apex Legends", res=String(opts.resolution||"1080"), preset=opts.preset||"medium";
  const rt=opts.rayTracing||"off", up=opts.upscaling||"off", fg=opts.frameGen||"off";
  const gp=GAME_PROFILES[game]||GAME_PROFILES.Fortnite,c=cpuScores(s),g=gpuScores(s),rd=window.detectRamDetails?.(s.listing||"")||{};
  if(!s.cpu||!s.gpu)return null;
 
- const bench=window.PCDealBenchmarks?.gpu?.(s.gpu);
- let gpuAnchor=bench ? (res==="1080"?bench.f1080:res==="2160"?bench.f4k:bench.f1440) : Math.max(25,g.raster*1.20);
- let cpuCeiling=(c.gaming*2.15)*gp.cpu;
- if(game==="Counter-Strike 2"||game==="Valorant")cpuCeiling*=1.50;
- if(res==="1440")cpuCeiling*=1.08;if(res==="2160")cpuCeiling*=1.18;
-
- const resCorrection=bench?1:(res==="1080"?1:res==="1440"?.74:.44);
- const presetM={low:1.33,medium:1.16,high:1,ultra:.84}[preset]||1;
- let gpuFPS=gpuAnchor*gp.scale*resCorrection*presetM;
-
- // Ray tracing is a real extra GPU load; card families handle it differently.
- if(rt!=="off"){
-   const rtLoad=rt==="ultra"?.58:rt==="high"?.68:.78;
-   const rtStrength=(g.rt/Math.max(g.raster,1));
-   gpuFPS*=1-(gp.rt*(1-rtLoad*rtStrength));
+ const dr=window.PCDealGameBenchmarks?.interpolatedRow?.(game,s.gpu)||null;
+ const hierarchy=window.PCDealBenchmarks?.gpu?.(s.gpu)||null;
+ let avg1080,low1080,sourceType,sourceText;
+ if(dr){
+   avg1080=dr.avg; low1080=dr.low; sourceType=dr.exact?"direct-game-benchmark":"game-benchmark-interpolation";
+   sourceText=dr.exact?`DropReference ${game} benchmark anchor for ${dr.gpu}.`:`DropReference ${game} benchmark interpolation between nearby calibrated GPUs.`;
+ }else{
+   const base=hierarchy?.f1080||Math.max(30,g.raster*1.30);
+   avg1080=base*(gp.scale||1); low1080=avg1080*.70; sourceType=hierarchy?"hierarchy-model":"heuristic";
+   sourceText=hierarchy?"GPU hierarchy baseline with game-specific modelling; no direct DropReference game row was available.":"Heuristic fallback; no direct game benchmark or current hierarchy match was available.";
  }
- const upM={off:1,quality:1.17,balanced:1.29,performance:1.43}[up]||1;
- gpuFPS*=upM;
 
- // RAM penalties affect lows more than averages.
- let avg=Math.min(gpuFPS,cpuCeiling);
- let lowFactor=.76;
+ // DropReference benchmark pages expose processor selection; our stored game anchors use a high-end CPU baseline.
+ // CPU scaling is deliberately modest in GPU-heavy titles and stronger in CPU-sensitive titles.
+ const cpuRef=78.2; // i9-14900K gaming hierarchy reference used as a high-end baseline.
+ const cpuRatio=Math.max(.48,Math.min(1.12,(c.gaming||50)/cpuRef));
+ const sens=window.PCDealGameBenchmarks?.GAMES?.[game]?.cpuSensitivity ?? Math.min(.85,Math.max(.25,gp.cpu||.55));
+ const cpuScale=1-sens*(1-cpuRatio);
+ avg1080*=cpuScale; low1080*=Math.max(.72,1-(sens+.12)*(1-cpuRatio));
+
+ // Preset conversion. DropReference's site-wide estimator states a 1080p medium-quality baseline.
+ const presetM={low:1.16,medium:1,high:.89,ultra:.78}[preset]||1;
+ avg1080*=presetM; low1080*=Math.min(1.04,presetM*.98+.02);
+
+ // Resolution conversion uses the actual GPU hierarchy's measured scaling when available.
+ let resM=1;
+ if(res!=="1080"){
+   if(hierarchy?.f1080){resM=res==="1440"?hierarchy.f1440/hierarchy.f1080:hierarchy.f4k/hierarchy.f1080}
+   else resM=res==="1440"?.74:.47;
+ }
+ let avg=avg1080*resM, oneLow=low1080*resM;
+
+ // RT / upscaling are still modelled because the stored benchmark anchors are not a universal RT/upscaling matrix.
+ if(rt!=="off"){
+   const rtPenalty={medium:.80,high:.68,ultra:.57}[rt]||1;
+   const rtStrength=Math.max(.55,Math.min(1.18,g.rt/Math.max(g.raster,1)));
+   avg*=1-((1-rtPenalty)*Math.max(.25,gp.rt||.45)/rtStrength);
+   oneLow*=1-((1-rtPenalty)*Math.max(.30,gp.rt||.45)/rtStrength);
+ }
+ const upM={off:1,quality:1.14,balanced:1.25,performance:1.38}[up]||1;
+ avg*=upM; oneLow*=Math.min(upM,1.25);
+
+ // RAM configuration mostly affects lows; smaller penalty to averages.
  const gb=parseInt(s.ram)||0;
- if(gb<16){avg*=.90;lowFactor-=.09}
- if(rd.sticks===1){avg*=.95;lowFactor-=.07}
- if(rd.speed&&s.ramType==="DDR4"&&rd.speed<2666)lowFactor-=.04;
- if(rd.speed&&s.ramType==="DDR5"&&rd.speed<5200)lowFactor-=.03;
+ if(gb&&gb<16){avg*=.92;oneLow*=.82}
+ if(rd.sticks===1){avg*=.96;oneLow*=.88}
+ if(rd.speed&&s.ramType==="DDR4"&&rd.speed<2666)oneLow*=.95;
+ if(rd.speed&&s.ramType==="DDR5"&&rd.speed<5200)oneLow*=.96;
 
- // Frame generation affects displayed FPS, not base responsiveness.
- const baseAvg=avg;
- if(fg==="2x")avg*=1.72;
- if(fg==="multi")avg*=2.20;
+ const baseAvg=avg,baseLow=oneLow;
+ if(fg==="2x"){avg*=1.62;oneLow*=1.48}
+ if(fg==="multi"){avg*=2.05;oneLow*=1.70}
 
- const oneLow=Math.max(15,avg*clamp(lowFactor,.55,.82));
- const min=Math.round(avg*.88), max=Math.round(avg*1.12);
- const cpuLimited=cpuCeiling<gpuFPS*.93;
- const gpuLimited=gpuFPS<cpuCeiling*.93;
- const bottleneck=cpuLimited?"Mostly CPU-limited":gpuLimited?"Mostly GPU-limited":"Well balanced";
+ // CPU ceiling is now a sanity check, not the primary source of FPS.
+ let cpuCeiling=(c.gaming*2.8)*(game==="Counter-Strike 2"||game==="Valorant"?1.35:1);
+ if(res==="1440")cpuCeiling*=1.08;if(res==="2160")cpuCeiling*=1.15;
+ if(avg>cpuCeiling){const ratio=cpuCeiling/avg;avg=cpuCeiling;oneLow*=Math.max(.82,ratio)}
+
+ const gpuCeiling=Math.round(avg);
+ const min=Math.round(avg*.92),max=Math.round(avg*1.08);
+ const bottleneck=cpuCeiling<gpuCeiling*.98?"Mostly CPU-limited":cpuCeiling>gpuCeiling*1.18?"Mostly GPU-limited":"Mixed / balanced";
  const vramNeed=(res==="2160"?12:res==="1440"?8:6)+(rt!=="off"?2:0)+(preset==="ultra"?2:0);
  const vramStatus=g.vram?g.vram>=vramNeed?"Likely adequate":`Potentially limited (${g.vram}GB vs ~${vramNeed}GB target)`:"VRAM unknown";
- const confidence=clamp(Math.round(
-   (bench?34:18)+(window.PCDealBenchmarks?.cpu?.(s.cpu)?22:12)+(s.ram?10:0)+(rd.sticks?7:0)+(rd.speed?5:0)+(s.motherboard?5:0)+(s.psu?4:0)
- ),35,92);
-
- return {
-   avg:Math.round(avg),baseAvg:Math.round(baseAvg),oneLow:Math.round(oneLow),min,max,
-   bottleneck,cpuCeiling:Math.round(cpuCeiling),gpuCeiling:Math.round(gpuFPS),
-   vramStatus,vramNeed,confidence,
-   latencyNote:fg==="off"?"No frame generation selected.":"Frame generation can raise displayed FPS but does not multiply base input responsiveness by the same amount.",
-   source:bench?"GPU baseline calibrated to published hierarchy data; game-specific scaling remains modelled.":"GPU baseline is heuristic because this card lacks a current source-backed hierarchy entry."
- };
+ const evidence=(dr?.exact?50:dr?42:hierarchy?28:15)+(window.PCDealBenchmarks?.cpu?.(s.cpu)?18:8)+(rd.sticks?7:0)+(rd.speed?5:0)+(s.ram?5:0);
+ const confidence=clamp(Math.round(evidence),30,94);
+ return {avg:Math.round(avg),baseAvg:Math.round(baseAvg),oneLow:Math.round(oneLow),baseLow:Math.round(baseLow),min,max,bottleneck,cpuCeiling:Math.round(cpuCeiling),gpuCeiling,vramStatus,vramNeed,confidence,sourceType,source:sourceText+(res!=="1080"?" Resolution scaling uses measured GPU hierarchy ratios where available.":"")+(preset!=="medium"?" Preset conversion is modelled from the medium-quality benchmark anchor.":""),latencyNote:fg==="off"?"No frame generation selected.":"Frame generation increases displayed FPS, but base render FPS and input responsiveness remain closer to the pre-generation result."};
 }
 window.PCDealV8={USES,GAME_PROFILES,state,cpuScores,gpuScores,ramScore,storageScore,qualityScore,workloadScores,usageFit,fpsEstimate};
 })();

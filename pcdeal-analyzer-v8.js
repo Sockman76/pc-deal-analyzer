@@ -32,15 +32,6 @@ function init(){
   "Corsair RM650x 650W","Corsair RM750x 750W","Corsair RM850x 850W","Corsair RM1000x 1000W",
   "Seasonic Focus GX-650 650W","Seasonic Focus GX-750 750W","Seasonic Focus GX-850 850W"
  ]);
- const sec=$("detectedSection");
- if(sec&&!$("usageProfile")){
-   const p=document.createElement("section");p.className="usage-selector";
-   p.innerHTML=`<div><div class="eyebrow">What will this PC be used for?</div><strong>Choose the primary workload</strong><div class="tiny">PCDeal changes its recommendation weights instead of treating every computer as a gaming PC.</div></div>
-   <select id="usageProfile"><option value="gaming">Gaming</option><option value="esports">Competitive / Esports</option><option value="workstation">Extreme Workstation</option><option value="editing">Video Editing</option><option value="render">3D Rendering</option><option value="ai">AI / ML</option><option value="general">General / School / Office</option><option value="mixed">Mixed Use</option></select>`;
-   sec.insertBefore(p,sec.children[1]||null);
-   const saved=localStorage.getItem("pcdeal.v8.usage")||"gaming";$("usageProfile").value=saved;
-   $("usageProfile").addEventListener("change",()=>{localStorage.setItem("pcdeal.v8.usage",$("usageProfile").value);try{const b=JSON.parse(localStorage.getItem("pcdeal.v5.build")||"{}");b.usageProfile=$("usageProfile").value;localStorage.setItem("pcdeal.v5.build",JSON.stringify(b))}catch{}});
- }
 }
 document.addEventListener("DOMContentLoaded",()=>setTimeout(init,80));
 })();

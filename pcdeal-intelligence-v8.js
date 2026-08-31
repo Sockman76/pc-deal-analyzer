@@ -62,12 +62,12 @@ function smartInsights(){
  return {fit,flags};
 }
 function renderSmart(){
- const s=window.PCDealV8?.state?.()||{},x=smartInsights(),profile=s.usageProfile||"gaming";
- const f1080=window.PCDealV8?.fpsEstimate?.(s,{game:"Fortnite",resolution:"1080",preset:"high"});
- const f1440=window.PCDealV8?.fpsEstimate?.(s,{game:"Fortnite",resolution:"1440",preset:"high"});
+ const s=window.PCDealV8?.state?.()||{},x=smartInsights();
+ const f1080=window.PCDealV8?.fpsEstimate?.(s,{game:"Apex Legends",resolution:"1080",preset:"medium"});
+ const f1440=window.PCDealV8?.fpsEstimate?.(s,{game:"Apex Legends",resolution:"1440",preset:"medium"});
  if($("fps1080"))$("fps1080").textContent=f1080?`~${f1080.avg} FPS`:"—";
  if($("fps1440"))$("fps1440").textContent=f1440?`~${f1440.avg} FPS`:"—";
- if($("fpsNote"))$("fpsNote").textContent=f1440?`Quick gaming reference • model confidence ${f1440.confidence}% • use the Performance page for game/settings controls.`:"Detect a CPU and GPU first.";
+ if($("fpsNote"))$("fpsNote").textContent=f1440?`Apex Legends medium reference • model confidence ${f1440.confidence}% • use the Performance page for game/settings controls.`:"Detect a CPU and GPU first.";
  const title=document.querySelector("#v3Insights h2");if(title)title.textContent="Smart System Insights";
  const sub=document.querySelector("#v3Insights .sub");if(sub)sub.textContent="Evidence-weighted quick checks. Benchmark-calibrated where data exists; unknown information stays unknown.";
  let box=$("v8UseInsight");

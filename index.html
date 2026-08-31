@@ -30,7 +30,7 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
 <link rel="stylesheet" href="styles.css?v=602">
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml"></head>
 <body>
-<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a><a href="retail.html">Retail</a><a href="data.html">Data Lab</a><a href="account.html">Account</a></div><div class="v3-pill">V8.2</div></div></nav>
+<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a><a href="retail.html">Retail</a><a href="data.html">Data Lab</a><a href="account.html">Account</a></div><div class="v3-pill">V8.3</div></div></nav>
 <section class="hero"><h1>Know if a PC deal is <span>actually worth it.</span></h1><p>Paste a used-PC listing, detect the hardware, compare the asking price, estimate gaming performance, and spot seller red flags before you buy.</p></section>
 <main class="container">
   <section class="panel">
@@ -41,7 +41,7 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
   </section>
 
   <section class="panel" id="detectedSection">
-    <div class="section-title"><div><h2>Detected Build</h2><div class="sub" style="margin:4px 0 0">Review anything the parser found before analyzing.</div></div></div>
+    <div class="section-title"><div><h2>Detected Build</h2><div class="sub" style="margin:4px 0 0">Detected parts stay compact. Expand Review / edit only when needed.</div></div></div>
     <div class="hardware-grid">
       <div class="hardware-card"><span class="hardware-icon" data-field="cpu">🧠</span><div class="name">CPU</div></div>
       <div class="hardware-card"><span class="hardware-icon" data-field="gpu">🎮</span><div class="name">GPU</div></div>
@@ -53,6 +53,9 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
       <div class="hardware-card"><span class="hardware-icon" data-field="caseQuality">🖥️</span><div class="name">Case</div></div>
     </div>
 
+    <details class="detected-editor" id="detectedEditor">
+      <summary><span><strong>Review / edit detected parts</strong><small>Optional — expand only if PCDeal missed something or you want to change a part.</small></span><span class="details-chevron">⌄</span></summary>
+      <div class="detected-editor-body">
     <div class="grid"><div class="field"><label>CPU</label><input id="cpu" placeholder="e.g. Ryzen 7 5800X3D"></div><div class="field"><label>GPU</label><input id="gpu" placeholder="e.g. RTX 3080 Ti"></div></div>
     <div class="grid"><div class="field"><label>RAM Capacity</label><select id="ram"><option value="">Select RAM</option><option>8GB</option><option>16GB</option><option>32GB</option><option>64GB+</option></select></div><div class="field"><label>RAM Type</label><select id="ramType"><option value="">Unknown</option><option>DDR2</option><option>DDR3</option><option>DDR4</option><option>DDR5</option></select></div></div>
     <div class="grid"><div class="field"><label>Storage Type</label><select id="storageType"><option value="">Drive Type</option><option value="NVME M.2">NVME M.2</option><option value="SSD">SSD</option><option value="HDD">HDD</option></select></div><div class="field"><label>Storage Size</label><select id="storageSize"><option value="">Drive Size</option><option>120GB</option><option>128GB</option><option>240GB</option><option>250GB</option><option>256GB</option><option>480GB</option><option>500GB</option><option>512GB</option><option>1TB</option><option>1.5TB</option><option>2TB</option><option>3TB</option><option>4TB</option><option>6TB</option><option>8TB</option></select></div></div>
@@ -64,6 +67,8 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
     <div class="meter" id="livePriceMeter"><div class="meter-head"><strong>Live Price Meter</strong><span id="livePriceLabel">Add CPU, GPU and price to compare</span></div><div class="meter-track"><div class="meter-fill" id="livePriceFill"></div></div></div>
     <button id="analyzeButton" onclick="analyzeDeal()" style="margin-top:16px">Analyze Deal →</button>
 
+      </div>
+    </details>
     <div class="result" id="result"><div class="score" id="score"></div><div class="verdict" id="verdict"></div><div class="resultText" id="resultText"></div><div class="warning"><strong>Before buying:</strong><br><br>Test the PC in person when possible. Check temperatures, storage SMART health, GPU stability, and the exact power-supply model.</div></div>
   </section>
 
@@ -79,13 +84,13 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
     </div>
   </section>
 
-  <section class="panel"><h2>Explore PCDeal V8.2</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
+  <section class="panel"><h2>Explore PCDeal V8.3</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
 </main>
-<footer>PCDeal V8.2 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
+<footer>PCDeal V8.3 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
 <script src="platform.js?v=710"></script>
 <script src="cpu-data.js?v=710"></script>
 <script src="gpu-data.js?v=710"></script>
-<script src="parts.js?v=710"></script><script src="hardware-aliases.js?v=720"></script><script src="benchmark-calibration.js?v=710"></script><script src="market-prices.js?v=710"></script><script src="pcdeal-workloads-v8.js?v=800"></script><script src="retail-prices.js?v=700"></script><script src="pcdeal-recognition-v7.js?v=700"></script>
+<script src="parts.js?v=710"></script><script src="hardware-aliases.js?v=720"></script><script src="benchmark-calibration.js?v=710"></script><script src="market-prices.js?v=710"></script><script src="fps-benchmarks-v83.js?v=830"></script><script src="pcdeal-workloads-v8.js?v=830"></script><script src="retail-prices.js?v=700"></script><script src="pcdeal-recognition-v7.js?v=700"></script>
 <script src="app-v4.js?v=19"></script>
 <script src="pcdeal-v3.js?v=2"></script>
 
