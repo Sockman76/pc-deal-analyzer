@@ -1,4 +1,4 @@
-# PCDeal V7.1 — Full Replacement Package
+# PCDeal V8.0 — Full Replacement Package
 
 This ZIP is designed to be a **complete GitHub Pages replacement package**. It contains the HTML, CSS, Firebase client, PWA files, V3/V5/V6/V7 feature layers, and the previously external hardware database files:
 
@@ -86,9 +86,9 @@ After uploading:
 - Retail pricing is kept separate from used-PC valuation.
 
 
-## V7.1 — Data Quality Upgrade
+## V8.0 — Data Quality Upgrade
 
-V7.1 adds a benchmark calibration layer and a secure used-market provider architecture.
+V8.0 adds a benchmark calibration layer and a secure used-market provider architecture.
 
 ### Benchmark calibration
 Selected modern CPUs and GPUs are calibrated against current Tom's Hardware 2026 hierarchy snapshots. PCDeal labels calibrated hardware as **Source-backed** and all other hardware as **Heuristic**.
@@ -100,7 +100,7 @@ This calibration anchors PCDeal's internal performance score but does **not** tu
 ### Used-market data
 eBay's Browse API requires an Application access token obtained through client credentials. Client secrets must not be exposed in GitHub Pages JavaScript.
 
-V7.1 therefore includes:
+V8.0 therefore includes:
 - `functions/index.js`
 - `functions/package.json`
 - `firebase.json`
@@ -116,3 +116,24 @@ Active marketplace listings are **asking prices**, not completed-sale prices.
 - whether the current CPU/GPU is source-backed or heuristic
 - eBay backend configuration
 - data label definitions
+
+
+## V8.0 — Universal shorthand aliases
+Pattern-driven shorthand recognition now canonicalizes CPU, GPU, motherboard, PSU, RAM, storage and cooler names. Examples: `r7 7800x3d` → `Ryzen 7 7800X3D`, `i5 14600kf` → `i5-14600KF`, `3080ti` → `RTX 3080 Ti`, `4070s` → `RTX 4070 Super`, `4070tis` → `RTX 4070 Ti Super`, `7900xtx` → `RX 7900 XTX`, `b580` → `Arc B580`.
+
+
+## V8.0 — Profiled analysis redesign
+
+- New first-visit account modal with Google, email-account and Guest choices.
+- Account remains optional; guest analysis is supported.
+- Upgrade Simulator removed.
+- Analyzer has visible CPU/GPU/motherboard/PSU dropdowns plus custom exact-model fields.
+- Primary-use selector changes recommendations for Gaming, Esports, Extreme Workstation, Video Editing, 3D Rendering, AI/ML, General and Mixed use.
+- New workload suitability scoring so a system is not judged only as a gaming PC.
+- Deeper FPS model with resolution, preset, ray tracing, upscaling, frame generation, target refresh, CPU/GPU ceilings, RAM-layout penalties, VRAM checks, 1% lows and confidence.
+- Hardware page separates estimated used contribution from launch MSRP / new-build reference / live-retail paths.
+- Detection confidence is evidence-weighted instead of giving nearly fixed percentages merely because a field is filled.
+- Smart Insights now use V8 workload, compatibility, PSU and RAM checks.
+
+### FPS accuracy statement
+The FPS engine is a model, not a per-system laboratory benchmark. GPU hierarchy data is used as a calibration baseline when available, while game-specific, CPU, memory, ray tracing, upscaling and frame-generation effects remain modelled. PCDeal exposes a confidence score and source note rather than presenting estimates as guaranteed FPS.

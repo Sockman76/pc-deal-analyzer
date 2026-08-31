@@ -311,3 +311,21 @@ select option{background:#100b17;color:#f8f5ff}
 .navlinks a[href="data.html"]{position:relative}
 .navlinks a[href="data.html"]:after{content:"DATA";font-size:7px;position:absolute;top:0;right:0;color:#68d8ff}
 #benchmarkCalibration .card .kpi{font-variant-numeric:tabular-nums}
+
+/* PCDeal V8 */
+.detected-picker{margin-bottom:8px;border-color:#5a4380;background:linear-gradient(180deg,#120c1b,#0b0711)}
+.manual-hint{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:7px 2px;font-size:10px;color:var(--muted)}
+.manual-hint strong{color:#d9ccff;font-size:11px}.manual-hint span{text-align:right}
+.usage-selector{display:grid;grid-template-columns:1.4fr .8fr;gap:16px;align-items:center;border:1px solid rgba(157,108,255,.38);background:rgba(157,108,255,.08);padding:16px;border-radius:16px;margin:15px 0}
+.welcome-overlay{position:fixed;z-index:10000;inset:0;background:rgba(4,2,8,.78);backdrop-filter:blur(14px);display:grid;place-items:center;padding:18px;animation:v8fade .22s ease}
+.welcome-modal{width:min(610px,100%);position:relative;border-radius:26px;padding:28px;background:linear-gradient(160deg,#191024,#0c0812);border:1px solid #5a3f7b;box-shadow:0 40px 140px #000;overflow:hidden}
+.welcome-modal:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(157,108,255,.18);filter:blur(70px);right:-100px;top:-130px;pointer-events:none}
+.welcome-logo{font-size:25px;font-weight:950;margin-bottom:24px}.welcome-logo span{color:var(--accent)}.welcome-modal h2{font-size:30px;line-height:1.12;letter-spacing:-.03em;margin:10px 0}.welcome-modal p{color:var(--muted);line-height:1.6}
+.welcome-benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:19px 0}.welcome-benefits div{padding:12px;border-radius:14px;background:#0d0913;border:1px solid #332542}.welcome-benefits strong,.welcome-benefits span{display:block}.welcome-benefits span{font-size:10px;color:var(--muted);margin-top:4px}
+.welcome-actions{display:grid;gap:9px}.welcome-actions>*{width:100%}.welcome-close{position:absolute;right:14px;top:14px;width:34px;height:34px;border-radius:50%;padding:0;background:#21172e}
+.account-nudge{position:fixed;z-index:8500;right:18px;bottom:68px;padding:9px 12px;font-size:11px;box-shadow:0 10px 30px #000}
+.performance-config select{min-height:46px}
+#v8Workloads .card{position:relative;overflow:hidden}
+.account-benefits{border-color:rgba(157,108,255,.42)}
+@keyframes v8fade{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+@media(max-width:700px){.usage-selector{grid-template-columns:1fr}.welcome-benefits{grid-template-columns:1fr}.welcome-modal{padding:21px}.welcome-modal h2{font-size:25px}.manual-hint{display:block}.manual-hint span{display:block;text-align:left;margin-top:3px}}

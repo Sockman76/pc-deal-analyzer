@@ -1,15 +1,64 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07050c"><title>Performance — PCDeal V7.1</title><link rel="stylesheet" href="styles.css?v=602"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml"></head>
-<body data-page="performance"><div class="topbar"><div class="nav"><a class="brand" href="./">PC<span>Deal</span></a><div class="navlinks"><a class="" href="./">Analyzer</a><a class="" href="dashboard.html">Dashboard</a><a class="active" href="performance.html" aria-current="page" onclick="return false;">Performance</a><a class="" href="hardware.html">Hardware</a><a class="" href="buying.html">Buying</a><a class="" href="compare.html">Compare</a><a class="" href="flip.html">Flip</a><a class="" href="inspector.html">Inspector</a><a class="" href="deals.html">My Deals</a><a class="" href="tools.html">Tools</a><a class="" href="account.html">Account</a></div><div class="badge">V7.1</div></div></div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07050c"><title>Performance — PCDeal V8.0</title><link rel="stylesheet" href="styles.css?v=602"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml"></head>
+<body data-page="performance"><div class="topbar"><div class="nav"><a class="brand" href="./">PC<span>Deal</span></a><div class="navlinks"><a class="" href="./">Analyzer</a><a class="" href="dashboard.html">Dashboard</a><a class="active" href="performance.html" aria-current="page" onclick="return false;">Performance</a><a class="" href="hardware.html">Hardware</a><a class="" href="buying.html">Buying</a><a class="" href="compare.html">Compare</a><a class="" href="flip.html">Flip</a><a class="" href="inspector.html">Inspector</a><a class="" href="deals.html">My Deals</a><a class="" href="tools.html">Tools</a><a class="" href="account.html">Account</a></div><div class="badge">V8.0</div></div></div>
 <section class="hero"><div class="eyebrow">Performance Lab</div><h1>Turn specs into <span>gaming expectations.</span></h1><p>Game-specific modelled FPS, CPU/GPU balance, PSU headroom, power draw, thermals, noise and best target resolution.</p></section>
 <main class="wrap">
-<section class="panel"><div class="section-heading"><div><h2>Game FPS Calculator</h2><div class="sub">Choose the test first. Results update only when you press Estimate FPS.</div></div><span class="tag">Button-controlled</span></div>
-<div class="grid4"><div><label>Game</label><select id="gameSelect"></select></div><div><label>Resolution</label><select id="resolutionSelect"><option value="1080">1080p</option><option value="1440">1440p</option><option value="2160">4K</option></select></div><div><label>Preset</label><select id="presetSelect"><option value="low">Low / Competitive</option><option value="medium">Medium</option><option value="high" selected>High</option><option value="ultra">Ultra</option></select></div><div><label>Upscaling</label><select id="upscaleSelect"><option value="off">Off</option><option value="quality">Quality</option><option value="balanced">Balanced</option></select></div></div>
-<div class="actions"><button id="estimateGameBtn">🎮 Estimate FPS</button></div><div class="notice" id="fpsPending">Changing a dropdown stages a new test. The displayed FPS stays unchanged until you press Estimate FPS.</div>
-<div class="cards" style="margin-top:14px"><div class="card"><h3>Estimated Average</h3><div class="big" id="gameFps">—</div><div class="tiny" id="fpsRange">Press Estimate FPS to run a model.</div></div><div class="card"><h3>1% Low Estimate</h3><div class="big" id="oneLow">—</div><div class="tiny">A rough smoothness indicator.</div></div><div class="card"><h3>Target Experience</h3><div class="big" id="experienceLabel">—</div><div class="tiny" id="experienceText"></div></div></div></section>
-<section class="cards"><div class="card"><h3>⚖️ CPU/GPU Balance</h3><div class="big" id="bottleneckLabel">—</div><div class="tiny" id="bottleneckText"></div></div><div class="card"><h3>🔌 PSU Headroom</h3><div class="big" id="psuHeadroom">—</div><div class="tiny" id="psuText"></div></div><div class="card"><h3>🖥️ Best Resolution</h3><div class="big" id="targetResolution">—</div><div class="tiny" id="targetResolutionText"></div></div><div class="card"><h3>📊 Value / FPS</h3><div class="big" id="valuePerFps">—</div><div class="tiny">Lower is generally better.</div></div><div class="card"><h3>⚡ Estimated Load</h3><div class="big" id="powerDraw">—</div><div class="tiny" id="powerText"></div></div><div class="card"><h3>🔊 Noise Estimate</h3><div class="big" id="noiseEstimate">—</div><div class="tiny" id="noiseText"></div></div></section>
-<section class="panel"><h2>Temperature Analyzer</h2><div class="sub">If the seller mentions temperatures in the listing, PCDeal will summarize what it found. This is a general heuristic, not a model-specific thermal limit database.</div><div id="tempAnalysis"></div></section>
+<section class="panel performance-config">
+ <div class="section-heading"><div><div class="eyebrow">Deep performance model</div><h2>Game & workload configuration</h2><div class="sub">Choose the way the PC will actually be used. Results do not change until you press Run Performance Estimate.</div></div><span class="tag">V8 model</span></div>
+ <div class="grid4">
+  <div><label>Game</label><select id="v8Game"></select></div>
+  <div><label>Resolution</label><select id="v8Res"><option value="1080">1080p</option><option value="1440" selected>1440p</option><option value="2160">4K</option></select></div>
+  <div><label>Graphics preset</label><select id="v8Preset"><option value="low">Low / Competitive</option><option value="medium">Medium</option><option value="high" selected>High</option><option value="ultra">Ultra</option></select></div>
+  <div><label>Ray tracing</label><select id="v8RT"><option value="off">Off</option><option value="medium">Medium</option><option value="high">High</option><option value="ultra">Ultra</option></select></div>
+ </div>
+ <div class="grid4" style="margin-top:12px">
+  <div><label>Upscaling</label><select id="v8Upscale"><option value="off">Off / Native</option><option value="quality">Quality</option><option value="balanced">Balanced</option><option value="performance">Performance</option></select></div>
+  <div><label>Frame generation</label><select id="v8FG"><option value="off">Off</option><option value="2x">2x-style frame generation</option><option value="multi">Multi-frame estimate</option></select></div>
+  <div><label>Target refresh rate</label><select id="v8Hz"><option>60</option><option>120</option><option selected>144</option><option>165</option><option>240</option><option>360</option></select></div>
+  <div><label>Primary PC use</label><select id="v8Use"><option value="gaming">Gaming</option><option value="esports">Competitive / Esports</option><option value="workstation">Extreme Workstation</option><option value="editing">Video Editing</option><option value="render">3D Rendering</option><option value="ai">AI / ML</option><option value="general">General / School / Office</option><option value="mixed">Mixed Use</option></select></div>
+ </div>
+ <div class="actions"><button id="v8Run">▶ Run Performance Estimate</button></div><div class="notice" id="v8Pending">Settings are staged. Press the button to calculate.</div>
+</section>
+
+<section class="cards">
+ <div class="card"><h3>Estimated average</h3><div class="huge" id="v8Avg">—</div><div class="tiny">Displayed FPS estimate</div></div>
+ <div class="card"><h3>Estimated 1% low</h3><div class="huge" id="v8Low">—</div><div class="tiny">Smoothness / frame-time indicator</div></div>
+ <div class="card"><h3>Model range</h3><div class="big" id="v8Range">—</div><div class="tiny">Expected variation around the model</div></div>
+ <div class="card"><h3>Target refresh</h3><div class="big" id="v8Refresh">—</div><div class="tiny" id="v8RefreshText"></div></div>
+ <div class="card"><h3>Model confidence</h3><div class="big" id="v8FPSConf">—</div><div class="tiny">Evidence/model completeness, not a guarantee</div></div>
+ <div class="card"><h3>Limiting side</h3><div class="big" id="v8Limit">—</div><div class="tiny" id="v8LimitText"></div></div>
+</section>
+
+<section class="grid2">
+ <div class="panel"><h2>Performance ceilings</h2><div class="kpi"><span>CPU-side ceiling</span><strong id="v8CPUCeil">—</strong></div><div class="kpi"><span>GPU-side ceiling</span><strong id="v8GPUCeil">—</strong></div><div class="kpi"><span>VRAM assessment</span><strong id="v8VRAM">—</strong></div><div class="kpi"><span>Base FPS before frame generation</span><strong id="v8Base">—</strong></div><div class="notice" id="v8Latency"></div></div>
+ <div class="panel"><h2>System role suitability</h2><div id="v8RoleScore"></div><div class="notice" id="v8RoleNote"></div></div>
+</section>
+
+<section class="panel"><h2>All workload scores</h2><div class="sub">A gaming monster can still be a mediocre workstation, and a many-core workstation can be poor value for a simple gaming target.</div><div id="v8Workloads" class="grid4"></div></section>
+<section class="panel"><h2>How this estimate is built</h2><div class="grid3"><div class="card"><h3>GPU baseline</h3><div class="tiny">Uses source-backed hierarchy data when PCDeal has a calibrated match; otherwise uses the internal GPU performance model.</div></div><div class="card"><h3>CPU ceiling</h3><div class="tiny">CPU-sensitive games receive a stronger CPU ceiling, especially esports titles and lower resolutions.</div></div><div class="card"><h3>System modifiers</h3><div class="tiny">RAM capacity/layout, resolution, preset, ray tracing, upscaling and frame generation modify the estimate separately.</div></div></div><div class="notice" id="v8SourceNote"></div></section>
 </main>
-<footer>PCDeal V7.1 • Estimates and scores are decision aids, not hardware guarantees or live marketplace quotes.</footer>
-<script src="platform.js?v=710"></script><script src="cpu-data.js?v=710"></script><script src="gpu-data.js?v=710"></script><script src="parts.js?v=710"></script><script src="benchmark-calibration.js?v=710"></script><script src="market-prices.js?v=710"></script><script src="retail-prices.js?v=700"></script><script src="pcdeal-recognition-v7.js?v=700"></script><script src="pcdeal-v5.js?v=6"></script>
+<footer>PCDeal V8.0 • Estimates and scores are decision aids, not hardware guarantees or live marketplace quotes.</footer>
+<script src="platform.js?v=710"></script><script src="cpu-data.js?v=710"></script><script src="gpu-data.js?v=710"></script><script src="parts.js?v=710"></script><script src="hardware-aliases.js?v=720"></script><script src="benchmark-calibration.js?v=710"></script><script src="market-prices.js?v=710"></script><script src="retail-prices.js?v=700"></script><script src="pcdeal-recognition-v7.js?v=700"></script><script src="pcdeal-v5.js?v=6"></script>
 <script src="pcdeal-visuals.js?v=60"></script>
-<script type="module" src="firebase-client.js?v=60"></script><script src="pcdeal-v6.js?v=602"></script><script src="pcdeal-benchmark-ui.js?v=710"></script></body></html>
+<script type="module" src="firebase-client.js?v=60"></script><script src="pcdeal-v6.js?v=602"></script><script src="pcdeal-benchmark-ui.js?v=710"></script><script src="pcdeal-workloads-v8.js?v=800"></script>
+<script>
+(()=>{
+const $=id=>document.getElementById(id),V=window.PCDealV8;
+function state(){return V.state()}
+$("v8Game").innerHTML=Object.keys(V.GAME_PROFILES).map(x=>`<option>${x}</option>`).join("");
+const saved=state().usageProfile||localStorage.getItem("pcdeal.v8.usage")||"gaming";$("v8Use").value=saved;
+["v8Game","v8Res","v8Preset","v8RT","v8Upscale","v8FG","v8Hz","v8Use"].forEach(id=>$(id).addEventListener("change",()=>$("v8Pending").textContent="Settings changed. Press Run Performance Estimate to recalculate."));
+$("v8Run").onclick=()=>{
+ const s=state(),use=$("v8Use").value;s.usageProfile=use;localStorage.setItem("pcdeal.v8.usage",use);localStorage.setItem("pcdeal.v5.build",JSON.stringify(s));
+ const r=V.fpsEstimate(s,{game:$("v8Game").value,resolution:$("v8Res").value,preset:$("v8Preset").value,rayTracing:$("v8RT").value,upscaling:$("v8Upscale").value,frameGen:$("v8FG").value});
+ if(!r){$("v8Pending").textContent="A recognized CPU and GPU are required.";return}
+ $("v8Avg").textContent=`~${r.avg} FPS`;$("v8Low").textContent=`~${r.oneLow} FPS`;$("v8Range").textContent=`${r.min}–${r.max} FPS`;
+ const hz=+$("v8Hz").value,ratio=r.avg/hz;$("v8Refresh").textContent=ratio>=1.1?"Strong match":ratio>=.8?"Near target":"Below target";$("v8RefreshText").textContent=`~${r.avg} FPS vs ${hz} Hz selected target.`;
+ $("v8FPSConf").textContent=`${r.confidence}%`;$("v8Limit").textContent=r.bottleneck;$("v8LimitText").textContent="This changes with game, settings and resolution.";
+ $("v8CPUCeil").textContent=`~${r.cpuCeiling} FPS`;$("v8GPUCeil").textContent=`~${r.gpuCeiling} FPS`;$("v8VRAM").textContent=r.vramStatus;$("v8Base").textContent=`~${r.baseAvg} FPS`;
+ $("v8Latency").textContent=r.latencyNote;$("v8SourceNote").textContent=r.source;
+ const fit=V.usageFit(s,use);$("v8RoleScore").innerHTML=`<div class="huge">${fit.score}/100</div><div class="big">${fit.grade}</div>`;$("v8RoleNote").textContent=fit.note;
+ $("v8Workloads").innerHTML=Object.values(fit.all).map(x=>`<div class="card"><h3>${x.label}</h3><div class="big">${x.score}/100</div><div class="tiny">${x.grade}</div></div>`).join("");
+ $("v8Pending").textContent="Estimate complete. Change settings and press the button again to update.";
+};
+})();
+</script><script src="pcdeal-welcome-v8.js?v=800"></script></body></html>

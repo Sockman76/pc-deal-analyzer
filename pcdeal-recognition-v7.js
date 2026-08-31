@@ -23,5 +23,7 @@ function wrap(){
  if(typeof window.parseListing==="function"&&!window.parseListing.__v7){const old=window.parseListing;window.parseListing=function(){const x=old.apply(this,arguments);setTimeout(refine,40);setTimeout(refine,180);return x};window.parseListing.__v7=true}
 }
 document.addEventListener("DOMContentLoaded",()=>{wrap();$("listingText")?.addEventListener("blur",refine)});
+function v72Canon(id,kind){const e=$(id);if(!e)return;const old=String(e.value||"").trim();if(!old)return;const next=window.PCDealAliases?.normalizeAnyHardware?.(kind,old)||old;if(next!==old){e.value=next;e.dispatchEvent(new Event("change",{bubbles:true}))}}
+document.addEventListener("DOMContentLoaded",()=>{[["cpu","cpu"],["gpu","gpu"],["motherboard","motherboard"],["psu","psu"],["ram","ram"],["cooler","cooler"]].forEach(([id,k])=>$(id)?.addEventListener("blur",()=>v72Canon(id,k)))});
 window.PCDealRefineRecognition=refine;
 })();
