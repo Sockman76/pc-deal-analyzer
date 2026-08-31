@@ -39,36 +39,53 @@ function render(){
  };
 }
 function accountChip(){
- // V8.1: account access belongs in the header, not floating across the page.
- const header=document.querySelector(".topbar")||document.querySelector("header");
- if(!header)return;
+ const nav=document.querySelector(".nav");
+ if(!nav)return;
 
- let area=header.querySelector(".account-nav-area");
- if(!area){
-   area=document.createElement("div");
-   area.className="account-nav-area";
-   const nav=header.querySelector(".nav")||header.querySelector("nav");
-   if(nav && nav.parentElement===header) header.appendChild(area);
-   else header.appendChild(area);
+ // Remove any older injected account controls from previous versions.
+ document.querySelectorAll(".account-nudge,.account-nav-area,.account-nav-pill,.account-floating,.create-account-floating")
+   .forEach(e=>e.remove());
+
+ // Re-use the existing Account navigation link instead of creating another button.
+ let link=[...nav.querySelectorAll("a")].find(a=>
+   /account/i.test(a.textContent||"") || /account\.html/i.test(a.getAttribute("href")||"")
+ );
+
+ if(!link){
+   link=document.createElement("a");
+   link.href="account.html";
+   link.textContent="Account";
+   const links=nav.querySelector(".navlinks");
+   if(links)links.appendChild(link);
  }
 
- const chip=document.createElement("button");
- chip.className="account-nav-pill";
- chip.innerHTML='<span class="account-nav-icon">◉</span><span class="account-nav-copy"><strong>Create account</strong><small>Save & sync</small></span>';
- chip.onclick=()=>{localStorage.removeItem(KEY);render()};
- area.appendChild(chip);
+ link.classList.add("account-nav-link");
+ link.removeAttribute("onclick");
 
- const update=u=>{
-   if(u){
-     chip.innerHTML='<span class="account-nav-icon">✓</span><span class="account-nav-copy"><strong>My account</strong><small>Signed in</small></span>';
-     chip.onclick=()=>location.href="account.html";
-   }else{
-     chip.innerHTML='<span class="account-nav-icon">◉</span><span class="account-nav-copy"><strong>Create account</strong><small>Save & sync</small></span>';
-     chip.onclick=()=>{localStorage.removeItem(KEY);render()};
+ const setSignedOut=()=>{
+   link.href="account.html";
+   link.innerHTML='<span class="account-link-icon">◎</span><span>Account</span>';
+   link.title="Create an account or sign in";
+ };
+ const setSignedIn=()=>{
+   link.href="account.html";
+   link.innerHTML='<span class="account-link-icon">✓</span><span>Account</span>';
+   link.title="Open your PCDeal account";
+   link.classList.add("account-signed-in");
+ };
+
+ setSignedOut();
+
+ const hook=()=>{
+   if(window.PCDealFirebase?.onAuth){
+     window.PCDealFirebase.onAuth(user=>{
+       if(user)setSignedIn();
+       else setSignedOut();
+     });
    }
  };
- const hook=()=>window.PCDealFirebase?.onAuth?.(update);
- if(window.PCDealFirebase)hook();else window.addEventListener("pcdeal-firebase-ready",hook,{once:true});
+ if(window.PCDealFirebase)hook();
+ else window.addEventListener("pcdeal-firebase-ready",hook,{once:true});
 }
 document.addEventListener("DOMContentLoaded",()=>{setTimeout(render,250);accountChip()});
 })();

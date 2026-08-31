@@ -331,67 +331,105 @@ select option{background:#100b17;color:#f8f5ff}
 @media(max-width:700px){.usage-selector{grid-template-columns:1fr}.welcome-benefits{grid-template-columns:1fr}.welcome-modal{padding:21px}.welcome-modal h2{font-size:25px}.manual-hint{display:block}.manual-hint span{display:block;text-align:left;margin-top:3px}}
 
 /* PCDeal V8.1 — cleaner account placement */
-.account-nav-area{
-  display:flex;
-  align-items:center;
-  margin-left:auto;
-  padding-left:10px;
-}
-.account-nav-pill{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  width:auto;
-  min-height:38px;
-  padding:6px 11px 6px 7px;
-  border:1px solid rgba(157,108,255,.30);
-  border-radius:12px;
-  background:rgba(157,108,255,.07);
-  box-shadow:none;
-  color:var(--text);
-  white-space:nowrap;
-}
-.account-nav-pill:hover{
-  transform:translateY(-1px);
-  border-color:rgba(157,108,255,.58);
-  background:rgba(157,108,255,.12);
-  box-shadow:0 8px 22px rgba(0,0,0,.22);
-}
-.account-nav-icon{
-  display:grid;
-  place-items:center;
-  width:27px;
-  height:27px;
-  flex:0 0 27px;
-  border-radius:9px;
-  background:rgba(157,108,255,.15);
-  color:#cdb9ff;
-  font-size:12px;
-  font-weight:900;
-}
-.account-nav-copy{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  line-height:1.05;
-}
-.account-nav-copy strong{
-  font-size:10px;
-  font-weight:850;
-  letter-spacing:.01em;
-}
-.account-nav-copy small{
-  margin-top:3px;
-  font-size:8px;
-  color:var(--muted);
-  font-weight:600;
-}
+
+
+
+
+
+
+
 @media(max-width:900px){
-  .account-nav-copy small{display:none}
-  .account-nav-pill{padding-right:8px}
+  
+  
 }
 @media(max-width:620px){
-  .account-nav-copy{display:none}
-  .account-nav-pill{padding:5px}
-  .account-nav-area{padding-left:5px}
+  
+  
+  
+}
+
+/* PCDeal V8.2 — single nav-native account control */
+.account-nudge,
+.account-floating,
+.create-account-floating,
+.account-nav-area,
+.account-nav-pill{
+  display:none !important;
+  position:static !important;
+}
+
+.nav{
+  position:relative;
+  overflow:visible;
+}
+
+.navlinks{
+  min-width:0;
+  flex:1 1 auto;
+}
+
+.account-nav-link{
+  display:inline-flex !important;
+  align-items:center;
+  gap:5px;
+  position:static !important;
+  inset:auto !important;
+  margin:0 !important;
+  width:auto !important;
+  min-width:auto !important;
+  max-width:none !important;
+  padding:8px 10px !important;
+  border-radius:10px;
+  background:rgba(157,108,255,.07);
+  border:1px solid rgba(157,108,255,.18);
+  box-shadow:none !important;
+  transform:none !important;
+}
+
+.account-nav-link:hover{
+  background:rgba(157,108,255,.14) !important;
+  border-color:rgba(157,108,255,.38);
+}
+
+.account-nav-link.account-signed-in{
+  border-color:rgba(100,221,160,.28);
+}
+
+.account-link-icon{
+  font-size:10px;
+  line-height:1;
+  color:#cbb8ff;
+}
+
+.account-signed-in .account-link-icon{
+  color:#64dda0;
+}
+
+/* Prevent the nav from forcing controls over each other */
+.topbar .nav{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.topbar .navlinks{
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  flex-wrap:nowrap;
+  scrollbar-width:none;
+}
+
+.topbar .navlinks::-webkit-scrollbar{
+  display:none;
+}
+
+@media(max-width:700px){
+  .account-nav-link{
+    padding:7px 8px !important;
+  }
+  .account-link-icon{
+    display:none;
+  }
 }
