@@ -39,9 +39,34 @@ function render(){
  };
 }
 function accountChip(){
- const chip=document.createElement("button");chip.className="account-nudge secondary";chip.textContent="Create account";
- chip.onclick=()=>{localStorage.removeItem(KEY);render()};document.body.appendChild(chip);
- const update=u=>{chip.textContent=u?"Account ✓":"Create account";if(u)chip.onclick=()=>location.href="account.html"};
+ // V8.1: account access belongs in the header, not floating across the page.
+ const header=document.querySelector(".topbar")||document.querySelector("header");
+ if(!header)return;
+
+ let area=header.querySelector(".account-nav-area");
+ if(!area){
+   area=document.createElement("div");
+   area.className="account-nav-area";
+   const nav=header.querySelector(".nav")||header.querySelector("nav");
+   if(nav && nav.parentElement===header) header.appendChild(area);
+   else header.appendChild(area);
+ }
+
+ const chip=document.createElement("button");
+ chip.className="account-nav-pill";
+ chip.innerHTML='<span class="account-nav-icon">◉</span><span class="account-nav-copy"><strong>Create account</strong><small>Save & sync</small></span>';
+ chip.onclick=()=>{localStorage.removeItem(KEY);render()};
+ area.appendChild(chip);
+
+ const update=u=>{
+   if(u){
+     chip.innerHTML='<span class="account-nav-icon">✓</span><span class="account-nav-copy"><strong>My account</strong><small>Signed in</small></span>';
+     chip.onclick=()=>location.href="account.html";
+   }else{
+     chip.innerHTML='<span class="account-nav-icon">◉</span><span class="account-nav-copy"><strong>Create account</strong><small>Save & sync</small></span>';
+     chip.onclick=()=>{localStorage.removeItem(KEY);render()};
+   }
+ };
  const hook=()=>window.PCDealFirebase?.onAuth?.(update);
  if(window.PCDealFirebase)hook();else window.addEventListener("pcdeal-firebase-ready",hook,{once:true});
 }
