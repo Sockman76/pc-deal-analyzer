@@ -1,4 +1,4 @@
-// PCDeal V10.4 — exact-match UI/state cleanup
+// PCDeal V10.7 — exact-match UI/state cleanup
 (() => {
 "use strict";
 
@@ -71,21 +71,19 @@ function exactMatch(kind, canonical){
     // Exact database match means custom override is not needed.
     setInput(custom,"");
     custom.dataset.pcdealExactResolved="true";
-    const wrap=customContainer(custom);
-    if(wrap){
-      wrap.classList.add("pcdeal-custom-resolved");
-      wrap.setAttribute("aria-hidden","true");
-    }
+    custom.classList.add("pcdeal-custom-input-resolved");
+    custom.setAttribute("aria-hidden","true");
+    custom.tabIndex=-1;
+    const note=custom.parentElement?.querySelector(".pcdeal-exact-match-note");
+    if(note)note.remove();
   }
 }
 function partialMatch(kind, value){
   const custom=customInputFor(kind);
   if(!custom)return;
-  const wrap=customContainer(custom);
-  if(wrap){
-    wrap.classList.remove("pcdeal-custom-resolved");
-    wrap.removeAttribute("aria-hidden");
-  }
+  custom.classList.remove("pcdeal-custom-input-resolved");
+  custom.removeAttribute("aria-hidden");
+  custom.removeAttribute("tabindex");
   if(value)setInput(custom,value);
 }
 function apply(detail){

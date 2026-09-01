@@ -516,12 +516,20 @@ html.pcdeal-page-exit body {
 .detected-editor-body .grid:has(#ramSpeed),.detected-editor-body .grid:has(#storageModel){align-items:end}
 #ramSpeed,#ramModel,#storageModel{border-color:rgba(157,108,255,.30)}
 
-/* PCDeal V10.4 — exact-match form cleanup */
-.pcdeal-custom-resolved{
-  display:none !important;
-}
+/* PCDeal V10.6 — exact-match form cleanup */
+.pcdeal-custom-resolved{display:block !important;}
 .pcdeal-exact-match-note{
   margin-top:6px;
   font-size:9px;
   color:var(--muted);
 }
+
+/* PCDeal V10.6 — only redundant text overrides hide */
+.pcdeal-custom-input-resolved{display:none !important;}
+.pcdeal-custom-label-resolved{display:none !important;}
+
+/* PCDeal V10.7 — Cooler/Case custom fallback inputs */
+.pcdeal-v107-custom-wrap{margin-top:10px}
+.pcdeal-v107-custom-label{display:block;font-size:10px;font-weight:700;margin-bottom:6px}
+.pcdeal-v107-custom-input{width:100%;box-sizing:border-box}
+.pcdeal-v107-custom-help{margin-top:5px}
