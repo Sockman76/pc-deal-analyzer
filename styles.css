@@ -458,3 +458,16 @@ select option{background:#100b17;color:#f8f5ff}
 .ai-pricing-card{margin-top:16px;padding:15px;border:1px solid rgba(157,108,255,.36);border-radius:16px;background:rgba(157,108,255,.06)}
 @media(max-width:900px){.system-market-summary{grid-template-columns:repeat(2,1fr)}.market-price-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.system-market-summary,.market-price-grid{grid-template-columns:1fr}.market-part-head{display:block}.market-confidence{text-align:left;margin-top:8px}}
+
+/* V8.4.1 — Retail and Data Lab are first-class navigation destinations */
+.topbar .navlinks{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.topbar .navlinks::-webkit-scrollbar{display:none}
+.topbar .navlinks a{flex:0 0 auto}
