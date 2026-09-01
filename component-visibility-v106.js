@@ -1,4 +1,4 @@
-// PCDeal V10.8 — keep primary component controls visible, hide only redundant override inputs
+// PCDeal V10.9 — keep primary component controls visible, hide only redundant override inputs
 (() => {
 "use strict";
 

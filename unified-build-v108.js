@@ -1,4 +1,4 @@
-// PCDeal V10.8 unified canonical state
+// PCDeal V10.9 unified canonical state
 (()=>{"use strict";
 const L=()=>[...document.querySelectorAll("label")];
 const lab=n=>{n=n.toLowerCase();return L().find(x=>{let t=(x.textContent||"").trim().toLowerCase();return t===n||t.startsWith(n)})};

@@ -1,0 +1,37 @@
+PCDeal V10.9 ANALYZER + PRICING TEST
+
+ANALYZER INPUT:
+Gaming PC
+Ryzen 7 7800X3D
+RTX 4080 Super
+32GB Corsair Vengeance DDR5 6000
+MSI MAG B650 Tomahawk WiFi
+WD_BLACK SN850X 2TB NVMe
+Corsair RM850x 850W 80+ Gold
+Noctua NH-D15
+Fractal Design North
+$2200 CAD
+
+DETECTION EXPECTED:
+CPU/GPU/RAM type/speed/model/motherboard/storage/PSU/cooler/case should remain in canonical state and Visualizer.
+Blank manual fields must not erase detected values.
+
+PRICING ENGINE TESTS:
+1) 32GB DDR5-6000, no live used observations:
+   fallback calibration must be around CAD $90-$130 unless a current exact retail observation changes the retail-derived result.
+2) 16GB DDR4-3200/3600:
+   fallback calibration CAD $30-$45.
+3) 1TB/2TB NVMe:
+   fallback calibration CAD $45-$80.
+4) 650-850W Gold PSU:
+   fallback calibration CAD $50-$90.
+5) Mid-tower case:
+   fallback calibration CAD $40-$70.
+6) If >=3 recent relevant used observations are supplied, median used-market evidence OVERRIDES fallback bands.
+7) If exact current retail exists but used observations do not, category-specific retail depreciation is used.
+8) Quick Sale < Fair Used < High Asking.
+9) Confidence must be LOW for fallback-only estimates and higher for actual market observations.
+10) Prices are CAD peer-to-peer cash values; sales tax is not added.
+
+IMPORTANT:
+A single universal 65% formula is NOT used.

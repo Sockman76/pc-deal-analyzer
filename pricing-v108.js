@@ -1,4 +1,4 @@
-// PCDeal V10.8 Canadian pricing model: new and used are separate.
+// PCDeal V10.9 Canadian pricing model: new and used are separate.
 (()=>{"use strict";
 const CONFIG={currency:"CAD",retailSources:["Amazon Canada","Best Buy Canada","Canada Computers","Newegg Canada"],retailFreshHours:24,usedFreshDays:14};
 const med=a=>{a=a.filter(Number.isFinite).sort((x,y)=>x-y);if(!a.length)return null;let m=Math.floor(a.length/2);return a.length%2?a[m]:(a[m-1]+a[m])/2};
