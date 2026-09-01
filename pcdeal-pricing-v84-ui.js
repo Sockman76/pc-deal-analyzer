@@ -11,7 +11,7 @@ function safeHtml(html){
   for(const a of [...el.attributes]){
    const n=a.name.toLowerCase(),v=String(a.value||"").trim().toLowerCase();
    if(n.startsWith("on"))el.removeAttribute(a.name);
-   if((n==="href"||n==="src"||n==="xlink:href")&&v.startsWith("javascript:"))el.removeAttribute(a.name);
+   if((n==="href"||n==="src"||n==="xlink:href")&&(v.startsWith("javascript:")||v.startsWith("data:")||v.startsWith("vbscript:")))el.removeAttribute(a.name);
   }
  });
  return t.innerHTML;
