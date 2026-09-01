@@ -476,3 +476,38 @@ select option{background:#100b17;color:#f8f5ff}
 .accuracy-summary{border-color:rgba(100,221,160,.20);background:linear-gradient(180deg,rgba(100,221,160,.025),rgba(157,108,255,.025))}
 #fpsEvidencePanel{border-color:rgba(104,216,255,.24)}
 #sourceRegistryCards .card{min-height:190px}
+
+
+/* PCDeal V9.3 — polished page fade transitions */
+@keyframes pcdealPageFadeIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+html.pcdeal-page-enter body {
+  animation: pcdealPageFadeIn 420ms cubic-bezier(.22,.61,.36,1) both;
+}
+
+html.pcdeal-page-exit body {
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.pcdeal-page-enter body,
+  html.pcdeal-page-exit body {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* V9.4 exact-product identity */
+#exactProductIdentity{border-color:rgba(104,216,255,.18)}
+#exactProductIdentity .big{font-size:15px;line-height:1.25}
+
+/* V10 master database */
+#masterDbPanel .huge{font-variant-numeric:tabular-nums}
+#mdbResults .card{min-height:120px}

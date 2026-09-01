@@ -1,0 +1,49 @@
+name: Update PCDeal Master Database
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 7 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  build-master-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PCDeal
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch open source catalogs
+        run: |
+          rm -rf .source-data
+          mkdir -p .source-data
+          git clone --depth 1 https://github.com/docyx/pc-part-dataset.git .source-data/pc-part-dataset
+          git clone --depth 1 https://github.com/buildcores/buildcores-open-db.git .source-data/buildcores-open-db
+
+      - name: Build normalized PCDeal database
+        run: |
+          python scripts/build_master_db.py \
+            --pcpart .source-data/pc-part-dataset/data \
+            --buildcores .source-data/buildcores-open-db/open-db \
+            --overrides master-db/overrides \
+            --out master-db
+          python scripts/validate_master_db.py master-db
+
+      - name: Commit generated database
+        run: |
+          git config user.name "pcdeal-database-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add master-db
+          if git diff --cached --quiet; then
+            echo "No database changes."
+          else
+            git commit -m "Update PCDeal master hardware database"
+            git push
+          fi

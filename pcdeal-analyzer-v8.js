@@ -1,5 +1,5 @@
 
-// PCDeal V8 — obvious dropdown + custom/manual detected-part controls
+// PCDeal V9.4 — exact-product dropdown + custom/manual controls
 (() => {
 "use strict";
 const $=id=>document.getElementById(id);
@@ -22,16 +22,14 @@ function createPicker(inputId,label,items){
 function init(){
  createPicker("cpu","CPU",sortedUnique((window.cpuDatabase||[]).map(x=>x.name)));
  createPicker("gpu","GPU",sortedUnique((window.gpuDatabase||[]).map(x=>x.name)));
- createPicker("motherboard","Motherboard",[
-  "A320 motherboard","B450 motherboard","B550 motherboard","X570 motherboard",
-  "A620 motherboard","B650 motherboard","B650E motherboard","X670 motherboard","X670E motherboard","B850 motherboard","X870 motherboard","X870E motherboard",
-  "H610 motherboard","B660 motherboard","Z690 motherboard","B760 motherboard","Z790 motherboard","B860 motherboard","Z890 motherboard"
- ]);
- createPicker("psu","Power Supply",[
-  "500W PSU","550W PSU","600W PSU","650W PSU","750W PSU","850W PSU","1000W PSU","1200W PSU",
-  "Corsair RM650x 650W","Corsair RM750x 750W","Corsair RM850x 850W","Corsair RM1000x 1000W",
-  "Seasonic Focus GX-650 650W","Seasonic Focus GX-750 750W","Seasonic Focus GX-850 850W"
- ]);
+ createPicker("motherboard","Motherboard",sortedUnique([
+  ...(window.PCDealProductCatalog?.allNames?.("motherboard")||[]),
+  "A320 motherboard","B450 motherboard","B550 motherboard","X570 motherboard","A620 motherboard","B650 motherboard","B650E motherboard","X670 motherboard","X670E motherboard","B850 motherboard","X870 motherboard","X870E motherboard","H610 motherboard","B660 motherboard","Z690 motherboard","B760 motherboard","Z790 motherboard","B860 motherboard","Z890 motherboard"
+ ]));
+ createPicker("psu","Power Supply",sortedUnique([
+  ...(window.PCDealProductCatalog?.allNames?.("psu")||[]),
+  "500W PSU","550W PSU","600W PSU","650W PSU","750W PSU","850W PSU","1000W PSU","1200W PSU"
+ ]));
 }
 document.addEventListener("DOMContentLoaded",()=>setTimeout(init,80));
 })();

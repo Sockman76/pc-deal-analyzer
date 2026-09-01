@@ -1,4 +1,4 @@
-// PCDeal V9 — evidence-first pricing + optional AI explanation
+// PCDeal V9.4 — product-aware evidence-first pricing
 (() => {
 "use strict";
 
@@ -79,16 +79,23 @@ function reference(kind,name,build){
   if(kind==="Case"&&name)return {value:build.caseQuality==="premium"?180:build.caseQuality==="mid"?110:70,currency:"CAD",type:"New-build reference",source:"PCDeal planning model"};
   return null;
 }
+function productName(kind,value,listing){
+ const map={RAM:"ram",Storage:"storage",Motherboard:"motherboard",PSU:"psu",Cooling:"cooler",Case:"case"};
+ const k=map[kind]; if(!k)return value;
+ const x=window.PCDealProductCatalog?.findExact?.(k,listing||value);
+ return x?`${x.brand} ${x.model}`:value;
+}
 function partList(build){
+  const raw=build.listing||"";
   return [
     ["CPU",build.cpu],
     ["GPU",build.gpu],
-    ["RAM",[build.ram,build.ramType].filter(Boolean).join(" ")],
-    ["Storage",(build.drives||[]).map(d=>`${d.size} ${d.type}`).join(" + ")||[build.storageSize,build.storageType].filter(Boolean).join(" ")],
-    ["Motherboard",build.motherboard],
-    ["PSU",build.psu],
-    ["Cooling",build.cooler],
-    ["Case",build.caseName||build.caseQuality]
+    ["RAM",productName("RAM",[build.ram,build.ramType].filter(Boolean).join(" "),raw)],
+    ["Storage",productName("Storage",(build.drives||[]).map(d=>`${d.size} ${d.type}`).join(" + ")||[build.storageSize,build.storageType].filter(Boolean).join(" "),raw)],
+    ["Motherboard",productName("Motherboard",build.motherboard,raw)],
+    ["PSU",productName("PSU",build.psu,raw)],
+    ["Cooling",productName("Cooling",build.cooler,raw)],
+    ["Case",productName("Case",build.caseName||build.caseQuality,raw)]
   ].filter(x=>String(x[1]||"").trim());
 }
 function deterministicPrice(kind,name,build,usedRows=[]){
