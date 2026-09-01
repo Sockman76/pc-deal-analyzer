@@ -1,5 +1,5 @@
 
-// PCDeal V8 — workload-aware system suitability + deeper FPS model
+// PCDeal V9 — workload-aware suitability + benchmark-calibrated FPS
 (() => {
 "use strict";
 const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,n));
@@ -72,7 +72,7 @@ function cpuScores(s){
  const cores=num(p?.cores)||(/ryzen\s+9|i9/i.test(s.cpu||"")?12:/ryzen\s+7|i7/i.test(s.cpu||"")?8:6);
  const threads=num(p?.threads)||cores*2;
  // Multi-thread grows with core/thread resources instead of blindly mirroring gaming score.
- const multi=clamp(base*.62 + Math.min(threads,64)*1.15);
+ const multi=b?.multiThread?clamp(b.multiThread):clamp(base*.62 + Math.min(threads,64)*1.15);
  const single=clamp(base*.82 + gaming*.18);
  return {gaming,multi,single,cores,threads};
 }
@@ -91,7 +91,16 @@ function gpuScores(s){
 function workloadScores(s){
  const c=cpuScores(s),g=gpuScores(s),ram=ramScore(s),storage=storageScore(s),quality=qualityScore(s);
  const cpuFor={gaming:c.gaming,esports:(c.gaming*.65+c.single*.35),workstation:c.multi,editing:(c.multi*.65+c.single*.35),render:c.multi,ai:c.multi*.65,general:c.single,mixed:(c.gaming+c.multi)/2};
- const gpuFor={gaming:g.raster,esports:g.raster,workstation:g.raster*.78,editing:g.raster*(g.brand==="NVIDIA"?1.04:1),render:g.raster*(g.brand==="NVIDIA"?1.10:g.brand==="AMD"?.82:.75),ai:g.raster*(g.brand==="NVIDIA"?1.12:g.brand==="AMD"?.70:.66),general:g.raster*.45,mixed:g.raster};
+ const gpuFor={
+ gaming:g.raster,
+ esports:g.raster,
+ workstation:g.raster*.78,
+ editing:g.raster*(g.brand==="NVIDIA"?1.02:g.brand==="AMD"?.96:.90),
+ render:g.raster*(g.brand==="NVIDIA"?1.08:g.brand==="AMD"?.78:.70),
+ ai:g.raster*(g.brand==="NVIDIA"?1.10:g.brand==="AMD"?.72:.68),
+ general:g.raster*.45,
+ mixed:g.raster
+};
  const result={};
  for(const [k,w] of Object.entries(USES)){
    const score=clamp(Math.round(cpuFor[k]*w.cpu+gpuFor[k]*w.gpu+ram*w.ram+storage*w.storage+quality*w.quality));
@@ -115,12 +124,13 @@ function fpsEstimate(s,opts={}){
  const gp=GAME_PROFILES[game]||GAME_PROFILES.Fortnite,c=cpuScores(s),g=gpuScores(s),rd=window.detectRamDetails?.(s.listing||"")||{};
  if(!s.cpu||!s.gpu)return null;
 
- const dr=window.PCDealGameBenchmarks?.interpolatedRow?.(game,s.gpu)||null;
+ const verified=window.PCDealVerifiedFPS?.exact?.(game,s.gpu)||null;
+ const dr=verified||window.PCDealGameBenchmarks?.interpolatedRow?.(game,s.gpu)||null;
  const hierarchy=window.PCDealBenchmarks?.gpu?.(s.gpu)||null;
  let avg1080,low1080,sourceType,sourceText;
  if(dr){
    avg1080=dr.avg; low1080=dr.low; sourceType=dr.exact?"direct-game-benchmark":"game-benchmark-interpolation";
-   sourceText=dr.exact?`DropReference ${game} benchmark anchor for ${dr.gpu}.`:`DropReference ${game} benchmark interpolation between nearby calibrated GPUs.`;
+   sourceText=dr.verified?`Verified August 2026 DropReference ${game} Average FPS / 1% Low row for ${dr.gpu}.`:dr.exact?`Stored DropReference ${game} benchmark anchor for ${dr.gpu}.`:`DropReference-derived ${game} interpolation between nearby calibrated GPUs.`;
  }else{
    const base=hierarchy?.f1080||Math.max(30,g.raster*1.30);
    avg1080=base*(gp.scale||1); low1080=avg1080*.70; sourceType=hierarchy?"hierarchy-model":"heuristic";

@@ -471,3 +471,8 @@ select option{background:#100b17;color:#f8f5ff}
 }
 .topbar .navlinks::-webkit-scrollbar{display:none}
 .topbar .navlinks a{flex:0 0 auto}
+
+/* PCDeal V9 accuracy polish */
+.accuracy-summary{border-color:rgba(100,221,160,.20);background:linear-gradient(180deg,rgba(100,221,160,.025),rgba(157,108,255,.025))}
+#fpsEvidencePanel{border-color:rgba(104,216,255,.24)}
+#sourceRegistryCards .card{min-height:190px}

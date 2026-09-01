@@ -1,4 +1,4 @@
-// PCDeal V7.1 — Source-backed benchmark calibration layer
+// PCDeal V9 — Source-backed benchmark calibration layer
 // Snapshot date: 2026-08-31
 // Sources:
 // GPU hierarchy: Tom's Hardware, updated 2026-06-24
@@ -17,7 +17,7 @@ const SOURCES = {
     name: "Tom's Hardware CPU Benchmarks Hierarchy 2026",
     url: "https://www.tomshardware.com/reviews/cpu-hierarchy,4312.html",
     updated: "2026-08-26",
-    methodology: "1080p gaming hierarchy using a high-end GPU test platform."
+    methodology: "1080p gaming hierarchy plus separate single-/multi-threaded application rankings where explicitly stored."
   }
 };
 
@@ -51,13 +51,13 @@ const GPU = {
 const CPU = {
   "Ryzen 7 9850X3D": {gaming1080:100.0,streetUSD:484,msrpUSD:500},
   "Ryzen 7 9800X3D": {gaming1080:97.0,streetUSD:415,msrpUSD:480},
-  "Ryzen 9 9950X3D": {gaming1080:95.7,streetUSD:569,msrpUSD:700},
+  "Ryzen 9 9950X3D": {gaming1080:95.7,streetUSD:569,msrpUSD:700,multiThread:96.2},
   "Ryzen 9 9900X3D": {gaming1080:86.9,streetUSD:510,msrpUSD:600},
   "Ryzen 7 7800X3D": {gaming1080:85.6,streetUSD:330,msrpUSD:450},
   "Ryzen 5 7600X3D": {gaming1080:80.6,streetUSD:240,msrpUSD:300},
-  "Core i9-14900K": {gaming1080:78.2,streetUSD:396,msrpUSD:550},
-  "i9-14900K": {gaming1080:78.2,streetUSD:396,msrpUSD:550},
-  "Core Ultra 7 270K Plus": {gaming1080:77.5,streetUSD:290,msrpUSD:300},
+  "Core i9-14900K": {gaming1080:78.2,streetUSD:396,msrpUSD:550,multiThread:80.7},
+  "i9-14900K": {gaming1080:78.2,streetUSD:396,msrpUSD:550,multiThread:80.7},
+  "Core Ultra 7 270K Plus": {gaming1080:77.5,streetUSD:290,msrpUSD:300,multiThread:91.9},
   "Ryzen 9 7900X3D": {gaming1080:77.1,streetUSD:0,msrpUSD:600}
 };
 

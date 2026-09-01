@@ -1,4 +1,4 @@
-// PCDeal V8.3 — per-game FPS benchmark anchors
+// PCDeal V9 — legacy/interpolation FPS benchmark anchors
 // DropReference benchmark snapshots, August 2026.
 // Values below are benchmark-page average FPS / 1% low anchors at the page's default 1080p benchmark view.
 // PCDeal uses interpolation for unlisted GPUs and explicitly labels any further settings/resolution adjustment as modelled.
@@ -30,7 +30,7 @@ const GAMES={
 };
 function norm(s){return String(s||"").toLowerCase().replace(/nvidia|geforce|amd|radeon|intel|graphics|gpu/gi," ").replace(/\s+/g," ").trim()}
 function perfScore(name){const b=window.PCDealBenchmarks?.gpu?.(name);return b?.p1080||window.findGPU?.(name)?.performance||0}
-function exactRow(game,gpu){const x=GAMES[game];if(!x)return null;const n=norm(gpu);for(const [k,v] of Object.entries(x.rows)){if(norm(k)===n||n.includes(norm(k))||norm(k).includes(n))return {gpu:k,avg:v[0],low:v[1],exact:true}}return null}
+function exactRow(game,gpu){const v9=window.PCDealVerifiedFPS?.exact?.(game,gpu);if(v9)return v9;const x=GAMES[game];if(!x)return null;const n=norm(gpu);for(const [k,v] of Object.entries(x.rows)){if(norm(k)===n||n.includes(norm(k))||norm(k).includes(n))return {gpu:k,avg:v[0],low:v[1],exact:true}}return null}
 function interpolatedRow(game,gpu){const x=GAMES[game];if(!x)return null;const ex=exactRow(game,gpu);if(ex)return ex;const target=perfScore(gpu);if(!target)return null;const pts=Object.entries(x.rows).map(([k,v])=>({gpu:k,avg:v[0],low:v[1],p:perfScore(k)})).filter(x=>x.p).sort((a,b)=>a.p-b.p);if(!pts.length)return null;let lo=pts[0],hi=pts[pts.length-1];for(let i=0;i<pts.length-1;i++){if(target>=pts[i].p&&target<=pts[i+1].p){lo=pts[i];hi=pts[i+1];break}}if(target<=pts[0].p){lo=hi=pts[0]}if(target>=pts[pts.length-1].p){lo=hi=pts[pts.length-1]}const t=hi.p===lo.p?1:Math.max(0,Math.min(1,(target-lo.p)/(hi.p-lo.p)));return {gpu:String(gpu),avg:lo.avg+(hi.avg-lo.avg)*t,low:lo.low+(hi.low-lo.low)*t,exact:false,between:[lo.gpu,hi.gpu]}}
 window.PCDealGameBenchmarks={SOURCE,GAMES,exactRow,interpolatedRow};
 })();

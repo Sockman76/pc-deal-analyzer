@@ -3,31 +3,18 @@
 "use strict";
 const $=id=>document.getElementById(id),A=()=>window.PCDealPricingAI;
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function safeHtml(html){
- const t=document.createElement("template");
- t.innerHTML=String(html??"");
- t.content.querySelectorAll("script,iframe,object,embed,link[rel='import']").forEach(n=>n.remove());
- t.content.querySelectorAll("*").forEach(el=>{
-  for(const a of [...el.attributes]){
-   const n=a.name.toLowerCase(),v=String(a.value||"").trim().toLowerCase();
-   if(n.startsWith("on"))el.removeAttribute(a.name);
-   if((n==="href"||n==="src"||n==="xlink:href")&&(v.startsWith("javascript:")||v.startsWith("data:")||v.startsWith("vbscript:")))el.removeAttribute(a.name);
-  }
- });
- return t.innerHTML;
-}
 function build(){try{return window.PCDEAL_V5?.getState?.()||JSON.parse(localStorage.getItem("pcdeal.v5.build")||"{}")}catch{return{}}}
 function price(v,c){return A().money(v,c)}
 function rowHtml(x){
  const stats=x.listingStats||{};
  const market=stats.count>=3?`${stats.count} relevant active listings • median ${price(stats.median,x.currency)}`:"No strong live listing cluster";
  return `<div class="market-part-card">
-   <div class="market-part-head"><div><span class="tag">${esc(x.kind)}</span><h3>${esc(x.name)}</h3></div><div class="market-confidence"><strong>${esc(x.confidence)}%</strong><span>price confidence</span></div></div>
+   <div class="market-part-head"><div><span class="tag">${esc(x.kind)}</span><h3>${esc(x.name)}</h3></div><div class="market-confidence"><strong>${x.confidence}%</strong><span>price confidence</span></div></div>
    <div class="market-price-grid">
-    <div><span>Fair used</span><strong>${esc(price(x.fair,x.currency))}</strong><small>${esc(price(x.fairLow,x.currency))}–${esc(price(x.fairHigh,x.currency))}</small></div>
-    <div><span>Quick sale</span><strong>${esc(price(x.quickSale,x.currency))}</strong><small>Faster-sale target</small></div>
-    <div><span>Great buy</span><strong>≤ ${esc(price(x.greatBuy,x.currency))}</strong><small>Strong buyer value</small></div>
-    <div><span>High asking</span><strong>≥ ${esc(price(x.overpriced,x.currency))}</strong><small>Worth extra scrutiny</small></div>
+    <div><span>Fair used</span><strong>${price(x.fair,x.currency)}</strong><small>${price(x.fairLow,x.currency)}–${price(x.fairHigh,x.currency)}</small></div>
+    <div><span>Quick sale</span><strong>${price(x.quickSale,x.currency)}</strong><small>Faster-sale target</small></div>
+    <div><span>Great buy</span><strong>≤ ${price(x.greatBuy,x.currency)}</strong><small>Strong buyer value</small></div>
+    <div><span>High asking</span><strong>≥ ${price(x.overpriced,x.currency)}</strong><small>Worth extra scrutiny</small></div>
    </div>
    <div class="market-evidence"><strong>Evidence</strong><span>${esc(market)}</span><span>${esc(x.explanation)}</span></div>
  </div>`;
@@ -41,7 +28,7 @@ async function run(){
    status.textContent=`Checking ${kind}: ${name}…`;
    results.push(await A().analyzePart(kind,name,b,{live:true}));
  }
- host.innerHTML=safeHtml(results.map(rowHtml).join(""));
+ host.innerHTML=results.map(rowHtml).join("");
  const sys=A().systemSummary(results,b);window._pcdealMarketResults={parts:results,system:sys,build:b};
  $("systemFair").textContent=price(sys.fair,b.currency||"CAD");
  $("systemRange").textContent=`${price(sys.fairLow,b.currency||"CAD")}–${price(sys.fairHigh,b.currency||"CAD")}`;

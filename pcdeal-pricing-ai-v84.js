@@ -1,4 +1,4 @@
-// PCDeal V8.4 — evidence-first market pricing + optional AI explanation
+// PCDeal V9 — evidence-first pricing + optional AI explanation
 (() => {
 "use strict";
 
@@ -120,10 +120,10 @@ function deterministicPrice(kind,name,build,usedRows=[]){
 
   let confidence=25;
   if(used)confidence+=22;
-  if(stats.count>=3)confidence+=Math.min(34,stats.count*4);
-  if(stats.count>=6)confidence+=6;
+  if(stats.count>=3)confidence+=Math.min(24,stats.count*3);
+  if(stats.count>=6)confidence+=4;
   if(ref)confidence+=8;
-  confidence=clamp(Math.round(confidence),25,94);
+  confidence=clamp(Math.round(confidence),25,82);
 
   return {
     kind,name,
@@ -132,7 +132,7 @@ function deterministicPrice(kind,name,build,usedRows=[]){
     confidence,listingStats:stats,evidence,
     currency:(stats.rows[0]?.price?.currency)||(build.currency||"CAD"),
     explanation:stats.count>=3
-      ? `Fair value blends ${stats.count} relevant active used listings with PCDeal's internal used-value model.`
+      ? `Fair value blends ${stats.count} relevant active used asking listings with PCDeal's internal model. Asking prices are not completed-sale evidence.`
       : used
         ? "No strong live used-listing cluster is available, so the fair range leans mainly on PCDeal's internal used-value model."
         : "Price evidence is limited. Treat this as a planning estimate, not a market quote."
