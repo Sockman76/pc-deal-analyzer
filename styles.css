@@ -511,3 +511,7 @@ html.pcdeal-page-exit body {
 /* V10 master database */
 #masterDbPanel .huge{font-variant-numeric:tabular-nums}
 #mdbResults .card{min-height:120px}
+
+/* V10.1 analyzer recognition fields */
+.detected-editor-body .grid:has(#ramSpeed),.detected-editor-body .grid:has(#storageModel){align-items:end}
+#ramSpeed,#ramModel,#storageModel{border-color:rgba(157,108,255,.30)}
