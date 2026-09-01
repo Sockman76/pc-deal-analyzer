@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.firebaseapp.com https://*.cloudfunctions.net https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://*.firebaseapp.com https://accounts.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0711">
 <title>PCDeal V5.1 — Used PC Deal Analyzer</title>
 <style>
@@ -30,7 +30,7 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
 <link rel="stylesheet" href="styles.css?v=602">
 <link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="favicon.svg" type="image/svg+xml"></head>
 <body>
-<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a><a href="retail.html">Retail</a><a href="data.html">Data Lab</a><a href="account.html">Account</a></div><div class="v3-pill">V8.4</div></div></nav>
+<nav><div class="nav-inner"><div class="logo">PC<span>Deal</span></div><div class="navlinks"><a class="active" href="./" aria-current="page" onclick="return false;">Analyzer</a><a href="dashboard.html">Dashboard</a><a href="performance.html">Performance</a><a href="hardware.html">Hardware</a><a href="buying.html">Buying</a><a href="compare.html">Compare</a><a href="flip.html">Flip</a><a href="inspector.html">Inspector</a><a href="deals.html">My Deals</a><a href="tools.html">Tools</a><a href="retail.html">Retail</a><a href="data.html">Data Lab</a><a href="account.html">Account</a></div><div class="v3-pill">V8.5</div></div></nav>
 <section class="hero"><h1>Know if a PC deal is <span>actually worth it.</span></h1><p>Paste a used-PC listing, detect the hardware, compare the asking price, estimate gaming performance, and spot seller red flags before you buy.</p></section>
 <main class="container">
   <section class="panel">
@@ -84,10 +84,10 @@ footer{text-align:center;color:#716b79;padding:0 20px 50px;font-size:12px}
     </div>
   </section>
 
-  <section class="panel"><h2>Explore PCDeal V8.4</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
+  <section class="panel"><h2>Explore PCDeal V8.5</h2><div class="sub">The analyzer stays focused. Deeper tools now live on their own pages.</div><div class="insights"><a class="insight" style="text-decoration:none;color:inherit" href="dashboard.html"><h3>🏆 Dashboard</h3><div class="tiny">Overall ranking, listing quality and system summary.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="performance.html"><h3>🎮 Performance</h3><div class="tiny">Games, bottlenecks, resolution, PSU headroom and value/FPS.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="hardware.html"><h3>🧩 Hardware</h3><div class="tiny">Compatibility, part values, upgrades, age and storage.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="buying.html"><h3>🛒 Buying Assistant</h3><div class="tiny">Offers, seller questions, testing checklist and risk.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="compare.html"><h3>🆚 Compare PCs</h3><div class="tiny">Paste two listings and compare value/performance.</div></a><a class="insight" style="text-decoration:none;color:inherit" href="flip.html"><h3>💵 Flip Calculator</h3><div class="tiny">Resale estimate, expenses, profit and margin.</div></a></div></section>
 </main>
-<footer>PCDeal V8.4 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
-<script src="platform.js?v=710"></script>
+<footer>PCDeal V8.5 • Used-PC estimates are guidance, not a substitute for testing hardware in person.</footer>
+<script src="pcdeal-security-v85.js?v=850"></script><script src="platform.js?v=710"></script>
 <script src="cpu-data.js?v=710"></script>
 <script src="gpu-data.js?v=710"></script>
 <script src="parts.js?v=710"></script><script src="hardware-aliases.js?v=720"></script><script src="benchmark-calibration.js?v=710"></script><script src="market-prices.js?v=710"></script><script src="fps-benchmarks-v83.js?v=830"></script><script src="pcdeal-workloads-v8.js?v=830"></script><script src="retail-prices.js?v=700"></script><script src="pcdeal-recognition-v7.js?v=700"></script>

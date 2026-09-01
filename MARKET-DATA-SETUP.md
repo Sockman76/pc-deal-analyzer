@@ -1,7 +1,7 @@
 # PCDeal V7.1 Market Data Setup
 
 ## Best Buy
-The existing Retail page supports an optional Best Buy developer API key entered in the browser. It is not hard-coded into GitHub.
+The existing Retail page supports an optional Best Buy API key stored as a Firebase Function secret. It is not hard-coded into GitHub.
 
 ## eBay used listings — secure Firebase Function
 

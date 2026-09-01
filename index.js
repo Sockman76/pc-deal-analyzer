@@ -4,6 +4,7 @@ const {defineSecret}=require("firebase-functions/params");
 const EBAY_CLIENT_ID=defineSecret("EBAY_CLIENT_ID");
 const EBAY_CLIENT_SECRET=defineSecret("EBAY_CLIENT_SECRET");
 const GEMINI_API_KEY=defineSecret("GEMINI_API_KEY");
+const BESTBUY_API_KEY=defineSecret("BESTBUY_API_KEY");
 
 let tokenCache={token:"",expires:0};
 
@@ -152,6 +153,38 @@ ${JSON.stringify(evidence)}`;
       res.json(parsed);
     }catch(e){
       res.status(500).json({error:e.message||"AI pricing analysis failed."});
+    }
+  }
+);
+
+
+exports.bestBuySearch=onRequest(
+  {cors:["https://sockman76.github.io"],secrets:[BESTBUY_API_KEY],region:"us-central1",timeoutSeconds:20,memory:"256MiB"},
+  async(req,res)=>{
+    try{
+      const q=String(req.query.q||"").trim().slice(0,120);
+      if(!q)return res.status(400).json({error:"Missing q"});
+      const key=BESTBUY_API_KEY.value();
+      const url=`https://api.bestbuy.com/v1/products((search=${encodeURIComponent(q)}))?apiKey=${encodeURIComponent(key)}&format=json&pageSize=8&show=sku,name,salePrice,regularPrice,onSale,url,image,onlineAvailability`;
+      const r=await fetch(url,{headers:{"Accept":"application/json"}});
+      if(!r.ok)return res.status(r.status).json({error:`Best Buy API returned ${r.status}`});
+      const j=await r.json();
+      const products=(j.products||[]).map(p=>({
+        store:"Best Buy",
+        currency:"USD",
+        name:String(p.name||"").slice(0,220),
+        current:Number(p.salePrice)||0,
+        regular:Number(p.regularPrice)||0,
+        onSale:Boolean(p.onSale),
+        available:Boolean(p.onlineAvailability),
+        url:String(p.url||""),
+        image:String(p.image||""),
+        sku:String(p.sku||"")
+      }));
+      res.set("Cache-Control","public,max-age=120,s-maxage=120");
+      res.json({products});
+    }catch(e){
+      res.status(500).json({error:"Retail lookup failed."});
     }
   }
 );

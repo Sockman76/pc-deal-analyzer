@@ -2721,7 +2721,7 @@ function parseListing() {
     }
 
     detected.push(
-      `Motherboard: ${motherboard}`
+      `Motherboard: ${safeText(motherboard)}`
     );
   }
 
@@ -2744,7 +2744,7 @@ function parseListing() {
     )
   ) {
     detected.push(
-      `RAM: ${ram}`
+      `RAM: ${safeText(ram)}`
     );
   }
 
@@ -2870,7 +2870,7 @@ function parseListing() {
 
 
     detected.push(
-      `PSU: ${psu}`
+      `PSU: ${safeText(psu)}`
     );
   }
 
@@ -2893,7 +2893,7 @@ function parseListing() {
     )
   ) {
     detected.push(
-      `Cooler: ${cooler}`
+      `Cooler: ${safeText(cooler)}`
     );
   }
 

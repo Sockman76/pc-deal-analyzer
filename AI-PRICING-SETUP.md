@@ -1,11 +1,11 @@
-# PCDeal V8.4 AI Pricing Setup
+# PCDeal V8.5 AI Pricing Setup
 
 The Hardware pricing engine works without AI. AI is optional and only explains the structured price evidence PCDeal already calculated.
 
 ## Why the API key is server-side
 Do not put a Gemini API key into `firebase-client.js` or any GitHub Pages JavaScript.
 
-V8.4 includes a Firebase Function called `pricingAi` and reads the key from Firebase Secret Manager.
+V8.5 includes a Firebase Function called `pricingAi` and reads the key from Firebase Secret Manager.
 
 ## Setup
 

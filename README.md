@@ -1,4 +1,4 @@
-# PCDeal V8.4.1 — Full Replacement Package
+# PCDeal V8.5 — Full Replacement Package
 
 This ZIP is designed to be a **complete GitHub Pages replacement package**. It contains the HTML, CSS, Firebase client, PWA files, V3/V5/V6/V7 feature layers, and the previously external hardware database files:
 
@@ -86,9 +86,9 @@ After uploading:
 - Retail pricing is kept separate from used-PC valuation.
 
 
-## V8.4.1 — Data Quality Upgrade
+## V8.5 — Data Quality Upgrade
 
-V8.4.1 adds a benchmark calibration layer and a secure used-market provider architecture.
+V8.5 adds a benchmark calibration layer and a secure used-market provider architecture.
 
 ### Benchmark calibration
 Selected modern CPUs and GPUs are calibrated against current Tom's Hardware 2026 hierarchy snapshots. PCDeal labels calibrated hardware as **Source-backed** and all other hardware as **Heuristic**.
@@ -100,7 +100,7 @@ This calibration anchors PCDeal's internal performance score but does **not** tu
 ### Used-market data
 eBay's Browse API requires an Application access token obtained through client credentials. Client secrets must not be exposed in GitHub Pages JavaScript.
 
-V8.4.1 therefore includes:
+V8.5 therefore includes:
 - `functions/index.js`
 - `functions/package.json`
 - `firebase.json`
@@ -118,11 +118,11 @@ Active marketplace listings are **asking prices**, not completed-sale prices.
 - data label definitions
 
 
-## V8.4.1 — Universal shorthand aliases
+## V8.5 — Universal shorthand aliases
 Pattern-driven shorthand recognition now canonicalizes CPU, GPU, motherboard, PSU, RAM, storage and cooler names. Examples: `r7 7800x3d` → `Ryzen 7 7800X3D`, `i5 14600kf` → `i5-14600KF`, `3080ti` → `RTX 3080 Ti`, `4070s` → `RTX 4070 Super`, `4070tis` → `RTX 4070 Ti Super`, `7900xtx` → `RX 7900 XTX`, `b580` → `Arc B580`.
 
 
-## V8.4.1 — Profiled analysis redesign
+## V8.5 — Profiled analysis redesign
 
 - New first-visit account modal with Google, email-account and Guest choices.
 - Account remains optional; guest analysis is supported.
@@ -139,13 +139,13 @@ Pattern-driven shorthand recognition now canonicalizes CPU, GPU, motherboard, PS
 The FPS engine is a model, not a per-system laboratory benchmark. GPU hierarchy data is used as a calibration baseline when available, while game-specific, CPU, memory, ray tracing, upscaling and frame-generation effects remain modelled. PCDeal exposes a confidence score and source note rather than presenting estimates as guaranteed FPS.
 
 
-## V8.4.1 account UI refinement
+## V8.5 account UI refinement
 The persistent Create Account control no longer floats at the bottom of the website.
 It now lives as a compact account control in the top navigation/header. On smaller
 screens it collapses to a small icon to avoid taking over the interface.
 
 
-## V8.4.1 account-navigation correction
+## V8.5 account-navigation correction
 - Removed the persistent floating Create Account control entirely.
 - PCDeal now uses the existing Account navigation item as the only persistent account entry.
 - Signed-in state is shown on that same nav item.
@@ -153,7 +153,7 @@ screens it collapses to a small icon to avoid taking over the interface.
 - Removed legacy account-pill CSS and injected controls from prior versions.
 
 
-## V8.4.1 — compact analyzer + benchmark-anchored FPS
+## V8.5 — compact analyzer + benchmark-anchored FPS
 - Manual detected-part editing is collapsed by default under Review / edit detected parts.
 - The Performance page no longer asks what the PC is used for. Workload suitability remains on buying/system analysis pages only.
 - FPS estimates now prefer per-game DropReference August 2026 average FPS and 1% low anchors for supported games.
@@ -163,7 +163,7 @@ screens it collapses to a small icon to avoid taking over the interface.
 - Preset, ray tracing, upscaling and frame generation changes are still modelled and are explicitly described as such.
 
 
-## V8.4.1 — Evidence-first pricing intelligence
+## V8.5 — Evidence-first pricing intelligence
 
 The Hardware page now calculates pricing in layers:
 
@@ -190,5 +190,20 @@ AI is explicitly instructed not to invent missing market prices. It explains evi
 - Optional AI evidence review
 
 
-## V8.4.1 navigation fix
+## V8.5 navigation fix
 Retail and Data Lab are now visible as first-class top-navigation items on every page instead of only becoming discoverable through Tools.
+
+
+## V8.5 — Security hardening
+
+This release addresses the CodeQL issues raised against earlier builds:
+
+- Dynamic report values are escaped before HTML rendering.
+- Error text is written with `textContent` instead of being reinterpreted as markup.
+- Obsolete vulnerable pricing code was removed.
+- Best Buy API credentials are no longer stored in browser/localStorage.
+- A `bestBuySearch` Firebase Function keeps the Best Buy API key in Firebase Secret Manager.
+- A shared client-side escaping/safe-URL helper was added.
+- A Content Security Policy is included on static pages as an additional browser-side defense.
+
+After deploying this version, rerun GitHub CodeQL. If GitHub still reports an alert, inspect the exact data-flow trace rather than dismissing it.
