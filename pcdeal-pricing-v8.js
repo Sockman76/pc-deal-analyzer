@@ -4,6 +4,7 @@
 "use strict";
 const $=id=>document.getElementById(id);
 const money=(v,c="CAD")=>v?new Intl.NumberFormat("en-CA",{style:"currency",currency:c,maximumFractionDigits:0}).format(v):"Unavailable";
+const esc=v=>String(v==null?"":v).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
 function build(){try{return window.PCDEAL_V5?.getState?.()||JSON.parse(localStorage.getItem("pcdeal.v5.build")||"{}")}catch{return{}}}
 function usedParts(s){return window.PCDEAL_V5?.partBreakdown?.(s)||window.PCDEAL_V5?.partBreakdown?.call?.(null,s)||[]}
 function refs(s){
@@ -33,7 +34,7 @@ function inject(){
  const s=build(),used=usedParts(s),r=refs(s);
  const panel=document.createElement("section");panel.className="panel";panel.id="realPricingPanel";
  panel.innerHTML=`<div class="section-heading"><div><div class="eyebrow">Part pricing</div><h2>Used value vs newly bought pricing</h2><div class="sub">Used value drives the deal analysis. New pricing is shown separately as launch MSRP, a new-build reference, or a live retailer result when configured.</div></div><a class="btn secondary" href="retail.html">Live Retail</a></div>
- <div class="table-wrap"><table><thead><tr><th>Part</th><th>Detected</th><th>Used value</th><th>New / retail reference</th><th>Reference type</th></tr></thead><tbody>${r.map(([k,n,o])=>{const u=used.find(x=>x.name===k)?.value||0,rr=retailReferenceValue(k,n,o,s);return`<tr><td>${k}</td><td>${n||"Unknown"}</td><td>${money(u,s.currency||"CAD")}</td><td>${rr?money(rr.value,rr.currency):"Unavailable"}</td><td>${rr?.label||"No reliable reference"}</td></tr>`}).join("")}</tbody></table></div>
+ <div class="table-wrap"><table><thead><tr><th>Part</th><th>Detected</th><th>Used value</th><th>New / retail reference</th><th>Reference type</th></tr></thead><tbody>${r.map(([k,n,o])=>{const u=used.find(x=>x.name===k)?.value||0,rr=retailReferenceValue(k,n,o,s);return`<tr><td>${esc(k)}</td><td>${esc(n||"Unknown")}</td><td>${esc(money(u,s.currency||"CAD"))}</td><td>${esc(rr?money(rr.value,rr.currency):"Unavailable")}</td><td>${esc(rr?.label||"No reliable reference")}</td></tr>`}).join("")}</tbody></table></div>
  <div class="notice" style="margin-top:14px">A launch MSRP is historical, not today's store price. Generic “new-build reference” values are clearly separated from live retail and should be treated as planning estimates.</div>`;
  host.prepend(panel);
 }
