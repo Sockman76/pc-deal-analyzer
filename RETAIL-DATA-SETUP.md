@@ -19,3 +19,8 @@ The browser calls the deployed `bestBuySearch` Firebase Function. The API key ne
 
 Default endpoint:
 `https://us-central1-pcdeal-d8f08.cloudfunctions.net/bestBuySearch`
+
+
+## V10.8 pricing policy
+New retail: exact-SKU observations from Amazon Canada, Best Buy Canada, Canada Computers, and Newegg Canada. Store price, seller type, stock status, source and timestamp. Prefer retailer-direct listings and reject obvious outliers.
+Used: separate fresh used-market observations. Retail depreciation is only a fallback and must be labeled as such. Analyzer deal scoring uses used value; Hardware/Retail can show both.

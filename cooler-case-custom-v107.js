@@ -1,4 +1,4 @@
-// PCDeal V10.7 — Cooler/Case custom fallback inputs
+// PCDeal V10.8 — Cooler/Case custom fallback inputs
 (() => {
 "use strict";
 

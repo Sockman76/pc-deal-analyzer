@@ -1,0 +1,29 @@
+PCDeal V10.8 ANALYZER TEST
+
+Paste exactly:
+Gaming PC for sale
+R7 7800X3D
+RTX 4080 Super
+32GB Corsair Vengeance DDR5 6000
+MSI B650 Tomahawk WiFi
+WD Black SN850X 2TB
+Corsair RM850x 850W
+Noctua NH-D15
+Fractal Design North
+$2200 CAD
+
+EXPECTED:
+CPU: Ryzen 7 7800X3D
+GPU: RTX 4080 Super
+RAM: 32GB / DDR5 / 6000 / Corsair Vengeance DDR5
+Motherboard: MSI MAG B650 Tomahawk WiFi
+Storage: NVMe M.2 / 2TB / WD_BLACK SN850X
+PSU: Corsair RM850x 850W
+Cooler: Noctua NH-D15
+Case: Fractal Design North
+Price: 2200
+
+CHECKS:
+CPU/GPU/Motherboard/PSU manual fields mirror canonical detected values.
+Visualizer uses canonical state first; a blank manual input must not erase a detected component.
+New retail and used value are separate. Used-PC deal score should use used value.

@@ -1,4 +1,4 @@
-// PCDeal V10.7 — Cooler + Case master-database pickers
+// PCDeal V10.8 — Cooler + Case master-database pickers
 (() => {
 "use strict";
 const DB=()=>window.PCDealMasterDB;
