@@ -1,4 +1,4 @@
-// PCDeal V10.3 — direct Analyzer visible-field sync
+// PCDeal V10.4 — direct Analyzer visible-field sync
 (() => {
 "use strict";
 

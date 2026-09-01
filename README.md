@@ -1,4 +1,4 @@
-# PCDeal V10.3 — Full Replacement Package
+# PCDeal V10.4 — Full Replacement Package
 
 This ZIP is designed to be a **complete GitHub Pages replacement package**. It contains the HTML, CSS, Firebase client, PWA files, V3/V5/V6/V7 feature layers, and the previously external hardware database files:
 
@@ -86,9 +86,9 @@ After uploading:
 - Retail pricing is kept separate from used-PC valuation.
 
 
-## V10.3 — Data Quality Upgrade
+## V10.4 — Data Quality Upgrade
 
-V10.3 adds a benchmark calibration layer and a secure used-market provider architecture.
+V10.4 adds a benchmark calibration layer and a secure used-market provider architecture.
 
 ### Benchmark calibration
 Selected modern CPUs and GPUs are calibrated against current Tom's Hardware 2026 hierarchy snapshots. PCDeal labels calibrated hardware as **Source-backed** and all other hardware as **Heuristic**.
@@ -100,7 +100,7 @@ This calibration anchors PCDeal's internal performance score but does **not** tu
 ### Used-market data
 eBay's Browse API requires an Application access token obtained through client credentials. Client secrets must not be exposed in GitHub Pages JavaScript.
 
-V10.3 therefore includes:
+V10.4 therefore includes:
 - `functions/index.js`
 - `functions/package.json`
 - `firebase.json`
@@ -118,11 +118,11 @@ Active marketplace listings are **asking prices**, not completed-sale prices.
 - data label definitions
 
 
-## V10.3 — Universal shorthand aliases
+## V10.4 — Universal shorthand aliases
 Pattern-driven shorthand recognition now canonicalizes CPU, GPU, motherboard, PSU, RAM, storage and cooler names. Examples: `r7 7800x3d` → `Ryzen 7 7800X3D`, `i5 14600kf` → `i5-14600KF`, `3080ti` → `RTX 3080 Ti`, `4070s` → `RTX 4070 Super`, `4070tis` → `RTX 4070 Ti Super`, `7900xtx` → `RX 7900 XTX`, `b580` → `Arc B580`.
 
 
-## V10.3 — Profiled analysis redesign
+## V10.4 — Profiled analysis redesign
 
 - New first-visit account modal with Google, email-account and Guest choices.
 - Account remains optional; guest analysis is supported.
@@ -139,13 +139,13 @@ Pattern-driven shorthand recognition now canonicalizes CPU, GPU, motherboard, PS
 The FPS engine is a model, not a per-system laboratory benchmark. GPU hierarchy data is used as a calibration baseline when available, while game-specific, CPU, memory, ray tracing, upscaling and frame-generation effects remain modelled. PCDeal exposes a confidence score and source note rather than presenting estimates as guaranteed FPS.
 
 
-## V10.3 account UI refinement
+## V10.4 account UI refinement
 The persistent Create Account control no longer floats at the bottom of the website.
 It now lives as a compact account control in the top navigation/header. On smaller
 screens it collapses to a small icon to avoid taking over the interface.
 
 
-## V10.3 account-navigation correction
+## V10.4 account-navigation correction
 - Removed the persistent floating Create Account control entirely.
 - PCDeal now uses the existing Account navigation item as the only persistent account entry.
 - Signed-in state is shown on that same nav item.
@@ -153,7 +153,7 @@ screens it collapses to a small icon to avoid taking over the interface.
 - Removed legacy account-pill CSS and injected controls from prior versions.
 
 
-## V10.3 — compact analyzer + benchmark-anchored FPS
+## V10.4 — compact analyzer + benchmark-anchored FPS
 - Manual detected-part editing is collapsed by default under Review / edit detected parts.
 - The Performance page no longer asks what the PC is used for. Workload suitability remains on buying/system analysis pages only.
 - FPS estimates now prefer per-game DropReference August 2026 average FPS and 1% low anchors for supported games.
@@ -163,7 +163,7 @@ screens it collapses to a small icon to avoid taking over the interface.
 - Preset, ray tracing, upscaling and frame generation changes are still modelled and are explicitly described as such.
 
 
-## V10.3 — Evidence-first pricing intelligence
+## V10.4 — Evidence-first pricing intelligence
 
 The Hardware page now calculates pricing in layers:
 
@@ -190,11 +190,11 @@ AI is explicitly instructed not to invent missing market prices. It explains evi
 - Optional AI evidence review
 
 
-## V10.3 navigation fix
+## V10.4 navigation fix
 Retail and Data Lab are now visible as first-class top-navigation items on every page instead of only becoming discoverable through Tools.
 
 
-## V10.3 — Security hardening
+## V10.4 — Security hardening
 
 This release addresses the CodeQL issues raised against earlier builds:
 
@@ -209,7 +209,7 @@ This release addresses the CodeQL issues raised against earlier builds:
 After deploying this version, rerun GitHub CodeQL. If GitHub still reports an alert, inspect the exact data-flow trace rather than dismissing it.
 
 
-## V10.3 — Accuracy & data quality pass
+## V10.4 — Accuracy & data quality pass
 
 V9 separates **recognition**, **measurement**, **interpolation**, **market evidence**, and **heuristics**.
 
@@ -226,7 +226,7 @@ Where a current source-backed CPU multi-thread score is stored, workstation scor
 Active used marketplace listings are explicitly treated as asking prices, not completed-sale evidence. Asking-price data alone cannot produce a near-certain valuation.
 
 
-## V10.3 public UI cleanup
+## V10.4 public UI cleanup
 - Removed public Firebase/eBay/Best Buy backend URL configuration from Data Lab and Retail.
 - Public users no longer see API/provider setup controls.
 - Retail and used-market providers are automatic from the user's perspective.
@@ -234,14 +234,14 @@ Active used marketplace listings are explicitly treated as asking prices, not co
 - Fixed duplicate Retail/Data Lab navigation items.
 
 
-## V10.3 transitions
+## V10.4 transitions
 - Added a smooth fade-in whenever PCDeal is first opened.
 - Added the same fade-in when navigating between internal PCDeal pages/tabs.
 - Added a subtle fade-out before internal navigation to avoid abrupt page changes.
 - Honors the user's reduced-motion accessibility preference.
 
 
-## V10.3 — Exact product catalog foundation
+## V10.4 — Exact product catalog foundation
 
 PCDeal now identifies non-CPU/GPU hardware at the product/family level for RAM, storage, motherboards, PSUs, coolers and cases.
 
@@ -261,7 +261,7 @@ Examples:
 - Lian Li O11 Dynamic EVO
 
 ### Important scope
-No static website can truthfully contain every hardware SKU ever manufactured. V10.3 therefore uses:
+No static website can truthfully contain every hardware SKU ever manufactured. V10.4 therefore uses:
 1. a growing local exact-product catalog,
 2. alias/fuzzy recognition,
 3. brand inference,
@@ -271,7 +271,7 @@ The pricing engine now prefers exact product names for market searches. This is 
 
 Future catalog growth should come from curated product-data imports rather than pretending the local list is exhaustive.
 
-## V10.3 — PCDeal Master Hardware Database
+## V10.4 — PCDeal Master Hardware Database
 
 V10 moves hardware identity out of hand-written frontend arrays and into a generated, sharded database.
 
@@ -291,7 +291,7 @@ The checked-in database begins as a small seed so GitHub Pages works immediately
 PCDeal does not scrape PCPartPicker live. Retail prices, used-market evidence, benchmarks, and product identity remain separate data layers.
 
 
-## V10.3 — Analyzer recognition correction
+## V10.4 — Analyzer recognition correction
 - Robust asking-price extraction: `$2200`, `$2,200`, `2200 CAD`, `asking 2200`, and `2.2k` style formats.
 - Product-catalog shorthand recognition for motherboards, storage and PSUs.
 - `B650 Tomahawk` resolves to MSI MAG B650 Tomahawk WiFi when the catalog match is strong.
@@ -302,9 +302,9 @@ PCDeal does not scrape PCPartPicker live. Retail prices, used-market evidence, b
 - Internal motherboard/PSU/storage/RAM value references use exact-product identity where available. These are still model estimates, not live market quotes.
 
 
-## V10.3 — Canonical recognition pipeline
+## V10.4 — Canonical recognition pipeline
 
-V10.3 fixes the shorthand test failures discovered on the live site.
+V10.4 fixes the shorthand test failures discovered on the live site.
 
 Canonicalization examples:
 - `B650 Tomahawk` -> `MSI MAG B650 Tomahawk WiFi`
@@ -316,3 +316,15 @@ Canonicalization examples:
 Recognition is now treated in levels: exact product identity, partial identity, generic category detection, and unknown. A generic capacity/type result should not be presented as equivalent to an exact SKU match.
 
 The Review/Edit detected-parts section is forced closed on page load to keep the Analyzer compact.
+
+
+## V10.4 — Exact-match UI cleanup
+
+When an exact database product is recognized:
+- the canonical motherboard/PSU is selected in its database dropdown,
+- the duplicate custom override field is cleared and hidden,
+- canonical values are persisted into PCDeal state.
+
+Custom/exact-model inputs remain available only when PCDeal cannot resolve the product to the database.
+
+Storage exact-model identity remains visible because it is useful for pricing and verification.

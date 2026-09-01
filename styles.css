@@ -515,3 +515,13 @@ html.pcdeal-page-exit body {
 /* V10.1 analyzer recognition fields */
 .detected-editor-body .grid:has(#ramSpeed),.detected-editor-body .grid:has(#storageModel){align-items:end}
 #ramSpeed,#ramModel,#storageModel{border-color:rgba(157,108,255,.30)}
+
+/* PCDeal V10.4 — exact-match form cleanup */
+.pcdeal-custom-resolved{
+  display:none !important;
+}
+.pcdeal-exact-match-note{
+  margin-top:6px;
+  font-size:9px;
+  color:var(--muted);
+}

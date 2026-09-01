@@ -1,4 +1,4 @@
-// PCDeal V10.3 — exact/partial recognition status and compact editor
+// PCDeal V10.4 — exact/partial recognition status and compact editor
 (() => {
 "use strict";
 function addStatus(){
