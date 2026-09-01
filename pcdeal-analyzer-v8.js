@@ -33,3 +33,16 @@ function init(){
 }
 document.addEventListener("DOMContentLoaded",()=>setTimeout(init,80));
 })();
+// V10.2 canonical menus
+window.addEventListener("DOMContentLoaded",()=>{
+ const C=window.PCDealCanonicalV102;if(!C)return;
+ const fill=(id,kind)=>{
+  const s=document.getElementById(id);if(!s||s.tagName!=="SELECT")return;
+  const known=new Set([...s.options].map(o=>o.textContent.trim().toLowerCase()));
+  for(const x of C.aliases[kind]||[]){
+   if(known.has(x.canonical.toLowerCase()))continue;
+   const o=document.createElement("option");o.value=x.canonical;o.textContent=x.canonical;s.appendChild(o);
+  }
+ };
+ fill("motherboard","motherboard");fill("psu","psu");
+});
