@@ -1620,6 +1620,15 @@ function getDealVerdict(
 // ANALYZE DEAL
 // ============================================================
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function analyzeDeal() {
   const cpuText =
     document
@@ -2089,9 +2098,9 @@ function analyzeDeal() {
     resultText.innerHTML = `
 
       <strong>
-        ${cpu.name || cpuText}
+        ${escapeHtml(cpu.name || cpuText)}
         +
-        ${gpu.name || gpuText}
+        ${escapeHtml(gpu.name || gpuText)}
       </strong>
 
       <br><br>
@@ -2125,7 +2134,7 @@ function analyzeDeal() {
       <strong>
         Estimate confidence:
       </strong>
-      ${confidenceLabel}
+      ${escapeHtml(confidenceLabel)}
       (${confidencePercent}%)
 
       <br><br>
@@ -2134,11 +2143,11 @@ function analyzeDeal() {
       <strong>
         Gaming:
       </strong>
-      ${getGamingDescription(
+      ${escapeHtml(getGamingDescription(
         gpu
-      )}
+      ))}
 
-      ${platformLines}
+      ${escapeHtml(platformLines)}
 
       <br><br>
 
@@ -2197,10 +2206,10 @@ function analyzeDeal() {
 
       <br><br>
 
-      ${getBalanceDescription(
+      ${escapeHtml(getBalanceDescription(
         cpu,
         gpu
-      )}
+      ))}
 
       <br><br>
 
