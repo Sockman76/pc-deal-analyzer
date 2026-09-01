@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-09-01T01:24:59Z",
+  "total_products": 423,
+  "schema_version": 1,
+  "mode": "seed",
+  "note": "Run the Update PCDeal Master Database GitHub Action to expand this seed with open datasets.",
+  "categories": {
+    "cpu": {
+      "count": 177,
+      "shards": 129,
+      "index": "master-db/index/cpu.json"
+    },
+    "gpu": {
+      "count": 140,
+      "shards": 106,
+      "index": "master-db/index/gpu.json"
+    },
+    "memory": {
+      "count": 19,
+      "shards": 16,
+      "index": "master-db/index/memory.json"
+    },
+    "storage": {
+      "count": 31,
+      "shards": 29,
+      "index": "master-db/index/storage.json"
+    },
+    "psu": {
+      "count": 17,
+      "shards": 17,
+      "index": "master-db/index/psu.json"
+    },
+    "motherboard": {
+      "count": 16,
+      "shards": 16,
+      "index": "master-db/index/motherboard.json"
+    },
+    "cpu-cooler": {
+      "count": 11,
+      "shards": 11,
+      "index": "master-db/index/cpu-cooler.json"
+    },
+    "case": {
+      "count": 12,
+      "shards": 11,
+      "index": "master-db/index/case.json"
+    }
+  },
+  "sources": [
+    {
+      "name": "PCDeal curated seed",
+      "license": "PCDeal project data",
+      "records_imported": 423
+    }
+  ]
+}

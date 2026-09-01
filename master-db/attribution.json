@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-09-01T01:24:59Z",
+  "sources": [
+    {
+      "name": "PCDeal curated seed",
+      "license": "PCDeal project data",
+      "records_imported": 423
+    }
+  ],
+  "notice": "Seed only. Expanded builds preserve upstream attribution."
+}
