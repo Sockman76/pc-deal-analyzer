@@ -33,7 +33,7 @@ function init(){
 }
 document.addEventListener("DOMContentLoaded",()=>setTimeout(init,80));
 })();
-// V10.2 canonical menus
+// V10.3 canonical menus
 window.addEventListener("DOMContentLoaded",()=>{
  const C=window.PCDealCanonicalV102;if(!C)return;
  const fill=(id,kind)=>{

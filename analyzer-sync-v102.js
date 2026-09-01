@@ -1,4 +1,4 @@
-// PCDeal V10.2 — sync canonical recognition into Analyzer fields/state
+// PCDeal V10.3 — sync canonical recognition into Analyzer fields/state
 (() => {
 "use strict";
 const $=id=>document.getElementById(id);
