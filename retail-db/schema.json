@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "currency": "CAD",
+  "priority": [
+    "Canada Computers",
+    "Amazon Canada"
+  ],
+  "rules": [
+    "exact SKU/model only",
+    "new condition only for retail baseline",
+    "Canada Computers first",
+    "Amazon Canada fallback only",
+    "timestamps retained"
+  ]
+}
