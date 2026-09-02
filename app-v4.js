@@ -1975,6 +1975,34 @@ function analyzeDeal() {
         ? "Medium"
         : "Low";
 
+  // V11.2: expose the complete legacy component breakdown as FALLBACK evidence only.
+  // The retail-backed estimator may replace any of these values, but missing retail
+  // records no longer cause a component to become $0.
+  window.PCDealLegacyEstimateV112 = {
+    cpu: cpuValue,
+    gpu: gpuValue,
+    memory: ramValue,
+    storage: storageValue,
+    motherboard: motherboardValue,
+    psu: psuValue,
+    "cpu-cooler": coolerValue,
+    case: caseValue,
+    rawValue,
+    estimatedValue,
+    conditionMultiplier: rawValue > 0 ? estimatedValue / rawValue : 1,
+    askingPrice,
+    currency,
+    detected: {
+      cpu: cpu.name || cpuText || "",
+      gpu: gpu.name || gpuText || "",
+      ram: ram || "",
+      ramType: ramType || "",
+      motherboard: motherboard || "",
+      psu: psu || "",
+      cooler: cooler || "",
+      case: caseQuality || ""
+    }
+  };
 
   let platformLines =
     "";
