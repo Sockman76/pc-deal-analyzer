@@ -384,3 +384,11 @@ Amazon.ca remains an exact-product fallback only.
 
 ## V11.4
 Site-wide canonical catalog/pricing bridge added. Major tools now load the same retail DB and pricing service. Collector PSU endpoint corrected and HDD collection added.
+
+## V11.5
+- Retail database policy is NEW-condition only.
+- Open Box / refurbished / renewed / used are rejected from the retail baseline.
+- Current selling price (sale when active) is the new-price anchor.
+- PCDeal's displayed valuation is the category-specific USED estimate.
+- Consumer gaming and professional/workstation GPUs are separated in category statistics.
+- category-stats.json contains count/min/max/median/average for the bundled current catalog.

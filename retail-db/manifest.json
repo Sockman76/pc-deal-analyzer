@@ -26,6 +26,13 @@
     "exact_model_priority": true,
     "open_box_excluded_from_new_baseline": true,
     "sale_price_is_current_new": true,
-    "regular_price_retained": true
+    "regular_price_retained": true,
+    "new_condition_only": true,
+    "open_box_excluded": true,
+    "refurbished_excluded": true,
+    "used_listings_excluded_from_retail_baseline": true,
+    "current_selling_price_is_baseline": true,
+    "consumer_and_professional_gpus_separated": true,
+    "pcdeal_display_value": "used_market_estimate"
   }
 }

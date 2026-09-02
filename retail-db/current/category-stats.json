@@ -1,0 +1,79 @@
+{
+  "cpu_amd": {
+    "new_product_count": 25,
+    "min_new_cad": 199.99,
+    "max_new_cad": 1229.98,
+    "median_new_cad": 449.99,
+    "average_new_cad": 518.41
+  },
+  "cpu_intel": {
+    "new_product_count": 4,
+    "min_new_cad": 459.99,
+    "max_new_cad": 759.99,
+    "median_new_cad": 622.93,
+    "average_new_cad": 616.46
+  },
+  "gpu_amd_consumer": {
+    "new_product_count": 9,
+    "min_new_cad": 759.99,
+    "max_new_cad": 1279.99,
+    "median_new_cad": 1029.99,
+    "average_new_cad": 997.66
+  },
+  "gpu_nvidia_consumer": {
+    "new_product_count": 8,
+    "min_new_cad": 1139.99,
+    "max_new_cad": 1269.99,
+    "median_new_cad": 1159.99,
+    "average_new_cad": 1173.74
+  },
+  "memory": {
+    "new_product_count": 14,
+    "min_new_cad": 379.99,
+    "max_new_cad": 3249.99,
+    "median_new_cad": 617.49,
+    "average_new_cad": 892.06
+  },
+  "motherboard": {
+    "new_product_count": 11,
+    "min_new_cad": 229.99,
+    "max_new_cad": 729.99,
+    "median_new_cad": 289.99,
+    "average_new_cad": 361.81
+  },
+  "storage": {
+    "new_product_count": 20,
+    "min_new_cad": 67.99,
+    "max_new_cad": 969.99,
+    "median_new_cad": 469.99,
+    "average_new_cad": 547.39
+  },
+  "psu": {
+    "new_product_count": 12,
+    "min_new_cad": 139.99,
+    "max_new_cad": 239.99,
+    "median_new_cad": 184.99,
+    "average_new_cad": 186.66
+  },
+  "cpu-cooler": {
+    "new_product_count": 5,
+    "min_new_cad": 54.99,
+    "max_new_cad": 269.88,
+    "median_new_cad": 79.99,
+    "average_new_cad": 117.97
+  },
+  "case": {
+    "new_product_count": 17,
+    "min_new_cad": 59.99,
+    "max_new_cad": 615.99,
+    "median_new_cad": 79.99,
+    "average_new_cad": 147.93
+  },
+  "case-fan": {
+    "new_product_count": 12,
+    "min_new_cad": 34.99,
+    "max_new_cad": 49.99,
+    "median_new_cad": 40.94,
+    "average_new_cad": 42.22
+  }
+}

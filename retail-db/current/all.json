@@ -19,7 +19,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-5-9600x",
@@ -41,7 +42,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-5-7600x",
@@ -63,7 +65,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-5-8500g",
@@ -85,7 +88,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-5-7500f",
@@ -107,7 +111,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-5-8600g",
@@ -129,7 +134,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-5700",
@@ -151,7 +157,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-5700x",
@@ -173,7 +180,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-5800x",
@@ -195,7 +203,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-5800xt",
@@ -217,7 +226,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-5800x3d-10th-anniversary-edition",
@@ -240,7 +250,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-7700",
@@ -262,7 +273,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-7800x3d",
@@ -285,7 +297,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-9700x",
@@ -307,7 +320,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-9800x3d",
@@ -330,7 +344,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-7-9850x3d",
@@ -352,7 +367,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-7900x",
@@ -374,7 +390,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-7900",
@@ -396,7 +413,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-7950x",
@@ -418,7 +436,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-7950x3d",
@@ -440,7 +459,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-9900x",
@@ -462,7 +482,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-9900x3d",
@@ -484,7 +505,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-9950x",
@@ -506,7 +528,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-9950x3d",
@@ -528,7 +551,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "amd-ryzen-9-9950x3d2-dual-edition",
@@ -550,7 +574,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "intel-core-ultra-9-285k",
@@ -570,7 +595,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "intel-core-ultra-7-270k-plus",
@@ -590,7 +616,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "intel-core-i9-14900k",
@@ -610,7 +637,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "intel-core-i9-14900kf",
@@ -630,7 +658,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-radeon-rx-9070-xt-oc-edition",
@@ -652,7 +681,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "xfx-swift-radeon-rx-9070-xt",
@@ -674,7 +704,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-radeon-rx-9070-xt-gaming-oc",
@@ -696,7 +727,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "sapphire-pure-radeon-rx-9070-xt-16gb",
@@ -718,7 +750,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-radeon-rx-9070-xt-white-oc-edition",
@@ -740,7 +773,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-radeon-rx-9070-oc-edition",
@@ -762,7 +796,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "xfx-swift-radeon-rx-9070-gre-12gb",
@@ -784,7 +819,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-radeon-rx-9070-gre-gaming-oc",
@@ -806,7 +842,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "sapphire-pulse-radeon-rx-9070-gre-12gb",
@@ -828,7 +865,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-geforce-rtx-5070-12gb",
@@ -850,7 +888,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-dual-geforce-rtx-5070-12gb-oc",
@@ -872,7 +911,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-geforce-rtx-5070-oc-12gb",
@@ -894,7 +934,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "msi-geforce-rtx-5070-ventus-3x-oc",
@@ -916,7 +957,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-geforce-rtx-5070-gaming-oc-12g",
@@ -938,7 +980,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-geforce-rtx-5070-windforce-oc-sff-12g",
@@ -960,7 +1003,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-geforce-rtx-5070-eagle-oc-sff-12g",
@@ -982,7 +1026,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "msi-geforce-rtx-5070-12gb",
@@ -1004,7 +1049,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-vengeance-16gb-2x8gb-ddr5-6000mhz-cl36",
@@ -1026,7 +1072,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-vengeance-rgb-16gb-2x8gb-ddr5-6000mhz-cl36",
@@ -1046,7 +1093,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "g-skill-flare-x5-16gb-2x8gb-ddr5-6000mhz-cl30",
@@ -1066,7 +1114,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "g-skill-aegis-16gb-1x16gb-ddr5-6000mhz-cl36",
@@ -1086,7 +1135,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lexar-thor-oc-32gb-2x16gb-ddr5-6000mhz-cl36",
@@ -1106,7 +1156,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lexar-ares-rgb-32gb-2x16gb-ddr5-6000mhz-cl28",
@@ -1126,7 +1177,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-vengeance-32gb-2x16gb-ddr5-6000mhz-cl30",
@@ -1149,7 +1201,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "klevv-bolt-v-32gb-2x16gb-ddr5-6000mhz-cl28",
@@ -1169,7 +1222,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "g-skill-aegis-32gb-2x16gb-ddr5-5600mhz-cl36",
@@ -1189,7 +1243,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-vengeance-32gb-2x16gb-ddr5-6000mhz-cl36",
@@ -1211,7 +1266,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "kingston-fury-beast-16gb-2x8gb-ddr5-5200mhz-cl40",
@@ -1231,7 +1287,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "kingston-fury-beast-128gb-4x32gb-ddr5-5200mhz-cl40",
@@ -1251,7 +1308,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-vengeance-128gb-2x64gb-ddr5-6400mhz-cl42",
@@ -1271,7 +1329,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "teamgroup-t-force-vulcan-32gb-2x16gb-ddr5-6000mhz-cl30",
@@ -1291,7 +1350,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-b650-eagle-ax",
@@ -1313,7 +1373,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-rog-strix-b650-a-gaming-wifi",
@@ -1333,7 +1394,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-b650m-gaming-plus-wifi",
@@ -1353,7 +1415,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-b650-e-wifi",
@@ -1373,7 +1436,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-z790-plus-wifi",
@@ -1393,7 +1457,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "gigabyte-b650-aorus-elite-ax-v2",
@@ -1413,7 +1478,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "msi-pro-z790-a-max-wifi",
@@ -1433,7 +1499,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-z790-pro-wifi",
@@ -1453,7 +1520,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-pro-ws-b850m-ace-se",
@@ -1473,7 +1541,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-b650e-plus-wifi",
@@ -1493,7 +1562,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-rog-strix-z890-e-gaming-wifi",
@@ -1513,7 +1583,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-black-sn850x-1tb-pcie-gen4-nvme-m-2-ssd",
@@ -1535,7 +1606,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-black-sn850x-2tb-pcie-gen4-nvme-m-2-ssd",
@@ -1558,7 +1630,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-black-sn850x-4tb-pcie-gen4-nvme-m-2-ssd",
@@ -1580,7 +1653,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-blue-sn5100-1tb-nvme-ssd",
@@ -1600,7 +1674,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-blue-sn5100-2tb-nvme-ssd",
@@ -1620,7 +1695,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-black-sn7100-2tb-pcie-gen4-nvme-ssd",
@@ -1640,7 +1716,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-black-sn7100-4tb-pcie-gen4-nvme-ssd",
@@ -1660,7 +1737,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "kingston-nv3-1tb-nvme-pcie-4x4-ssd",
@@ -1680,7 +1758,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "kingston-nv3-2tb-nvme-pcie-4x4-ssd",
@@ -1700,7 +1779,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "kingston-nv3-4tb-nvme-pcie-4x4-ssd",
@@ -1720,7 +1800,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-990-pro-1tb-nvme-pcie-4-0-ssd",
@@ -1740,7 +1821,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-990-pro-2tb-nvme-pcie-4-0-ssd",
@@ -1760,7 +1842,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-990-evo-plus-2tb-nvme-ssd",
@@ -1780,7 +1863,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-990-pro-2tb-with-heatsink",
@@ -1800,7 +1884,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-9100-pro-2tb-pcie-gen5-ssd",
@@ -1820,7 +1905,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "samsung-9100-pro-2tb-with-heatsink",
@@ -1840,7 +1926,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lexar-nm790-2tb-m-2-ssd",
@@ -1860,7 +1947,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lexar-ns100-512gb-sata-ssd",
@@ -1880,7 +1968,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lexar-ns100-128gb-sata-ssd",
@@ -1900,7 +1989,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "wd-blue-sa510-4tb-sata-ssd",
@@ -1920,7 +2010,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rm850x-850w",
@@ -1943,7 +2034,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "msi-mag-a850gl-pcie5-850w",
@@ -1963,7 +2055,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-850w-gold",
@@ -1983,7 +2076,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-850w-gold",
@@ -2003,7 +2097,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-tuf-gaming-1000w-gold",
@@ -2023,7 +2118,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rm1000x-1000w",
@@ -2045,7 +2141,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rm850e-850w-gold",
@@ -2067,7 +2164,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rm1000e-1000w-gold",
@@ -2089,7 +2187,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "fsp-hydro-g-pro-850w",
@@ -2109,7 +2208,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "fsp-hydro-g-pro-1000w",
@@ -2129,7 +2229,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "be-quiet-pure-power-13-m-850w-gold",
@@ -2149,7 +2250,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "be-quiet-pure-power-13-m-1000w-gold",
@@ -2169,7 +2271,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ak620",
@@ -2191,7 +2294,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ak620-g2",
@@ -2211,7 +2315,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ak620-digital-wh",
@@ -2231,7 +2336,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ak620-digital-se",
@@ -2251,7 +2357,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-icue-h150i-elite-capellix-xt-360mm-white",
@@ -2273,7 +2380,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 100,
-    "match_method": "exact_model_mpn"
+    "match_method": "exact_model_mpn",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-frame-4000d-rs-argb-black",
@@ -2293,7 +2401,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-cg530-4f-atx-panoramic-black",
@@ -2313,7 +2422,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "jonsbo-d32-pro-micro-atx-black",
@@ -2333,7 +2443,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "jonsbo-d32-pro-micro-atx-white",
@@ -2353,7 +2464,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "azza-forest-370-mid-tower",
@@ -2373,7 +2485,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ch160-plus-black",
@@ -2393,7 +2506,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-cc550-4f-black",
@@ -2413,7 +2527,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "armoury-c708-tempered-glass-mid-tower-black",
@@ -2433,7 +2548,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "pccooler-c3q500-atx-panoramic",
@@ -2453,7 +2569,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "darkflash-drx70-mesh-atx-black",
@@ -2473,7 +2590,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-prime-ap201-tempered-glass-black",
@@ -2493,7 +2611,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-macube-110",
@@ -2513,7 +2632,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "fractal-design-pop-mini-air-rgb-white",
@@ -2533,7 +2653,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lian-li-a3-matx-white",
@@ -2553,7 +2674,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-ch170-digital-black",
@@ -2573,7 +2695,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "hyte-y70-touch-infinite-black",
@@ -2593,7 +2716,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "asus-rog-hyperion-gr701",
@@ -2613,7 +2737,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "be-quiet-bl099-140mm-case-fan-black",
@@ -2633,7 +2758,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lian-li-uf-slin120-1b-120mm-black",
@@ -2653,7 +2779,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lian-li-uf-slin140-1w-140mm-white",
@@ -2673,7 +2800,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "lian-li-uf-slin120-1w-120mm-white",
@@ -2693,7 +2821,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-fl12-120mm-argb-gen-2-black",
@@ -2713,7 +2842,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rs140-argb-140mm-pwm-white",
@@ -2733,7 +2863,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "deepcool-fk120-pwm",
@@ -2753,7 +2884,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "fractal-design-momentum-12-rgb-pwm-black",
@@ -2773,7 +2905,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "corsair-rs140-140mm-pwm-dual-pack-black",
@@ -2793,7 +2926,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "fractal-design-prisma-al-12-pwm-120mm",
@@ -2813,7 +2947,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "cooler-master-masterfan-mf120-prismatic",
@@ -2833,7 +2968,8 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   },
   {
     "product_id": "thermaltake-swafan-ex12-argb",
@@ -2853,6 +2989,7 @@
     "in_stock": true,
     "observed_at": "2026-09-01T23:49:00Z",
     "match_confidence": 88,
-    "match_method": "exact_product_title"
+    "match_method": "exact_product_title",
+    "retail_baseline": "current_new_selling_price"
   }
 ]

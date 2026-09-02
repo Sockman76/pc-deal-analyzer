@@ -56,7 +56,7 @@ def cards(html,category,url):
   if not vals:continue
   # Skip open-box cards for retail-new baseline.
   block=" ".join(node.get_text(" ",strip=True).split())
-  if "Open Box" in block or "(Open Box)" in title:continue
+  if re.search(r"\b(open[\s-]?box|refurb(?:ished)?|renewed|used)\b", block+" "+title, re.I):continue
   key=(title,href)
   if key in seen:continue
   seen.add(key)
@@ -65,7 +65,7 @@ def cards(html,category,url):
   out.append({
    "name":title,"category":category,"price_cad":current,
    "regular_price_cad":regular,"sale_price_cad":current if regular else None,
-   "condition":"new","in_stock":"Sold out" not in block,
+   "condition":"new","retail_baseline":"current_new_selling_price","in_stock":"Sold out" not in block,
    "url":href,"seller":"Canada Computers","observed_at":now()
   })
  return out
