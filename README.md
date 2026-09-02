@@ -392,3 +392,12 @@ Site-wide canonical catalog/pricing bridge added. Major tools now load the same 
 - PCDeal's displayed valuation is the category-specific USED estimate.
 - Consumer gaming and professional/workstation GPUs are separated in category statistics.
 - category-stats.json contains count/min/max/median/average for the bundled current catalog.
+
+## V12.0 — Analyzer 2.0
+Analyzer rebuilt from scratch around one structured build object.
+- Listing parser never treats a bare GPU model number as RAM speed.
+- Motherboard internal sentinel values are rejected.
+- Eight editable component cards are the single source of truth.
+- Pricing evidence is shown per part.
+- Final score, verdict, complete-PC value, confidence and offer use the same result.
+- Legacy analyzer preserved as analyzer-legacy.html for comparison/testing.
