@@ -1,38 +1,17 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-09-01T23:49:00Z",
+  "schema_version": 1,
+  "generated_at": "2026-09-02T08:52:17Z",
   "currency": "CAD",
   "priority": [
     "Canada Computers",
     "Amazon Canada"
   ],
-  "products_with_current_price": 137,
-  "observations": 137,
-  "categories": {
-    "cpu": 29,
-    "gpu": 17,
-    "memory": 14,
-    "motherboard": 11,
-    "storage": 20,
-    "psu": 12,
-    "cpu-cooler": 5,
-    "case": 17,
-    "case-fan": 12
-  },
-  "note": "Fresh verified seed from Canada Computers public product/category pages. Full collector expands coverage.",
+  "products_with_current_price": 0,
+  "observations": 0,
+  "categories": {},
   "policy": {
     "canada_computers_first": true,
     "amazon_fallback_only": true,
-    "exact_model_priority": true,
-    "open_box_excluded_from_new_baseline": true,
-    "sale_price_is_current_new": true,
-    "regular_price_retained": true,
-    "new_condition_only": true,
-    "open_box_excluded": true,
-    "refurbished_excluded": true,
-    "used_listings_excluded_from_retail_baseline": true,
-    "current_selling_price_is_baseline": true,
-    "consumer_and_professional_gpus_separated": true,
-    "pcdeal_display_value": "used_market_estimate"
+    "exact_sku_only": true
   }
 }
