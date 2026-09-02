@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "product_id": "cpu-amd-7800x3d",
+    "category": "cpu",
+    "name": "Ryzen 7 7800X3D",
+    "brand": "AMD",
+    "model": "Ryzen 7 7800X3D",
+    "mpn": "100-100000910WOF",
+    "retail_source": "Canada Computers",
+    "condition": "new",
+    "price_cad": 519.98,
+    "sale_price_cad": 519.98,
+    "regular_price_cad": 609.99,
+    "in_stock": true,
+    "observed_at": "2026-09-01T23:49:00Z"
+  },
+  {
+    "product_id": "gpu-rtx4080super",
+    "category": "gpu",
+    "name": "RTX 4080 Super",
+    "brand": "ZOTAC",
+    "model": "RTX 4080 Super",
+    "retail_source": "Canada Computers",
+    "condition": "new",
+    "price_cad": 1299.88,
+    "sale_price_cad": 1299.88,
+    "regular_price_cad": 1699.88,
+    "in_stock": true,
+    "observed_at": "2026-09-01T23:49:00Z"
+  }
+]
