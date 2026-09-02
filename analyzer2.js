@@ -8,6 +8,9 @@ const state={listing:"",parts:{},asking:0,currency:"CAD",condition:"Good"};
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const cash=n=>"$"+Math.round(Number(n)||0).toLocaleString("en-CA");
 const norm=s=>String(s||"").replace(/[®™]/g,"").replace(/\s+/g," ").trim();
+const cleanLabel=(cat,s)=>norm(String(s||"").replace(new RegExp("^\\s*(?:"+({
+ cpu:"cpu",gpu:"gpu",memory:"ram|memory",motherboard:"motherboard|mobo",storage:"storage|drive",psu:"power\\s*supply|psu","cpu-cooler":"cpu\\s*cooler|cooler",case:"case"
+}[cat]||cat)+")\\s*:\\s*","i"),""));
 function lines(t){return String(t||"").split(/\n|•|\|/).map(x=>norm(x)).filter(Boolean)}
 function lineMatch(ls,rx){return ls.find(x=>rx.test(x))||""}
 function detect(listing){
@@ -33,14 +36,14 @@ function detect(listing){
  const capacity=(mem.match(/\b(8|16|24|32|48|64|96|128)\s*GB\b/i)||[])[1]||"";
  const cl=(mem.match(/\bCL\s*([0-9]{2})\b/i)||[])[1]||"";
  return {
-  cpu:{name:cpu,confidence:cpu?93:0},
-  gpu:{name:gpu,confidence:gpu?93:0},
-  memory:{name:mem,confidence:mem?90:0,capacity:capacity?capacity+"GB":"",type:ramType.toUpperCase(),speed:ramSpeed,cl:cl?("CL"+cl):""},
-  motherboard:{name:mb,confidence:mb?88:0},
-  storage:{name:st,confidence:st?90:0},
-  psu:{name:ps,confidence:ps?90:0},
+  cpu:{name:cleanLabel("cpu",cpu),confidence:cpu?93:0},
+  gpu:{name:cleanLabel("gpu",gpu),confidence:gpu?93:0},
+  memory:{name:cleanLabel("memory",mem),confidence:mem?90:0,capacity:capacity?capacity+"GB":"",type:ramType.toUpperCase(),speed:ramSpeed,cl:cl?("CL"+cl):""},
+  motherboard:{name:cleanLabel("motherboard",mb),confidence:mb?88:0},
+  storage:{name:cleanLabel("storage",st),confidence:st?90:0},
+  psu:{name:cleanLabel("psu",ps),confidence:ps?90:0},
   "cpu-cooler":{name:cool,confidence:cool?86:0},
-  case:{name:cs,confidence:cs?82:0},
+  case:{name:cleanLabel("case",cs),confidence:cs?82:0},
   asking:price?Number(price.replace(/,/g,"")):0
  };
 }
@@ -118,7 +121,25 @@ async function analyze(){
  try{
   const get=n=>parts.find(x=>x.category===n)?.name||"";
   const mem=state.parts.memory||{};
-  const legacy={cpu:get("cpu"),gpu:get("gpu"),ram:mem.capacity||get("memory"),ramType:mem.type||"",ramSpeed:mem.speed||"",motherboard:get("motherboard"),storageSize:get("storage"),psu:get("psu"),cooler:get("cpu-cooler"),caseQuality:get("case"),askingPrice:asking,condition:state.condition,score,estimatedValue:fair,estimatedLow:low,estimatedHigh:high,suggestedOffer:offer,confidence,analyzerVersion:"2.0"};
+  const storageName=get("storage");
+  const storageCap=(storageName.match(/\b(\d+(?:\.\d+)?)\s*(TB|GB)\b/i)||[]);
+  const storageSize=storageCap?`${storageCap[1]}${storageCap[2].toUpperCase()}`:"";
+  const storageType=/nvme|m\.2/i.test(storageName)?"NVME M.2":/ssd/i.test(storageName)?"SSD":/hdd|hard\s*drive/i.test(storageName)?"HDD":"";
+  const clean=n=>cleanLabel(n,get(n));
+  const partValues=Object.fromEntries(parts.map(x=>[x.category,Number(x.value)||0]));
+  const legacy={
+    listing:state.listing||"",
+    cpu:clean("cpu"),gpu:clean("gpu"),
+    ram:mem.capacity||"",ramType:mem.type||"",ramSpeed:mem.speed||"",ramModel:cleanLabel("memory",mem.name||""),
+    motherboard:clean("motherboard"),
+    storageModel:cleanLabel("storage",storageName),storageSize,storageType,
+    drives:storageSize?[{size:storageSize,type:storageType||"SSD",model:cleanLabel("storage",storageName)}]:[],
+    psu:clean("psu"),cooler:clean("cpu-cooler"),caseQuality:clean("case"),caseModel:clean("case"),
+    price:asking,askingPrice:asking,currency:"CAD",condition:String(state.condition||"Good").toLowerCase(),
+    score,dealScore:score,verdict:verdict(score)[1],
+    estimatedValue:fair,estimate:fair,estimatedLow:low,estimatedHigh:high,suggestedOffer:offer,confidence,
+    partValues,pricingParts:parts,retailCoverage:retail,analyzerVersion:"2.0",savedAt:Date.now()
+  };
   localStorage.setItem("pcdeal.v12.analyzer2.result",JSON.stringify(window.PCDealAnalyzer20Result));
   localStorage.setItem("pcdeal.v5.build",JSON.stringify(legacy));
   window.dispatchEvent(new CustomEvent("pcdeal:analysis-complete",{detail:legacy}));

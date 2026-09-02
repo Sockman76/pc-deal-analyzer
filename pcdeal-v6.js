@@ -2,7 +2,7 @@
 "use strict";
 const $=id=>document.getElementById(id), qs=(s,r=document)=>r.querySelector(s), qsa=(s,r=document)=>[...r.querySelectorAll(s)];
 const BUILD_KEY="pcdeal.v5.build", DEALS_KEY="pcdeal.v5.deals";
-const getBuild=()=>{try{return JSON.parse(localStorage.getItem(BUILD_KEY))||{}}catch{return {}}};
+const getBuild=()=>{try{const b=JSON.parse(localStorage.getItem(BUILD_KEY))||{};if(b.analyzerVersion==="2.0"){b.price=b.price||b.askingPrice||0;b.storageSize=b.storageSize||((b.drives||[])[0]?.size)||"";b.storageType=b.storageType||((b.drives||[])[0]?.type)||"";}return b}catch{return {}}};
 const esc=s=>String(s??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function toast(title,msg=""){let stack=qs(".v6-toast-stack");if(!stack){stack=document.createElement("div");stack.className="v6-toast-stack";document.body.append(stack)}const t=document.createElement("div");t.className="v6-toast";t.innerHTML=`<strong>${esc(title)}</strong>${msg?`<span>${esc(msg)}</span>`:""}`;stack.append(t);setTimeout(()=>t.remove(),3600)}
 window.PCDealToast=toast;

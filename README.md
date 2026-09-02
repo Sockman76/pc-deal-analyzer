@@ -409,3 +409,11 @@ Analyzer rebuilt from scratch around one structured build object.
 - All primary site navigation now labels the entry point as Analyzer 2.0 and version badges/footers are V12.1.
 - Analyzer 2.0 writes a compatibility build snapshot to `pcdeal.v5.build`, so Dashboard, Performance, Hardware, Buying, Compare, Flip, Inspector, My Deals and other existing tools can consume the new analyzer result instead of remaining isolated on the legacy analyzer state.
 - Legacy analyzer remains available only as a compatibility/reference page.
+
+## V12.2 — Site-wide canonical state fix
+Analyzer 2.0 now writes a complete normalized compatibility state for all older tools.
+Legacy pages honor Analyzer 2.0's final system value and per-part used values rather than
+recalculating the build from old heuristics. Storage is split into model/capacity/type,
+preventing model numbers such as SN850X from being interpreted as capacity.
+Asking price is synchronized as both `price` and `askingPrice`.
+CPU/GPU/etc. labels are normalized without `CPU:` / `GPU:` prefixes.
