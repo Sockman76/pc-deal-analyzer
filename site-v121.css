@@ -1,0 +1,8 @@
+
+/* V12.1 sitewide polish */
+:root{--pcd-accent:#9a68ff;--pcd-accent2:#7048f4;--pcd-glow:rgba(154,104,255,.18)}
+html{color-scheme:dark;scroll-behavior:smooth}
+body{background-attachment:fixed}
+.topbar,.nav{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #b995ff;outline-offset:2px}
+.badge,.ver{box-shadow:0 0 24px var(--pcd-glow)}

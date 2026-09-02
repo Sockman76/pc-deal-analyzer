@@ -401,3 +401,11 @@ Analyzer rebuilt from scratch around one structured build object.
 - Pricing evidence is shown per part.
 - Final score, verdict, complete-PC value, confidence and offer use the same result.
 - Legacy analyzer preserved as analyzer-legacy.html for comparison/testing.
+
+
+## V12.1 — Analyzer 2.0 visual + sitewide integration
+- Refined Analyzer 2.0 visual hierarchy, component cards, result panel, mobile behavior and focus states.
+- Added PCDeal tab favicon to Analyzer and normalized favicon coverage sitewide.
+- All primary site navigation now labels the entry point as Analyzer 2.0 and version badges/footers are V12.1.
+- Analyzer 2.0 writes a compatibility build snapshot to `pcdeal.v5.build`, so Dashboard, Performance, Hardware, Buying, Compare, Flip, Inspector, My Deals and other existing tools can consume the new analyzer result instead of remaining isolated on the legacy analyzer state.
+- Legacy analyzer remains available only as a compatibility/reference page.

@@ -115,6 +115,14 @@ async function analyze(){
  $("#breakdown").innerHTML=parts.map(p=>`<div class=row><strong>${labels[p.category]}</strong><span>${cash(p.value)}</span><span class=muted>${p.evidence==="retail-derived"?"Retail → used":"Fallback"}</span><span class=muted>${p.confidence}%</span></div>`).join("");
  $("#result").style.display="block";$("#result").scrollIntoView({behavior:"smooth",block:"start"});
  window.PCDealAnalyzer20Result={parts,raw,fair,low,high,asking,score,offer,confidence,retail};
+ try{
+  const get=n=>parts.find(x=>x.category===n)?.name||"";
+  const mem=state.parts.memory||{};
+  const legacy={cpu:get("cpu"),gpu:get("gpu"),ram:mem.capacity||get("memory"),ramType:mem.type||"",ramSpeed:mem.speed||"",motherboard:get("motherboard"),storageSize:get("storage"),psu:get("psu"),cooler:get("cpu-cooler"),caseQuality:get("case"),askingPrice:asking,condition:state.condition,score,estimatedValue:fair,estimatedLow:low,estimatedHigh:high,suggestedOffer:offer,confidence,analyzerVersion:"2.0"};
+  localStorage.setItem("pcdeal.v12.analyzer2.result",JSON.stringify(window.PCDealAnalyzer20Result));
+  localStorage.setItem("pcdeal.v5.build",JSON.stringify(legacy));
+  window.dispatchEvent(new CustomEvent("pcdeal:analysis-complete",{detail:legacy}));
+ }catch(e){console.warn("PCDeal Analyzer 2.0 sync failed",e)}
 }
 function detectAndFill(){
  state.listing=$("#listing").value;const d=detect(state.listing);state.parts=d;state.asking=d.asking||0;$("#asking").value=state.asking||"";renderParts();
