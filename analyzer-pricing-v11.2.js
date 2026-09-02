@@ -26,7 +26,7 @@ function build(){
  };
 }
 async function run(){
- const legacy=window.PCDealLegacyEstimateV112, svc=window.PCDealPricingServiceV11;
+ const legacy=window.PCDealLegacyEstimateV112, svc=window.PCDealCatalogV114||window.PCDealPricingServiceV11;
  if(!legacy||!svc)return;
  const retail=await svc.priceBuild(build());
  const byCat=Object.fromEntries((retail.parts||[]).map(p=>[p.category,p]));

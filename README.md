@@ -374,3 +374,13 @@ Replaces universal/stale fallback logic with evidence-first Canadian peer-to-pee
 
 ## V11.0 Retail DB
 Canada Computers exact-SKU pricing is primary. Amazon Canada is fallback only when CC has no exact current-new match. No fabricated retailer prices are bundled. Used cash values are derived separately with category-specific ranges.
+
+
+## V11.3 — Master Pricing Catalog
+Bundled verified Canada Computers seed: 137 exact/current product-price records across 9 categories.
+The scheduled collector now attempts to crawl the full Canada Computers component categories, excludes Open Box from the new-retail baseline, retains sale/regular pricing, and feeds the existing retail normalizer.
+Amazon.ca remains an exact-product fallback only.
+
+
+## V11.4
+Site-wide canonical catalog/pricing bridge added. Major tools now load the same retail DB and pricing service. Collector PSU endpoint corrected and HDD collection added.

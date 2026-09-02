@@ -13,7 +13,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build and validate
+      - name: Install collector dependencies
+        run: pip install requests beautifulsoup4
+      - name: Collect Canada Computers catalog
+        continue-on-error: true
+        run: python scripts/fetch_canada_computers_catalog.py --out retail-import/canada-computers.json
+      - name: Build and validate retail database
         run: |
           python scripts/build_retail_db.py --master master-db --cc retail-import/canada-computers.json --amazon retail-import/amazon-ca.json --out retail-db
           python scripts/validate_retail_db.py retail-db
@@ -21,5 +26,10 @@ jobs:
         run: |
           git config user.name "pcdeal-retail-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add retail-db
-          if git diff --cached --quiet; then echo "No retail changes."; else git commit -m "Update PCDeal Canadian retail DB"; git push; fi
+          git add retail-db retail-import/canada-computers.json
+          if git diff --cached --quiet; then
+            echo "No retail changes."
+          else
+            git commit -m "Update PCDeal Canadian retail pricing"
+            git push
+          fi

@@ -1975,7 +1975,7 @@ function analyzeDeal() {
         ? "Medium"
         : "Low";
 
-  // V11.2: expose the complete legacy component breakdown as FALLBACK evidence only.
+  // V11.3: expose the complete legacy component breakdown as FALLBACK evidence only.
   // The retail-backed estimator may replace any of these values, but missing retail
   // records no longer cause a component to become $0.
   window.PCDealLegacyEstimateV112 = {
