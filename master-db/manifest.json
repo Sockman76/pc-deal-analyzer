@@ -1,56 +1,277 @@
 {
-  "generated_at": "2026-09-01T01:24:59Z",
-  "total_products": 423,
-  "schema_version": 1,
-  "mode": "seed",
-  "note": "Run the Update PCDeal Master Database GitHub Action to expand this seed with open datasets.",
+  "generated_at": "2026-09-07T07:35:09Z",
+  "total_products": 56626,
   "categories": {
+    "10000": {
+      "count": 19,
+      "shards": 18,
+      "index": "master-db/index/10000.json"
+    },
+    "10500": {
+      "count": 6,
+      "shards": 5,
+      "index": "master-db/index/10500.json"
+    },
+    "15000": {
+      "count": 12,
+      "shards": 12,
+      "index": "master-db/index/15000.json"
+    },
+    "5000": {
+      "count": 1,
+      "shards": 1,
+      "index": "master-db/index/5000.json"
+    },
+    "5200": {
+      "count": 1,
+      "shards": 1,
+      "index": "master-db/index/5200.json"
+    },
+    "5400": {
+      "count": 139,
+      "shards": 109,
+      "index": "master-db/index/5400.json"
+    },
+    "5640": {
+      "count": 4,
+      "shards": 4,
+      "index": "master-db/index/5640.json"
+    },
+    "5700": {
+      "count": 6,
+      "shards": 6,
+      "index": "master-db/index/5700.json"
+    },
+    "5760": {
+      "count": 1,
+      "shards": 1,
+      "index": "master-db/index/5760.json"
+    },
+    "5900": {
+      "count": 30,
+      "shards": 29,
+      "index": "master-db/index/5900.json"
+    },
+    "5940": {
+      "count": 2,
+      "shards": 2,
+      "index": "master-db/index/5940.json"
+    },
+    "7200": {
+      "count": 314,
+      "shards": 179,
+      "index": "master-db/index/7200.json"
+    },
+    "atx": {
+      "count": 1986,
+      "shards": 256,
+      "index": "master-db/index/atx.json"
+    },
+    "atx-desktop": {
+      "count": 21,
+      "shards": 20,
+      "index": "master-db/index/atx-desktop.json"
+    },
+    "atx-full-tower": {
+      "count": 406,
+      "shards": 202,
+      "index": "master-db/index/atx-full-tower.json"
+    },
+    "atx-mid-tower": {
+      "count": 2613,
+      "shards": 256,
+      "index": "master-db/index/atx-mid-tower.json"
+    },
+    "atx-mini-tower": {
+      "count": 23,
+      "shards": 22,
+      "index": "master-db/index/atx-mini-tower.json"
+    },
+    "atx-test-bench": {
+      "count": 9,
+      "shards": 8,
+      "index": "master-db/index/atx-test-bench.json"
+    },
+    "card-reader": {
+      "count": 5,
+      "shards": 5,
+      "index": "master-db/index/card-reader.json"
+    },
+    "circumaural": {
+      "count": 1193,
+      "shards": 255,
+      "index": "master-db/index/circumaural.json"
+    },
     "cpu": {
-      "count": 177,
-      "shards": 129,
+      "count": 564,
+      "shards": 224,
       "index": "master-db/index/cpu.json"
     },
+    "desktop": {
+      "count": 55,
+      "shards": 49,
+      "index": "master-db/index/desktop.json"
+    },
+    "earbud": {
+      "count": 265,
+      "shards": 163,
+      "index": "master-db/index/earbud.json"
+    },
+    "flex-atx": {
+      "count": 13,
+      "shards": 12,
+      "index": "master-db/index/flex-atx.json"
+    },
     "gpu": {
-      "count": 140,
-      "shards": 106,
+      "count": 1551,
+      "shards": 256,
       "index": "master-db/index/gpu.json"
     },
+    "headphones": {
+      "count": 201,
+      "shards": 142,
+      "index": "master-db/index/headphones.json"
+    },
+    "htpc": {
+      "count": 111,
+      "shards": 93,
+      "index": "master-db/index/htpc.json"
+    },
+    "in-ear": {
+      "count": 581,
+      "shards": 226,
+      "index": "master-db/index/in-ear.json"
+    },
+    "keyboard": {
+      "count": 334,
+      "shards": 187,
+      "index": "master-db/index/keyboard.json"
+    },
+    "led-controller": {
+      "count": 2,
+      "shards": 2,
+      "index": "master-db/index/led-controller.json"
+    },
     "memory": {
-      "count": 19,
-      "shards": 16,
+      "count": 1435,
+      "shards": 256,
       "index": "master-db/index/memory.json"
     },
-    "storage": {
-      "count": 31,
-      "shards": 29,
-      "index": "master-db/index/storage.json"
+    "microatx-desktop": {
+      "count": 52,
+      "shards": 49,
+      "index": "master-db/index/microatx-desktop.json"
     },
-    "psu": {
-      "count": 17,
-      "shards": 17,
-      "index": "master-db/index/psu.json"
+    "microatx-mid-tower": {
+      "count": 208,
+      "shards": 144,
+      "index": "master-db/index/microatx-mid-tower.json"
     },
-    "motherboard": {
-      "count": 16,
-      "shards": 16,
-      "index": "master-db/index/motherboard.json"
+    "microatx-mini-tower": {
+      "count": 407,
+      "shards": 198,
+      "index": "master-db/index/microatx-mini-tower.json"
     },
-    "cpu-cooler": {
+    "microatx-slim": {
+      "count": 24,
+      "shards": 19,
+      "index": "master-db/index/microatx-slim.json"
+    },
+    "mini-itx": {
       "count": 11,
       "shards": 11,
-      "index": "master-db/index/cpu-cooler.json"
+      "index": "master-db/index/mini-itx.json"
     },
-    "case": {
-      "count": 12,
-      "shards": 11,
-      "index": "master-db/index/case.json"
+    "mini-itx-desktop": {
+      "count": 140,
+      "shards": 105,
+      "index": "master-db/index/mini-itx-desktop.json"
+    },
+    "mini-itx-test-bench": {
+      "count": 8,
+      "shards": 8,
+      "index": "master-db/index/mini-itx-test-bench.json"
+    },
+    "mini-itx-tower": {
+      "count": 188,
+      "shards": 137,
+      "index": "master-db/index/mini-itx-tower.json"
+    },
+    "monitor": {
+      "count": 505,
+      "shards": 218,
+      "index": "master-db/index/monitor.json"
+    },
+    "motherboard": {
+      "count": 1564,
+      "shards": 255,
+      "index": "master-db/index/motherboard.json"
+    },
+    "mouse": {
+      "count": 1538,
+      "shards": 255,
+      "index": "master-db/index/mouse.json"
+    },
+    "other": {
+      "count": 33212,
+      "shards": 256,
+      "index": "master-db/index/other.json"
+    },
+    "portable": {
+      "count": 139,
+      "shards": 106,
+      "index": "master-db/index/portable.json"
+    },
+    "psu": {
+      "count": 2402,
+      "shards": 256,
+      "index": "master-db/index/psu.json"
+    },
+    "sfx": {
+      "count": 93,
+      "shards": 80,
+      "index": "master-db/index/sfx.json"
+    },
+    "speakers": {
+      "count": 175,
+      "shards": 129,
+      "index": "master-db/index/speakers.json"
+    },
+    "storage": {
+      "count": 3500,
+      "shards": 256,
+      "index": "master-db/index/storage.json"
+    },
+    "supra-aural": {
+      "count": 474,
+      "shards": 217,
+      "index": "master-db/index/supra-aural.json"
+    },
+    "tfx": {
+      "count": 26,
+      "shards": 25,
+      "index": "master-db/index/tfx.json"
+    },
+    "webcam": {
+      "count": 57,
+      "shards": 49,
+      "index": "master-db/index/webcam.json"
     }
   },
   "sources": [
     {
-      "name": "PCDeal curated seed",
-      "license": "PCDeal project data",
-      "records_imported": 423
+      "name": "docyx/pc-part-dataset",
+      "license": "MIT",
+      "url": "https://github.com/docyx/pc-part-dataset",
+      "records_imported": 133556,
+      "upstream_snapshot": "2025-07-23"
+    },
+    {
+      "name": "BuildCores OpenDB",
+      "license": "ODC-By 1.0",
+      "url": "https://github.com/buildcores/buildcores-open-db",
+      "records_imported": 47785
     }
-  ]
+  ],
+  "schema_version": 1
 }

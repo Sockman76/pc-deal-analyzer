@@ -1,11 +1,19 @@
 {
-  "generated_at": "2026-09-01T01:24:59Z",
+  "generated_at": "2026-09-07T07:35:09Z",
   "sources": [
     {
-      "name": "PCDeal curated seed",
-      "license": "PCDeal project data",
-      "records_imported": 423
+      "name": "docyx/pc-part-dataset",
+      "license": "MIT",
+      "url": "https://github.com/docyx/pc-part-dataset",
+      "records_imported": 133556,
+      "upstream_snapshot": "2025-07-23"
+    },
+    {
+      "name": "BuildCores OpenDB",
+      "license": "ODC-By 1.0",
+      "url": "https://github.com/buildcores/buildcores-open-db",
+      "records_imported": 47785
     }
   ],
-  "notice": "Seed only. Expanded builds preserve upstream attribution."
+  "notice": "PCDeal Master Database contains merged/normalized records. Source attribution and license notices must be preserved."
 }
