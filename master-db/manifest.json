@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-14T07:35:01Z",
-  "total_products": 56746,
+  "generated_at": "2026-09-21T07:35:01Z",
+  "total_products": 56719,
   "categories": {
     "10000": {
       "count": 19,
@@ -123,12 +123,12 @@
       "index": "master-db/index/flex-atx.json"
     },
     "gpu": {
-      "count": 1540,
+      "count": 1551,
       "shards": 256,
       "index": "master-db/index/gpu.json"
     },
     "headphones": {
-      "count": 262,
+      "count": 264,
       "shards": 164,
       "index": "master-db/index/headphones.json"
     },
@@ -143,8 +143,8 @@
       "index": "master-db/index/in-ear.json"
     },
     "keyboard": {
-      "count": 373,
-      "shards": 199,
+      "count": 392,
+      "shards": 207,
       "index": "master-db/index/keyboard.json"
     },
     "led-controller": {
@@ -153,7 +153,7 @@
       "index": "master-db/index/led-controller.json"
     },
     "memory": {
-      "count": 1435,
+      "count": 1440,
       "shards": 256,
       "index": "master-db/index/memory.json"
     },
@@ -208,12 +208,12 @@
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1551,
+      "count": 1554,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33188,
+      "count": 33120,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -223,7 +223,7 @@
       "index": "master-db/index/portable.json"
     },
     "psu": {
-      "count": 2402,
+      "count": 2403,
       "shards": 256,
       "index": "master-db/index/psu.json"
     },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48096
+      "records_imported": 48242
     }
   ],
   "schema_version": 1
