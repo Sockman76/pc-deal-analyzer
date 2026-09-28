@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T07:35:01Z",
-  "total_products": 56719,
+  "generated_at": "2026-09-28T07:36:22Z",
+  "total_products": 56697,
   "categories": {
     "10000": {
       "count": 19,
@@ -143,7 +143,7 @@
       "index": "master-db/index/in-ear.json"
     },
     "keyboard": {
-      "count": 392,
+      "count": 396,
       "shards": 207,
       "index": "master-db/index/keyboard.json"
     },
@@ -153,7 +153,7 @@
       "index": "master-db/index/led-controller.json"
     },
     "memory": {
-      "count": 1440,
+      "count": 1368,
       "shards": 256,
       "index": "master-db/index/memory.json"
     },
@@ -198,22 +198,22 @@
       "index": "master-db/index/mini-itx-tower.json"
     },
     "monitor": {
-      "count": 521,
-      "shards": 218,
+      "count": 522,
+      "shards": 219,
       "index": "master-db/index/monitor.json"
     },
     "motherboard": {
-      "count": 1564,
+      "count": 1565,
       "shards": 255,
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1554,
+      "count": 1579,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33120,
+      "count": 33139,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48242
+      "records_imported": 48277
     }
   ],
   "schema_version": 1
