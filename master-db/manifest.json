@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-12T16:50:12Z",
-  "total_products": 56758,
+  "generated_at": "2026-10-19T14:46:25Z",
+  "total_products": 57013,
   "categories": {
     "10000": {
       "count": 19,
@@ -123,13 +123,13 @@
       "index": "master-db/index/flex-atx.json"
     },
     "gpu": {
-      "count": 1551,
+      "count": 1548,
       "shards": 256,
       "index": "master-db/index/gpu.json"
     },
     "headphones": {
-      "count": 272,
-      "shards": 166,
+      "count": 285,
+      "shards": 170,
       "index": "master-db/index/headphones.json"
     },
     "htpc": {
@@ -143,8 +143,8 @@
       "index": "master-db/index/in-ear.json"
     },
     "keyboard": {
-      "count": 406,
-      "shards": 208,
+      "count": 409,
+      "shards": 209,
       "index": "master-db/index/keyboard.json"
     },
     "led-controller": {
@@ -198,22 +198,22 @@
       "index": "master-db/index/mini-itx-tower.json"
     },
     "monitor": {
-      "count": 522,
-      "shards": 219,
+      "count": 533,
+      "shards": 221,
       "index": "master-db/index/monitor.json"
     },
     "motherboard": {
-      "count": 1565,
+      "count": 1731,
       "shards": 255,
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1596,
+      "count": 1610,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33228,
+      "count": 33274,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -223,7 +223,7 @@
       "index": "master-db/index/portable.json"
     },
     "psu": {
-      "count": 2404,
+      "count": 2405,
       "shards": 256,
       "index": "master-db/index/psu.json"
     },
@@ -234,11 +234,11 @@
     },
     "speakers": {
       "count": 216,
-      "shards": 147,
+      "shards": 146,
       "index": "master-db/index/speakers.json"
     },
     "storage": {
-      "count": 3503,
+      "count": 3506,
       "shards": 256,
       "index": "master-db/index/storage.json"
     },
@@ -253,8 +253,8 @@
       "index": "master-db/index/tfx.json"
     },
     "webcam": {
-      "count": 57,
-      "shards": 49,
+      "count": 58,
+      "shards": 51,
       "index": "master-db/index/webcam.json"
     }
   },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48398
+      "records_imported": 48488
     }
   ],
   "schema_version": 1
