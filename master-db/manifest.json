@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-19T14:46:25Z",
-  "total_products": 57013,
+  "generated_at": "2026-10-26T14:25:00Z",
+  "total_products": 57175,
   "categories": {
     "10000": {
       "count": 19,
@@ -103,7 +103,7 @@
       "index": "master-db/index/circumaural.json"
     },
     "cpu": {
-      "count": 564,
+      "count": 565,
       "shards": 224,
       "index": "master-db/index/cpu.json"
     },
@@ -128,8 +128,8 @@
       "index": "master-db/index/gpu.json"
     },
     "headphones": {
-      "count": 285,
-      "shards": 170,
+      "count": 286,
+      "shards": 171,
       "index": "master-db/index/headphones.json"
     },
     "htpc": {
@@ -143,8 +143,8 @@
       "index": "master-db/index/in-ear.json"
     },
     "keyboard": {
-      "count": 409,
-      "shards": 209,
+      "count": 416,
+      "shards": 210,
       "index": "master-db/index/keyboard.json"
     },
     "led-controller": {
@@ -198,8 +198,8 @@
       "index": "master-db/index/mini-itx-tower.json"
     },
     "monitor": {
-      "count": 533,
-      "shards": 221,
+      "count": 542,
+      "shards": 222,
       "index": "master-db/index/monitor.json"
     },
     "motherboard": {
@@ -208,12 +208,12 @@
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1610,
+      "count": 1631,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33274,
+      "count": 33393,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -223,7 +223,7 @@
       "index": "master-db/index/portable.json"
     },
     "psu": {
-      "count": 2405,
+      "count": 2406,
       "shards": 256,
       "index": "master-db/index/psu.json"
     },
@@ -233,12 +233,12 @@
       "index": "master-db/index/sfx.json"
     },
     "speakers": {
-      "count": 216,
+      "count": 218,
       "shards": 146,
       "index": "master-db/index/speakers.json"
     },
     "storage": {
-      "count": 3506,
+      "count": 3507,
       "shards": 256,
       "index": "master-db/index/storage.json"
     },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48488
+      "records_imported": 48635
     }
   ],
   "schema_version": 1
