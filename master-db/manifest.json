@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-26T14:25:00Z",
-  "total_products": 57175,
+  "generated_at": "2026-11-02T17:14:20Z",
+  "total_products": 57191,
   "categories": {
     "10000": {
       "count": 19,
@@ -198,8 +198,8 @@
       "index": "master-db/index/mini-itx-tower.json"
     },
     "monitor": {
-      "count": 542,
-      "shards": 222,
+      "count": 545,
+      "shards": 223,
       "index": "master-db/index/monitor.json"
     },
     "motherboard": {
@@ -208,12 +208,12 @@
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1631,
+      "count": 1632,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33393,
+      "count": 33405,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48635
+      "records_imported": 48738
     }
   ],
   "schema_version": 1
