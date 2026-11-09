@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-02T17:14:20Z",
-  "total_products": 57191,
+  "generated_at": "2026-11-09T17:40:25Z",
+  "total_products": 57296,
   "categories": {
     "10000": {
       "count": 19,
@@ -128,8 +128,8 @@
       "index": "master-db/index/gpu.json"
     },
     "headphones": {
-      "count": 286,
-      "shards": 171,
+      "count": 289,
+      "shards": 173,
       "index": "master-db/index/headphones.json"
     },
     "htpc": {
@@ -143,8 +143,8 @@
       "index": "master-db/index/in-ear.json"
     },
     "keyboard": {
-      "count": 416,
-      "shards": 210,
+      "count": 427,
+      "shards": 212,
       "index": "master-db/index/keyboard.json"
     },
     "led-controller": {
@@ -153,7 +153,7 @@
       "index": "master-db/index/led-controller.json"
     },
     "memory": {
-      "count": 1286,
+      "count": 1287,
       "shards": 253,
       "index": "master-db/index/memory.json"
     },
@@ -198,8 +198,8 @@
       "index": "master-db/index/mini-itx-tower.json"
     },
     "monitor": {
-      "count": 545,
-      "shards": 223,
+      "count": 557,
+      "shards": 225,
       "index": "master-db/index/monitor.json"
     },
     "motherboard": {
@@ -208,12 +208,12 @@
       "index": "master-db/index/motherboard.json"
     },
     "mouse": {
-      "count": 1632,
+      "count": 1646,
       "shards": 255,
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33405,
+      "count": 33463,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -233,8 +233,8 @@
       "index": "master-db/index/sfx.json"
     },
     "speakers": {
-      "count": 218,
-      "shards": 146,
+      "count": 224,
+      "shards": 148,
       "index": "master-db/index/speakers.json"
     },
     "storage": {
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48738
+      "records_imported": 48768
     }
   ],
   "schema_version": 1
