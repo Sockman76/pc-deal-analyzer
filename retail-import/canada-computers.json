@@ -10,293 +10,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 7 9800X3D 8-Core 4nm AM5 104MB Cache 120W ZEN 5 CPU",
-    "category": "cpu",
-    "price_cad": 549.99,
-    "regular_price_cad": 689.0,
-    "sale_price_cad": 549.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/264908/amd-ryzen-7-9800x3d-8-core-4nm-am5-104mb-cache-120w-zen-5-cpu-100-100001084wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 549.99,
-    "regular_price_cad": 689.0,
-    "sale_price_cad": 549.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/264908/amd-ryzen-7-9800x3d-8-core-4nm-am5-104mb-cache-120w-zen-5-cpu-100-100001084wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 7 7800X3D 8-Core/16-Thread 5nm 104MB Cache 120W ZEN 4 CPU",
-    "category": "cpu",
-    "price_cad": 469.99,
-    "regular_price_cad": 609.99,
-    "sale_price_cad": 469.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/235997/amd-ryzen-7-7800x3d-8-core-16-thread-5nm-104mb-cache-120w-zen-4-cpu-100-100000910wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 469.99,
-    "regular_price_cad": 609.99,
-    "sale_price_cad": 469.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/235997/amd-ryzen-7-7800x3d-8-core-16-thread-5nm-104mb-cache-120w-zen-4-cpu-100-100000910wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 5 7600X 6-Core/12Thread 5nm ZEN 4 CPU",
-    "category": "cpu",
-    "price_cad": 309.88,
-    "regular_price_cad": 439.0,
-    "sale_price_cad": 309.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/227006/amd-ryzen-5-7600x-6-core-12thread-5nm-zen-4-cpu-100-100000593wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Sold Out In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 309.88,
-    "regular_price_cad": 439.0,
-    "sale_price_cad": 309.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/227006/amd-ryzen-5-7600x-6-core-12thread-5nm-zen-4-cpu-100-100000593wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 9 9950X3D 16-Core/32Thread 4nm ZEN 5 CPU",
-    "category": "cpu",
-    "price_cad": 929.98,
-    "regular_price_cad": 999.0,
-    "sale_price_cad": 929.98,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/267978/amd-ryzen-9-9950x3d-16-core-32thread-4nm-zen-5-cpu-100-100000719wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 929.98,
-    "regular_price_cad": 999.0,
-    "sale_price_cad": 929.98,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/267978/amd-ryzen-9-9950x3d-16-core-32thread-4nm-zen-5-cpu-100-100000719wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 7 7700X 8-Core/16-Thread 5nm ZEN 4 CPU",
-    "category": "cpu",
-    "price_cad": 359.88,
-    "regular_price_cad": 579.0,
-    "sale_price_cad": 359.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/226995/amd-ryzen-7-7700x-8-core-16-thread-5nm-zen-4-cpu-100-100000591wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Sold Out In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 359.88,
-    "regular_price_cad": 579.0,
-    "sale_price_cad": 359.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/226995/amd-ryzen-7-7700x-8-core-16-thread-5nm-zen-4-cpu-100-100000591wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Intel Core i5-14600K Desktop Processor 14 cores (6P+8E) LGA1700",
-    "category": "cpu",
-    "price_cad": 299.88,
-    "regular_price_cad": 349.99,
-    "sale_price_cad": 299.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244470/intel-core-i5-14600k-desktop-processor-14-cores-6p-8e-lga1700-bx8071514600k.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 299.88,
-    "regular_price_cad": 349.99,
-    "sale_price_cad": 299.88,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244470/intel-core-i5-14600k-desktop-processor-14-cores-6p-8e-lga1700-bx8071514600k.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 5 9600X 6-Core/12Thread 4nm ZEN 5 CPU",
-    "category": "cpu",
-    "price_cad": 249.99,
-    "regular_price_cad": 399.0,
-    "sale_price_cad": 249.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258318/amd-ryzen-5-9600x-6-core-12thread-4nm-zen-5-cpu-100-100001405wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 249.99,
-    "regular_price_cad": 399.0,
-    "sale_price_cad": 249.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258318/amd-ryzen-5-9600x-6-core-12thread-4nm-zen-5-cpu-100-100001405wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 7 9700X 8-Core/16Thread 4nm ZEN 5 CPU",
-    "category": "cpu",
-    "price_cad": 359.99,
-    "regular_price_cad": 519.0,
-    "sale_price_cad": 359.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258320/amd-ryzen-7-9700x-8-core-16thread-4nm-zen-5-cpu-100-100001404wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 359.99,
-    "regular_price_cad": 519.0,
-    "sale_price_cad": 359.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258320/amd-ryzen-7-9700x-8-core-16thread-4nm-zen-5-cpu-100-100001404wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 7 5700X 8-Core/16-Thread 7nm ZEN 3 Processor 65W",
-    "category": "cpu",
-    "price_cad": 249.99,
-    "regular_price_cad": 389.99,
-    "sale_price_cad": 249.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/216440/amd-ryzen-7-5700x-8-core-16-thread-7nm-zen-3-processor-65w-100-100000926wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 249.99,
-    "regular_price_cad": 389.99,
-    "sale_price_cad": 249.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/216440/amd-ryzen-7-5700x-8-core-16-thread-7nm-zen-3-processor-65w-100-100000926wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Intel Core Ultra 9 285K Desktop Processor 24 cores (8P+16E) LGA1851",
-    "category": "cpu",
-    "price_cad": 899.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/263476/intel-core-ultra-9-285k-desktop-processor-24-cores-8p-16e-lga1851-bx80768285k.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 899.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/263476/intel-core-ultra-9-285k-desktop-processor-24-cores-8p-16e-lga1851-bx80768285k.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "AMD Ryzen 9 9900X 12-Core/24Thread 4nm ZEN 5 CPU",
-    "category": "cpu",
-    "price_cad": 519.99,
-    "regular_price_cad": 649.0,
-    "sale_price_cad": 519.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258536/amd-ryzen-9-9900x-12-core-24thread-4nm-zen-5-cpu-100-100000662wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu",
-    "price_cad": 519.99,
-    "regular_price_cad": 649.0,
-    "sale_price_cad": 519.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258536/amd-ryzen-9-9900x-12-core-24thread-4nm-zen-5-cpu-100-100000662wof.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
+    "observed_at": "2026-11-13T16:43:48Z"
   },
   {
     "name": "Intel Core i7-14700K Desktop Processor 20 cores (8P+12E) LGA1700",
@@ -309,7 +23,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244465/intel-core-i7-14700k-desktop-processor-20-cores-8p-12e-lga1700-bx8071514700k.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
+    "observed_at": "2026-11-13T16:43:48Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -322,7 +36,293 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244465/intel-core-i7-14700k-desktop-processor-20-cores-8p-12e-lga1700-bx8071514700k.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:10Z"
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 5800X3D 10th Anniversary Edition with Carbice\u00ae Ice Pad",
+    "category": "cpu",
+    "price_cad": 489.98,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/291028/amd-ryzen-7-5800x3d-10th-anniversary-edition-with-carbice-ice-pad-100-100000651pof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 489.98,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/291028/amd-ryzen-7-5800x3d-10th-anniversary-edition-with-carbice-ice-pad-100-100000651pof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 9800X3D 8-Core 4nm AM5 104MB Cache 120W ZEN 5 CPU",
+    "category": "cpu",
+    "price_cad": 549.99,
+    "regular_price_cad": 689.0,
+    "sale_price_cad": 549.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/264908/amd-ryzen-7-9800x3d-8-core-4nm-am5-104mb-cache-120w-zen-5-cpu-100-100001084wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 549.99,
+    "regular_price_cad": 689.0,
+    "sale_price_cad": 549.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/264908/amd-ryzen-7-9800x3d-8-core-4nm-am5-104mb-cache-120w-zen-5-cpu-100-100001084wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 7800X3D 8-Core/16-Thread 5nm 104MB Cache 120W ZEN 4 CPU",
+    "category": "cpu",
+    "price_cad": 469.99,
+    "regular_price_cad": 609.99,
+    "sale_price_cad": 469.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/235997/amd-ryzen-7-7800x3d-8-core-16-thread-5nm-104mb-cache-120w-zen-4-cpu-100-100000910wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 469.99,
+    "regular_price_cad": 609.99,
+    "sale_price_cad": 469.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/235997/amd-ryzen-7-7800x3d-8-core-16-thread-5nm-104mb-cache-120w-zen-4-cpu-100-100000910wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 5 7600X 6-Core/12Thread 5nm ZEN 4 CPU",
+    "category": "cpu",
+    "price_cad": 309.88,
+    "regular_price_cad": 439.0,
+    "sale_price_cad": 309.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/227006/amd-ryzen-5-7600x-6-core-12thread-5nm-zen-4-cpu-100-100000593wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Sold Out In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 309.88,
+    "regular_price_cad": 439.0,
+    "sale_price_cad": 309.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/227006/amd-ryzen-5-7600x-6-core-12thread-5nm-zen-4-cpu-100-100000593wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 9 9950X3D 16-Core/32Thread 4nm ZEN 5 CPU",
+    "category": "cpu",
+    "price_cad": 929.98,
+    "regular_price_cad": 999.0,
+    "sale_price_cad": 929.98,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/267978/amd-ryzen-9-9950x3d-16-core-32thread-4nm-zen-5-cpu-100-100000719wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 929.98,
+    "regular_price_cad": 999.0,
+    "sale_price_cad": 929.98,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/267978/amd-ryzen-9-9950x3d-16-core-32thread-4nm-zen-5-cpu-100-100000719wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 7700X 8-Core/16-Thread 5nm ZEN 4 CPU",
+    "category": "cpu",
+    "price_cad": 359.88,
+    "regular_price_cad": 579.0,
+    "sale_price_cad": 359.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/226995/amd-ryzen-7-7700x-8-core-16-thread-5nm-zen-4-cpu-100-100000591wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Sold Out In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 359.88,
+    "regular_price_cad": 579.0,
+    "sale_price_cad": 359.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/226995/amd-ryzen-7-7700x-8-core-16-thread-5nm-zen-4-cpu-100-100000591wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Intel Core i5-14600K Desktop Processor 14 cores (6P+8E) LGA1700",
+    "category": "cpu",
+    "price_cad": 299.88,
+    "regular_price_cad": 349.99,
+    "sale_price_cad": 299.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244470/intel-core-i5-14600k-desktop-processor-14-cores-6p-8e-lga1700-bx8071514600k.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 299.88,
+    "regular_price_cad": 349.99,
+    "sale_price_cad": 299.88,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244470/intel-core-i5-14600k-desktop-processor-14-cores-6p-8e-lga1700-bx8071514600k.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 5 9600X 6-Core/12Thread 4nm ZEN 5 CPU",
+    "category": "cpu",
+    "price_cad": 249.99,
+    "regular_price_cad": 399.0,
+    "sale_price_cad": 249.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258318/amd-ryzen-5-9600x-6-core-12thread-4nm-zen-5-cpu-100-100001405wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 249.99,
+    "regular_price_cad": 399.0,
+    "sale_price_cad": 249.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258318/amd-ryzen-5-9600x-6-core-12thread-4nm-zen-5-cpu-100-100001405wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 9700X 8-Core/16Thread 4nm ZEN 5 CPU",
+    "category": "cpu",
+    "price_cad": 359.99,
+    "regular_price_cad": 519.0,
+    "sale_price_cad": 359.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258320/amd-ryzen-7-9700x-8-core-16thread-4nm-zen-5-cpu-100-100001404wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 359.99,
+    "regular_price_cad": 519.0,
+    "sale_price_cad": 359.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/258320/amd-ryzen-7-9700x-8-core-16thread-4nm-zen-5-cpu-100-100001404wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "AMD Ryzen 7 5700X 8-Core/16-Thread 7nm ZEN 3 Processor 65W",
+    "category": "cpu",
+    "price_cad": 249.99,
+    "regular_price_cad": 389.99,
+    "sale_price_cad": 249.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/216440/amd-ryzen-7-5700x-8-core-16-thread-7nm-zen-3-processor-65w-100-100000926wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 249.99,
+    "regular_price_cad": 389.99,
+    "sale_price_cad": 249.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/216440/amd-ryzen-7-5700x-8-core-16-thread-7nm-zen-3-processor-65w-100-100000926wof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Intel Core Ultra 9 285K Desktop Processor 24 cores (8P+16E) LGA1851",
+    "category": "cpu",
+    "price_cad": 899.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/263476/intel-core-ultra-9-285k-desktop-processor-24-cores-8p-16e-lga1851-bx80768285k.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu",
+    "price_cad": 899.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/263476/intel-core-ultra-9-285k-desktop-processor-24-cores-8p-16e-lga1851-bx80768285k.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:48Z"
   },
   {
     "name": "Exclusions apply",
@@ -335,10 +335,10 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
-    "name": "GIGABYTE Radeon RX 9070 XT GAMING OC GDDR6 Triple Fans",
+    "name": "GIGABYTE Radeon RX 9070 XT GAMING OC ICE GDDR6 Triple Fans",
     "category": "gpu",
     "price_cad": 1499.0,
     "regular_price_cad": null,
@@ -346,9 +346,9 @@
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/powered-by-amd/267624/gigabyte-radeon-rx-9070-xt-gaming-oc-gddr6-triple-fans-gv-r9070xtgaming-oc-16gd.html",
+    "url": "https://www.canadacomputers.com/en/powered-by-amd/282569/gigabyte-radeon-rx-9070-xt-gaming-oc-ice-gddr6-triple-fans-gv-r907xgamingocice-16gd.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -359,9 +359,35 @@
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/powered-by-amd/282569/gigabyte-radeon-rx-9070-xt-gaming-oc-ice-gddr6-triple-fans-gv-r907xgamingocice-16gd.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:52Z"
+  },
+  {
+    "name": "GIGABYTE Radeon RX 9070 XT GAMING OC GDDR6 Triple Fans",
+    "category": "gpu",
+    "price_cad": 1349.99,
+    "regular_price_cad": 1499.0,
+    "sale_price_cad": 1349.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/267624/gigabyte-radeon-rx-9070-xt-gaming-oc-gddr6-triple-fans-gv-r9070xtgaming-oc-16gd.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "gpu",
+    "price_cad": 1349.99,
+    "regular_price_cad": 1499.0,
+    "sale_price_cad": 1349.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/powered-by-amd/267624/gigabyte-radeon-rx-9070-xt-gaming-oc-gddr6-triple-fans-gv-r9070xtgaming-oc-16gd.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "ASUS Prime Radeon RX 9070 XT OC Edition GDDR6 Triple Fans",
@@ -374,7 +400,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/267968/asus-prime-radeon-rx-9070-xt-oc-edition-gddr6-triple-fans-prime-rx9070xt-o16g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -387,7 +413,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/267968/asus-prime-radeon-rx-9070-xt-oc-edition-gddr6-triple-fans-prime-rx9070xt-o16g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "ASUS Prime GeForce RTX 5070 12GB GDDR7 Graphics Card",
@@ -400,7 +426,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268300/asus-prime-geforce-rtx-5070-12gb-gddr7-graphics-card-prime-rtx5070-12g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -413,7 +439,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268300/asus-prime-geforce-rtx-5070-12gb-gddr7-graphics-card-prime-rtx5070-12g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Prime GeForce RTX 5070 OC Edition 12GB GDDR7",
@@ -426,7 +452,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268301/prime-geforce-rtx-5070-oc-edition-12gb-gddr7-prime-rtx5070-o12g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -439,7 +465,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268301/prime-geforce-rtx-5070-oc-edition-12gb-gddr7-prime-rtx5070-o12g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "SAPPHIRE PULSE AMD RADEON RX 9060 XT GAMING OC 16GB GDDR6",
@@ -452,7 +478,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273994/sapphire-pulse-amd-radeon-rx-9060-xt-gaming-oc-16gb-gddr6-11350-03-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -465,7 +491,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273994/sapphire-pulse-amd-radeon-rx-9060-xt-gaming-oc-16gb-gddr6-11350-03-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "SAPPHIRE PULSE AMD RADEON RX 9070 XT 16GB GDDR6",
@@ -478,7 +504,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/269139/sapphire-pulse-amd-radeon-rx-9070-xt-16gb-gddr6-11348-03-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -491,7 +517,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/269139/sapphire-pulse-amd-radeon-rx-9070-xt-16gb-gddr6-11348-03-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "SAPPHIRE PURE AMD RADEON RX 9060 XT GAMING OC 16GB GDDR6",
@@ -504,7 +530,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273993/sapphire-pure-amd-radeon-rx-9060-xt-gaming-oc-16gb-gddr6-11350-02-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -517,7 +543,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273993/sapphire-pure-amd-radeon-rx-9060-xt-gaming-oc-16gb-gddr6-11350-02-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "XFX SWIFT AMD Radeon RX 9060 XT OC Triple Fan Gaming Edition 16GB",
@@ -530,7 +556,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273461/xfx-swift-amd-radeon-rx-9060-xt-oc-triple-fan-gaming-edition-16gb-rx-96ts316b7.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -543,7 +569,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/273461/xfx-swift-amd-radeon-rx-9060-xt-oc-triple-fan-gaming-edition-16gb-rx-96ts316b7.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "ASUS TUF-RTX5060TI-O16G-GAMING GDDR7 Triple Fans",
@@ -556,7 +582,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/271353/asus-tuf-rtx5060ti-o16g-gaming-gddr7-triple-fans-tuf-rtx5060ti-o16g-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -569,7 +595,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/271353/asus-tuf-rtx5060ti-o16g-gaming-gddr7-triple-fans-tuf-rtx5060ti-o16g-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "GIGABYTE GeForce RTX 3050 WINDFORCE OC V2 6G Graphics Card",
@@ -582,7 +608,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/267678/gigabyte-geforce-rtx-3050-windforce-oc-v2-6g-graphics-card-gv-n3050wf2ocv2-6gd.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -595,7 +621,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-nvidia/267678/gigabyte-geforce-rtx-3050-windforce-oc-v2-6g-graphics-card-gv-n3050wf2ocv2-6gd.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "SAPPHIRE PURE AMD RADEON RX 9070 XT 16GB GDDR6",
@@ -608,7 +634,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/269136/sapphire-pure-amd-radeon-rx-9070-xt-16gb-gddr6-11348-02-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -621,33 +647,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/powered-by-amd/269136/sapphire-pure-amd-radeon-rx-9070-xt-16gb-gddr6-11348-02-20g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
-  },
-  {
-    "name": "GIGABYTE GeForce RTX 5070 GAMING OC 12G Graphics Card",
-    "category": "gpu",
-    "price_cad": 1299.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268826/gigabyte-geforce-rtx-5070-gaming-oc-12g-graphics-card-gv-n5070gaming-oc-12gd.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
-  },
-  {
-    "name": "Online - Sold Out In Store - Available for Pickup",
-    "category": "gpu",
-    "price_cad": 1299.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/powered-by-nvidia/268826/gigabyte-geforce-rtx-5070-gaming-oc-12g-graphics-card-gv-n5070gaming-oc-12gd.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:16Z"
+    "observed_at": "2026-11-13T16:43:52Z"
   },
   {
     "name": "Exclusions apply",
@@ -660,7 +660,33 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
+  },
+  {
+    "name": "CORSAIR VENGEANCE RGB 32GB (2x16GB) DDR5 6000MHz CL38 UDIMM",
+    "category": "memory",
+    "price_cad": 831.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/desktop-memory/283837/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl38-udimm-cmh32gx5m2b6000z38.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:56Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "memory",
+    "price_cad": 831.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/desktop-memory/283837/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl38-udimm-cmh32gx5m2b6000z38.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "TEAMGROUP T-FORCE VULCAN 32GB (2x16GB) DDR5 6000MHz CL30 UDIMM",
@@ -673,7 +699,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/246328/teamgroup-t-force-vulcan-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-flbd532g6000hc30dc01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -686,111 +712,111 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/246328/teamgroup-t-force-vulcan-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-flbd532g6000hc30dc01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "CORSAIR VENGEANCE RGB 32GB (2x16GB) DDR5 6000MHz CL36 UDIMM",
     "category": "memory",
-    "price_cad": 759.99,
-    "regular_price_cad": 844.99,
-    "sale_price_cad": 759.99,
+    "price_cad": 844.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/255807/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl36-udimm-cmh32gx5m2e6000z36.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
     "category": "memory",
-    "price_cad": 759.99,
-    "regular_price_cad": 844.99,
-    "sale_price_cad": 759.99,
+    "price_cad": 844.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/255807/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl36-udimm-cmh32gx5m2e6000z36.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "CORSAIR VENGEANCE RGB 32GB (2x16GB) DDR5 6000MHz CL36 UDIMM",
     "category": "memory",
-    "price_cad": 759.99,
-    "regular_price_cad": 844.99,
-    "sale_price_cad": 759.99,
+    "price_cad": 844.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/266702/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl36-udimm-cmh32gx5m2e6000z36w.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "memory",
-    "price_cad": 759.99,
-    "regular_price_cad": 844.99,
-    "sale_price_cad": 759.99,
+    "price_cad": 844.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/266702/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl36-udimm-cmh32gx5m2e6000z36w.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "CORSAIR VENGEANCE LPX 32GB (2x16GB) DDR4 3200MHz CL16 UDIMM",
     "category": "memory",
-    "price_cad": 359.99,
-    "regular_price_cad": 442.99,
-    "sale_price_cad": 359.99,
+    "price_cad": 442.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/183957/corsair-vengeance-lpx-32gb-2x16gb-ddr4-3200mhz-cl16-udimm-cmk32gx4m2e3200c16.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "memory",
-    "price_cad": 359.99,
-    "regular_price_cad": 442.99,
-    "sale_price_cad": 359.99,
+    "price_cad": 442.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/183957/corsair-vengeance-lpx-32gb-2x16gb-ddr4-3200mhz-cl16-udimm-cmk32gx4m2e3200c16.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "CORSAIR VENGEANCE RGB 64GB (2x32GB) DDR5 6000MHz CL30 UDIMM",
     "category": "memory",
-    "price_cad": 1769.99,
-    "regular_price_cad": 1859.99,
-    "sale_price_cad": 1769.99,
+    "price_cad": 1859.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/255811/corsair-vengeance-rgb-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-cmh64gx5m2b6000z30.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
     "category": "memory",
-    "price_cad": 1769.99,
-    "regular_price_cad": 1859.99,
-    "sale_price_cad": 1769.99,
+    "price_cad": 1859.99,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/255811/corsair-vengeance-rgb-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-cmh64gx5m2b6000z30.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "G.SKILL Trident Z5 Neo RGB 64GB (2x32GB) DDR5 6000MHz CL30 UDIMM",
@@ -803,7 +829,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/231617/g-skill-trident-z5-neo-rgb-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-f5-6000j3040g32gx2-tz5nr.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -816,7 +842,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/231617/g-skill-trident-z5-neo-rgb-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-f5-6000j3040g32gx2-tz5nr.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Kingston FURY Beast 64GB (2x32GB) DDR5 6000MHz CL30 UDIMM",
@@ -829,7 +855,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/254660/kingston-fury-beast-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-kf560c30bbek2-64.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -842,7 +868,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/254660/kingston-fury-beast-64gb-2x32gb-ddr5-6000mhz-cl30-udimm-kf560c30bbek2-64.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "G.SKILL Trident Z5 Neo RGB 32GB (2x16GB) DDR5 6000MHz CL30 UDIMM",
@@ -855,7 +881,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/227127/g-skill-trident-z5-neo-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-f5-6000j3038f16gx2-tz5nr.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -868,7 +894,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/227127/g-skill-trident-z5-neo-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-f5-6000j3038f16gx2-tz5nr.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "G.SKILL Ripjaws V 32GB (2x16GB) DDR4 3200MHz CL16 UDIMM",
@@ -881,7 +907,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/99478/g-skill-ripjaws-v-32gb-2x16gb-ddr4-3200mhz-cl16-udimm-f4-3200c16d-32gvk.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -894,7 +920,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/99478/g-skill-ripjaws-v-32gb-2x16gb-ddr4-3200mhz-cl16-udimm-f4-3200c16d-32gvk.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "CORSAIR VENGEANCE RGB 32GB (2x16GB) DDR5 6000MHz CL30 UDIMM",
@@ -907,7 +933,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/272126/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-cmh32gx5m2b6000z30wcb.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -920,7 +946,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/272126/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-cmh32gx5m2b6000z30wcb.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "TEAMGROUP T-FORCE DELTA RGB 32GB (2x16GB) DDR5 6000MHz CL30 UDIMM",
@@ -933,7 +959,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/246174/teamgroup-t-force-delta-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-ff3d532g6000hc30dc01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -946,33 +972,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-memory/246174/teamgroup-t-force-delta-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-ff3d532g6000hc30dc01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
-  },
-  {
-    "name": "TEAMGROUP T-FORCE DELTA RGB 32GB (2x16GB) DDR5 6000MHz CL30 UDIMM",
-    "category": "memory",
-    "price_cad": 909.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/desktop-memory/249812/teamgroup-t-force-delta-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-ff4d532g6000hc30dc01.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "memory",
-    "price_cad": 909.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/desktop-memory/249812/teamgroup-t-force-delta-rgb-32gb-2x16gb-ddr5-6000mhz-cl30-udimm-ff4d532g6000hc30dc01.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:21Z"
+    "observed_at": "2026-11-13T16:43:56Z"
   },
   {
     "name": "Exclusions apply",
@@ -985,7 +985,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "GIGABYTE B650M GAMING PLUS WIFI AM5 LGA 1718 AMD B650 M-ATX, DDR5",
@@ -998,7 +998,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/255647/gigabyte-b650m-gaming-plus-wifi-am5-lga-1718-amd-b650-m-atx-ddr5-b650m-gaming-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -1011,7 +1011,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/255647/gigabyte-b650m-gaming-plus-wifi-am5-lga-1718-amd-b650-m-atx-ddr5-b650m-gaming-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "GIGABYTE B650 EAGLE AX AM5 LGA 1718 AMD B650 ATX , DDR5 Triple M.2",
@@ -1024,7 +1024,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/251754/gigabyte-b650-eagle-ax-am5-lga-1718-amd-b650-atx-ddr5-triple-m-2-b650-eagle-ax.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1037,7 +1037,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/251754/gigabyte-b650-eagle-ax-am5-lga-1718-amd-b650-atx-ddr5-triple-m-2-b650-eagle-ax.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "ASUS TUF GAMING X870-PLUS WIFI AMD AM5 X870 ATX motherboard",
@@ -1050,7 +1050,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/262947/asus-tuf-gaming-x870-plus-wifi-amd-am5-x870-atx-motherboard-tuf-gaming-x870-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1063,7 +1063,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/262947/asus-tuf-gaming-x870-plus-wifi-amd-am5-x870-atx-motherboard-tuf-gaming-x870-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "ASUS ROG STRIX B650-A GAMING WIFI 6E Socket AM5 (LGA 1718) Motherboard",
@@ -1076,7 +1076,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/229963/asus-rog-strix-b650-a-gaming-wifi-6e-socket-am5-lga-1718-motherboard-rog-strix-b650-a-gaming-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1089,7 +1089,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/229963/asus-rog-strix-b650-a-gaming-wifi-6e-socket-am5-lga-1718-motherboard-rog-strix-b650-a-gaming-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "GIGABYTE X870 AORUS ELITE WIFI7 ICE AMD AM5 LGA 1718 Motherboard, ATX",
@@ -1102,7 +1102,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/263043/gigabyte-x870-aorus-elite-wifi7-ice-amd-am5-lga-1718-motherboard-atx-x870-aorus-elite-wifi7-ice.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1115,7 +1115,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/263043/gigabyte-x870-aorus-elite-wifi7-ice-amd-am5-lga-1718-motherboard-atx-x870-aorus-elite-wifi7-ice.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "ASUS ROG STRIX X870E-E GAMING WIFI AMD AM5 X870 ATX motherboard",
@@ -1128,7 +1128,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/262943/asus-rog-strix-x870e-e-gaming-wifi-amd-am5-x870-atx-motherboard-rog-strix-x870e-e-gaming-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1141,7 +1141,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/262943/asus-rog-strix-x870e-e-gaming-wifi-amd-am5-x870-atx-motherboard-rog-strix-x870e-e-gaming-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "GIGABYTE B850 AORUS ELITE WIFI7 AMD AM5 LGA 1718 Motherboard, ATX",
@@ -1154,7 +1154,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/267127/gigabyte-b850-aorus-elite-wifi7-amd-am5-lga-1718-motherboard-atx-b850-aorus-elite-wifi7.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1167,7 +1167,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/267127/gigabyte-b850-aorus-elite-wifi7-amd-am5-lga-1718-motherboard-atx-b850-aorus-elite-wifi7.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "GIGABYTE B850M AORUS ELITE WIFI6E ICE AMD AM5 LGA 1718 Motherboard",
@@ -1180,7 +1180,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/267129/gigabyte-b850m-aorus-elite-wifi6e-ice-amd-am5-lga-1718-motherboard-b850m-aorus-elite-wifi6e-ice.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -1193,7 +1193,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/267129/gigabyte-b850m-aorus-elite-wifi6e-ice-amd-am5-lga-1718-motherboard-b850m-aorus-elite-wifi6e-ice.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "MSI B850 GAMING PLUS WIFI, AMD Ryzen\u2122 9000 / 8000 / 7000 Series",
@@ -1206,7 +1206,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/266953/msi-b850-gaming-plus-wifi-amd-ryzen-9000-8000-7000-series-b850-gaming-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1219,7 +1219,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/266953/msi-b850-gaming-plus-wifi-amd-ryzen-9000-8000-7000-series-b850-gaming-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "ASUS TUF Gaming Z790-Plus WiFi LGA 1700 ATX gaming motherboard",
@@ -1232,7 +1232,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/intel-motherboards/233686/asus-tuf-gaming-z790-plus-wifi-lga-1700-atx-gaming-motherboard-tuf-gaming-z790-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1245,7 +1245,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/intel-motherboards/233686/asus-tuf-gaming-z790-plus-wifi-lga-1700-atx-gaming-motherboard-tuf-gaming-z790-plus-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "MSI MAG B850 TOMAHAWK MAX WIFI, AMD Ryzen\u2122 9000 / 8000 / 7000 Series",
@@ -1258,7 +1258,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/268429/msi-mag-b850-tomahawk-max-wifi-amd-ryzen-9000-8000-7000-series-mag-b850-tomahawk-max-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1271,7 +1271,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/268429/msi-mag-b850-tomahawk-max-wifi-amd-ryzen-9000-8000-7000-series-mag-b850-tomahawk-max-wifi.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "ASUS Prime B550M-A WIFI II Desktop Motherboard",
@@ -1284,7 +1284,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/224739/asus-prime-b550m-a-wifi-ii-desktop-motherboard-prime-b550m-a-wifi-ii.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1297,7 +1297,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/amd-motherboards/224739/asus-prime-b550m-a-wifi-ii-desktop-motherboard-prime-b550m-a-wifi-ii.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:24Z"
+    "observed_at": "2026-11-13T16:43:59Z"
   },
   {
     "name": "Exclusions apply",
@@ -1310,7 +1310,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN850X 2TB PCIe Gen4 NVMe M.2 SSD",
@@ -1323,7 +1323,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226019/wd-black-sn850x-2tb-pcie-gen4-nvme-m-2-ssd-wds200t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1336,7 +1336,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226019/wd-black-sn850x-2tb-pcie-gen4-nvme-m-2-ssd-wds200t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN850X 1TB PCIe Gen4 NVMe M.2 SSD",
@@ -1349,7 +1349,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226016/wd-black-sn850x-1tb-pcie-gen4-nvme-m-2-ssd-wds100t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1362,7 +1362,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226016/wd-black-sn850x-1tb-pcie-gen4-nvme-m-2-ssd-wds100t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN7100 2TB PCIe Gen 4.0 M.2 2280 SSD",
@@ -1375,7 +1375,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/266590/wd-black-sn7100-2tb-pcie-gen-4-0-m-2-2280-ssd-wds200t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1388,7 +1388,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/266590/wd-black-sn7100-2tb-pcie-gen-4-0-m-2-2280-ssd-wds200t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Samsung 990 Pro 2TB M.2 NVMe PCIe 4.0 Solid State Drive",
@@ -1401,7 +1401,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/233286/samsung-990-pro-2tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p2t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1414,7 +1414,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/233286/samsung-990-pro-2tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p2t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Kingston NV3 1TB NVMe PCIe 4x4 SSD",
@@ -1427,7 +1427,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/261114/kingston-nv3-1tb-nvme-pcie-4x4-ssd-snv3s-1000g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1440,7 +1440,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/261114/kingston-nv3-1tb-nvme-pcie-4x4-ssd-snv3s-1000g.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN850X 4TB PCIe Gen4 NVMe M.2 SSD",
@@ -1453,7 +1453,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226020/wd-black-sn850x-4tb-pcie-gen4-nvme-m-2-ssd-wds400t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1466,7 +1466,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/226020/wd-black-sn850x-4tb-pcie-gen4-nvme-m-2-ssd-wds400t2x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Samsung 990 Pro 1TB M.2 NVMe PCIe 4.0 Solid State Drive",
@@ -1479,7 +1479,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/233285/samsung-990-pro-1tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p1t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1492,33 +1492,33 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/233285/samsung-990-pro-1tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p1t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Samsung 990 Pro 4TB M.2 NVMe PCIe 4.0 Solid State Drive",
     "category": "storage",
-    "price_cad": 1499.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 1279.99,
+    "regular_price_cad": 1499.99,
+    "sale_price_cad": 1279.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/246630/samsung-990-pro-4tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p4t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "storage",
-    "price_cad": 1499.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 1279.99,
+    "regular_price_cad": 1499.99,
+    "sale_price_cad": 1279.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/246630/samsung-990-pro-4tb-m-2-nvme-pcie-4-0-solid-state-drive-mz-v9p4t0b-am.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN7100 1TB PCIe Gen 4.0 M.2 2280 SSD",
@@ -1531,7 +1531,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/266589/wd-black-sn7100-1tb-pcie-gen-4-0-m-2-2280-ssd-wds100t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -1544,7 +1544,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/266589/wd-black-sn7100-1tb-pcie-gen-4-0-m-2-2280-ssd-wds100t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Blue\u2122 SA510 1TB SATAIII SSD",
@@ -1557,7 +1557,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/221049/wd-blue-sa510-1tb-sataiii-ssd-wds100t3b0a.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -1570,7 +1570,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/221049/wd-blue-sa510-1tb-sataiii-ssd-wds100t3b0a.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Black SN7100 4TB PCIe Gen 4.0 M.2 2280 SSD",
@@ -1583,7 +1583,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/273504/wd-black-sn7100-4tb-pcie-gen-4-0-m-2-2280-ssd-wds400t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -1596,7 +1596,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/273504/wd-black-sn7100-4tb-pcie-gen-4-0-m-2-2280-ssd-wds400t4x0e.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "WD Blue\u2122 SA510 2TB SATAIII SSD",
@@ -1609,7 +1609,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/244036/wd-blue-sa510-2tb-sataiii-ssd-wds200t3b0a.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -1622,7 +1622,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/desktop-laptop-internal-ssds/244036/wd-blue-sa510-2tb-sataiii-ssd-wds200t3b0a.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:30Z"
+    "observed_at": "2026-11-13T16:44:04Z"
   },
   {
     "name": "Exclusions apply",
@@ -1635,59 +1635,59 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:32Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "Lenovo Chromebook 15M8910 Chromebook 15.3\" MediaTek Kompanio 540 8GB 128GB eMMC Chrome OS, 83W7000CCF Member Price: $399.00 $699.00",
+    "name": "HP 15-fc0225dx Windows Laptop 15.6\" Touchscreen AMD Ryzen 7-7730U 16GB 512GB Windows 11 Home, D96E6UA#ABA Member Price: $899.00 $1,199.00",
     "category": "hdd",
-    "price_cad": 399.0,
-    "regular_price_cad": 699.0,
-    "sale_price_cad": 399.0,
+    "price_cad": 899.0,
+    "regular_price_cad": 1199.0,
+    "sale_price_cad": 899.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/chromebooks/292918/lenovo-chromebook-15-3-mediatek-kompanio-540-8gb-128gb-emmc-chrome-os-83w7000ccf.html",
+    "url": "https://www.canadacomputers.com/en/windows-laptops/293923/hp-windows-laptop-15-6-touchscreen-amd-ryzen-7-7730u-16gb-512gb-d96e6uaaba.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "Asus TUF 27\" Monitor 1920 x 1080 FHD IPS 144Hz 1ms Adaptive-Sync 1x HDMI 2.0 1x DisplayPort 1.2 1x 3.5mm Headphone Jack, VG279QE5A $199.99",
+    "name": "AMD Ryzen 7 5800X3D 10th Anniversary Edition | Socket AM4 4.5GHz boost, 100MB Cache, 105W Carbice\u00ae Ice Pad 100-100000651POF $489.98",
     "category": "hdd",
-    "price_cad": 199.99,
+    "price_cad": 489.98,
     "regular_price_cad": null,
     "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/amd-desktop-processors/291028/amd-ryzen-7-5800x3d-10th-anniversary-edition-with-carbice-ice-pad-100-100000651pof.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:06Z"
+  },
+  {
+    "name": "Asus TUF 27\" Monitor 1920 x 1080 FHD IPS 144Hz 1ms Adaptive-Sync 1x HDMI 2.0 1x DisplayPort 1.2 1x 3.5mm Headphone Jack, VG279QE5A $139.99 $199.99",
+    "category": "hdd",
+    "price_cad": 139.99,
+    "regular_price_cad": 199.99,
+    "sale_price_cad": 139.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/25-29-home-office-monitors/271653/asus-tuf-27-1920-x-1080-fhd-ips-144hz-monitor-vg279qe5a.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "Asus ROG Strix Impact III P518 Gaming Mouse - Optical - Cable - Black - USB 2.0 Type A - 12000 dpi - 5 Programmable Button(s) $79.99",
+    "name": "GIGABYTE Radeon RX 9070 XT GAMING OC ICE 16GB GDDR6 3060 MHz Triple Fans GV-R907XGAMINGOCICE-16GD $1,499.00",
     "category": "hdd",
-    "price_cad": 79.99,
+    "price_cad": 1499.0,
     "regular_price_cad": null,
     "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-mice/240795/asus-rog-strix-impact-iii-gaming-mouse-semi-ambidextrous-wired-lightweight-12000-dpi-sensor-5-programmable-buttons-replaceable--p518-rog-strix-impact-iii.html",
+    "url": "https://www.canadacomputers.com/en/powered-by-amd/282569/gigabyte-radeon-rx-9070-xt-gaming-oc-ice-gddr6-triple-fans-gv-r907xgamingocice-16gd.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "MSI PRO DP80 Small tower Desktop - Intel Core Ultra 7 265 16GB RAM 1TB SSD WiFi 6E AX211 Windows 11 Pro (PRO DP80 AI A2G-228CA) $1,699.00",
-    "category": "hdd",
-    "price_cad": 1699.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/285247/msi-pro-dp80-intel-ultra-7-265-16gb-ram-1tb-ssd-win11pro-pro-dp80-ai-a2g-228ca.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Razer Kraken V3 X Wired USB Gaming Headset - Chroma $54.99 $99.99",
@@ -1700,20 +1700,33 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/gaming-headsets/232915/razer-kraken-v3-x-wired-usb-gaming-headset-chroma-rz04-03750300-r3u1.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "DJI Flip (GL) Drone with Remote Controller $484.99",
+    "name": "Lenovo Legion Tower 5i Gaming Desktop \u2013 Intel Core Ultra 7 265F GeForce RTX 5060Ti 32GB RAM 1TB SSD Windows 11 Home (90YA009CCF) $3,299.00 $3,999.00",
     "category": "hdd",
-    "price_cad": 484.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 3299.0,
+    "regular_price_cad": 3999.0,
+    "sale_price_cad": 3299.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/consumer-drones/269870/dji-flip-gl-drone-with-remote-controller-cpfp0000017901.html",
+    "url": "https://www.canadacomputers.com/en/gaming-desktop-pcs/289695/lenovo-legion-t5i-ultra-7-265f-rtx-5060-ti-32gb-ram-1tb-ssd-win11h-90ya009ccf.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
+  },
+  {
+    "name": "CORSAIR VENGEANCE RGB 32GB (2x16GB) DDR5 6000MHz CL38 1.35V UDIMM INTEL XMP,AMD EXPO - Desktop Memory - Grey (CMH32GX5M2B6000Z38) Member Price: $649.99 $831.99",
+    "category": "hdd",
+    "price_cad": 649.99,
+    "regular_price_cad": 831.99,
+    "sale_price_cad": 649.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/desktop-memory/283837/corsair-vengeance-rgb-32gb-2x16gb-ddr5-6000mhz-cl38-udimm-cmh32gx5m2b6000z38.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Creative Sound Blaster GS5 Versatile RGB Gaming Soundbar, 51MF8470AA000 $109.99",
@@ -1726,20 +1739,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mini-systems-sound-bars/268419/creative-sound-blaster-gs5-versatile-rgb-gaming-soundbar-51mf8470aa000.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "TP-Link (TL-SG105-M2) 5 Port 2.5G Multi-Gigabit Unmanaged Network Switch, Ethernet Splitter, 2.5G Bandwidth, Plug & Play, Desktop/Wall-Mount, Fanless Metal Design $69.99 $84.99",
-    "category": "hdd",
-    "price_cad": 69.99,
-    "regular_price_cad": 84.99,
-    "sale_price_cad": 69.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/unmanaged-switches/255796/tp-link-tl-sg105-m2-5-port-multi-gigabit-unmanaged-network-switch-tl-sg105-m2.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Lenovo IdeaPad Slim 3i Windows Laptop 15.3\" Touchscreen Intel Ultra 5-322 16GB 512GB Windows 11 Home, 83UR006HCC Member Price: $999.00 $1,499.00",
@@ -1752,72 +1752,20 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/windows-laptops/290459/lenovo-ideapad-slim-3i-15-3-touchscreen-intel-ultra-5-322-16gb-512gb-83ur006hcc.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "GIGABYTE MO27Q28G 27\" Gaming Monitor 2560 x 1440 QHD W-OLED 280Hz 0.03ms AMD FreeSync Premium Pro Nvidia G-Sync Compatible 2 x HDMI 2.1 1 x Displayport 1.4 1 x USB-C 2 x USB-A 3.2 Downstream ports 1 x USB-A 3.2 Upstream port 1 x 3.5mm Earphone Jack, MO27Q28G SA $549.99 $649.99",
+    "name": "Intel Core i7-14700K Desktop Processor 20 cores (8P+12E) 33M Cache, up to 5.6 GHz, 125W, unlocked, LGA1700 700 & 600 chipset, PCIe 5&4, DDR5&4, 14th Gen Boxed BX8071514700K $539.99",
     "category": "hdd",
-    "price_cad": 549.99,
-    "regular_price_cad": 649.99,
-    "sale_price_cad": 549.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/25-29-gaming-monitors/283849/gigabyte-27-2560-x-1440-qhd-w-oled-280hz-gaming-monitor-mo27q28g-sa.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "ASUS ROG Azoth 75 Wireless DIY Custom Gaming Keyboard, OLED display, Gasket-Mount, Three-Layer Dampening, Hot-Swappable Pre-lubed ROG NX Snow Switches & Keyboard Stabilizers, PBT Keycaps, RGB - Black $369.99",
-    "category": "hdd",
-    "price_cad": 369.99,
+    "price_cad": 539.99,
     "regular_price_cad": null,
     "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-keyboards/254036/asus-rog-azoth-75-wireless-diy-custom-gaming-keyboard-rgb-black-m701-rog-azoth-nxsw-ca-pbt.html",
+    "url": "https://www.canadacomputers.com/en/intel-desktop-processors/244465/intel-core-i7-14700k-desktop-processor-20-cores-8p-12e-lga1700-bx8071514700k.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "Lenovo IdeaCentre 24\" FHD All-in-One Desktop - AMD Ryzen 7 250 16GB DDR5 512GB SSD Wi-Fi 6+BT 5.3 Windows 11 Home (F0JC001ACF) $1,249.00 $1,799.00",
-    "category": "hdd",
-    "price_cad": 1249.0,
-    "regular_price_cad": 1799.0,
-    "sale_price_cad": 1249.0,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/all-in-one-desktop-pcs/290899/lenovo-ideacentre-aio-24-amd-ryzen-7-250-16gb-ram-512gb-ssd-win11h-f0jc001acf.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "HyperX Cloud Alpha RF Wireless Gaming Headset for PC / Xbox Series X|S / Xbox One / PS4 / PS5 / Nintendo Switch - Black - 4P5D4AA $199.99 $259.99",
-    "category": "hdd",
-    "price_cad": 199.99,
-    "regular_price_cad": 259.99,
-    "sale_price_cad": 199.99,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-headsets/218199/hyperx-cloud-alpha-wireless-gaming-headset-4p5d4aa.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "Lenovo Legion 5 Gaming Laptop 15.3\" OLED AMD Ryzen 7 250 GeForce RTX 5060 16GB 1TB Windows 11 Home, 83Q7002LCC Member Price: $1,999.00 $2,699.00",
-    "category": "hdd",
-    "price_cad": 1999.0,
-    "regular_price_cad": 2699.0,
-    "sale_price_cad": 1999.0,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-laptops/291588/lenovo-legion-5-15-3-oled-amd-ryzen-7-250-geforce-rtx-5060-16gb-1tb-83q7002lcc.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Samsung Odyssey G50F 32\" Gaming Monitor QHD 2560 x 1440 IPS 180Hz 1ms FreeSync G-Sync Compatible 1x HDMI 2.0 1x DisplayPort 1.2 1x 3.5mm Headphone Jack, LS32FG502ENXZA $279.99 $349.99",
@@ -1830,46 +1778,72 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/30-45-gaming-monitors/286229/samsung-32-qhd-2560-x-1440-ips-180hz-gaming-monitor-ls32fg502enxza.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "RAZER Huntsman V3 Pro TKL Esports Gaming Keyboard $249.99",
+    "name": "Razer BlackShark V3 X HyperSpeed Wireless Gaming Headset for PC, Full Band Mic, 2.4GHz, Bluetooth, USB - Black, RZ04-05420100-R3U1 $109.99 $139.99",
     "category": "hdd",
-    "price_cad": 249.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 109.99,
+    "regular_price_cad": 139.99,
+    "sale_price_cad": 109.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-keyboards/260589/razer-huntsman-v3-pro-tkl-esports-gaming-keyboard-rz03-04980200-r3u1.html",
+    "url": "https://www.canadacomputers.com/en/gaming-headsets/287066/razer-blackshark-v3-x-hyperspeed-wireless-gaming-headset-rz04-05420100-r3u1.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "MSI PRO DP80 Small tower Desktop - Intel Core Ultra 5 225 16GB RAM 512GB SSD WiFi 6E+BT 5.3 Windows 11 Pro (PRO DP80 AI A2G-072CA) $1,299.00 $1,399.00",
+    "name": "ASUS NUC 14 Pro AI Mini PC - Intel Core Ultra 7 258V 32GB RAM 1TB SSD Windows 11 Home $1,899.00 $2,399.00",
     "category": "hdd",
-    "price_cad": 1299.0,
-    "regular_price_cad": 1399.0,
-    "sale_price_cad": 1299.0,
+    "price_cad": 1899.0,
+    "regular_price_cad": 2399.0,
+    "sale_price_cad": 1899.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/279133/msi-pro-dp80-intel-ultra-5-225-16gb-ram-512gb-ssd-win11-pro-pro-dp80-ai-a2g-072ca.html",
+    "url": "https://www.canadacomputers.com/en/consumer-desktops-mini-pcs/295488/asus-nuc-14-pro-intel-core-ultra-7-258v-32gb-ram-1tb-ssd-win11h-rnuc14lnku7099hu.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "Logitech G522 Lightspeed Wireless Gaming Headset, Full-Band Mic, Advanced Audio, Tri-Connect (Lightspeed, Bluetooth, USB A to C), LightSync RGB, for PC & Nintendo Switch/Switch 2 \u2013 Black, 981-001491 $229.99",
+    "name": "Lenovo Legion 5 Gaming Laptop 15.3\" OLED AMD Ryzen 7 250 GeForce RTX 5060 16GB 1TB Windows 11 Home, 83Q7002LCC Member Price: $1,999.00 $2,699.00",
     "category": "hdd",
-    "price_cad": 229.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 1999.0,
+    "regular_price_cad": 2699.0,
+    "sale_price_cad": 1999.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-headsets/280387/logitech-g522-lightspeed-wireless-gaming-headset-black-981-001491.html",
+    "url": "https://www.canadacomputers.com/en/gaming-laptops/291588/lenovo-legion-5-15-3-oled-amd-ryzen-7-250-geforce-rtx-5060-16gb-1tb-83q7002lcc.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
+  },
+  {
+    "name": "SteelSeries Arctis Nova 5 Wireless Multi-System Gaming Headset for PC/PlayStation/Switch - Black $149.99 $199.99",
+    "category": "hdd",
+    "price_cad": 149.99,
+    "regular_price_cad": 199.99,
+    "sale_price_cad": 149.99,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/gaming-headsets/256363/steelseries-arctis-nova-5-wireless-gaming-headset-61675.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:06Z"
+  },
+  {
+    "name": "Lenovo Legion Tower 5i Gaming Desktop \u2013 Intel Core Ultra 7 265F GeForce RTX 5070Ti 32GB RAM 1TB SSD Windows 11 Home (90YA0017US) $3,999.00 $4,599.00",
+    "category": "hdd",
+    "price_cad": 3999.0,
+    "regular_price_cad": 4599.0,
+    "sale_price_cad": 3999.0,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/gaming-desktop-pcs/296618/lenovo-legion-t5i-ultra-7-265f-rtx-5070-ti-32gb-ram-1tb-ssd-win11h-90ya0017us.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Lenovo Yoga 7 2-in-1 With Pen Windows Laptop 14\" OLED Touchscreen Intel Ultra 7-355 24GB 512GB Windows 11 Home, 83TC004BCC Member Price: $1,799.00 $2,399.00",
@@ -1882,215 +1856,189 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/windows-laptops/290458/lenovo-yoga-7-2-in-1-windows-laptop-14-oled-ultra-7-355-24gb-512gb-83tc004bcc.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "RAZER Huntsman V3 Pro Esports Gaming Keyboard: Analog Optical Switches - Snap Tap Mode - Rapid Trigger - Adjustable Actuation - Media Keys & Dial - Doubleshot PBT Keycaps - Wrist Rest $299.99",
+    "name": "Logitech G522 Lightspeed Wireless Gaming Headset, Full-Band Mic, Advanced Audio, Tri-Connect (Lightspeed, Bluetooth, USB A to C), LightSync RGB, for PC & Nintendo Switch/Switch 2 \u2013 Black, 981-001491 $229.99",
     "category": "hdd",
-    "price_cad": 299.99,
+    "price_cad": 229.99,
     "regular_price_cad": null,
     "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-keyboards/260596/razer-huntsman-v3-pro-analog-optical-esports-keyboard-rz03-04970200-r3u1.html",
+    "url": "https://www.canadacomputers.com/en/gaming-headsets/280387/logitech-g522-lightspeed-wireless-gaming-headset-black-981-001491.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "ASUS NUC 15 Pro+ Mini PC - Intel Core Ultra 5 225H 16GB RAM 512GB SSD Windows 11 Home $1,399.00 $1,799.00",
+    "name": "MSI Raider 16 HX Gaming Laptop 16\" 240Hz Intel Ultra 9 275HX GeForce RTX 5090 32GB 2TB Windows 11 Home, Raider 16 HX B2WJ-292CA Member Price: $4,999.00 $5,699.00",
     "category": "hdd",
-    "price_cad": 1399.0,
-    "regular_price_cad": 1799.0,
-    "sale_price_cad": 1399.0,
+    "price_cad": 4999.0,
+    "regular_price_cad": 5699.0,
+    "sale_price_cad": 4999.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/consumer-desktops-mini-pcs/295490/asus-nuc-15-pro-ultra-5-225h-16gb-ram-512gb-ssd-win11h-rnuc15crsu5063au.html",
+    "url": "https://www.canadacomputers.com/en/gaming-laptops/292502/msi-raider-16-hx-16-intel-ultra-9-275hx-rtx-5090-32gb-2tb-win11h-raider-16-hx-b2wj-292ca.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
-    "name": "MSI Raider A16 HX Gaming Laptop 16\" 240Hz AMD Ryzen 9 8940HX GeForce RTX 5080 32GB 1TB Windows 11 Home, Raider A16 HX B8WI-035CA Member Price: $3,499.00 $4,339.00",
+    "name": "MSI Stealth A16 AI+ Gaming Laptop 16\" OLED 240Hz AMD Ryzen AI 9 365 GeForce RTX 5070 Ti 32GB 1TB Windows 11 Home, Stealth A16 AI+ A3HWHG-238CA Member Price: $2,999.00 $3,699.00",
     "category": "hdd",
-    "price_cad": 3499.0,
-    "regular_price_cad": 4339.0,
-    "sale_price_cad": 3499.0,
+    "price_cad": 2999.0,
+    "regular_price_cad": 3699.0,
+    "sale_price_cad": 2999.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-laptops/292500/msi-raider-a16-hx-16-amd-ryzen-9-8940hx-rtx-5080-32gb-1tb-win11h-raider-a16-hx-b8wi-035ca.html",
+    "url": "https://www.canadacomputers.com/en/gaming-laptops/296883/msi-stealth-a16-16-amd-ryzen-ai-9-365-geforce-rtx-5070-ti-32gb-1tb-stealth-a16-ai-a3hwhg-238ca.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "ASUS ROG Keris II Origin Wireless Gaming Mouse, 64g Ergonomic, AimPoint Pro 42K DPI Optical Sensor, ROG Micro Switches II, SpeedNova Ultrafast Wireless, Bluetooth Compatible, Tested by Pro FPS Players, Black $189.99",
-    "category": "hdd",
-    "price_cad": 189.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-mice/279656/asus-rog-keris-ii-origin-wireless-gaming-mouse-black-p722-rog-keris-ii-origin-blk.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
-  },
-  {
-    "name": "ASUS ROG Keris II Origin Wireless Gaming Mouse, 64g Ergonomic, AimPoint Pro 42K DPI Optical Sensor, ROG Micro Switches II, SpeedNova Ultrafast Wireless, Bluetooth Compatible, Tested by Pro FPS Players, Moonlight White $189.99",
-    "category": "hdd",
-    "price_cad": 189.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/gaming-mice/279649/asus-rog-keris-ii-origin-wireless-gaming-mouse-p722-rog-keris-ii-origin-wht.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Laptops, Tablet",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/91/laptops-tablet",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Desktops",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/931/desktop-computers",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Keyboards & Mice",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/972/keyboards-mice",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Graphics Cards",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/914/graphics-cards",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "PC Headsets",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/1295/pc-headsets",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Motherboards",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/53/motherboards",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Monitors",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/988/monitors",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Video Gaming & Accessories",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/874/video-gaming-accessories",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Wi-Fi & Networking",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/1034/wi-fi-and-networking",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Memory",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/1009/memory",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Computer Cases",
     "category": "hdd",
     "price_cad": 300.0,
-    "regular_price_cad": 399.0,
+    "regular_price_cad": 899.0,
     "sale_price_cad": 300.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/860/computer-cases-accessories",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:33Z"
+    "observed_at": "2026-11-13T16:44:06Z"
   },
   {
     "name": "Exclusions apply",
@@ -2103,7 +2051,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "SUPERFLOWER 850W Gold ATX Power Supply, Black",
@@ -2116,7 +2064,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/257977/superflower-850w-gold-atx-power-supply-black-sf-850f14ge.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2129,7 +2077,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/257977/superflower-850w-gold-atx-power-supply-black-sf-850f14ge.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "CORSAIR CORSAIR RM850e 850W Gold ATX Power Supply, Black",
@@ -2142,10 +2090,10 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/266815/corsair-corsair-rm850e-850w-gold-atx-power-supply-black-cp-9020296-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
-    "name": "Online - Sold Out In Store - Available for Pickup",
+    "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "psu",
     "price_cad": 184.99,
     "regular_price_cad": null,
@@ -2155,7 +2103,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/266815/corsair-corsair-rm850e-850w-gold-atx-power-supply-black-cp-9020296-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "SUPER FLOWER 1000W Gold ATX Power Supply, Black",
@@ -2168,7 +2116,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/257978/super-flower-1000w-gold-atx-power-supply-black-sf-1000f14ge.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2181,59 +2129,59 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/257978/super-flower-1000w-gold-atx-power-supply-black-sf-1000f14ge.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "CORSAIR RMx Series RM850x Power Supply",
     "category": "psu",
-    "price_cad": 209.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 164.99,
+    "regular_price_cad": 209.99,
+    "sale_price_cad": 164.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/263824/corsair-rmx-series-rm850x-power-supply-cp-9020270-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "psu",
-    "price_cad": 209.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 164.99,
+    "regular_price_cad": 209.99,
+    "sale_price_cad": 164.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/263824/corsair-rmx-series-rm850x-power-supply-cp-9020270-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "CORSAIR RMx Series RM1000x",
     "category": "psu",
-    "price_cad": 264.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 214.99,
+    "regular_price_cad": 264.99,
+    "sale_price_cad": 214.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/263829/corsair-rmx-series-rm1000x-cp-9020271-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "psu",
-    "price_cad": 264.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 214.99,
+    "regular_price_cad": 264.99,
+    "sale_price_cad": 214.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/263829/corsair-rmx-series-rm1000x-cp-9020271-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "CORSAIR CORSAIR RM1000e 1000W Gold ATX Power Supply, Black",
@@ -2246,10 +2194,10 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/266814/corsair-corsair-rm1000e-1000w-gold-atx-power-supply-black-cp-9020297-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
-    "name": "Online - Sold Out In Store - Available for Pickup",
+    "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "psu",
     "price_cad": 239.99,
     "regular_price_cad": null,
@@ -2259,7 +2207,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/266814/corsair-corsair-rm1000e-1000w-gold-atx-power-supply-black-cp-9020297-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "ASUS ROG STRIX 1200W Platinum Platinum ATX Power Supply, Black",
@@ -2272,7 +2220,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/268226/asus-rog-strix-1200w-platinum-platinum-atx-power-supply-black-rog-strix-1200p-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2285,7 +2233,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/268226/asus-rog-strix-1200w-platinum-platinum-atx-power-supply-black-rog-strix-1200p-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "MSI MAG A850GL PCIE5, Fully Modular Compact, 80+ Gold, Power Supply",
@@ -2298,7 +2246,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/241559/msi-mag-a850gl-pcie5-fully-modular-compact-80-gold-power-supply-mag-a850gl-pcie5.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2311,7 +2259,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/241559/msi-mag-a850gl-pcie5-fully-modular-compact-80-gold-power-supply-mag-a850gl-pcie5.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "FSP VITA 80 PLUS Gold Certified ATX Power Supply, Black",
@@ -2324,7 +2272,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/253951/fsp-vita-80-plus-gold-certified-atx-power-supply-black-vita-850gm.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2337,7 +2285,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/253951/fsp-vita-80-plus-gold-certified-atx-power-supply-black-vita-850gm.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "ASUS ROG-STRIX 1000W Platinum ATX Power Supply, Black",
@@ -2350,7 +2298,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/268228/asus-rog-strix-1000w-platinum-atx-power-supply-black-rog-strix-1000p-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2363,59 +2311,59 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/268228/asus-rog-strix-1000w-platinum-atx-power-supply-black-rog-strix-1000p-gaming.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "CORSAIR CORSAIR SF1000 1000W Platinum ATX Power Supply, Black",
     "category": "psu",
-    "price_cad": 334.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 269.99,
+    "regular_price_cad": 334.99,
+    "sale_price_cad": 269.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/262853/corsair-corsair-sf1000-1000w-platinum-atx-power-supply-black-cp-9020257-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
     "category": "psu",
-    "price_cad": 334.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 269.99,
+    "regular_price_cad": 334.99,
+    "sale_price_cad": 269.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/262853/corsair-corsair-sf1000-1000w-platinum-atx-power-supply-black-cp-9020257-na.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "FSP Hydro G Pro 850W ATX Power Supply",
     "category": "psu",
-    "price_cad": 199.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 159.99,
+    "regular_price_cad": 199.99,
+    "sale_price_cad": 159.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/235366/fsp-hydro-g-pro-850w-atx-power-supply-hg2-850-gen5.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
-    "name": "Online - Sold Out In Store - Available for Pickup",
+    "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "psu",
-    "price_cad": 199.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 159.99,
+    "regular_price_cad": 199.99,
+    "sale_price_cad": 159.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/power-supplies/235366/fsp-hydro-g-pro-850w-atx-power-supply-hg2-850-gen5.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:39Z"
+    "observed_at": "2026-11-13T16:44:11Z"
   },
   {
     "name": "Exclusions apply",
@@ -2428,59 +2376,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
-  },
-  {
-    "name": "MSI PRO DP80 Intel Ultra 5 225 16GB RAM 512GB SSD Win11 Pro",
-    "category": "cpu-cooler",
-    "price_cad": 1299.0,
-    "regular_price_cad": 1399.0,
-    "sale_price_cad": 1299.0,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/279133/msi-pro-dp80-intel-ultra-5-225-16gb-ram-512gb-ssd-win11-pro-pro-dp80-ai-a2g-072ca.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu-cooler",
-    "price_cad": 1299.0,
-    "regular_price_cad": 1399.0,
-    "sale_price_cad": 1299.0,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/279133/msi-pro-dp80-intel-ultra-5-225-16gb-ram-512gb-ssd-win11-pro-pro-dp80-ai-a2g-072ca.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
-  },
-  {
-    "name": "MSI Pro DP80 Intel Ultra 7 265 16GB RAM 1TB SSD Win11Pro",
-    "category": "cpu-cooler",
-    "price_cad": 1699.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/285247/msi-pro-dp80-intel-ultra-7-265-16gb-ram-1tb-ssd-win11pro-pro-dp80-ai-a2g-228ca.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
-  },
-  {
-    "name": "Online - Available to Ship In Store - Available for Pickup",
-    "category": "cpu-cooler",
-    "price_cad": 1699.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
-    "condition": "new",
-    "retail_baseline": "current_new_selling_price",
-    "in_stock": true,
-    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/285247/msi-pro-dp80-intel-ultra-7-265-16gb-ram-1tb-ssd-win11pro-pro-dp80-ai-a2g-228ca.html",
-    "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "ARMOURY Intel i5-14400 Intel HD Graphics 16GB RAM 1TB SSD W11P",
@@ -2493,7 +2389,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/armoury-business-desktops/265560/armoury-intel-i5-14400-intel-hd-graphics-16gb-ram-1tb-ssd-w11p-rtaru00159.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2506,85 +2402,111 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/armoury-business-desktops/265560/armoury-intel-i5-14400-intel-hd-graphics-16gb-ram-1tb-ssd-w11p-rtaru00159.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Lenovo ThinkCentre Neo 50q - Intel i5 13420H 16GB RAM 256GB SSD Win11P",
     "category": "cpu-cooler",
-    "price_cad": 999.0,
-    "regular_price_cad": 1399.0,
-    "sale_price_cad": 999.0,
+    "price_cad": 1399.0,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/246167/lenovo-thinkcentre-neo-50q-intel-i5-13420h-16gb-ram-256gb-ssd-win11p-12ln000bus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "cpu-cooler",
-    "price_cad": 999.0,
-    "regular_price_cad": 1399.0,
-    "sale_price_cad": 999.0,
+    "price_cad": 1399.0,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/246167/lenovo-thinkcentre-neo-50q-intel-i5-13420h-16gb-ram-256gb-ssd-win11p-12ln000bus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
+  },
+  {
+    "name": "ASUS PN54 ExpertCenter AMD R7 350 16GB RAM 1TB SSD Win11P",
+    "category": "cpu-cooler",
+    "price_cad": 1099.0,
+    "regular_price_cad": 1399.0,
+    "sale_price_cad": 1099.0,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/296077/asus-pn54-expertcenter-amd-r7-350-16gb-ram-1tb-ssd-win11p-pn54-sys711petl0-a.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:15Z"
+  },
+  {
+    "name": "Not Available for Order",
+    "category": "cpu-cooler",
+    "price_cad": 1099.0,
+    "regular_price_cad": 1399.0,
+    "sale_price_cad": 1099.0,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/296077/asus-pn54-expertcenter-amd-r7-350-16gb-ram-1tb-ssd-win11p-pn54-sys711petl0-a.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Lenovo ThinkCentre Neo 50q Intel i5-13420H 8GB RAM 256GB SSD Win11P",
     "category": "cpu-cooler",
-    "price_cad": 1199.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 815.88,
+    "regular_price_cad": 1199.0,
+    "sale_price_cad": 815.88,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/248119/lenovo-thinkcentre-neo-50q-intel-i5-13420h-8gb-ram-256gb-ssd-win11p-12ln000cus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
     "category": "cpu-cooler",
-    "price_cad": 1199.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 815.88,
+    "regular_price_cad": 1199.0,
+    "sale_price_cad": 815.88,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/248119/lenovo-thinkcentre-neo-50q-intel-i5-13420h-8gb-ram-256gb-ssd-win11p-12ln000cus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Lenovo M70q Intel Core i7-14700T, 32GB, 1TB SSD, Windows 11 Pro",
     "category": "cpu-cooler",
-    "price_cad": 2499.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 1599.0,
+    "regular_price_cad": 2499.0,
+    "sale_price_cad": 1599.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/265164/lenovo-m70q-intel-core-i7-14700t-32gb-1tb-ssd-windows-11-pro-12td001sus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "cpu-cooler",
-    "price_cad": 2499.0,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 1599.0,
+    "regular_price_cad": 2499.0,
+    "sale_price_cad": 1599.0,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/265164/lenovo-m70q-intel-core-i7-14700t-32gb-1tb-ssd-windows-11-pro-12td001sus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Lenovo ThinkCentre M70q Intel Core i5 14400T 16GB RAM 512GB SSD Win11P",
@@ -2597,7 +2519,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/265151/lenovo-thinkcentre-m70q-intel-core-i5-14400t-16gb-ram-512gb-ssd-win11p-12td001rus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2610,7 +2532,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/265151/lenovo-thinkcentre-m70q-intel-core-i5-14400t-16gb-ram-512gb-ssd-win11p-12td001rus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "THINKCENTRE M75Q GEN 5 AMD RYZEN 5 PRO 8500GE (3.40GHZ 16MB) WINDOWS 11 PRO 6",
@@ -2623,7 +2545,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/268002/thinkcentre-m75q-gen-5-amd-ryzen-5-pro-8500ge-3-40ghz-16mb-windows-11-pro-6-12rq000kus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2636,7 +2558,33 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/268002/thinkcentre-m75q-gen-5-amd-ryzen-5-pro-8500ge-3-40ghz-16mb-windows-11-pro-6-12rq000kus.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:44Z"
+    "observed_at": "2026-11-13T16:44:15Z"
+  },
+  {
+    "name": "Minisforum X1 AMD Ryzen 7 255 32GB RAM 1TB SSD Win11P",
+    "category": "cpu-cooler",
+    "price_cad": 1299.0,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/275458/minisforum-x1-amd-ryzen-7-255-32gb-ram-1tb-ssd-win11p-x1-255321t.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:15Z"
+  },
+  {
+    "name": "Online - Available to Ship In Store - Available for Pickup",
+    "category": "cpu-cooler",
+    "price_cad": 1299.0,
+    "regular_price_cad": null,
+    "sale_price_cad": null,
+    "condition": "new",
+    "retail_baseline": "current_new_selling_price",
+    "in_stock": true,
+    "url": "https://www.canadacomputers.com/en/business-desktops-mini-pcs/275458/minisforum-x1-amd-ryzen-7-255-32gb-ram-1tb-ssd-win11p-x1-255321t.html",
+    "seller": "Canada Computers",
+    "observed_at": "2026-11-13T16:44:15Z"
   },
   {
     "name": "Exclusions apply",
@@ -2649,7 +2597,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "CORSAIR FRAME 4000D RS ARGB, Black",
@@ -2662,7 +2610,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/265522/corsair-frame-4000d-rs-argb-black-cc-9011296-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2675,7 +2623,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/265522/corsair-frame-4000d-rs-argb-black-cc-9011296-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "CORSAIR FRAME 4000D RS Black",
@@ -2688,10 +2636,10 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/267139/corsair-frame-4000d-rs-black-cc-9011312-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
-    "name": "Online - Sold Out In Store - Available for Pickup",
+    "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "case",
     "price_cad": 104.99,
     "regular_price_cad": 139.99,
@@ -2701,7 +2649,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/267139/corsair-frame-4000d-rs-black-cc-9011312-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "DeepCool MATREXX 50 ADD-RGB 4F ATX Mid-Tower Case 4x120mm ADD-RGB Fans",
@@ -2714,7 +2662,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/139452/deepcool-matrexx-50-add-rgb-4f-atx-mid-tower-case-4x120mm-add-rgb-fans-dp-atx-matrexx50-ar-4f-ne.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2727,7 +2675,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/139452/deepcool-matrexx-50-add-rgb-4f-atx-mid-tower-case-4x120mm-add-rgb-fans-dp-atx-matrexx50-ar-4f-ne.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "CORSAIR 3500X Tempered Glass Mid-Tower",
@@ -2740,7 +2688,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/258292/corsair-3500x-tempered-glass-mid-tower-cc-9011276-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2753,7 +2701,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/258292/corsair-3500x-tempered-glass-mid-tower-cc-9011276-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "FRACTAL DESIGN North Black",
@@ -2766,7 +2714,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/233170/fractal-design-north-black-fd-c-nor1c-01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2779,7 +2727,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/233170/fractal-design-north-black-fd-c-nor1c-01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "AZZA FIGHTER 290 PC Case",
@@ -2792,7 +2740,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/262872/azza-fighter-290-pc-case-csaz-290.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2805,7 +2753,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/262872/azza-fighter-290-pc-case-csaz-290.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "HYTE Y70 Touch Infinite Case, Snow White",
@@ -2818,7 +2766,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/257675/hyte-y70-touch-infinite-case-snow-white-cs-hyte-y70tti-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2831,7 +2779,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/257675/hyte-y70-touch-infinite-case-snow-white-cs-hyte-y70tti-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "FRACTAL DESIGN North Black",
@@ -2844,7 +2792,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/233171/fractal-design-north-black-fd-c-nor1c-02.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2857,7 +2805,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/233171/fractal-design-north-black-fd-c-nor1c-02.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "HYTE Y70 Touch Infinite Case, Black",
@@ -2870,7 +2818,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/257673/hyte-y70-touch-infinite-case-black-cs-hyte-y70tti-bb.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2883,7 +2831,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/257673/hyte-y70-touch-infinite-case-black-cs-hyte-y70tti-bb.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "FRACTAL DESIGN Define R5 Black",
@@ -2896,7 +2844,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/76255/fractal-design-define-r5-black-fd-ca-def-r5-bk.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -2909,33 +2857,33 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/76255/fractal-design-define-r5-black-fd-ca-def-r5-bk.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Phanteks XT Pro Ultra DRGB Mid tower Case, Black",
     "category": "case",
-    "price_cad": 119.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 99.99,
+    "regular_price_cad": 119.99,
+    "sale_price_cad": 99.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/259151/phanteks-xt-pro-ultra-drgb-mid-tower-case-black-ph-xt523p1dbk01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
     "category": "case",
-    "price_cad": 119.99,
-    "regular_price_cad": null,
-    "sale_price_cad": null,
+    "price_cad": 99.99,
+    "regular_price_cad": 119.99,
+    "sale_price_cad": 99.99,
     "condition": "new",
     "retail_baseline": "current_new_selling_price",
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/mid-tower-cases/259151/phanteks-xt-pro-ultra-drgb-mid-tower-case-black-ph-xt523p1dbk01.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "ASUS ASUS Prime AP201 MicroATX Case Black",
@@ -2948,7 +2896,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/small-form-factor-mini-itx-cases/243435/asus-asus-prime-ap201-microatx-case-black-ap201-asus-prime-case-mesh.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -2961,7 +2909,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/small-form-factor-mini-itx-cases/243435/asus-asus-prime-ap201-microatx-case-black-ap201-asus-prime-case-mesh.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:49Z"
+    "observed_at": "2026-11-13T16:44:20Z"
   },
   {
     "name": "Exclusions apply",
@@ -2974,7 +2922,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/content/8/online-shopping-faq",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "LIAN LI UF-SLIN120-3B 120mm Case Fan Black",
@@ -2987,7 +2935,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226981/lian-li-uf-slin120-3b-120mm-case-fan-black-uf-slin120-3b.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3000,7 +2948,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226981/lian-li-uf-slin120-3b-120mm-case-fan-black-uf-slin120-3b.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "LIAN LI UF-SLIN120-3W 120mm Case Fan White",
@@ -3013,7 +2961,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226982/lian-li-uf-slin120-3w-120mm-case-fan-white-uf-slin120-3w.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3026,7 +2974,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226982/lian-li-uf-slin120-3w-120mm-case-fan-white-uf-slin120-3w.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "be quiet! Pure Wings Pure Wings 3 120mm Case Fan Black",
@@ -3039,7 +2987,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/249389/be-quiet-pure-wings-pure-wings-3-120mm-case-fan-black-bl106.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -3052,7 +3000,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/249389/be-quiet-pure-wings-pure-wings-3-120mm-case-fan-black-bl106.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "be quiet! Pure Wings Pure Wings 3 120mm Case Fan Black",
@@ -3065,7 +3013,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/249388/be-quiet-pure-wings-pure-wings-3-120mm-case-fan-black-bl105.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3078,7 +3026,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/249388/be-quiet-pure-wings-pure-wings-3-120mm-case-fan-black-bl105.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "CORSAIR CORSAIR 120mm Case Fan Black",
@@ -3091,7 +3039,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261917/corsair-corsair-120mm-case-fan-black-co-9050181-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3104,7 +3052,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261917/corsair-corsair-120mm-case-fan-black-co-9050181-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "LIAN LI UF-SLIN120-1B 120mm Case Fan Black",
@@ -3117,7 +3065,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226983/lian-li-uf-slin120-1b-120mm-case-fan-black-uf-slin120-1b.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -3130,7 +3078,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/226983/lian-li-uf-slin120-1b-120mm-case-fan-black-uf-slin120-1b.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "CORSAIR CORSAIR RS120 120mm Case Fan Black",
@@ -3143,7 +3091,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261898/corsair-corsair-rs120-120mm-case-fan-black-co-9050189-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3156,7 +3104,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261898/corsair-corsair-rs120-120mm-case-fan-black-co-9050189-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "be quiet! BL098 120mm Case Fan Black",
@@ -3169,7 +3117,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225742/be-quiet-bl098-120mm-case-fan-black-bl098.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3182,7 +3130,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225742/be-quiet-bl098-120mm-case-fan-black-bl098.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "CORSAIR CORSAIR 120mm Case Fan White",
@@ -3195,7 +3143,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261871/corsair-corsair-120mm-case-fan-white-co-9050185-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Sold Out In Store - Available for Pickup",
@@ -3208,7 +3156,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/261871/corsair-corsair-120mm-case-fan-white-co-9050185-ww.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "be quiet! BL099 140mm Case Fan Black",
@@ -3221,7 +3169,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225743/be-quiet-bl099-140mm-case-fan-black-bl099.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -3234,7 +3182,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225743/be-quiet-bl099-140mm-case-fan-black-bl099.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "DeepCool FK120 High Performance Cooling Fan, 4-Pin PWM, Fluid Dynamic",
@@ -3247,7 +3195,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/247826/deepcool-fk120-high-performance-cooling-fan-4-pin-pwm-fluid-dynamic-r-fk120-bknpf1-g-3.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -3260,7 +3208,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/247826/deepcool-fk120-high-performance-cooling-fan-4-pin-pwm-fluid-dynamic-r-fk120-bknpf1-g-3.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "be quiet! BL093 120mm Case Fan Black",
@@ -3273,7 +3221,7 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225722/be-quiet-bl093-120mm-case-fan-black-bl093.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   },
   {
     "name": "Online - Available to Ship In Store - Available for Pickup",
@@ -3286,6 +3234,6 @@
     "in_stock": true,
     "url": "https://www.canadacomputers.com/en/case-fans/225722/be-quiet-bl093-120mm-case-fan-black-bl093.html",
     "seller": "Canada Computers",
-    "observed_at": "2026-11-12T17:04:55Z"
+    "observed_at": "2026-11-13T16:44:25Z"
   }
 ]
