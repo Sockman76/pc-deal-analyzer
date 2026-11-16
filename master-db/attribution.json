@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T17:40:25Z",
+  "generated_at": "2026-11-16T17:10:34Z",
   "sources": [
     {
       "name": "docyx/pc-part-dataset",
@@ -12,7 +12,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48768
+      "records_imported": 48810
     }
   ],
   "notice": "PCDeal Master Database contains merged/normalized records. Source attribution and license notices must be preserved."
