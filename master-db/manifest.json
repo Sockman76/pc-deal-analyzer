@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-16T17:10:34Z",
-  "total_products": 57354,
+  "generated_at": "2026-11-23T19:20:56Z",
+  "total_products": 57347,
   "categories": {
     "10000": {
       "count": 19,
@@ -123,7 +123,7 @@
       "index": "master-db/index/flex-atx.json"
     },
     "gpu": {
-      "count": 1561,
+      "count": 1548,
       "shards": 256,
       "index": "master-db/index/gpu.json"
     },
@@ -153,7 +153,7 @@
       "index": "master-db/index/led-controller.json"
     },
     "memory": {
-      "count": 1287,
+      "count": 1286,
       "shards": 253,
       "index": "master-db/index/memory.json"
     },
@@ -213,7 +213,7 @@
       "index": "master-db/index/mouse.json"
     },
     "other": {
-      "count": 33502,
+      "count": 33506,
       "shards": 256,
       "index": "master-db/index/other.json"
     },
@@ -223,7 +223,7 @@
       "index": "master-db/index/portable.json"
     },
     "psu": {
-      "count": 2406,
+      "count": 2409,
       "shards": 256,
       "index": "master-db/index/psu.json"
     },
@@ -270,7 +270,7 @@
       "name": "BuildCores OpenDB",
       "license": "ODC-By 1.0",
       "url": "https://github.com/buildcores/buildcores-open-db",
-      "records_imported": 48810
+      "records_imported": 48834
     }
   ],
   "schema_version": 1
